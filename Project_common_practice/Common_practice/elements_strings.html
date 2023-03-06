@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основы семантики в тексте</title>
+</head>
+<body>
+    <!-- Применение специальных тегов для обозначения типа контента, который они содержат -->
+    
+    <!-- Тег <br> это перенос текста на новую строку -->
+    <!--Тег <hr> это горизонтальная линия для тематического разделения параграфов -->
+
+    <!-- Headings -->
+    <h1>Different Headings</h1>
+    <h2>Different Headings</h2>
+    <h3>Different Headings</h3>
+    <h4>Different Headings</h4>
+    <h5>Different Headings</h5>
+    <h6>Different Headings</h6>
+    <hr> 
+    
+    <!-- Paragraph -->
+    <p>Simple paragraph with text. <br> 
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae eaque alias tempora nobis, numquam tenetur.</p>
+    <hr>
+    
+    <!-- Information about author -->
+    <!-- Тег <address> для хранения данных об авторе -->
+    <p>Here is my HTML basics course, which was</p>
+    <address>Yauhen Kavalchuk, YouTuve lecturer</address>
+    <hr>
+    
+    <!-- Quote and author -->
+    <!-- Тег <q> для обозначения коротких цитат -->
+    <q>
+        Hello, welcome to "WebDev" channel
+    </q>
+    <address>Yauhen Kavalchuk, YouTube lecturer</address>
+    <hr>
+
+    <!-- Block of Quote -->
+    <!-- Тег <blockquote> применяется для обозначения больших цитат с тегом <p> сохранения семантики текста. 
+    Для тега <blockqoute> может не указываться автор, благодаря применению атрибута site, который станет содержать ссылку на источник, откуда цитата была взята -->
+    <blockquote>
+        <p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit
+        Voluptatibus, ipsumLorem ipsum dolor sit amet consectetur adipisicing elit. Autem, rerum dolore omnis sed, nostrum, accusamus molestiae voluptates quaerat minima quia nisi aut dignissimos maxime recusandae placeat temporibus atque earum sit.</p> 
+        <p>Delectus deleniti, hic aut animi, perferendis dolorum nostrum
+        rerum recusandae neque, repellendus omnis ducimus accusantium velit cupiditate explicabo exercitationem quos!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Veniam labore, nihil ab voluptatibus veritatis perspiciatis dolore?</p>
+        </p>
+        </blockquote>
+    <hr>
+    
+    <!-- Time or date information -->
+    <!-- Тег <time> применяется для указания даты и времени. 
+    Также значение даты и времени может быть указано служебной информацией в атрибуте datetime этого тега, для считывания, но без отображения -->
+    <time>1989-01-26</time>
+    <time datetime="1989-01-26">My Birthday</time>
+    <hr>
+    
+    <!-- Bold & Italic, Typing, Deleted text without semantic accent -->
+    <b>Bold text</b> <!-- Жирный текст -->
+    <br>
+    <i>Italic text</i> <!-- Курсивный текст -->
+    <br>
+    <tt>Typing text</tt> <!-- УСТАРЕВШИЙ Машинописный текст -->
+    <br>
+    <s>Deleted text</s> <!-- Зачеркнутый текст -->
+    <hr>
+    
+    <!-- Теги форматирования <code> и <pre> которые задают акцент на типе контента
+        code - Служит для выделения фрагментов программного кода. Отображает текст моноширинным шрифтом
+        pre - Позволяет вывести текст на экран, сохранив изначальное форматирование. Пробелы и переносы строк при этом не удаляются
+    -->
+    <!-- 
+    Моноширинный шрифт (monospace) — это такой тип шрифта, который соблюдает фиксированную ширину символов, используя при этом одинаковое количество горизонтального пространства для каждой буквы. Благодаря этому шрифт выглядит скорее более строгим, чем креативным.
+    Поскольку большинство моноширинных шрифтов обычно имеют упрощенный вид, дизайнеры стараются избегать их в своих проектах. 
+
+    Тем не менее, непропорциональные шрифты можно отлично вписать в различные дизайн-проекты. Такие шрифты, благодаря своему минималистичному дизайну, могут добавить профессиональный вид практически любому типу дизайна, будь то дизайн веб-сайта или плаката 
+    -->
+    <code>   
+            const args = {
+                name: "Yauhen",
+                age: 30
+            };
+            const getDate = () => new Date;   
+    </code>
+    <hr>
+    
+    <pre>
+            const args = {
+                name: "Yauhen",
+                age: 30
+            };
+            const getDate = () => new Date;
+    </pre>
+    <hr>
+    
+    <!-- Bold & Italic text with semantic accent -->
+    <strong>Bold accent text</strong> <!-- Жирный значимый текст -->
+    <em>Italic accent text</em> <!-- Курсивный значимый текст -->
+    <hr>
+    
+    <!-- Теги форматирования <small> и <big>(УСТАРЕВШИЙ) ранее применялись только для визуального, а теперь и для логического выделения наименее и наиболее важного текста в предложении -->
+    <small>Small</small>
+    <h2>
+        To know HTML
+        <small>semantic</small>
+        is important
+    </h2>
+    <hr>
+    
+    <big>Big</big>
+    <h2>
+        To know HTML
+        <big>semantic</big>
+        is important
+    </h2>
+    <hr>
+    
+    <!-- Теги форматирования <del> и <ins> для отображения текста как зачеркнутого - неактуального или устаревшего, либо наоборот, для отображения текста подчеркнутым - как важного и значимого -->
+    <del>Deleted</del>
+    <h2>
+        To know HTML
+        <del>semantic</del>
+        is important
+    </h2>
+    <hr>
+    
+    <ins>Inserted</ins>
+    <h2>
+        To know HTML
+        <ins>semantic</ins>
+        is important
+    </h2>
+    <hr>
+    
+    <!-- Теги форматирования <sub> и <sup> для отображения текста в нижнем и в верхнем индексах.
+    Могут применяться, например, для написания с их помощью каких-то формул -->
+    <sub>Subscripted</sub>
+    <h2>
+        To know HTML
+        <sub>semantic</sub>
+        is important
+    <br>H<sub>2</sub>O
+    </h2>
+    <hr>
+    
+    <sup>Superscripted</sup>
+    <h2>
+        To know HTML
+        <sup>semantic</sup>
+        is important
+    <br>X<sup>2</sup>=42
+    </h2>
+
+</body>
+</html>
