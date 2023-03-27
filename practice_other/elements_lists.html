@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element lists</title>
+    <style>
+      @import 'css/hr_style.css';
+  </style>
+</head>
+<body>
+  <h1>Lists</h1>
+  <p>Каждый список представляет собой контейнер, внутри которого располагаются элементы списка или пары термин-определение<br>
+  Тег li - Элемент списка - List Item (li). Применяется как отдельный и самостоятельный элемент в конструкциях списков<br>
+  Тег ul - Ненумерованный список - Unordered List (ul). Применяется для маркировки элементов маркерами (буллетами)</p>
+  <ul>
+    <li>Front-end Developer</li>
+    <li>Bask-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ul>
+  <hr>
+
+  <!-- Тег <ol>. Нумерованный список - Ordered List (ol). Применяется для маркировки элементов числами -->
+  <ol>
+    <li>Front-end Developer</li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ol>
+  <hr>
+
+  <!--- Тег <ul> располагает встроенными атрибутами стилей для отображаемого буллета
+  Но зачастую их применение опускается, поскольку на странице применяются специальные стили для отображения пунктов в списках -->
+  <ul>
+    <li>Первый элемент</li> <!--- ● Первый элемент (дефолтное значение для отображения)--->
+    <li style="list-style-type:square">Второй элемент</li> <!-- ■ Второй элемент -->
+    <li style="list-style-type:circle">Третий элемент</li> <!-- ○ Третий элемент -->
+  </ul>
+  
+  <!-- Ordered List with start -->
+  <ol start="10">
+    <li>Front-end Developer</li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ol>
+  <hr>
+
+  <!-- Ordered List with reversed -->
+  <ol reversed>
+    <li>Front-end Developer</li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ol>
+  <hr>
+
+  <!-- Nested Unordered List -->
+  <ul>
+    <li>
+      Front-end Developer
+      <ul>
+        <li>Mobile</li>
+        <li>UI</li>
+        <li>Node.js</li>
+      </ul>
+    </li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ul>
+  <hr>
+
+  <!-- Nested Ordered List -->
+  <ol>
+    <li>
+      Front-end Developer
+      <ol>
+        <li>Mobile</li>
+        <li>UI</li>
+        <li>Node.js</li>
+      </ol>
+    </li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ol>
+  <hr>
+
+  <!-- Nested Unordered List with Inner Ordered List -->
+  <ul>
+    <li>
+      Front-end Developer
+      <ol>
+        <li>Mobile</li>
+        <li>UI</li>
+        <li>Node.js</li>
+      </ol>
+    </li>
+    <li>Back-end Developer</li>
+    <li>Full-stack Developer</li>
+  </ul>
+  <hr>
+
+  <!-- Definitions List -->
+  <dl>
+    <dt>Front-end Developer</dt>
+    <dd>It is a person who works with the visible part of website.</dd>
+
+    <dt>Back-end Developer</dt>
+    <dd>It is a person who works with the hidden part of a website, including databases and environments.</dd>
+  </dl>
+  <hr>
+
+  <!-- Nested List -->
+  <ol>
+    <li>пункт_1</li>
+    <li>пункт_2</li>
+        <ol>
+            <li>пункт_2.1</li>
+            <li>пункт_2.2</li>
+            <li>пункт_2.3
+                <ol>
+                    <li>пункт_2.3.1</li>
+                    <li>пункт_2.3.2</li>
+                    <li>пункт_2.3.3</li>
+                </ol>
+            </li>
+            <li>пункт_2.4</li>
+        </ol>
+    </li>
+    <li>пункт_3</li>
+    <li>пункт_4</li>
+  </ol>
+  <hr>
+
+
+</body>
+</html>

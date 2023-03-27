@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Элемент table</title>
+    <style>
+        /* внешняя граница таблицы */
+        table { 
+            border: 5px dashed black;
+            padding: 15px;
+            background-color: #fc0;
+        }
+
+        /* граница каждой ячейки первого ряда таблицы */
+        th {
+            border: 3px solid grey;
+        }
+
+        /* граница каждой ячейки в теле таблицы */
+        td {
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>Тест таблица</caption>
+        <tr><th>текст заголовка</th><th>текст заголовка</th></tr> <!-- ряд с ячейками заголовков -->
+        <tr><td>данные1</td><td>данные1</td></tr> <!-- ряд1 с ячейками тела таблицы -->
+        <tr><td>данные2</td><td>данные2</td></tr> <!-- ряд2 с ячейками тела таблицы -->
+    </table>
+    <hr>
+
+    <table>
+        <caption>Перечень продуктов</caption>
+        <tr>
+            <th>№ п/п</th>
+            <th>Наименование товара</th>
+            <th>Ед. изм.</th>
+            <th>Количество</th>
+            <th>Цена за ед. изм., руб.</th>
+            <th>Стоимость, руб.</th>
+        </tr>
+            <tr>
+            <td>1.</td>
+            <td>Томаты свежие</td><td>кг</td><td>15,20</td><td>69,00</td><td>1048,80</td>
+        </tr>
+            <tr>
+            <td>2.</td>
+            <td>Огурцы свежие</td><td>кг</td><td>2,50</td><td>48,00</td><td>120,00</td>
+        </tr>
+            <tr>
+            <td colspan="5" style="text-align:right">ИТОГО:</td><td>1168,80</td>
+        </tr>
+    </table>
+    <hr>
+
+    <table>
+        <colgroup>
+            <col span="2" style="background:Khaki"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+            <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+        </colgroup>
+        <tr>
+            <th>№ п/п</th>
+            <th>Наименование</th>
+            <th>Цена, руб.</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Карандаш цветной</td>
+            <td>20,00</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Линейка 20 см</td>
+            <td>30,00</td>
+        </tr>
+    </table>
+    <hr>
+
+    <table>
+        <thead>
+            <tr>
+                <th>№ п/п</th>
+                <th>Наименование товара</th>
+                <th>Ед. изм.</th>
+                <th>Количество</th>
+                <th>Цена за ед. изм., руб.</th>
+                <th>Стоимость, руб.</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align:right">ИТОГО:</td><td>1168,80</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>1.</td>
+                <td>Томаты свежие</td><td>кг</td><td>15,20</td><td>69,00</td><td>1048,80</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>Огурцы свежие</td><td>кг</td><td>2,50</td><td>48,00</td><td>120,00</td>
+            </tr>
+        </tbody>  
+    </table>
+    <hr>
+
+    <!-- Minimum valid markup for table -->
+  <table>
+    <tr>
+      <td>Front-end</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- Table row with data -->
+  <table>
+    <tr>
+      <td>Front-end</td>
+      <td>Back-end</td>
+      <td>Full-stack</td>
+      <td>QA</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- Table column with data -->
+  <table>
+    <tr>
+      <td>Front-end</td>
+    </tr>
+    <tr>
+      <td>Back-end</td>
+    </tr>
+    <tr>
+      <td>Full-stack</td>
+    </tr>
+    <tr>
+      <td>QA</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- Simple example of table -->
+  <table>
+    <tr>
+      <td>Front-end</td>
+      <td>1 Person</td>
+    </tr>
+    <tr>
+      <td>Back-end</td>
+      <td>7 Persons</td>
+    </tr>
+    <tr>
+      <td>Full-stack</td>
+      <td>2 Persons</td>
+    </tr>
+    <tr>
+      <td>QA</td>
+      <td>5 Persons</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- Table with caption -->
+  <table>
+    <caption>Team members list</caption>
+    <tr>
+      <td>Front-end</td>
+      <td>1 Person</td>
+    </tr>
+    <tr>
+      <td>Back-end</td>
+      <td>7 Persons</td>
+    </tr>
+    <tr>
+      <td>Full-stack</td>
+      <td>2 Persons</td>
+    </tr>
+    <tr>
+      <td>QA</td>
+      <td>5 Persons</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- Table with semantic sections -->
+  <table>
+    <caption>Team members list</caption>
+    <thead>
+      <tr>
+        <td>Speciality</td>
+        <td>Quantity</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Front-end</td>
+        <td>1 Person</td>
+      </tr>
+      <tr>
+        <td>Back-end</td>
+        <td>7 Persons</td>
+      </tr>
+      <tr>
+        <td>Full-stack</td>
+        <td>2 Persons</td>
+      </tr>
+      <tr>
+        <td>QA</td>
+        <td>5 Persons</td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td></td> <!--- Несмотря на то, что ячейка пуста, она должна присутствовать для сохранения формы таблицы -->
+        <td>15</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <!-- Атрибут colspan для объединения ячеек по горизонтали в tfoot -->
+  <table>
+    <caption>Team members list</caption>
+    <thead>
+      <tr>
+        <!-- Тег th позволяет задать семантическое значение для заголовков, а также выделить текст жирным шрифтом -->
+        <th>Speciality</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Front-end</td>
+        <td>1 Person</td>
+      </tr>
+      <tr>
+        <td>Back-end</td>
+        <td>7 Persons</td>
+      </tr>
+      <tr>
+        <td>Full-stack</td>
+        <td>2 Persons</td>
+      </tr>
+      <tr>
+        <td>QA</td>
+        <td>5 Persons</td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="2">15</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+
+  <!-- Атрибут colspan для объединения ячеек по вертикали -->
+  <!-- Лишние строки закомментированы, подвал удален -->
+  <table>
+    <caption>Team members list</caption>
+    <thead>
+      <tr>
+        <th>Speciality</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Front-end</td>
+        <td rowspan="4">15 Person</td>
+      </tr>
+      <tr>
+        <td>Back-end</td>
+        <!-- <td>7 Persons</td> -->
+      </tr>
+      <tr>
+        <td>Full-stack</td>
+        <!-- <td>2 Persons</td> -->
+      </tr>
+      <tr>
+        <td>QA</td>
+        <!-- <td>5 Persons</td> -->
+      </tr>
+    </tbody>
+
+  <hr>
+
+</body>
+</html>

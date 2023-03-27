@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images</title>
+</head>
+<body>
+    <!-- Для заполнения применяются lorem фотографии с сайта picsum-->
+
+    <!-- Simple image -->
+  <img src="https://picsum.photos/300/300" alt="Just image">
+
+  <!-- Responsive image -->
+  <picture>
+    <source media="(min-width: 1024px)" srcset="https://picsum.photos/200/150?grayscale">
+    <source media="(min-width: 768px)" srcset="https://picsum.photos/200/150?grayscale">
+    <source media="(min-width: 360px)" srcset="https://picsum.photos/200/150?grayscale">
+    <img src="https://picsum.photos/300/300" alt="Just image">
+  </picture>
+
+  <!-- Image with semantic description -->
+  <!-- Элемент контейнер figure содержит медиа контент, 
+    которому элемент figcaption задает семантическое значение -->
+  <figure>
+    <img src="https://picsum.photos/seed/picsum/200/300" alt="Just image" />
+    <figcaption>It is a simple description for a picture above</figcaption>
+  </figure>
+
+  <!-- Images with semantic description -->
+  <figure>
+    <img src="https://picsum.photos/200/300/?blur=1" alt="Just image" />
+    <img src="https://picsum.photos/200/300/?blur=2" alt="Just image" />
+    <img src="https://picsum.photos/200/300/?blur=3" alt="Just image" />
+    <figcaption>
+      <p>It is a simple description for a couple pictures above. It is a simple description for a couple pictures above.It is a simple description for a couple pictures above</p>
+    </figcaption>
+  </figure>
+
+
+</body>
+</html>

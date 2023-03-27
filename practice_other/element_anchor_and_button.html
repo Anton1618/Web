@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Ссылки-якоря</title>
+   <style>
+      hr {
+         padding: 2%;
+         border: none;
+         background-color: rgb(240, 228, 203);
+      }
+   </style>
+</head>
+
+<body>
+   <div>
+      <h4>Простая ссылка</h4>
+      <p>Осуществляет простой переход по установленному URL</p>
+      <a href="https://github.com/Anton1618">My github</a>
+   </div>
+   <hr>
+
+   <div>
+      <h4>Ссылка для скачивания</h4>
+      <p>Атрибут href содержит путь к файлу, а включение режима скачивания осуществляется через флаг download</p>
+      <a href="test.txt" download>Скачать файл</a>
+   </div>
+   <hr>
+
+   <div>
+      <h4>Открытие ссылки в новой вкладке</h4>
+      <p>Добавление функционала осуществляется благодаря атрибуту target со значение _blank</p>
+      <a href="https://youtube.com/YauhenKavalchuk" target="_blank">Youtube</a>
+   </div>
+   <hr>
+
+   <div>
+      <h4>Изображение-ссылка</h4>
+      <p>Элемент img помещается в атрибут элемента-ссылки "а"
+         Для открытия ссылки в новом окне применяется атрибут target='_blank' <br>
+         Для перехода по ссылке, применяется клик по картинке</p>
+      <a href="https://github.com/Anton1618" target="_blank"><img src="https://picsum.photos/300/30?grayscale&blur=1" alt="Fringe"></a>
+   </div>
+   <hr>
+
+   <div>
+      <h4>Ссылка задействующая программу по умолчанию</h4>
+      <p>Задействованная выполнит соответствующий ей функционал</p>
+      <a href="tel:+74951234567">+7 (495) 123-45-67</a> - Совершение звонка <br>
+      <a href="mailto:test@test.com">example@mail.ru</a> - Открытие почтового клиента для написания письма<br>
+      <a href="skype:test">Skype</a> - Открытие skype<br>
+      <a href="skype:имя-пользователя?call">Skype call</a> - Открытие skype и совершение звонка пользователю<br>
+      <a href="skype:имя-пользователя?chat">Skype chat</a> - Открытие skype и переход в чат с пользователем<br>
+      <a href="skype:имя-пользователя?add">Skype add</a> - Открыть skype и и добавить пользоватля в список контактов<br>
+      <a href="skype:имя-пользователя?sendfile">Skype sendfile</a> - Открыть skype и отправить файл пользоватлю<br>
+   </div>
+   <hr>
+
+   <div>
+      <h4>Кнопки</h4>
+      <p>Кнопки не представляют собой самостоятельный объект, по сравнению с ссылками. </p>
+      <p>Атрибуты</p> 
+      <p>Type:<br>
+      button - не имеет поведения по умолчанию, чаще всего применяется для реализации логики, например, на javascript; <br>
+      submit - отправляет данные формы; <br>
+      reset - очищает ввод, сбрасывает элементы управления к первоначальным настройкам; </p>
+      <button type="button">Just a Button</button>
+      <button type="submit">Submit Button</button>
+      <button type="reset">Reset Button</button>
+      <p>autofocus - устанавливает автофокус на кнопке, при загрузке страницы, после этого она может быть сразу нажата, например, применяя пробел</p>
+      <button type="button" autofocus>Autofocus Button</button>
+      <p>disabled - блокирует применение кнопки для невозможности осуществления взаимодействия.</p>
+      <button type="button" disabled>Disabled Button</button>
+   </div>
+   <hr>
+
+   <div>
+      <h2>Ссылки-якоря</h2>
+      <p>Осуществление скролла к определенной части страницы</p>
+      <h4><a href="#glava1">Глава 1 </a> </h4>
+      <h4><a href="#glava2">Глава 2 </a> </h4>
+      <h4><a href="#glava3">Глава 3 </a> </h4>
+   </div>
+   <hr>
+
+   <div>
+      <h4 id="glava1">Глава 1<h4>
+            <img src="https://picsum.photos/300/150/?blur=1" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, iure. Dignissimos officia delectus
+               corrupti iste.</p>
+   </div>
+
+   <div>
+      <h4 id="glava2">Глава 2<h4>
+            <img src="https://picsum.photos/300/150/?blur=2" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel alias possimus molestiae quos.</p>
+   </div>
+
+   <div>
+      <h4 id="glava3">Глава 3<h4>
+            <img src="https://picsum.photos/300/150?grayscale" alt="">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium nesciunt neque explicabo
+               doloremque. Ratione nam tempore quo vitae praesentium! Labore.</p>
+   </div>
+   <hr>
+
+</body>
+
+</html>
