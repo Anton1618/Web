@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,159 +10,173 @@
         @import 'css/hr_style.css';
     </style>
 </head>
+
 <body>
 
-  <!-- Simple form -->
-  <form action="formHandler.php" name="simple form" autocomplete="on">
-
-    <input type="text" /><br>
-
+    <h4>Опции тега option</h4>
+    <p>value - Значение опции<br>
+        selected - Выбор дефолтного элемента для списка, т.е. отображаемый первоначально<br>
+        disabled - Блокировка выбора, элемент станет отображаться как недоступный<br>
+        lable - Указание метки элемента списка, при этом закрывающий тег может опускаться </p>
     <select>
-      <option value="Front-end">Front-end</option>
-      <option value="Back-end">Back-end</option>
-    </select><br>
+        <option value="Front-end">Доступная опция 1</option>
+        <option value="Back-end" label="Доступная опция 2">
+        <option value="sel" selected>Доступная опция 3 (выбрана по умолчанию)</option>
+        <option value="dis" disabled>Недоступная опция 4</option>
+    </select>
+    <hr>
 
-    <textarea rows="10" cols="45" name="text"></textarea><br>
 
-    <input type="submit"><br>
+    <h4>Простая форма</h4>
+    <p>Оборачивает собой все конструкции и определяет, что поля находящиеся внутри него, <br>
+        обрабатываются как единое целое</p>
+    <form action="formHandler.php" name="simple form" autocomplete="on">
+        <input type="text" /><br>
+        <select>
+            <option value="Front-end">Front-end</option>
+            <option value="Back-end">Back-end</option>
+        </select><br>
+        <textarea rows="10" cols="45" name="text"></textarea><br>
+        <input type="submit"><br>
+    </form>
+    <hr>
 
-  </form>
-  <hr>
 
-  <!-- Fieldset & label -->
-  <form action="formHandler.php" name="simple form2">
+    <h4>Простая форма с легендой-заголовком</h4>
+    <p>Применяется дополнительный элемент "fieldset"</p>
+    <form action="formHandler.php" name="simple form2">
+        <fieldset>
+            <legend>Simple form legend</legend>
+            <input type="text"><br>
+            <select>
+                <option value="Front-end">Front-end</option>
+                <option value="Back-end">Back-end</option>
+            </select><br>
+            <textarea rows="10" cols="45" name="text"></textarea><br>
+            <input type="submit"><br>
+        </fieldset>
+    </form>
+    <hr>
 
-    <fieldset>
 
-    <legend>Simple form legend</legend>
+    <h4>Разбиение элементов формы с легендой и метками</h4>
+    <p>Форма разбита на несколько полей fieldset, позволяя визуально отделить поля для заполнения. <br>
+        Например, поле для заполнения данных и поле для заполнения сообщения</p>
+    <form action="formHandler.php" name="simple form3">
+        <fieldset>
+            <legend>Personal data</legend>
+            <input type="text" /><br>
+            <select>
+                <option value="Front-end">Front-end</option>
+                <option value="Back-end">Back-end</option>
+            </select><br>
+        </fieldset>
 
-    <input type="text" /><br>
+        <fieldset>
+            <legend>Personal Message</legend>
+            <textarea rows="10" cols="45" name="text"></textarea><br>
+        </fieldset>
+        <input type="submit"><br>
+    </form>
+    <hr>
 
+
+    <h4>Форма с метками</h4>
+    <p>Способы определения метки для формы</p>
+    <p>-- Может устанавливаться связь между соседними элементами метки и формы<br>
+        - Для метки определяется атрибут for, для которого устанавливается определенное значение<br>
+        - Для поля заполнения определяется элемент input, с атрибутом id, значение которого соответствует значению label
+    </p>
+    <label for="username">Username</label>
+    <input id="username"><br>
+    <p>-- Внутри элемента label размещается<br>
+        - строка со значением метки,
+        - а также элемент формы input, с атрибутом type и значением соответствующим строке, которую оборачивает label
+    </p>
+    <label>
+        Password
+        <input type="password">
+    </label>
+    <hr>
+
+
+    <h4>Разбиение элементов формы с легендой и метками</h4>
+    <p>При установленной связи с полем, клик на элемент метки поля выделяет фокусом её поле для заполнения</p>
+    <form action="formHandler.php" name="simple form3">
+        <fieldset>
+            <legend>Personal data</legend>
+            <label for="name">Your name</label>
+            <input type="text" id="name" /><br>
+            <label for="speciality">Choose your speciality</label>
+            <select id="speciality">
+                <option value="Front-end">Front-end</option>
+                <option value="Back-end">Back-end</option>
+            </select><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Personal Message</legend>
+            <label for="message">Enter your message</label>
+            <textarea id="message" rows="10" cols="45" name="text"></textarea><br>
+        </fieldset>
+        <input type="submit"><br>
+    </form>
+    <hr>
+
+
+    <h4>Тег textarea</h4>
+    <p>row и cols - Обязательные атрибуты, определяющие изначальное количество строк и столбцов в поле для ввода</p>
+    <textarea rows="10" cols="45"></textarea><br>
+    <p>name - Универсальный атрибут для установки имени поля</p>
+    <textarea rows="5" cols="20" name="test"></textarea><br>
+    <p>autofocus - Автоматически производит фокус на то поле, на которое он был добавлен, <br>
+        при добавлении на несколько полей - сфокусируется только первое</p>
+    <textarea rows="5" cols="20" autofocus></textarea><br>
+    <p>desabled - "Неактивное" для выбора поле, которое применяется только для чтения без возможности ввода. Отражается
+        серым оттенком</p>
+    <textarea rows="5" cols="20" disabled></textarea><br>
+    <p>readonly - Схож с desabled, поле может быть выбрано, но данные в нем изменить нельзя </p>
+    <textarea rows="5" cols="20" readonly>This text you can't change</textarea><br>
+    <p>placeholder - Добавляет текст-заменитель, который нельзя выбрать и который исчезает, при начале ввода в подобном
+        поле</p>
+    <textarea rows="5" cols="20" placeholder="your message..."></textarea><br>
+    <p>maxlength - Устанавливает ограниченное число символов для ввода</p>
+    <textarea rows="5" cols="20" maxlength="5"></textarea><br>
+    <p>required - Устанавливает условие для обязательного заполнения поля</p>
+    <form action="">
+        <textarea rows="5" cols="20" required></textarea><br>
+        <input type="submit" value="Отправить">
+    </form>
+    <hr>
+
+
+    <h4>Тег selected</h4>
+    <p>Может напрямую включать элементы option</p>
     <select>
-      <option value="Front-end">Front-end</option>
-      <option value="Back-end">Back-end</option>
-    </select><br>
-
-    <textarea rows="10" cols="45" name="text"></textarea><br>
-
-    <input type="submit"><br>
-
-    </fieldset>
-
-  </form>
-  <hr>
-
-  <!-- Inner fieldset & label -->
-  <form action="formHandler.php" name="simple form3">
-
-    <fieldset>
-      <legend>Personal data</legend>
-      <input type="text" /><br>
-      <select>
         <option value="Front-end">Front-end</option>
         <option value="Back-end">Back-end</option>
-      </select><br>
-    </fieldset>
+    </select>
 
-    <fieldset>
-      <legend>Personal Message</legend>
-      <textarea rows="10" cols="45" name="text"></textarea><br>
-    </fieldset>
+    <p>Может включать один или несколько элементов optgroup для группировки вложенных в них элементов option</p>
+    <select>
+        <optgroup label="Speciality">
+            <option value="Front-end">Front-end</option>
+            <option value="Back-end">Back-end</option>
+        </optgroup>
 
-    <input type="submit"><br>
+        <optgroup label="Direction" disabled>
+            <option value="Mobile">Mobile development</option>
+            <option value="Node">Node.js development</option>
+        </optgroup>
+    </select>
 
-  </form>
-  <hr>
-
-  <!-- Form element label -->
-  <label for="username">Username</label>
-  <input id="username"><br>
-
-  <label>
-    Password
-    <input type="password">
-  </label>
-  <hr>
-
-  <!-- Result form -->
-  <form action="formHandler.php" name="simple form3">
-
-    <fieldset>
-      <legend>Personal data</legend>
-      <label for="name">Your name</label>
-      <input type="text" id="name" /><br>
-      <label for="speciality">Choose your speciality</label>
-      <select id="speciality">
+    <p>Позволяет выбирать сразу несколько опций, при этом select изменит свое визуальное отображение</p>
+    <select multiple>
         <option value="Front-end">Front-end</option>
         <option value="Back-end">Back-end</option>
-      </select><br>
-    </fieldset>
-
-    <fieldset>
-      <legend>Personal Message</legend>
-      <label for="message">Enter your message</label>
-      <textarea id="message" rows="10" cols="45" name="text"></textarea><br>
-    </fieldset>
-
-    <input type="submit"><br>
-
-  </form>
-  <hr>
-
-  <!-- Textarea -->
-  <textarea rows="10" cols="45"></textarea><br>
-  <textarea rows="5" cols="20" name="test"></textarea><br>
-  <textarea rows="5" cols="20" autofocus></textarea><br>
-  <textarea rows="5" cols="20" disabled></textarea><br>
-  <textarea rows="5" cols="20" readonly>This text you can't change</textarea><br>
-  <textarea rows="5" cols="20" placeholder="your message..."></textarea><br>
-  <textarea rows="5" cols="20" maxlength="5"></textarea><br>
-  <textarea rows="5" cols="20" required></textarea><br>
-  <hr>
-
-  <!-- Required attribute -->
-  <form>
-    <textarea rows="5" cols="20" required></textarea><br>
-    <input type="submit" value="Send">
-  </form>
-  <hr>
-
-  <!-- Select -->
-  <select>
-    <option value="Front-end">Front-end</option>
-    <option value="Back-end">Back-end</option>
-  </select>
-  <hr>
-
-  <!-- Select with optgroup -->
-  <select>
-    <optgroup label="Speciality">
-      <option value="Front-end">Front-end</option>
-      <option value="Back-end">Back-end</option>
-    </optgroup>
-
-    <optgroup label="Direction">
-      <option value="Mobile">Mobile development</option>
-      <option value="Node">Node.js development</option>
-    </optgroup>
-  </select>
-  <hr>
-
-  <!-- Multiple select -->
-  <select multiple>
-    <option value="Front-end">Front-end</option>
-    <option value="Back-end">Back-end</option>
-  </select>
-  <hr>
-
-  <!-- Different options -->
-  <select>
-    <option value="Front-end">Front-end</option>
-    <option value="Back-end" label="Back-end">
-    <option value="sel" selected>Selected</option>
-    <option value="dis" disabled>Disabled</option>
-  </select>
-  <hr>
+    </select>
+    <hr>
 
 </body>
+
 </html>
