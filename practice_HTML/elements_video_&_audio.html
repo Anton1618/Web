@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видео и аудио элементы</title>
+    <style>
+        @import 'css/hr_style.css';
+    </style>
+</head>
+
+<body>
+    <h1>Видео и аудио элементы</h1>
+    
+    <h3>Тег audio</h3>
+    <p>Подключение одного файла возможно напрямую в теге<br>
+        Подключение множества файлов, возможно через вложенный элемент source</p>
+    <p>Атрибут controls - применяется для включения нативной браузерной поддержки</p>
+    <p>Подключение одного файла без применения нативной поддержки</p>
+    <audio src="media/example.mp3">
+        Your browser does not support the audio tag.
+    </audio>
+    <hr>
+
+    <p>Подключение нескольких файлов без применения нативной поддержки</p>
+    <audio>
+        <source src="media/example.mp3" type="audio/mpeg">
+        <source src="media/example.mp3" type="audio/mp3">
+    </audio>
+    <hr>
+
+    <p>Подключение нескольких файлов с примением нативной поддержки</p>
+    <audio controls>
+        <source src="media/example.mp3" type="audio/mpeg">
+        <source src="media/example.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+    <hr>
+
+
+    <h3>Тег video</h3>
+    <p>Подключение одного файла возможно напрямую в теге<br>
+        Подключение множества файлов, возможно через вложенный элемент source</p>
+    <p>Поддерживает атрибуты:<br>
+        width - задание ширины видео, height - задание высоты видео<br>
+        controls - включение нативной браузерной поддержки</p>
+
+    <p>Подключение одного файла, без применения нативной поддержки и атрибутов ширины\высоты видео</p>
+    <video src="media/example.mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>Подключение нескольких файлов, без применения нативной поддержки и атрибутов ширины\высоты видео</p>
+    <video>
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>Подключение нескольких файлов, без применения нативной поддержки, но с указанием ширины и высоты видео</p>
+    <video width="320" height="240">
+        <source src="media/example.mp4" type="video/mp4">
+        <source src="media/example.ogg" type="video/ogg">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>Подключение нескольких файлов, с применением нативной поддержки, но без указания ширины\высоты видео</p>
+    <video controls >
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>Подключение нескольких файлов, с применением нативной поддержки и указанием ширины\высоты видео</p>
+    <video controls width="320" height="240">
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>С включением атрибута loop для зацикливания видео</p>
+    <video controls loop width="320" height="240">
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>С включением атрибута autoplay для автовоспроизведения</p>
+    <video controls autoplay width="320" height="240">
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>С включением атрибута muted, для отключения звука</p>
+    <video controls muted width="320" height="240">
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+    <p>С включением атрибута poster, для отображения изображения во время загрузки или в результате недоступности видео файла</p>
+    <video controls poster="media/preview.png" width="320" height="240">
+        <source src="media/example.ogg" type="video/ogg">
+        <source src="media/example.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <hr>
+
+</body>
+
+</html>

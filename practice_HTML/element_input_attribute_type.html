@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element input</title>
+    <style>
+        @import 'css/hr_style.css';
+    </style>
+</head>
+
+<body>
+    <h1>Тег input. Значения атрибута type</h1>
+    <h4>type - основной атрибут тега input, если этот атрибут не указан, то по умолчанию используется text</h4>
+
+    <h3>Значение text</h3>
+    <p>Однострочное поле для ввода любых символов</p>
+    <input type="text">
+    <hr>
+
+    <h3>Значение nubmer</h3>
+    <p>Однострочное поле для ввода только числовых значений</p>
+    <input type="number"><br>
+    <p>Атрибуты min и max - установленные минимальное и максимальное возможные значения для ввода<br>
+        <input type="number" min="1" max="10"><br>
+    <p>Атрибут step - установленное значение шага, которое позволяет переключать введенное значение на определенную
+        величину, по умолчанию равную единице</p>
+    <input type="number" step="5"><br>
+    <hr>
+
+    <h3>Значение password</h3>
+    <p>Однострочное поле для ввода любых символов, значение которых будет скрыто "звёздочками"</p>
+    <input type="password">
+    <hr>
+
+    <h3>Значение range</h3>
+    <p>ползунок, для установки значения</p>
+    <p>Атрибуты используют значения по умолчанию:<br>
+        min: 0<br>
+        max: 100<br>
+        value: min + (max-min)/2, или min if max is less than min<br>
+        step: 1</p>
+    <input type="range">
+    <hr>
+
+    <h3>Значение date</h3>
+    <p>Элемент управления для ввода даты (год, месяц и день, без времени)</p>
+    <input type="date">
+    <hr>
+
+    <h3>Значение color</h3>
+    <p>Элемент управления цветом</p>
+    <input type="color">
+    <hr>
+
+    <h3>Значение кнопок submit и reset</h3>
+    <p>Изначально не имеют предопределенного поведения<br>
+        Но даже без заданных свойств, имеют характерные надписи</p>
+    <input type="submit"><br>
+    <input type="reset"><br>
+    <p>Текстом кнопки является значение, установленное в атрибуте value</p>
+    <input type="submit" value="Submit form"><br>
+    <input type="reset" value="Reset form"><br>
+    <hr>
+
+    <h3>Список опций</h3>
+    <p>Значение text и атрибут list со значением list</p>
+    <p>Предоставляет выпадающий список предопределенных значений элемента datalist</p>
+    <input type="text" list="list">
+    <datalist id="list">
+        <option value="Front-end">
+        <option value="Back-end">
+        <option value="Full-stack">
+    </datalist>
+    <hr>
+
+    <h3>Значение email</h3>
+    <p>Однострочное поле для ввода адреса электронной почты</p>
+    <input type="email">
+    <hr>
+
+    <h3>Значение url</h3>
+    <p>Однострочное поле для ввода url-адреса. Схож с email полем</p>
+    <input type="url">
+    <hr>
+
+    <h3>Значение image</h3>
+    <p>Кнопка-изображение для отправки формы</p>
+    <input type="image" src="https://picsum.photos/300/300" alt="Just image">
+    <hr>
+
+    <h3>Значение tel</h3>
+    <p>Однострочное поле для ввода телефонного номера</p>
+    <input type="tel">
+    <hr>
+
+    <h3>Значение search</h3>
+    <p>Однострочное поле для ввода строки поиска</p>
+    <input type="search">
+    <hr>
+
+    <h3>Значение datatime-local</h3>
+    <p>Элемент управления для ввода даты и времени без часового пояса, потому как применяет локаль текущего устройства
+    </p>
+    <input type="datetime-local">
+    <hr>
+
+    <h3>Значение month</h3>
+    <p>Элемент управления для ввода месяца и года без часового пояса.</p>
+    <input type="month">
+    <hr>
+
+    <h3>Значение time</h3>
+    <p>Элемент управления для ввода значения времени без часового пояса.</p>
+    <input type="time">
+    <hr>
+
+    <h3>Значение week</h3>
+    <p>Элемент управления для ввода даты, содержащей число неделя-год и номер недели без часового пояса.</p>
+    <input type="week">
+    <hr>
+
+    <h3>Значение hidden</h3>
+    <p>Скрытый для отображения на странице элемент. <br>
+        Присутствие в разметке, обусловлено необходимостью внутренней обработки каких-то данных, участие в скриптах или
+        трекинге, после чего данные отправляются на сервер</p>
+    <input type="hidden" value="webDev">
+    <hr>
+
+    <h3>Значение file</h3>
+    <p>Элемент управления, для передачи пользователем на сервер файлов, по умолчанию только одного файла</p>
+    <input type="file"><br>
+    <p>Флаг-атрибут multiple - позволяет выбирать и загружать множество файлов</p>
+    <input type="file" multiple><br>
+    <p>Атрибут accept - задание значения типа файла, который может быть доступен для выбора и загрузки</p>
+    <input type="file" accept=".pdf"><br>
+    <hr>
+
+    <h3>Значение checkbox - квадратная кнопка-чекбокс</h3>
+    <p>Предназначен для выбора одной, нескольких или всех предложенных для выбора опций<br>
+        value - внутреннее значение кнопки, которое будет отдано этим элементом<br>
+        indeterminate - указание на то, что флажок находится в неопределённом состоянии (на большинстве платформ при
+        этом рисуется горизонтальная линия поперёк флажка).</p>
+    <input type="checkbox" value="option1"><br>
+    <input type="checkbox" value="option2"><br>
+    <input type="checkbox" value="option3"><br>
+    <p>Флаг checked - предустановленная отметка на элементе</p>
+    <input type="checkbox" value="option1" checked><br>
+    <input type="checkbox" value="option2"><br>
+    <input type="checkbox" value="option3"><br>
+    <p>Текстом кнопки является значение, установленное в элементе label, в который также входит и сам маркируемый
+        элемент<br>
+        Предустановлена отметка на элементе</p>
+    <label>
+        <input type="checkbox" value="option1" checked>
+        Front-end dev
+    </label><br>
+    <label>
+        <input type="checkbox" value="option2">
+        Back-end dev
+    </label><br>
+    <label>
+        <input type="checkbox" value="option3">
+        Full-stack dev
+    </label>
+    <hr>
+
+    <h3>Значение radio - круглая кнопка-переключатель</h3>
+    <p>Круглая кнопка-переключатель. Предназначен для выбора только одной из всех предложенных для выбора опций<br>
+        Чтобы выбранным мог быть только один элемент, а не несколько как чекбокс, должен быть задан атрибут name, а его
+        значением должен стать повторяющийся идентификатор value для всех представленных для выбора элементов<br>
+        value - внутреннее значение кнопки, которое будет отдано этим элементом</p>
+    <input type="radio" name="value1" value="option1"><br>
+    <input type="radio" name="value1" value="option2"><br>
+    <input type="radio" name="value1" value="option3"><br>
+    <p>Флаг checked - предустановленная отметка на элементе</p>
+    <input type="radio" name="value2" value="option1" checked><br>
+    <input type="radio" name="value2" value="option2"><br>
+    <input type="radio" name="value2" value="option3"><br>
+    <p>Текстом кнопки является значение, установленное в элементе label, в который также входит и сам маркируемый
+        элемент<br>
+        Предустановлена отметка на элементе</p>
+    <label>
+        <input type="radio" name="value3" value="option1">
+        Front-end dev
+    </label><br>
+    <label>
+        <input type="radio" name="value3" value="option2" checked>
+        Back-end dev
+    </label><br>
+    <label>
+        <input type="radio" name="value3" value="option3">
+        Full-stack dev
+    </label>
+    <hr>
+
+</body>
+
+</html>
