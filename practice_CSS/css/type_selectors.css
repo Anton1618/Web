@@ -1,0 +1,72 @@
+/*Селектор по всем элементам*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Селектор с наследованием для применения только по всем вложенным элементам*/
+* div {
+    color: brown;
+}
+
+/*Селектор по тегу*/
+p {
+    font-family: monospace;
+}
+
+/*Селектор по классу*/
+.ExampleClass1 {
+    color: green;
+}
+
+/*Селектор по тегу с классом*/
+p.ExampleClass2 {
+    color: deepskyblue;
+}
+
+/*Селектор по мультиклассу*/
+small {
+    color: rgb(211, 129, 23);
+}
+.text {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.decor {
+    background-color: aquamarine;
+}
+
+/*Селектор по id*/
+#IdentID1 {
+    color: pink;
+}
+
+/*Селектор по атрибуту*/
+[title] {
+    color: rgb(226, 160, 243);
+}
+
+/*Селектор по определенному тегу с заданным атрибутом*/
+p[translate] {
+    color: rgb(195, 0, 255);
+}
+
+/*Селектор по определенному тегу с заданным атрибутом для которого задано определенное значение*/
+p[title="NewExampleTitle"] {
+    color: rgb(78, 30, 209);
+}
+
+/*Селектор по соседнему тегу*/
+p + em {
+    color: cyan;
+}
+
+/*Селектор по вложенному тегу*/
+p i {
+    color: rgb(255, 0, 0);
+}
+
+/*Селектор по вложенному тегу первого уровня*/
+span > em {
+    color: orange;
+}
+

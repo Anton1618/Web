@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Типы селекторов</title>
+    <link rel="stylesheet" href="css/type_selectors.css">
+</head>
+
+<body>
+    <h1>Типы селекторов</h1>
+
+    <h3>Селектор по всем элементам</h3>
+    <pre>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </pre>
+    <p>Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Обнуление свойств margin (отступы) и padding (поля) для ВСЕХ элементов на странице
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор с наследованием для применения только ко всем вложенным элементам</h3>
+    <pre>
+        * div {
+            color: brown;
+        }
+    </pre>
+    <div>
+        <p>Первый элемент &ltp&gt. <br>
+            <i>Вложенный элемент &lti&gt. <br>
+                <tt>Следующий вложенный элемент &lttt&gt</tt>
+            </i>
+        </p>
+        <em>Второй элемент &ltem&gt</em>
+    </div>
+    <br>
+    Свойства заданы для вложенных элементов любого блока div, но переопределены другими селекторами
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по тегу</h3>
+    <pre>
+        p {
+            font-family: monospace;
+        }
+    </pre>
+    <p>Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов &ltp&gt на странице, задается шрифт monospace
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по классу</h3>
+    <pre>
+        .ExampleClass1 {
+            color: green;
+        }
+    </pre>
+    <p class="ExampleClass1">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов входящих в класс ExampleClass1, задается зеленый цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по тегу с классом</h3>
+    <pre>
+        p.ExampleClass2 {
+            color: deepskyblue;
+        }
+    </pre>
+    <p class="ExampleClass2">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов с именем &ltp&gt и входящих в класс ExampleClass2, задается глубокий синий цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по мультиклассу</h3>
+    <pre>
+        small {
+            color: rgb(211, 129, 23);
+        }
+        .text {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .decor {
+            background-color: aquamarine;
+        }
+    </pre>
+    <small>Элемент &ltsmall&gt</small><br>
+    <small class="text">Элемент &ltsmall&gt</small><br>
+    <small class="text decor">Элемент &ltsmall&gt</small>
+    <br><br>
+    Для элементов с именем &ltsmall&gt задается коричневый цвет <br>
+    При этом, мультиклассовость позволяет задавать дополнительные свойства
+    Так, если элемент элементы входят в состав класса text, то к их свойствам добавляется набор шрифтов <br>
+    И другие дополнительные свойства, если элемент соотетствует селектору, например, бирюзовый цвет фона текста 
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по id</h3>
+    <pre>
+        #IdentID1 {
+            color: pink;
+        }
+    </pre>
+    <p id="IdentID1">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для определенного элемента с тегом IdentID1, задается розовый цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по атрибуту</h3>
+    <pre>
+        [title] {
+            color: rgb(226, 160, 243);
+        }
+    </pre>
+    <p title="ExampleTitle">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для элементов, располагающих тегом title, задается светло-фиолетовый цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по определенному тегу с заданным атрибутом</h3>
+    <pre>
+        p[translate] {
+            color: rgb(195, 0, 255);
+        }
+    </pre>
+    <p translate="yes">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов &ltp&gt с атрибутом translate, задается фиолетовый цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по определенному тегу с заданным атрибутом для которого задано определенное значение</h3>
+    <pre>
+        p[title="NewExampleTitle"] {
+            color: rgb(78, 30, 209);
+        }
+    </pre>
+    <p title="NewExampleTitle">Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов &ltp&gt с атрибутом title и определенным значением NewExampleTitle, задается темно-фиолетовый
+    цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по соседнему тегу</h3>
+    <pre>
+        p + em {
+            color: cyan;
+        }
+    </pre>
+    <p>Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов &ltem&gt соседних после &ltp&gt задается цвет cyan
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по вложенному тегу</h3>
+    <pre>
+        p i {
+            color: rgb(161, 30, 30);
+        }
+    </pre>
+    <p>Первый элемент &ltp&gt. <br>
+        <i>Вложенный элемент &lti&gt. <br>
+            <tt>Следующий вложенный элемент &lttt&gt</tt>
+        </i>
+    </p>
+    <em>Второй элемент &ltem&gt</em>
+    <br><br>
+    Для всех элементов &lti&gt вложенных в &ltp&gt, задается бурмалиновый цвет
+    <br><br>
+    <hr>
+
+
+    <h3>Селектор по вложенному тегу первого уровня</h3>
+    <h4>До первого элемента &ltem&gt</h4>
+    <pre>
+        span > em {
+            color: orange;
+        }
+    </pre>
+    <span>
+        <i>Первый элемент &lti&gt. <br>
+            <em>Вложенный элемент &ltem&gt. <br>
+                <tt>Следующий вложенный элемент &lttt&gt</tt>
+            </em>
+        </i>
+        <br>
+        <em>Второй элемент &ltem&gt</em>
+    </span>
+    <br><br>
+    Для всех элементов &ltem&gt вложенных в &lspan&gt на первом уровне, задается оранжевый цвет
+    <br><br>
+    <hr>
+
+</body>
+
+</html>
