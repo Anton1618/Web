@@ -17,27 +17,18 @@ h5, h6, span {
 }
 
 
-/*Селекторы по тегу, по классу, по тегу с классом*/
-p {
-    font-family: monospace;
-}
-.ExampleClass1 {
-    color: green;
-}
-p.ExampleClass2 {
-    color: greenyellow;
-}
-
-
-/*Селектор по мультиклассу*/
+/*Селекторы по тегу, по классу, по тегу с классом, по мультиклассу*/
 small {
     color: rgb(211, 129, 23);
 }
 .text {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.decor {
+small.decor {
     background-color: aquamarine;
+}
+.text.decor {
+    margin-left: 10px;
 }
 
 
@@ -59,14 +50,14 @@ p[title="ExampleTitle2"] {
 }
 
 
-/*Селектор по вложенному тегу на любом уровне вложенности*/
+/*Селектор потомка (контекстный селектор), для вложенного элемента на любом уровне вложенности*/
 .container1 p {
     color: pink;
 }
 
 
-/*Селектор по вложенному тегу только на первом уровне вложенности*/
-.container2>p {
+/*Селектор первого прямого потомка, для вложенного элемента на первом уровне вложенности*/
+.container2 > p {
     color: pink;
 }
 
