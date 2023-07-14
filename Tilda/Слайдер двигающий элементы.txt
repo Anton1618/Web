@@ -1,0 +1,96 @@
+Создает карусель элементов, переключаемых как вручную, так и автоматически. 
+https://www.youtube.com/watch?v=709eIe8mPRo
+
+
+- Создать zero
+Слайдер автоматический, поэтому кнопки управления могут не создаваться. Но если они требуются, то создаются любыми объектами, которомум будут заданы ссылки URL, соответственно, #btnleft для левой кнопки и #btnright для правой
+
+- Элементы для слайдера одинаковы и отличаются только контентом. Элементом является что угодно, включающим контент и его название - заголовок. Элементы заголовки и элементы контента находятся в zero блоке в своих группах, сложенные ровно друг под другом и строго от старого к новому наверх
+
+- Создается необходимое число заголовков, каждый со ссылкой #sldtitle. 
+- Для каждого заголовка создается контент, например, это может быть шейп с изображением, которому, как и всем последующим, будет задана ссылка #sldpic. 
+
+- Обязательным условием для контента (а лучше для всех элементов у которых это возможно), установить параметр lazy load на значение off
+
+- Помимо переключателей, заголовков и контента, также, в слайдере предусмотрены индикаторы переключения слайдов. Их строгое количество равно числу контента, соответственно, как и заголовкам. Каждому индикатору задается ссылка #btntab
+
+- Выйти из zero и создать HTML блок с кодом ниже
+
+- Скопировать id блока со слайдером и прописать в коде (21 строка)
+- На 10 строке может быть установлена скорость переключения элементов
+
+<style>
+    .tabmode{ opacity:0.1;    }
+    .sldelem{ cursor:default; }
+    .btntab, .butsld {cursor:pointer;}
+</style>
+
+<script>
+//Автослайдинг
+function auto_play() {  $(".btnright").click()};
+var timemode = 2000;
+var autoPlay = setInterval( auto_play, timemode );
+$( document ).ready(function() {
+//Присваиваем класс нашим кнопкам фотографиям
+$('[href = "#btnleft"]').addClass("btnleft butsld");
+$('[href = "#btnright"]').addClass("btnright butsld");
+$('[href = "#sldpic"]').addClass("sldpic sldelem");
+$('[href = "#sldtitle"]').addClass("sldtitle sldelem");
+$('[href = "#sldtext"]').addClass("sldtext sldelem");
+$('[href = "#sldnumber"]').addClass("sldnumber sldelem");
+$('[href = "#btntab"]').addClass("btntab");
+$('#rec274185569 div[data-elem-type="button"]').addClass("sldcontbtn");
+
+$('.sldelem , .btntab , .butsld').removeAttr("href");
+
+
+$('.butsld , .sldelem').click(function(e){e.preventDefault();});
+var sumpic = $('.sldtitle').length-1;
+
+ var numsld = 0;
+ $(".sldtitle:not(:first)").hide();
+ $(".sldtext:not(:first)").hide();
+ $(".sldpic:not(:first)").hide();
+ $(".btntab:not(:first)").addClass('tabmode');
+ $(".sldcontbtn:not(:first)").hide();
+
+function sldelemhide(){
+    $(".sldtitle, .sldtext , .sldpic , .sldcontbtn").fadeOut(200);
+    $(".btntab").addClass('tabmode');
+};
+function sldelemshow(){
+    $(".sldtitle:eq("+numsld+") , .sldtext:eq("+numsld+") , .sldpic:eq("+numsld+") , .sldcontbtn:eq("+numsld+")").fadeIn(200);
+    $(".sldnumber").html('0'+(numsld+1));
+    $(".btntab:eq("+numsld+")").removeClass('tabmode');
+};
+$(".btnright").click(function() {
+    sldelemhide();
+    if (numsld==sumpic){ numsld=0;sldelemshow();
+    }else{ numsld++;sldelemshow();
+    }; 
+});
+$(".btnleft").click(function() {
+    sldelemhide();
+    if (numsld==0){ numsld=sumpic;sldelemshow();
+    }else{ numsld--;sldelemshow(); 
+    }; 
+});
+//При клике на таб
+ $('.btntab').click(function(e) {e.preventDefault();
+    $('.btntab').addClass('tabmode');$(this).removeClass('tabmode'); 
+    numsld = $(".btntab").index(this); sldelemhide();sldelemshow();
+ });    
+
+$(".butsld , .sldelem , .sldcontbtn ,.btntab").hover( 
+function(){  clearInterval(autoPlay);
+},function(){  autoPlay = setInterval( auto_play, timemode );});   
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) { clearInterval(autoPlay);
+            } else { 
+                clearInterval(autoPlay);autoPlay = setInterval( auto_play, timemode );
+            }
+    });
+});
+</script>

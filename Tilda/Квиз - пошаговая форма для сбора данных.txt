@@ -1,0 +1,274 @@
+https://www.youtube.com/watch?v=qj7jLuWg85g
+Внесенные во все формы данные будут соединены в одну, которая будет отправлена на подключенный сборщик данных с форм
+
+- Создаются zero блоки для каждого из этапов вопросов
+всё взаимодействие осуществляется через кнопку перехода к следующему вопросу (блоку)
+- В первом блоке создается только кнопка "начать опрос", с классом: start-quiz-a
+- В следующих блоках создаются стандартные формы (например, вопрос-ответ), в которых удаляются их стандартные кнопки (внизу страницы удаляется её текст, цвет, ширина, высота и тд). И создается своя кнопка "следующий вопрос".
+- Каждой форме устанавливается класс: quest-form-a
+- Каждой своей кнопке устанавливается класс: next_step 
+- В следующих блоках создается кнопка "назад", с классом: prev_step
+- В последнем блоке создается последняя форма, с сохранением стандартной кнопкой
+- Создается блок t123, применяется код ниже:
+<div class="quiz-data hide-quiz-answ"></div>
+<script>
+$( document ).ready(function() {
+//Прописываем классы квизов
+let classQ = ['a'];
+//Объединяем блоки в общий квиз
+$.each(classQ, function(index,value) {
+    let quizForm = '.quest-form-'+value;
+    $('.quiz-data').append('<div class="qlb-'+value+'"></div>');
+    $(quizForm).closest('.t-rec').attr('data-quiz-label',value);
+    let quizQuant = $('div[data-quiz-label="'+value+'"]').length;
+        $('div[data-quiz-label="'+value+'"]').each(function(index){
+            $(this).attr({
+                    'data-total-quiz':quizQuant,
+                    'data-num-quiz': index+1
+            });
+            if(quizQuant==(index+1)) $(this).addClass('final-step');
+            if(quizQuant>(index+1))  $('.qlb-'+value+'').append('<div class="answ-'+(index+1)+'"></div>');    
+        });   
+    //Проверяем кнопки старта квизов
+    let btnLng = $('.start-quiz-'+value).length;
+    if (btnLng){
+        $('.start-quiz-'+value).attr('data-btn-start-label', value);
+        //Если кнопка есть, то скрываем все шаги
+        $('div[data-quiz-label="'+value+'"]').addClass('hide_quiz');
+    }else{
+        //Если кнопки нет, то оставляем первый шаг
+        $('div[data-quiz-label="'+value+'"]:not(:first)').addClass('hide_quiz');
+        setTimeout(function(){ $('div[data-quiz-label="'+value+'"]:first').addClass('active_quiz'); }, 2000);
+    };
+});
+//Добавляем градиент на progress bar
+$('.progress_bar .tn-atom').append('<div class="progress-gradient"></div><div class="progress-barrier"></div>');
+//Блокируем все кнопки "Далее"
+$('.next_step').addClass('disnext');
+//Разблокируем кнопку далее
+$(document).on('input change','.active_quiz input , .active_quiz select',function(event){
+    let inp = $(this); let currBlk = inp.closest('.r');  let checkBox = true;
+    let numCheck = currBlk.find('input[type="checkbox"]:checked').length;
+    let inpName = $(this).attr('name'); let alt = false; 
+    //Проверяем шаги с дополнительным полем выбора 
+    if (inpName == undefined) { alt = false
+    }else{
+        alt = inpName.includes('-alternative');
+        if(alt){
+            let ln = currBlk.find('input[name="'+inpName+'"]').length-1;
+            let indx = $('input[name="'+inpName+'"]').index($(this));
+            //Если выбор на последний radio
+            if(ln == indx){
+                alt = true;
+                inp.closest('.t-rec').addClass('show-alt');//Показываем скрытое поле
+                //Блокируем переход, пока альтернативное поле не заполнено
+                let val = inp.closest('.t-rec').find('[name$="-alternative"]:last').val();
+                let ltrNum = val.length;
+                if(ltrNum==0 || val==" " ){
+                    currBlk.find('.next_step').addClass('disnext');
+                    setTimeout(function(){ currBlk.find('.next_step').addClass('disnext') }, 200);
+                }else{ currBlk.find('.next_step').removeClass('disnext')  };
+                let fileBtnNum = currBlk.find('div[data-tilda-name$="-alternative"]').length;
+                if(fileBtnNum > 0 ){ setTimeout(function(){currBlk.find('.next_step').addClass('disnext') }, 500);  };
+            }else{
+                alt = false;
+                inp.closest('.t-rec').find('.t-upwidget-container__data_table_actions_remove  svg').click();
+                //Скрываем и очищаем скрытое поле
+                inp.closest('.t-rec').removeClass('show-alt');
+                inp.closest('.t-rec').find('[name$="-alternative"]:last:not(:radio)').val(' ');
+                currBlk.find('.next_step').removeClass('disnext'); //Разблокируем Next
+            };
+        }
+    }; 
+    //Проверяем пустые чекбоксы после снятия
+    let typeInp = $(this).attr('type');
+    if( typeInp == 'checkbox' && numCheck == 0 ){ checkBox = false};
+    if (checkBox){  currBlk.find('.next_step').removeClass('disnext')
+    }else{ currBlk.find('.next_step').addClass('disnext')  };
+    //Если поле radio или select, то делаем сразу шаг вперёд
+    if( ( typeInp == 'radio' || inp.hasClass('t-select') ) && !alt ){
+        setTimeout(function(){  inp.closest('.r').find('.next_step').click() }, 500);
+    }
+});
+
+
+//Блокируем-разблокируем Next при загрузке файла
+$(".t-records").on('DOMSubtreeModified', ".active_quiz .t-upwidget-container__button", function() {
+    let num = $(this).closest('.t-upwidget-container').find('input').length;
+    let currBlk = $(this).closest('.r');
+    if(num==0){ currBlk.find('.next_step').addClass('disnext')
+    }else{ currBlk.find('.next_step').removeClass('disnext') };
+});
+
+
+//Блокируем кнопки при ресайзе
+$(window).resize(function() {clearTimeout(window.resizedFinished); window.resizedFinished = setTimeout(function(){
+    $('.t-rec[class*="_quiz"]').each(function(){
+        let chkbox = $(this).find('.t-input-group_rd .t-checkbox').length;
+        let file = $(this).find('.t-upwidget-container').length;
+        if(chkbox) $(this).find('.next_step').addClass('disnext');
+        if(file && $(this).find('.t-upwidget-container').css('display') != 'none' ){
+            $(this).find('.next_step').addClass('disnext');
+        };
+    });
+}, 2500);});
+
+
+//При нажатии на кнопку  "Пройти тест"
+$('.tn-elem[class*="start-quiz-"]').click(function(){
+    let symbol = $(this).attr('data-btn-start-label');
+    $(this).closest('.t-rec').addClass('hide_quiz');
+    $('.t-rec[data-quiz-label="'+symbol+'"]:first').removeClass('hide_quiz').addClass('active_quiz');
+});
+
+
+//Анимация progressbar  
+function animPgrBar(qz){
+    let num = +qz.attr('data-num-quiz');
+    let total = +qz.attr('data-total-quiz');
+    let progressPercent = (100 - (num*100)/total).toFixed(2) ;
+    qz.find('.progress-barrier').css('width' , progressPercent+'%');
+};
+
+
+//Выставляем progressBar для первых блоков
+$('div[data-num-quiz="1"]').each(function(){ animPgrBar( $(this) )  });
+
+
+//Переключение блоков
+let direction = true;
+function changeBlock(em,ex){
+    let label = em.attr('data-quiz-label');
+    let num = +em.attr('data-num-quiz');
+    let total = +em.attr('data-total-quiz');
+    em.addClass('hide_quiz').removeClass('active_quiz');;
+    let nxt = 1; if(!ex) nxt=-1;
+    let actQz='';
+    if(  (total-num)==1 && ex  ) {
+        actQz = $('.t-rec[data-quiz-label="'+label+'"][data-num-quiz="'+total+'"]');
+        actQz.removeClass('hide_quiz').addClass('active_quiz');
+    }else{
+        actQz = $('.t-rec[data-quiz-label="'+label+'"][data-num-quiz="'+(num+nxt)+'"]');
+        actQz.removeClass('hide_quiz').addClass('active_quiz');
+    };
+    animPgrBar(actQz);
+};
+
+
+//Сохраняем все ответы пользователя
+let AnswObj = {};
+function saveAns(em){
+    let symbol = em.attr('data-quiz-label');
+    let answNum = em.attr('data-num-quiz');
+    $('.qlb-'+symbol+'  .answ-'+answNum+' ').empty();
+    em.find('.t-input-group').each(function(){
+                $(this).clone().appendTo('.qlb-'+symbol+'  .answ-'+answNum+' ');   
+                if( $(this).hasClass('t-input-group_sb') ){
+                    let selectName = $(this).find('select').attr('name');
+                    $(' .qlb-'+symbol+'  .answ-'+answNum+' select[name="'+selectName+'"]').val( $(this).find('select[name="'+selectName+'"]').val() );
+                };
+    });
+    $('.qlb-'+symbol+' .t-input-group').addClass('hide-quiz-answ');
+    
+};
+
+
+//При нажатии на кнопку  "Далее"
+$('.next_step').click(function(){ direction = true; let curBlk = $(this).closest('.t-rec'); changeBlock(curBlk,direction);saveAns(curBlk);  });
+//При нажатии на кнопку  "Назад"
+$('.prev_step').click(function(){ direction = false; let curBlk = $(this).closest('.t-rec'); changeBlock(curBlk,direction);  });
+
+
+//При отправке финальной формы
+$(document).on('click','.final-step .tn-form__submit',function(event){
+    let currBox = $(this).closest('.t-form__inputsbox');
+    let currBlk = $(this).closest('.r');
+    let symbol = currBlk.attr('data-quiz-label');
+    currBox.find('.hide-quiz-answ').remove();
+    $('.qlb-'+symbol).find('.hide-quiz-answ').each(function(){
+        $( $(this) ).clone().appendTo(currBox);
+        
+        if( $(this).hasClass('t-input-group_sb') ){
+                    let selectName = $(this).find('select').attr('name');
+                    currBox.find('select[name="'+selectName+'"]').val( $(this).find('select[name="'+selectName+'"]').val() );
+        };
+        
+    });
+    setTimeout(function(){
+           currBlk.find('.t-submit').css('pointer-events','auto');
+           currBlk.find('.t-submit').click();
+           currBlk.find('.t-submit').css('pointer-events','none');
+    }, 500);
+});
+
+
+
+
+$(document).on('click','.final-step button',function(event){ event.stopPropagation() });
+
+
+//Зпрещаем отправку по Enter
+$(document).on("keydown", "div[class*='quest-form-'] .t-form", function(event) {return event.key != "Enter";});
+});
+</script>
+
+
+<style>
+div[class*='start-quiz'] , .next_step , .prev_step {cursor:pointer}    
+.hide_quiz{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    opacity: 0;
+    z-index: -10;
+    pointer-events: none;
+}
+.hide-quiz-answ {
+    opacity: 0;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+    pointer-events: none;
+    overflow: hidden;
+    position: absolute;
+    z-index: -10;
+}
+.next_step.disnext {
+    opacity: 0.5;
+    filter: grayscale(1);
+    pointer-events:none;
+}
+.next_step.disnext .tn-atom>div {  opacity: 0}
+.progress-gradient {
+    background: repeating-linear-gradient(45deg, #dcdcdc, #dcdcdc 10px, #ff9800 10px, #ff9800 20px);
+    background-repeat: no-repeat;
+    width:100%;
+    height: 100%;
+    background-size: 300%;
+    animation: animprogressline 30s linear infinite;
+}
+.progress-barrier {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: inherit;
+}
+.tn-elem.progress_bar .tn-atom { height: inherit}
+@keyframes animprogressline {   
+  from { background-position-x: right  }   
+  to {  background-position-x: left  }
+}
+[name$="-alternative"] ,
+[data-tilda-name$="-alternative"]{ display: none}
+.show-alt [name$="-alternative"],
+.show-alt [data-tilda-name$="-alternative"]{display: block}
+.final-step button.t-submit { pointer-events: none}
+.final-step .tn-form__submit { cursor: pointer}
+</style>
+
+
+
+
+

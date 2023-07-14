@@ -1,0 +1,17 @@
+- Создать Zero Block и внести необходимые элементы, сохранить и выйти;
+- Создать блок html, в нем прописать id zero блока, который необходимо закрепить: 
+
+<style>
+.floating {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+}
+</style>
+<script defer>
+$(document).ready(function(){
+    var blockMenuID = ' #rec84947843';
+    $(blockMenuID).addClass('floating');
+});
+</script>

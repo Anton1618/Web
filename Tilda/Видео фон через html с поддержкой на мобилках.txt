@@ -1,0 +1,41 @@
+Создается zero и устанавливается html блок по windows контейнеру на 100 по высоте и 100 ширине. 
+Разумеется, рекомендуется использовать минимально возможный файл для быстрой загрузки
+Вставляется код, в котором заменяется ссылка на видео, например, на dropbox. 
+
+ВАЖНО
+- В ссылке должен присутствовать домен dl. 
+- Обычно копируется часть ссылки, которая начинается с "s/", если присутствует часть ссылки /scl/fi, то ситуация аналогична - копируется вся ссылка, даже несмотря на то, что редактор кода подчеркивает ошибку в коде
+- Если видео "съезжает" или не умещается, то нужно изменить значение ширины в коде, учитывая размер текущей страницы
+
+<div class="videoBackground">
+<video preload="auto" playsinline autoplay loop muted>
+<source src="https://dl.dropbox.com/s/p5j6zhzffnciyki/%D0%93%D0%BE%D1%80%D0%B4%D0%BE%D0%BD.mp4?dl=0" type="video/mp4">
+</video>
+</div>
+<script>
+$(document).ready(function() {
+var width = $(window).width();
+var height = $(window).height();
+$(".videoBackground")
+.width(width)
+.height(height);
+});
+$(window).resize(t_throttle(function() {
+var width = $(window).width();
+var height = $(window).height();
+$(".videoBackground")
+.width(width)
+.height(height);
+}));
+</script>
+<style>
+.videoBackground > video {
+object-fit: cover;
+background-size: cover;
+width: 100%;
+height: 100%
+}
+</style>
+
+
+
