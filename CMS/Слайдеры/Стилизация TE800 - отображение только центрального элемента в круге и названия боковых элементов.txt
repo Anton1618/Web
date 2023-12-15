@@ -1,0 +1,67 @@
+https://mo-ti.ru/te800mainpic
+https://levelup.mo-ti.ru/student/lessons/203
+
+
+
+- Создать карусель ТЕ800 с изначальными четыремя слайдами
+стиль галереи:
+    стрелка: цвет фона - очистить
+    размер стрелки - большой
+количество блоков в ряду: 3
+карточки:
+    соотношение сторон - 1 к 1
+типографика:
+    заголовок - 50px
+
+- Добавить код в блок 123
+
+
+
+<style>
+.t923__content {
+    position: absolute;
+    height: auto !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    width: 100%;
+    text-align: center;
+}
+.t923__imgwrapper {
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+.t923__wrapper {
+    background: transparent;
+}
+.t923__bgimg {
+    border-radius: 50%;
+}
+.t923__content {
+    background: none !important;
+}
+
+@media screen and (min-width:960px){
+.t923 .t-slds__arrow_wrapper {
+    width: 33%;
+}    
+.t923 .t-slds__item_active+div .t-card__title {
+    color: #fff !important;
+}
+.t923 .t-slds__item_active+div .t923__imgwrapper {
+    opacity: 1;
+}
+}
+@media screen and (max-width:960px){
+.t923 .t-slds__item_active .t923__imgwrapper {
+    opacity: 1;
+}   
+.t923 .t-slds__item_active .t-card__title {
+    color: #fff !important;
+}
+.t923__title {
+    font-size: 40px !important;
+}
+}
+</style>

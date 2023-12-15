@@ -1,0 +1,215 @@
+h3 {
+    margin: 30px 0px 0px 0px;
+}
+
+hr {
+    margin-bottom: 150px;
+}
+
+
+
+.container {
+    border: 5px solid #ac58ff;
+}
+.container_flex {
+    display: flex;
+}
+.container_inline-flex {
+    display: inline-flex;
+}
+.flex-item {
+    font: 600 20px "Roboto", sans-serif;
+    color: #fff;
+    text-align: center;
+    text-shadow: 4px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.item-1 {
+    background-image: linear-gradient(45deg, #ff8177, #cf556c);
+}
+.item-2 {
+    background: linear-gradient(45deg, #84fab0, #8fd3f4);
+}
+.item-3 {
+    background: linear-gradient(45deg, #a6c0fe, #f68084);
+}
+.item-4 {
+    background: linear-gradient(45deg, #d4fc79, #96e6a1);
+}
+.item-5 {
+    background: linear-gradient(45deg, #43e97b, #38f9d7);
+}
+.item-6 {
+    background: linear-gradient(45deg, #a18cd1, #fbc2eb);
+}
+.item-7 {
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+} 
+.item-8 {
+    background: linear-gradient(45deg, #e1eec3, #f05053);
+}
+
+
+
+
+.flex_row {
+    flex-direction: row;
+}
+
+.flex_row-revers {
+    flex-direction: row-reverse;
+}
+
+.flex_column {
+    flex-direction: column;
+}
+
+.flex_column-reverse {
+    flex-direction: column-reverse;
+}
+
+.example_navigation {
+    flex-direction: row;
+}
+@media screen and (max-width: 680px) {
+    .example_navigation {
+        flex-direction: column;
+    }
+}
+
+
+
+.long_items .flex-item {
+    width: 500px;
+}
+
+.flex_nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex_wrap {
+    flex-wrap: wrap;
+}
+
+.flex_wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.flex_inherit {
+    flex-wrap: inherit;
+}
+
+.example_card_50percent, .example_card_33percent {
+    flex-wrap: wrap;
+}
+.example_card_50percent .flex-item {
+    width: 50%;
+}
+
+.example_card_33percent .flex-item {
+    width: 33.33%;
+}
+
+.example_fixed_card {
+    flex-wrap: nowrap;
+    height: 150px;
+}
+.example_fixed_card .flex-item {
+    width: 33.33%;
+}
+
+.need_margin_top {
+    margin-top: 50px; /* Только из-за приведенного примера выше, выходящего за рамки родительского контейнера на дальнейший контент */
+}
+.example_not_fixed_card {
+    flex-wrap: nowrap;
+}
+.example_not_fixed_card .flex-item {
+    width: 33.33%;
+}
+
+
+
+.flex_flex-flow1 {
+    flex-flow: column wrap;
+    height: 150px;
+}
+
+.flex_flex-flow2 {
+    flex-flow: column wrap;
+    height: 50px;
+}
+
+
+
+.padding_card .flex-item {
+    margin: 5px;
+    width: 33.33%;
+}
+
+.calc_padding_card1 .flex-item {
+    margin: 5px;
+    width: calc(33.33% - 10px);
+}
+
+.calc_padding_card2 {
+    padding: 5px;
+}
+.calc_padding_card2 .flex-item {
+    margin: 5px;
+    width: calc(33.33% - 10px);
+}
+
+
+
+.gap_padding {
+    gap: 5px 15px;
+}
+.gap_padding .flex-item {
+    width: calc(33.33% - 10px);
+}
+
+
+
+.flex_flex-start {
+    justify-content: flex-start;
+}
+.flex_flex-end {
+    justify-content: flex-end;
+}
+.flex_space-between {
+    justify-content: space-between;
+}
+.flex_space-around {
+    justify-content: space-around;
+}
+.flex_space-evently {
+    justify-content: space-evenly;
+}
+
+
+
+.minbox {
+    display: inline-flex;
+    margin: 40px 40px;
+    gap: 30px;
+}
+.nested {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.big {
+    background-color: blue;
+    height: 200px;
+    width: 200px;
+}
+.small1 {
+    background-color: brown;
+    height: 80px;
+    width: 150px;
+}
+.small2 {
+    background-color: rgb(49, 10, 10);
+    height: 80px;
+    width: 150px;
+}

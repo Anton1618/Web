@@ -1,0 +1,183 @@
+https://mo-ti.ru/zerorazdel
+
+
+
+- Создали ZeroBlock и добавили в него иконки с классами
+section_1 , section_2 , section_3 ...
+
+- Добавили блок ST305N - отображение - "Все товары"
+(не скрываем фильтры и список разделов)
+
+- Добавили код на страницу в блок Т123
+В коде прописали соответствие номера класса иконки для своего раздела
+
+
+
+
+"1":"FRUITS",
+"2":"Футболки",
+"3":"Шторы",
+"4":"Тесто",
+"5":"Dewalt",
+"6":"Крепёж"
+
+
+
+<script>
+$(document).ready(function(){
+let sortname = "storepartuid";//имя для раздела
+let elemmode = false;
+let partName=[];
+let startPosition = 1;
+
+let sectionName = {
+    
+    "1":"Фрукты",
+    "2":"Футболки",
+    "3":"Шторы",
+    "4":"Тесто",
+    "5":"Dewalt",
+    "6":"Крепёж"
+      
+};
+
+let sectionNum = $('div[class*="section_"]').length;
+for (let i=1; i<=sectionNum;i++){  $('.section_'+i).attr('data-section-index',i)};
+
+let ti = setInterval(function() {
+    if (document.querySelector('.js-store-filter')){
+        clearInterval(ti);
+        let sumPartBtn = $('.js-store-parts-switcher').length; //кол-во разделов
+        for(let i=1; i<sumPartBtn; i++){
+            partName[i-1] = $('.js-store-parts-switcher:eq('+i+')').text();//создаём писок названий разделов
+        };
+        if( $('div[data-filter-name="'+sortname+'"]').parent().hasClass('t-store__filter__item_select')){elemmode=true}//если выбор одного раздела
+          if(elemmode){ //если одиночный выбор  
+             let actpos=  $('input[name="'+sortname+'"]').parent().find('.js-store-filter-custom-select.active').attr('data-select-val');
+             if (actpos){ 
+                $.each(sectionName, function( key, value ) {
+                    if ( value == actpos ) {
+                        $('div[data-section-index="'+key+'"]').addClass('activechange');
+                    };
+                });
+             };
+         
+          }else{//если выбор массовый
+             $('input[name="'+sortname+'"]').parent().find('.t-checkbox').each(function( index ) {
+               if ($(this).is(':checked')){
+                    let checkName = $(this).attr('data-filter-value');
+                    if (checkName){ 
+                        $.each(sectionName, function( key, value ) {
+                            if ( value == checkName ) {
+                                $('div[data-section-index="'+key+'"]').addClass('activechange');
+                            };
+                        });
+                    };
+                   }; 
+             });
+           };
+    
+        if ( $('.activechange').length==0 ){
+            
+            $('input[name="'+sortname+'"]').parent().find('.t-store__filter__custom-sel[data-select-val="'+sectionName[startPosition]+'"]').click();
+            $('input[name="'+sortname+'"]').parent().find('.t-checkbox[data-filter-value="'+sectionName[startPosition]+'"]').click();
+            $('div[data-section-index="'+startPosition+'"]').addClass('activechange');
+                
+        };
+    };
+}, 300);
+
+//При выборе раздела
+$('div[class*="section_"]').click(function(e) {e.preventDefault();
+    let btnindex = +$(this).attr('data-section-index'); //Получаем номер кнопки раздела
+    let curPartName = sectionName[btnindex]; //Получаем название раздела
+    if(elemmode){ //если одиночный выбор
+        if(!$(this).hasClass("activechange")) {
+            $('div[class*="section_"]').removeClass('activechange'); 
+            $(this).addClass('activechange');
+            $('input[name="'+sortname+'"]').parent().find('.t-store__filter__custom-sel[data-select-val="'+curPartName+'"]').click();
+        };
+    }else{ //если выбор массовый
+
+ 	  if(!$(this).hasClass("activechange")) {
+ 	      $(this).addClass('activechange')
+ 	      $('input[name="'+sortname+'"]').parent().find('.t-checkbox[data-filter-value="'+curPartName+'"]').click();
+ 	  }else{
+ 	      if($('.activechange').length>1){
+            $(this).removeClass('activechange');
+ 	        $('input[name="'+sortname+'"]').parent().find('.t-checkbox[data-filter-value="'+curPartName+'"]').click();
+ 	      };
+ 	  }; 
+    };
+});
+
+
+});
+</script>
+
+
+<style>
+div[class*="section_"] .tn-atom {
+    cursor:pointer;
+    opacity: 0.2;
+    box-shadow: 0px 0px 0px 0px white;
+    transition: all 0.3s cubic-bezier(0.67, 0.1, 0.47, 1.13);
+}
+
+div[class*="section_"].activechange  .tn-atom,
+div[class*="section_"]  .tn-atom:hover{   opacity: 1}
+
+.t-store__filter__item {
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+.t-store__filter__item-title{
+    margin-right: 20px;
+    margin-bottom: 4px;
+}
+
+
+.t-store__parts-switch-wrapper,
+.t-store__filter__item-title[data-filter-name="storepartuid"],
+input.js-store-filter-opt[name="storepartuid"]~label{
+    display:none !important;
+}
+.t-store__filter__chosen-val.js-store-filter-chosen-item[data-option-name="storepartuid"] {
+    display: none;
+}
+.t-store__filter__reset{display:none}
+
+
+
+
+@media screen and (max-width: 960px){
+.t-store__filter__item, .t-store__filter__item.t-store__filter__item_sort-mobile {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+.t-store__filter__item-title {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+}
+@media screen and (min-width: 960px){
+.t-store__filter__options .t-store__filter__item:nth-child(2) {  margin-bottom: 0}
+}
+</style>
+
+
+
+=================================== Сокрытие общих фильтров ==============================================================
+.t-store__filter.js-store-filter {
+    position: relative;
+    margin-bottom: 0px; //Отступ между фильтрами и контентом
+    height: 40px;  //Высота всего блока фильтров
+}
+
+/* Сокрытие контейнера фильтров с оставленным отображением количества найденных позиций */
+.t-store__filter__controls-wrapper {
+    display: none;
+}
+

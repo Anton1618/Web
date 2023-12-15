@@ -1,0 +1,12 @@
+Залипание изображения в блоке информации о товаре на отдельной странице товара
+Изображение остается зафиксировано на экране и следует при скроле за пользователем на всём протяжении текстового блока
+
+
+<style>
+@media screen and (min-width: 981px) {
+	.t-store__prod-popup__slider.js-store-prod-slider.t-store__prod-popup__col-left.t-col.t-col_6 {
+	    position: sticky;
+	    top: -30px;
+	}
+}
+</style>

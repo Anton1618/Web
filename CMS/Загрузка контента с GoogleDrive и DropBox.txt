@@ -1,0 +1,23 @@
+Для использования мультимедия, требуются прямые ссылки
+Dropbox
+Пример ссылки
+https://www.dropbox.com/scl/fi/eocthrmgjjq9piptm6jvt/DSC05160_cr_correct.jpg?rlkey=gsjv4vu0co8338ytqza4eklev&dl=0
+- www заменить на dl
+- после dropbox, перед точкой, дописать usercontent - dropboxusercontent
+Результат
+https://dl.dropboxusercontent.com/scl/fi/eocthrmgjjq9piptm6jvt/DSC05160_cr_correct.jpg?rlkey=gsjv4vu0co8338ytqza4eklev&dl=0
+
+
+
+Устанавливать прямую ссылку на скачивание файла, без предпросмотра. dl=0 в ссылке зменяется на dl=1
+
+С Google Drive
+	- Скопировать ссылку в текстовый редактор и взять из неё код идентификатор, ссылка будет выглядеть следующим образом, где в скобках <> выделен идентификатор файла: https://drive.google.com/file/d/<1Ws8OqZ6FoL6x5_DEXm-69oT-lSsuTzmH>/view?usp=sharing
+	- Данный идентификатор вставляется в ссылку формата: 
+	https://drive.google.com/uc?export=download&id=
+	- Таким образом, ссылка станет выглядеть следующим образом:
+	https://drive.google.com/uc?export=download&id=1Ws8OqZ6FoL6x5_DEXm-69oT-lSsuTzmH
+	- Полученная ссылка применяется для загрузки соответствующего контента
+
+
+

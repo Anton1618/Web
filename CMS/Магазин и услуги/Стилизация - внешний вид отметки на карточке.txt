@@ -1,0 +1,131 @@
+https://youx.agency/izmenyaem-vneshnij-vid-otmetki-na-kartochke
+
+
+код в блоке 123
+
+Замените стили на:
+.t776 для (ST305N),
+.t778 для (ST310N),
+.t786 для (ST315N)
+
+Если не получается: Замените стили на t-store__card__mark и t-store__card__mark-wrapper соответственно
+
+
+====================================== #1 справа на фото ==========================================
+<style>
+
+.t776__mark {
+width: 85px;
+height: 50px;
+}
+
+/* Настройки для мобильной версии */
+
+@media screen and (max-width: 960px) {
+.t776__mark {
+width: 75px;
+height: 35px;
+border-radius: 15px;
+}
+
+}
+</style>
+
+
+
+====================================== #2 на краю карточки со "врезанием" бордер цвета фона  ==============================
+<style>
+.t776__mark {
+width: 80px;
+height: 36px;
+
+/* Цвет обводки */
+border: 5px solid #232323;
+
+}
+
+.t776__markwrapper {
+    top: -10px !important;
+}
+
+/* Настройки для мобильной версии */
+
+@media screen and (max-width: 960px) {
+.t776__mark {
+width: 80px;
+font-size: 10px;
+height: 35px;
+border-radius: 25px;
+}
+
+}
+</style>
+
+
+
+====================================== #3 справа в уголке ==========================================
+<style>
+.t-store__card__mark-wrapper {
+right: 0px;
+top: 0px;
+}
+ .t-store__card__mark {
+    border-radius: 0 15px 0 15px;
+}
+</style>
+
+
+
+====================================== #4 стандарт слева на фото ==========================================
+<style>
+
+.t-store__card__mark-wrapper {
+left: 10px !important;
+top: 10px;
+}
+
+</style>
+
+
+
+====================================== #5 вертикальный ==========================================
+<style>
+
+.t-store__card__mark-wrapper {
+right: -26px !important;
+top: 24px !important;
+}
+
+    .t-store__card__mark {
+    display: flex;
+    flex-direction: column; /* Устанавливаем направление столбцом */
+    width: 90px;
+    height: 40px;
+     border-radius: 15px 0 15px 0px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    justify-content: center; 
+    align-items: center; 
+    transform: rotate(270deg); 
+}
+
+</style>
+
+
+
+====================================== #6  ==========================================
+<style>
+
+.t-store__card__mark-wrapper {
+left: 10px;
+bottom: 10px !important;
+}
+
+.t-store__card__mark {
+font-size: 11px;
+width: 35px;
+height: 25px;
+border-radius: 10px;
+}
+
+</style>

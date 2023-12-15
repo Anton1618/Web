@@ -1,0 +1,243 @@
+========================================== Отображение\скрытие блоков по id + скролл =========================================
+
+ДЛЯ ОДНОГО БЛОКА
+<style>
+/* Изначально скрываем заданные блоки */
+#rec673487495 {
+    display: none;
+}
+</style>
+<script>
+var code4Visible = false;  // Флаг состояния, при необходимости скролла
+
+//Отображение\скрытие, при клике на элемент со ссылкой #showHideBlock1
+$('[href="#showHideBlock1"]').click(function(event) {
+    // Скролл с проверкой, если блок был скрыт и станет открываться. Либо просто оставить строку: $('#rec673487495').slideToggle(500; для отображения блока без применения скролла
+    $('#rec673487495').slideToggle(500, function() {  // Отображение\скрытие блока с заданным временем выполнения анимации 
+        if ($('#rec673487495').is(':visible') && !code4Visible) {  // Выполнение проверки на отображение блока с изменением флага, для необходимости выполнения скрола, если блок будет открываться
+            $('html, body').animate({
+                scrollTop: $('#rec673487495').offset().top
+            }, 500);
+            code4Visible = true;
+        } else {
+            code4Visible = false;
+        }
+    });
+    event.preventDefault();
+    t_lazyload_update();
+});
+</script>
+
+
+
+
+АНАЛОГИЧНО ЧЕРЕЗ ДИНАМИЧЕСКУЮ УСТАНОВКУ СТИЛЕЙ В JS + ПЕРЕМЕННЫЕ
+Переменные и ссылка тоггл-элемента должны быть уникальными для каждого блока кода на странице!
+<script>
+var btnToggle1 = '[href="#showHideBlock1"]';
+var blockToggle1 = '#rec673487495';
+var code4Visible = false;
+
+$(document).ready(function(){
+    $(toggleBlock1).css('display', 'none');
+});
+
+$(btnToggle1).click(function(event) {
+    // Скролл с проверкой, если блок был скрыт и станет открываться. Либо просто оставить строку: $('#rec673487495').slideToggle(500; для отображения блока без применения скролла
+    $(blockToggle1).slideToggle(500, function() { 
+        if ($(blockToggle1).is(':visible') && !code4Visible) {
+            $('html, body').animate({
+                scrollTop: $(blockToggle1).offset().top
+            }, 500);
+            code4Visible = true;
+        } else {
+            code4Visible = false;
+        }
+    });
+
+   event.preventDefault();
+   t_lazyload_update();
+});
+</script>
+
+
+
+
+МНОЖЕСТВО БЛОКОВ ДЛЯ ОТОБРАЖЕНИЯ\СКРЫТИЯ СО СТУПЕНЧАТОЙ АНИМАЦИЕЙ
+// БЕЗ СКРОЛЛА
+<script>
+var btnToggle = '[href="#showHideBlocks"]';  // Ссылка тогл-элемента для отображения\скрытия блоков
+var blocksToggle = ['#rec675183600', '#rec675183603'];  // Массив селекторов блоков
+var delay = 300;  // Задержка в мс перед началом анимации каждого последующего блока
+
+// Итерация методом each() по каждому селектору в массиве блоков
+$(document).ready(function(){
+  blocksToggle.forEach(function(selector) {
+    $(selector).css('display', 'none');
+  });
+});
+
+$(btnToggle).click(function(event) {
+  event.preventDefault();
+
+  blocksToggle.forEach(function(selector, index) {
+    setTimeout(function() {
+      $(selector).slideToggle(500);
+    }, delay * (index + 1));    
+  });
+
+  t_lazyload_update();
+});
+</script>
+
+
+
+
+// СО СКРОЛЛОМ ДО ПЕРВОГО ЭЛЕМЕНТА
+<script>
+// Массив селекторов блоков
+var btnToggle = '[href="#showHideBlocks"]';
+var blocksToggle = ['#rec675183600', '#rec675183603'];
+var delay = 300;
+
+// Итерация методом each() по каждому селектору в массиве блоков
+$(document).ready(function(){
+  blocksToggle.forEach(function(selector) {
+    $(selector).css('display', 'none');
+  });
+});
+
+$(btnToggle).click(function(event) {
+  event.preventDefault();
+
+  var firstBlockShown = false;
+  
+  blocksToggle.forEach(function(selector, index) {
+    setTimeout(function() {
+      $(selector).slideToggle(500, function() {
+        // После окончания анимации, если это первый блок и он был скрыт
+        if (!firstBlockShown && $(selector).is(':visible')) {
+          $('html, body').animate({
+            scrollTop: $(selector).offset().top
+          }, 500);
+          firstBlockShown = true; // Предотвратить скролл для последующих блоков
+        }
+      });
+    }, delay * (index + 1));    
+  });
+
+  t_lazyload_update();
+});
+</script>
+
+
+
+============================================ Отображение/Скрытие отдельных элементов через toggle ==============================
+Например, в рамках одного блока текста, требуется, чтобы первая часть текста была открыта, а прочая - скрыта и отображалась только при клике на тогл-элемент, например в виде слова "далее", многоточия или иного контента.
+Необходимые участки текста маркируются ссылками:
+- Тогл-элементу задается ссылка - #toggle_show
+- Тексту, который должен отображаться\скрываться - ссылка #shown_text
+Новые элементы - блоки скрывающихся и раскрывающихся элементов на странице, создаются с новыми скриптами и индивидуальными для них ссылками
+
+БАЗОВЫЙ КОД
+<script>
+    $('a[href="#shown_text"]').hide().css('pointer-events', 'none');  // Изначальное скрытие текста со ссылкой #shown_text
+    $('a[href="#toggle_show"]').click(function(event) {  // Нажатие на кнопку со ссылкой #toggle_show
+        $('a[href="#shown_text"]').fadeToggle(500);  // Раскрытие элемента с эффектом и временем проигрывания анимации   
+        // $(this).hide();  // Необратимое скрытие элемента со ссылкой #toggle_show
+        event.preventDefault();
+    });
+</script>
+
+
+
+
+ПРОБЛЕМА НЕ АДАПТИРУЮЩИХСЯ БЛОКОВ
+Если блок не адаптируется под высоту текста в нем, а рассчитывает размеры, исходя из заложенного функционала, то отображение элементов через раскрытие, может производиться с выходом за края родительского контейнера. 
+Тогда, может потребоваться обновление функционала в данном блоке, например, через более строгое обращение к блоку
+<script>
+    $('a[href="#shown_text"]').hide().css('pointer-events', 'none');
+    $('a[href="#toggle_show"]').click(function(event) {
+        $('a[href="#shown_text"]').fadeToggle(500);   
+        $(this).hide();
+        t1067_init('671345249');  // Рассматривается блок PL100 с data-record-type="1067" под id блока 671345249 (#rec671345249)
+        event.preventDefault();
+    });
+</script>
+
+
+
+
+ЗАМЕНА ТЕКСТА ТОГГЛ ЭЛЕМЕНТА
+Если требуется не только отображать раскрывающий\скрывающий тоггл-элемент, но и изменять его содержимое текста после взаимодействия с ним, то можно задать значения, например, можно указать: изначальный текст ("больше"), текст после взаимодействия с ним ("меньше") и текст после повторного взаимодействия (вновь "больше")
+<script>
+    $('a[href="#shown_text"]').hide().css('pointer-events', 'none');
+    $('a[href="#toggle_show"]').click(function(event) {
+        $('a[href="#shown_text"]').fadeToggle(500);   
+        var text = $(this).text();
+        $(this).text(text == "больше" ? "меньше" : "больше");  // Замена текста "больше" на текст "меньше" при взаимодействии
+        event.preventDefault();
+    });
+</script>
+
+
+
+
+======================= Отображение\Скрытие блоков с классами ====================
+https://mo-ti.ru/showblock
+https://levelup.mo-ti.ru/student/lessons/15
+
+
+Оригинальный код на чистом JS
+- Создали любой блок с кнопкой и задали ей ссылку #showmore
+
+- Блокам, которые нужно скрыть/показать - задали класс uc-showmore. В коде ниже представлены и другие варианты обращения к блокам
+
+- Если требуется скролл до отобаржаемых блоков, то добавляем блок Т173 - Якорная ссылка. Задаем ей значение - showmore
+В коде используем значение true для переменной anchor
+По необходимости, добавляем на страницу блок T178 - модификатор плавного скролла
+
+- Добавили код на страницу в блок Т123
+К коде задаётся ссылка кнопки и класс блоков, которые от неё зависят
+[ '#showmore' , 'uc-showmore' ];
+Для создания еще одной кнопки отображающей\скрывающей блоки на странице, дублируется скрипт с заданием новых классов 
+
+
+
+ОСНОВНОЙ КОД
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+(function () {
+let shmoreArr = [ '#showmore' , 'uc-showmore' ];  // Первое значение - ссылка для кнопки. Второе - класс блоков для отображения\скрытия
+let anchor = true;  // Скролл до якоря true
+let hideBtn = false;  // Скрыть кнопку по клику true
+let hideBlk = false;  // Скрыть блок с кнопкой по клику true
+let shmoreBtn = document.querySelectorAll('[href="'+shmoreArr[0]+'"]');
+let shmoreBlock = document.querySelectorAll('.'+shmoreArr[1]);
+shmoreBlock.forEach(i => i.classList.add("tabshide"));
+for (let i = 0; i < shmoreBtn.length; i++) {
+    shmoreBtn[i].addEventListener('click', function(event) { 
+        this.classList.toggle('more-btn-active');
+        if(!anchor) event.preventDefault(); 
+        if(hideBtn) this.classList.add('tabshide');
+        if(hideBlk) this.closest('.r').classList.add('tabshide');
+        shmoreBlock.forEach(i => i.classList.toggle("tabshide"));
+        window.dispatchEvent(new Event('resize'));
+   });
+};
+})();
+
+});
+</script>
+
+<style>
+.tabshide {
+    opacity: 0!important;
+    min-height: 0!important;
+    max-height: 0!important;
+    pointer-events: none!important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+}
+</style>

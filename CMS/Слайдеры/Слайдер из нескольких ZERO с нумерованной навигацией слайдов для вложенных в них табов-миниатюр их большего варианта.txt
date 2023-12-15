@@ -1,0 +1,78 @@
+https://mo-ti.ru/zeropicchange
+https://levelup.mo-ti.ru/student/lessons/40
+
+
+
+- Создали ZeroBlock с контентом фото и текст:
+Создали 3 больших Image со ссылкой #mainph
+Создали 3 маленьких Image со ссылкой #smallph, а также добавили возможные карточки со ссылками на видео
+Дополнительный контент по вкусу
+
+- Адаптировали блок и сделали его копии. В копиях изменили контент
+
+- Создали Zero для навигации
+Разместили 2 Button со ссылками #sldprev и #sldnext, соответственно для предыдущего и следующего слайдов
+Добавили текст-цифры по количеству слайдов и задали каждому элементу ссылку #numlink
+
+- Добавили код в блок другое - Т123
+Поменяли в коде ID Zero (без Zero с кнопками)
+vvar sldBlk = ["#rec140760332","#rec140769343","#rec140845314","#rec140846029"];
+
+
+
+<style>
+/* Стили стрелок навигации */
+.triggericon , .nupos , .smallph , .sldZero{ transition:all 0.3s ease-in-out;}
+
+/* Стили НЕактивных булетов навигации */
+.activetrigger{ border-radius: 50px;background-color: #FFEDA5;}
+
+/* Стили активных булетов навигации */
+.activenum{font-weight: 600 !important;border-radius: 50px;background-color: #F8A95A;}
+</style>
+
+<script>
+   $( document ).ready(function() {
+      var sldBlk = ["#rec140760332","#rec140769343","#rec140845314","#rec140846029"];
+      var index=0; 
+      $('a[href="#smallph"]').addClass('smallph');
+      $('a[href="#mainph"]').addClass('mainph').hide();
+      $('.mainph').closest('.t396').addClass('cardelem');
+       for(var i = 0; i < $(".cardelem").length; i++){
+       $('.cardelem:eq('+i+') .smallph:first').addClass('activetrigger');
+       $('.cardelem:eq('+i+') .mainph:first').show();
+       };
+      $('.mainph').click(function(e) {e.preventDefault();});
+      $('.smallph').click(function(e) {e.preventDefault();
+       if(!$(this).hasClass("activetrigger") ){
+        $('.t396').removeClass('direct');
+        $(this).closest('.t396').addClass('direct');
+        $('.direct .smallph').removeClass('activetrigger');
+        $(this).addClass('activetrigger');
+        var dtrigg = $(".direct .smallph").index(this);
+        $('.direct .mainph').hide(500);$('.direct .mainph:eq('+dtrigg+')').show(500);
+      };  });
+       for(var i = 0; i < sldBlk.length; i++){
+        $(sldBlk[i]).addClass('sldZero'); $(sldBlk[0]).addClass('visZero');
+       };
+    $('.sldZero').not(':first').addClass('miraclestyle').hide();
+    $('.sldZero').wrapAll('<div class="mainsldZero"></div>');
+    $('a[href="#numlink"]').addClass('nupos');$('.nupos:first').addClass('activenum');
+    function chngZsld() {
+      $('.nupos').removeClass('activenum'); $('.nupos:eq('+index+')').addClass('activenum');
+      $('.sldZero').hide();$('.sldZero:eq('+index+')').show();
+    };
+    $('.nupos').click(function(e){e.preventDefault();
+    $('.sldZero:eq('+index+')').addClass('miraclestyle');
+    index = $('.nupos').index(this);chngZsld();    
+    });
+    $('a[href="#sldnext"]').click(function(e){e.preventDefault();
+      $('.sldZero:eq('+index+')').hide();
+      index++; if(index== $('.sldZero').length){index=0};chngZsld();
+    });   
+    $('a[href="#sldprev"]').click(function(e){e.preventDefault();
+      $('.sldZero:eq('+index+')').hide();
+      index--; if(index<0){index=$('.sldZero').length-1};chngZsld();   
+    });   
+});
+</script>

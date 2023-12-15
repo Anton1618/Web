@@ -1,0 +1,43 @@
+https://mo-ti.ru/tpost/2iepi8sex1-stilizuem-knopki-razdelov-kataloga-v-til
+
+Создать из названий разделов каталога кнопки
+В примере они красиво размещаются на подложке блока сверху
+
+- Создать подложку (опционально)
+
+- Создать отображение всех товаров, например, в блоке st305
+
+
+<style>
+.t-store__parts-switch-wrapper {
+    text-align: left;
+    margin-bottom: 70px;
+}
+
+.js-store-parts-switcher.t-store__parts-switch-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 400;
+    transition: all 0.3s ease-in-out;
+}
+
+.js-store-parts-switcher.t-store__parts-switch-btn.t-active {
+    opacity: 1;
+    color: #000;
+    background-color: #fff;
+}
+
+.js-store-parts-switcher.t-store__parts-switch-btn:hover {
+    color: #000;
+    background-color: #fff;
+}
+
+.uc-product-block {
+    margin-top: -90px;
+    position: relative;
+    z-index: 10;
+}
+    
+</style>

@@ -1,0 +1,99 @@
+https://necodim.ru/tilda/cart-favorites-search-in-menu
+
+
+- Добавьте на страницу стандартное меню, в котором есть ссылки на соц. сети, например блок ME301.
+В настройках блока добавьте нужные вам иконки: Добавить пункт → Универсальные → Website.
+Название иконок и ссылка на вызываемый элемент:
+Корзина: #opencart
+Избранное: #showfavorites
+Поиск: #opensearch
+
+- Добавьте корзину, избранное и поиск.
+В настройках (пункт «Дополнительные настройки») каждого из этих блоков поставьте галочку «Не показывать кнопку открытия виджета».
+Если используете поиск, то в разделе «Контент» соответствующего блока пропишите ссылку #opensearch.
+
+- Разместите код в блоке T123.
+
+
+
+<script>
+t_onReady(() => {
+    const iconInMenu = (type) => {
+        const links = document.querySelectorAll(`.t-sociallinks__item a[title="${type}"]`);
+        links.forEach(link => {
+            link.removeAttribute('target');
+            if (type === 'Корзина' || type === 'Избранное') {  // Название иконки корзина и избранное
+                if (type == 'Корзина') typeTilda = 'tcart';  // Название иконки корзина
+                if (type == 'Избранное') typeTilda = 'twishlist';  // Название иконки избранное
+                const counter = document.createElement('div');
+                counter.classList.add('menu-icon-counter', `${typeTilda}-total`, 't-text');
+                if (window.localStorage.getItem(typeTilda) != null) {
+                    const total = JSON.parse(window.localStorage.getItem(typeTilda)).total;
+                    counter.innerHTML = total;
+                    counter.style.opacity = total === 0 ? 0 : 1;
+                }
+                link.appendChild(counter);
+            }
+        });
+    }
+    const originalSetItem = localStorage.setItem;
+    Storage.prototype.setItem = function(key, value) {
+        const event = new Event('itemInserted');
+        event.key = key;
+        document.dispatchEvent(event);
+        originalSetItem.apply(this, arguments);
+    }
+    const localStorageSetHandler = (e) => {
+        setTimeout(() => {
+            if ((e.key === 'tcart' || e.key === 'twishlist') && window.localStorage.getItem(e.key) != null) {
+                const total = parseInt(JSON.parse(window.localStorage.getItem(e.key)).total);
+                const elements = document.querySelectorAll(`.menu-icon-counter.${e.key}-total`);
+                elements.forEach(el => {
+                    if (total !== null && el !== null) {
+                        el.innerHTML = total;
+                        el.style.opacity = total === 0 ? 0 : 1;
+                    }
+                });
+            }
+        }, 100);
+    };
+    document.addEventListener('itemInserted', localStorageSetHandler, false);
+    iconInMenu('Корзина');  // Название иконки корзина
+    iconInMenu('Избранное');  // Название иконки избранное
+    iconInMenu('Поиск');  / Название иконки поиск
+});
+</script>
+
+<style>
+.t-sociallinks__item {
+    position: relative;
+}
+.menu-icon-counter {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: -5px;
+    bottom: unset;
+    left: unset;
+    right: 0;
+    z-index: 1;
+    transform: translate(0,0);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    border: none;
+    border-radius: 16px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+.menu-icon-counter.tcart-total {
+    color: #222222;  /* Цвет фона счетчика корзины */
+    background-color: #ffcc00;  /* Цвет текста счетчика корзины */
+}
+.menu-icon-counter.twishlist-total {
+    color: #ffffff;  /* Цвет фона счетчика избранное */
+    background-color: #ca1a2b;  /* Цвет текста счетчика избранное */
+}
+</style>

@@ -1,0 +1,93 @@
+https://mo-ti.ru/cleancalculator
+
+
+Рассчитываем стоимость уборки в калькуляторе
+Для создания применяются 7 независимых форм
+
+<style>
+.sendform {cursor:pointer}
+.mainform .hide-input-mode {
+    opacity: 0;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+    pointer-events: none;
+    overflow: hidden;
+    position: absolute;
+    z-index: -10;
+}
+</style>
+
+<script>
+$( document ).ready(function() {
+let formID='';
+//При клике на нашу кнопку
+$('.sendform').click(function(e) {e.preventDefault();
+    formID = '#' + $(this).closest('.t-rec').attr('id');
+    let fullinput=true;   
+    $('.t-input-group').removeClass('js-error-control-box');
+    $(formID).find('.js-tilda-rule[data-tilda-req="1"]').each(function() {
+        if($(this).val()==''){$(this).closest('form').find('.t-submit').click(); fullinput=false; return false;};
+    }); 
+    if(fullinput){
+    $(formID).find('input[type="radio"][data-tilda-req="1"].js-tilda-rule').closest('.t-input-block').each(function() {
+    if(!$(this).find('input[type="radio"]').is(':checked')){$(this).closest('form').find('.t-submit').click();fullinput=false; return false;  
+    };});};
+    if(fullinput){
+    $(formID).find('input[type="checkbox"][data-tilda-req="1"].js-tilda-rule').each(function() {
+    if (!$(this).is(':checked')){ $(this).closest('form').find('.t-submit').click(); fullinput=false; return false;};
+    });};
+    
+    if(fullinput){
+        $(formID).find('.slaveform').each(function(){
+            $(this).find('.t-input-group').each(function(){
+                $(this).addClass('hide-input-mode');
+                $(this).clone().appendTo(formID+" .mainform .t-form__inputsbox");   
+                if( $(this).hasClass('t-input-group_sb') ){
+                    let selectName = $(this).find('select').attr('name');
+                    $(formID+' .mainform select[name="'+selectName+'"]').val( $(formID+' .slaveform select[name="'+selectName+'"]').val() );
+                };
+            });
+        });
+    //Отправляем данные основной формы       
+    setTimeout(function(){  $(formID).find('.mainform .t-submit').click() }, 500);
+    };
+});
+$(formID+' .mainform').delegate(".t-submit", "click", function(){
+    setTimeout(function(){
+        if ( $(formID+' .mainform .t-form').hasClass("js-send-form-success")){
+            $(formID+' .mainform .hide-input-mode').remove();
+            //$(formID+' .slaveform').find('input').val('');
+            //$(formID+' .slaveform').find('textarea').val(' ');
+            $(formID+' .slaveform select option:first').prop('selected', true);
+            $(formID+' input').prop('checked', false);
+            let recID = formID.replace(/[^0-9]/g, '');t396_init(recID);
+        };
+    }, 1000);
+});    
+$(document).on("keydown", ".t-form", function(event) {return event.key != "Enter";});
+});
+</script>
+
+
+
+
+<style>
+    .t-bgimg.t-img-select__indicator {
+    box-shadow: none !important;
+}
+    .t-img-select__text.t-text.t-text_xs {
+    font-size: 12px !important;
+    text-align: center;
+}
+
+.tn-atom .t-form__errorbox-wrapper, .tn-form__errorbox-popup {
+    bottom: 50%;
+    left: calc(50% - 373px/2);
+    right: inherit;
+}
+.t-img-select__control {
+    width: calc(25% - 10px) !important;
+ 
+}
+</style>

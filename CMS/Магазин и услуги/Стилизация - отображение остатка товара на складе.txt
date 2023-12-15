@@ -1,0 +1,74 @@
+https://mo-ti.ru/productinstock
+
+
+- Создали блок ST305N и подключили к нему каталог
+
+- Добавили код в блок 123
+
+
+
+<style>
+    .t-store__card::after {
+    content: attr(data-product-inv) " шт на складе";
+    font-family: 'Roboto',Arial,sans-serif;
+    font-size: 12px;
+    color: #878787;
+    position: absolute;
+    margin-top: 4px;
+    width: 250px;
+}
+.t-store__card__btns-wrapper {
+    margin-top: 40px !important;
+}
+.js-store-prod-sold-out {
+    display: none;
+}
+
+.js-store-product.js-product::before {
+    content: attr(data-product-inv) " шт на складе";
+    font-family: 'Roboto',Arial,sans-serif;
+    font-size: 14px;
+    color: #000;
+    background-color: #ededed;
+    margin-left: 20px;
+    padding: 3px 8px;
+    position: absolute;
+    top: -5px;
+}
+.t-store__prod-popup__name{
+    margin-top: 5px;
+}
+.js-store-product.js-product.t-store__product-snippet::before {
+    margin-left: calc(50% + 20px);
+}
+
+@media screen and (max-width: 1240px){
+.js-store-product.js-product::before {
+    margin-left: 5px;
+}
+.js-store-product.js-product.t-store__product-snippet::before  {
+    margin-left: calc(50% - 10px);
+}
+}
+@media screen and (max-width: 980px){
+.js-store-product.js-product.t-store__product-snippet::before {
+    margin-left: calc(50% - 60px);
+    top: -20px;
+}
+}
+
+@media screen and (max-width: 640px){
+.js-store-product.js-product::before {
+    margin-left: 5px;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.t-store__prod-popup__slider.js-store-prod-slider {
+    padding-top: 30px;
+}
+}
+
+    
+</style>

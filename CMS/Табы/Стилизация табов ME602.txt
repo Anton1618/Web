@@ -1,0 +1,134 @@
+https://dsgnmax.ru/useful/custom-me602
+
+
+<style>
+:root{
+    --heightIconDesktop: 40px;                          /*Высота иконки на десктопе*/
+    --widthIconDesktop: 40px;                          /*Ширина иконки на десктопе*/
+    --borderNormal: 2px solid #0b82dd !important;       /*Обводка таба в нормальном состоянии*/
+    --borderRadiusTabsDesktop: 48px;                    /*Радиус скругления углов у табов на десктопе*/
+    --paddingTabDesktop: 12px 24px;                     /*Внутренние отступы у табов на десктопе*/
+    --transformHoverTabs: scale(1.1);                   /*Размер увеличения таба при наведении*/
+    --gapTabsDesktop: 20px;                             /*Отступы между табами на десктопе*/
+    --paddingTabsMobile: 8px 16px;                        /*Внутренние отступы у табов на мобилке*/
+    --heightIconMobile: 24px;                           /*Высота иконки на мобилке*/
+    --widthIconMobile: 24px;                           /*Ширина иконки на мобилке*/
+    --borderRadiusTabsMobile: 16px;                     /*Радиус скругления углов у табов на мобилке*/
+    --gapTabsMobile: 16px;                              /*Отступы между табами на мобилке*/
+}
+
+
+.uc-tabs .t395__tab_active:after {
+    width: 0px !important;
+    top: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+}
+.t395__title {
+    padding: 0 !important;
+    padding-top: 10px !important;
+}
+.uc-tabs .t395__tab{
+    display: grid;
+    justify-items: center;
+    padding: var(--paddingTabDesktop);
+    border-radius: var(--borderRadiusTabsDesktop) !important;
+    width: 100%;
+    cursor: pointer;
+    border: var(--borderNormal) !important;
+    transition: all 0.2s ease-in-out;
+}
+.uc-tabs .t395__tab:hover {
+    transform: var(--transformHoverTabs);
+}
+.t395__wrapper{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--gapTabsDesktop);
+}
+/*Первая иконка*/
+.uc-tabs li[data-tab-number="1"]:before{
+    content:"";
+    width: var(--widthIconDesktop);
+    height: var(--heightIconDesktop);
+    background-image:url(https://static.tildacdn.com/tild3335-6565-4361-b430-343336346562/1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+}     
+/*Вторая иконка*/    
+.uc-tabs li[data-tab-number="2"]:before{
+    content:"";
+    width: var(--widthIconDesktop);
+    height: var(--heightIconDesktop);
+    background-image:url(https://static.tildacdn.com/tild3330-3636-4263-b631-376561366530/2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+}     
+/*Третья иконка*/    
+.uc-tabs li[data-tab-number="3"]:before{
+    content:"";
+    width: var(--widthIconDesktop);
+    height: var(--heightIconDesktop);
+    background-image:url(https://static.tildacdn.com/tild3061-3239-4137-b434-643761373431/3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+}     
+/*Четвёртая иконка*/    
+.uc-tabs li[data-tab-number="4"]:before{
+    content:"";
+    width: var(--widthIconDesktop);
+    height: var(--heightIconDesktop);
+    background-image:url(https://static.tildacdn.com/tild6139-3430-4130-b436-663063656530/4.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+} 
+    
+    
+    
+/*Стиль табов для планшетной и мобильной версий*/
+
+/*-------------------------------------------------*/
+    
+@media screen and (max-width:959px){
+    .t395__wrapper{
+        display: flex;
+        flex-wrap: nowrap;
+        gap: var(--gapTabsMobile);
+        margin-top: 5px !important;
+    }
+    .t395__title{
+        font-size: 14px; /*Размер текста таба*/
+        line-height: 14px;
+        padding-top: 2px !important;
+    }
+    .uc-tabs .t395__tab{
+        display:grid;
+        grid-auto-flow: column;
+        gap: 10px;
+        padding: var(--paddingTabsMobile)!important;    /*Отступы у таба внутри*/
+        border-radius: var(--borderRadiusTabsMobile)!important;   /*Скруглениу углов у табов*/
+        width: 100%;
+    }
+   .uc-tabs li[data-tab-number="1"]:before{
+        width: var(--widthIconMobile);
+        height: var(--heightIconMobile);
+    }     
+    .uc-tabs li[data-tab-number="2"]:before{
+        width: var(--widthIconMobile);
+        height: var(--heightIconMobile);
+    }     
+    .uc-tabs li[data-tab-number="3"]:before{
+        width: var(--widthIconMobile);
+        height: var(--heightIconMobile);
+    }     
+    .uc-tabs li[data-tab-number="4"]:before{
+        width: var(--widthIconMobile);
+        height: var(--heightIconMobile);
+    } 
+}    
+
+</style>

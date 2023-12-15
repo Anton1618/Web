@@ -1,0 +1,141 @@
+Страница с описанием
+https://lifehackov.ru/tilda-publishing/svg-animaciya-v-tilda-publishing-shag-za-shagom/
+
+Создайте zero block.
+Нажмите на кнопку «+» и выберите «Add Shape».
+В настройках «шейпа» нажмите на кнопку «upload file».
+Выберите и загрузите в zero block ваш svg файл, который вы экспортировали из Figma.
+Удалите фоновую заливку «шейпа».
+Растяните и разместите «шейп» там, где по задумке должна присутствовать анимация.
+Нажмите на кнопку «+» и выберите «Add HTML».
+Вернитесь в графический редактор Figma.
+Нажмите правой кнопкой мыши на ваш вектор и выберите «Copy/Paste as» и «Copy as SVG».
+Вернитесь в zero block и откройте html элемент.
+Нажмите на комбинацию клавиш «ctrl + v», чтобы вставить скопированный код.
+Внутри тега <Path/> пропишите следующее «id= ‘mysvg’».
+В атрибутах «width» и «height» пропишите 100%.
+Закройте html элемент.
+Выделите элемент «shape» и запомните значения в полях «X», «Y», «W» и «H».
+Точно такие же значения присвойте html элементу в полях «X», «Y», «W» и «H».
+Для настройки адаптивности анимации и блока в целом, настройте отображение элемента «shape» для всех размеров экранов в zero block. У html элемента должны быть точно такие же размеры и расположение, как у элемента «shape».
+После настроек адаптивности скройте или удалите элемент shape.
+Сохраните изменения и выйдите из зеро блока.
+
+
+
+После, создать html блок с кодом
+
+--- Автоматическая SVG анимация в Tilda ---
+<script>
+  $(document).ready(function () {
+    const svg = document.getElementById("mysvg");
+    const length = svg.getTotalLength();
+    svg.style.strokeDasharray = length;
+    svg.style.strokeDashoffset = length;
+    setTimeout(() => {
+      svg.style.transition = "2s";
+    }, 500);
+    setTimeout(() => {
+      svg.style.strokeDashoffset = 0;
+    }, 2500);
+  });
+</script>
+
+
+
+--- SVG анимация в Tilda по скроллу ---
+<script>
+  $(document).ready(function () {
+    const svg = document.getElementById("mysvg");
+    const length = svg.getTotalLength();
+    svg.style.strokeDasharray = length;
+    svg.style.strokeDashoffset = length;
+    window.addEventListener("scroll", function () {
+      const scrollpercent =
+        (document.body.scrollTop + document.documentElement.scrollTop) /
+        (document.documentElement.scrollHeight -
+          document.documentElement.clientHeight);
+      const draw = length * 1 * scrollpercent; // Замените 1 на 2, чтобы скорость анимации была в 2 раза быстрее
+      svg.style.strokeDashoffset = length - draw;
+    });
+  });
+</script>
+
+
+
+
+
+
+--------------- Альтернативный вариант ------------------
+Подробное видео
+https://www.youtube.com/watch?v=2uCgsts6RyE
+
+<!-- Анимация по временному триггеру -->
+<script>
+  $(document).ready(function () {
+    const svg = document.getElementById("svg_blue");
+    const length = svg.getTotalLength();
+    svg.style.strokeDasharray = length;
+    svg.style.strokeDashoffset = length;
+    setTimeout(() => {
+      svg.style.transition = "2s";
+    }, 500);
+    setTimeout(() => {
+      svg.style.strokeDashoffset = 0;
+    }, 2500);
+  });
+</script>
+
+
+
+<!-- Анимация по скроллу -->
+<script>
+  $(document).ready(function () {
+    const svg = document.getElementById("svgPath");
+    const length = svg.getTotalLength();
+    svg.style.strokeDasharray = length;
+    svg.style.strokeDashoffset = length;
+    window.addEventListener("scroll", function () {
+      const scrollpercent =
+        (document.body.scrollTop + document.documentElement.scrollTop) /
+        (document.documentElement.scrollHeight -
+          document.documentElement.clientHeight);
+      const draw = length * 1 * scrollpercent; // Замените 1 на 2, чтобы скорость рисования была в 2 раза быстрее
+      svg.style.strokeDashoffset = length - draw;
+    });
+  });
+</script>
+
+
+
+<!-- Анимация по объекту триггеру -->
+<script>
+  $(document).ready(function () {
+    const trigger = document.querySelector("#rec512351379");
+    const svg = document.getElementById("sign");
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.85,
+    };
+
+    svg.style.transition = "2s";
+    const length = svg.getTotalLength();
+    svg.style.strokeDasharray = length;
+    svg.style.strokeDashoffset = length;
+
+    const drawLine = function () {
+      setTimeout(() => {
+        svg.style.strokeDashoffset = 0;
+      }, 1000); // Время задержка перед началом рисование (1000 миллисекунд = 1 секунда)
+    };
+
+    const drawSign = function (entries, observer) {
+      entries.forEach((entry) => {
+        entry.isIntersecting ? drawLine() : null;
+      });
+    };
+    const observer = new IntersectionObserver(drawSign, options);
+    observer.observe(trigger);
+  });
+</script>

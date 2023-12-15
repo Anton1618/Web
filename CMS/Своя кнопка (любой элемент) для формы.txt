@@ -1,0 +1,22 @@
+https://mo-ti.ru/myformbutton
+https://levelup.mo-ti.ru/student/lessons/34
+
+
+
+- Создали ZeroBlock
+Добавили в него форму
+Удалили значения стандартной кнопки формы и задали ширину и высоту в 0px
+Создали обычную кнопку из button или shape. Назначили ей ссылку #sendmyform
+
+- Добавили код на страницу в блок ДРУГОЕ►Т123
+В коде заменили ID нашего ZeroBlock
+#rec113649472
+
+
+
+<script>
+    $(document).ready(function() {
+    //При клике на нашу кнопку
+    $('a[href="#sendmyform"]').click(function(e) {e.preventDefault();
+    $("#rec113649472 .t-submit").click();});});
+</script>

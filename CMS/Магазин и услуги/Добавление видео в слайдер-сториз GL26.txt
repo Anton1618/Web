@@ -1,0 +1,112 @@
+https://mo-ti.ru/videoslidegl27
+https://levelup.mo-ti.ru/student/lessons/117
+
+
+
+
+- Создали GL27 на 8 карточек
+Отступ полосы прогресса: 50рх
+Стиль галереи: Полноэкранная версия
+Кнопки по вкусу
+Для карточки с видео удаляется изображение, устанавливается опция - фоновое изображение
+
+- Добавили код в блок Другое - Т123
+В коде указали номер слайда и ссылку на видео
+'2' : 'https://310401.selcdn.ru/MIXED/unchained_melody2.mp4',
+'4' : 'https://310401.selcdn.ru/MIXED/unchained_melody1.mp4',
+'6' : 'https://310401.selcdn.ru/MIXED/unchained_melody3.mp4',
+'8' : 'https://310401.selcdn.ru/MIXED/unchained_melody4.mp4'
+
+
+
+<script>
+$(document).ready(function(){
+let playList = {
+  '2' : 'https://310401.selcdn.ru/MIXED/unchained_melody2.mp4',
+  '4' : 'https://310401.selcdn.ru/MIXED/unchained_melody1.mp4',
+  '6' : 'https://310401.selcdn.ru/MIXED/unchained_melody3.mp4',
+  '8' : 'https://310401.selcdn.ru/MIXED/unchained_melody4.mp4'
+};
+for (var key in playList) {
+    $('.t994__item-wrapper:eq('+(+key-1)+') .t994__content').before('<div class="t994__video-wrapper"><video class="t994__video" style="object-fit: cover;background-size: cover;  width: 100%; height: 100%;"  preload="auto" playsinline=""  loop="" muted="muted"><source src="'+playList[key]+'"></video><div class="t994__video-btn"></div><div class="t994__video-btn-mute"></div></div>');
+};
+let videoNum = $('.t994__video').length;
+function pauseVideo(){
+    $('.t994__video').each(function( index ) {
+        let thisVideo = $(this);
+        if (  $(this).get(0).played ) $(this)[0].pause(); 
+        thisVideo.siblings('.t994__video-btn-mute').removeClass('mute_show');
+    });
+    $('.t994__video-btn').removeClass('playbtn_hide');
+    setTimeout(function(){
+        let findVideo = $('.t994__item.t-slds__item_active').find('video');
+        if ( findVideo.length ){
+            findVideo.next('.t994__video-btn').addClass('playbtn_hide');
+            findVideo[0].play();
+            findVideo.siblings('.t994__video-btn-mute').addClass('mute_show'); 
+        };
+    }, 100);    
+};
+$('.t994__item-wrapper').on('click' , '.t994__video-btn-mute' ,function(e){ 
+    $('.t994__video').prop('muted', false); 
+    $('.t994__video-btn-mute').addClass('mute_dis');
+});
+$('.t994__content, .t994__video-btn').click(function(){
+    let videoLn = $(this).closest('.t994__item-wrapper').find('video');
+    if( videoLn.length ){
+        if (  videoLn.get(0).paused ) {
+            videoLn.next('.t994__video-btn').addClass('playbtn_hide');
+            videoLn.get(0).play();
+            videoLn.siblings('.t994__video-btn-mute').addClass('mute_show');
+        } else {
+            videoLn.next('.t994__video-btn').removeClass('playbtn_hide');
+            videoLn.get(0).pause();
+            videoLn.siblings('.t994__video-btn-mute').removeClass('mute_show'); 
+        }
+    };
+});
+setTimeout(function(){
+    $('.t994__item:first video')[0].play();
+}, 1000);
+
+let slideline = document.querySelector('.t994__slidecontainer');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.slideline).prop(mutation.attributeName);
+        if (mutation.attributeName === "data-slide-pos") { pauseVideo()};  
+});
+});
+observer.observe( slideline , {  attributes: true});
+});
+</script>
+
+<style>
+.t994__video-wrapper { 
+    width: 100%; 
+    height: 100%;
+    position:absolute;
+}
+.t994__video-btn , .t994__video-btn-mute {
+    width: 60px;
+    height: 60px;
+    background-image: url(https://static.tildacdn.com/tild6465-3064-4962-b733-383664376338/Group_8.svg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateX(-50%) translateY(-50%);
+    cursor: pointer;
+    z-index: 99;
+    transition: all 0.3s ease-in-out;
+}
+.t994__video-btn-mute{
+    display:none;
+    background-image: url(https://static.tildacdn.com/tild3938-6263-4461-b031-363134353565/volume_1.svg);
+}
+.playbtn_hide{opacity:0}
+.t994__video-btn:hover {transform: translateX(-50%) translateY(-50%) scale(1.1)}
+.mute_show{display:block}
+.mute_dis{display:none !important}
+
+</style>

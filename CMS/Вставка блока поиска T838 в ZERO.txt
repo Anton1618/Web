@@ -1,0 +1,65 @@
+Форма поиска в кастомном меню сайта, например, небольшом в 70-100px в высоту
+
+- Создали ZeroBlock и наполнили контентом
+Добавили в него элемент HTML с классом searchinput
+    
+    Предварительнын результаты поиска
+    - для отображения: необходимо установить опцию overflow - visible
+    - для отключения: необходимо заблокировать .t-site-search-dm
+
+- Добавили на страницу блок поиска T838, в настройках у него убрали все отступы
+Стилизовали кнопку
+
+- Добавили на страницу код в блок 123
+В коде указали id блока поиска Т838, который нужно добавить в кастомное меню 
+
+
+<style>
+/* Стилизация кнопки поиска */
+.t838 .t-submit {  
+    height: 40px !important;
+    padding: 0px 20px !important;
+}
+/* Стилизация поля поиска */
+.t838__input.t-input {
+    height: 40px !important;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.t838__input.t-input:hover,
+.t838__input.t-input:focus {
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Блокировка предварительного результата поиска, ввиду недостаточной высоты контейнера и невозможности использовать overflow: visible. При этом, попап окно с целевыми результатами поиска функционирует корректно */
+.t-site-search-dm {
+    display: none;
+}
+
+/* Отображение формы поиска на брейкпойнтах. В примере применяется скрытие формы до 1199px по ширине */
+@media screen and (min-width:1199px) {
+    .t396__elem.tn-elem.searchinput {
+        top: 30px !important;
+    }
+}
+
+/* @media screen and (min-width:959px) and (max-width:1200px) {
+    .searchinput {
+        top: 20px !important;
+    }
+} */
+
+@media screen and (max-width: 1199px) {
+    /* Поле поиск */
+    .t396__elem.tn-elem.searchinput {
+        display: none;
+    }
+}
+</style>
+
+
+<script>
+// Вставка блока поиска в Zero
+$( document ).ready(function() {
+    $("#rec477940719").appendTo(".searchinput");
+});
+</script>

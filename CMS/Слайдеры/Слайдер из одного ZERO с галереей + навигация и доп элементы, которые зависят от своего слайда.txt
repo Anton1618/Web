@@ -1,0 +1,260 @@
+https://mo-ti.ru/sliderchangelements
+https://levelup.mo-ti.ru/student/lessons/28
+
+
+
+Упорядоченное открытие слайдов, задает зависимый порядок отображения или замены ранее установленных элементов, на данные, указанные в коде для этих элементов.
+Например, открытие слайда 1, приведет либо к отображению предустановленного в разметке контента, либо к его замене на указынный в коде: другая ссылка на изображение, иной текст, другой заголовок, иной текст и ссылка кнопки и тд. Тогда, следующий слайд запустит отображение других значений и так далее. 
+Также стоит заметить, что в коде указываются данные для первого слайда, т.е. имея возможность перезаписывать изначально размещенный контент
+
+Если элемент отслеживается, то он будет присутствовать на каждом слайде. Отображаться станет либо его изначальное значение, либо предустановленное в коде для замены. Если изначальный контент перезаписывается, а на следующем слайде отсутствуют изменения, то остается текущий (возможно измененный) контент.
+Например, чтобы добавить контроль над значением заголовка, он должен быть изначально установлен. 
+Потребуется указать класс элемента, который берется из инспектора кода и устанавить в скрипте, а в функции указать конкретное значение для отображения.
+
+
+
+- Создали ZeroBlock
+Добавили Gallery и внесли необходимые для отображения изображения и другой контент
+Указали необходимость применения навигации через стрелки и\или булеты, автослайдинг, бордеры и прочее
+
+- Создаём контент-элементы
+    Подзаголовок (а в примере ниже также и заголовок) - Text;
+    Изображение товара - Image;
+    Кнопка покупки или доп. информация - Button.
+
+- Добавляем скрипт в блок Другое - Т123. В скрипте прописали
+ID Zero - #rec152708560;
+Из инспектора кода прямо на элементе берем атрибуты:
+Атрибут подзаголовка - tn_text_1519384750940;
+Атрибут картинки - tn_img_1519967026211.
+Класс кнопки из родителя - tn-elem__1527085601519384830899.
+
+
+
+<script>
+$( document ).ready(function() {
+//Добавляем класс к нашему Zero
+$('#rec166024894').addClass("actionGL");
+//ДОПОЛНИТЕЛЬНО. Добавляем класс к заголовку
+$("[field='tn_text_1519356751583']").addClass("zagolovok");
+//Добавляем класс к подзаголовку
+$("[field='tn_text_1519384750940']").addClass("podzagolovok");
+//Добавляем класс к маленькой картинке
+$("[imgfield='tn_img_1519967026211']").addClass("smallpicture");
+//Добавляем класс к кнопке
+$(".tn-elem__1660248941519384830899").addClass("sliderbutton");
+
+
+function sldchange() {
+var target = document.querySelector('.actionGL .t-slds__items-wrapper');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.target).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+
+             //Если видно первый слайд
+           if ( $(".actionGL .t-slds__item:eq(1)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok").text('Drink&Fit1');
+           //Контролируем текст в подзаголовке
+           $(".podzagolovok").text('С бананом и овсянкой');
+           //Контролируем маленькое фото
+           $(".smallpicture").attr("src","https://static.tildacdn.com/tild3061-3034-4464-b131-626330343839/124.jpg");
+           //Контролируем ссылку в кнопке и надпись
+           $(".sliderbutton a").attr('href', '#popup:infoblock').text("Купить с бананом и овсянкой");
+           };
+
+           //Если видно второй слайд
+           if ( $(".actionGL .t-slds__item:eq(2)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok").text('Drink&Fit2');
+           $(".podzagolovok").text('Натуральная');
+           $(".smallpicture").attr("src","https://static.tildacdn.com/tild6664-3061-4536-b235-613130343034/125.jpg");
+           $(".sliderbutton a").attr('href', 'https://google.com').text("Купить натуральный");
+           };
+
+           //Если видно третий слайд
+           if ( $(".actionGL .t-slds__item:eq(3)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok").text('Drink&Fit3');
+           $(".podzagolovok").text('С брусникой и клубникой');
+           $(".smallpicture").attr("src","https://static.tildacdn.com/tild3831-3834-4133-b438-633231626564/123.jpg");   
+           $(".sliderbutton a").attr('href', 'https://mail.ru').text("Купить с ягодами");
+           }; 
+      
+	};  
+});
+});
+observer.observe( target , {  attributes: true});
+};
+
+//Функция checksld() и строка с setInterval в исходном коде нужны для динамически проверки готовности слайдера. Они помогают убедиться, что слайдер полностью загружен и готов к управлению через скрипт. Если слайдер не появится в DOM после загрузки страницы (например, если он добавится динамически позже), то checksld() продолжит проверять его наличие каждые 200 миллисекунд до тех пор, пока он не появится.
+function checksld(){
+    if ($('.tn-atom__gallery .t-slds').length) {
+     sldchange(); clearInterval(sldinterval);
+};};var  sldinterval = setInterval(checksld , 200);
+
+
+});
+
+
+// Кастомные кнопки любого типа, взамен стандартных из галереи. Со ссылками: влево - #leftsld, вправо - #rightsld
+// $("a[href = '#leftsld']").click(function(event) { event.preventDefault();   $(".actionGL  .t-slds__arrow-left").click();   });
+// $("a[href = '#rightsld']").click(function(event) { event.preventDefault();   $(".actionGL  .t-slds__arrow-right").click();  });
+</script>
+
+============================ Для нескольких галерей в одном слайдере ================================
+Сами галереи и кнопки копируются, изменяется контент и ссылки вызываемых кнопок
+Также, уточняется селектор обращения к слайдеру. Класс самого слайдера tn-elem берется также из инспектора кода
+
+// $("a[href = '#leftsld1']").click(function(event) { event.preventDefault();   $(".actionGL .tn-elem__1539740221578682397224 .t-slds__arrow-left").click();   });
+// $("a[href = '#rightsld1']").click(function(event) { event.preventDefault();   $(".actionGL .tn-elem__1539740221578682397224 .t-slds__arrow-right").click();  });
+// $("a[href = '#leftsld2']").click(function(event) { event.preventDefault();   $(".actionGL .tn-elem__1429740221578671399615 .t-slds__arrow-left").click();   });
+// $("a[href = '#rightsld2']").click(function(event) { event.preventDefault();   $(".actionGL .tn-elem__1429740221578671399615 .t-slds__arrow-right").click();  });
+
+
+============================ Для нескольких слайдеров на одной странице ================================
+- В коде потребуется указать класс каждого zero блока, а также уточнить обращение к элементам каждого из них, чтобы они не пересекались между собой. При этом, потребуется изменить классы назначаемые элементам zero блоков
+- Cсылки кастомных кнопок должны быть уникальными для каждого слайдера
+- После копирования блоков, проверяем обновились ли классы элементов
+
+
+<script>
+$( document ).ready(function() {
+//Добавляем класс к нашему Zero
+$('#rec166024894').addClass("actionGL1");
+//ДОПОЛНИТЕЛЬНО. Добавляем класс к заголовку
+$(".actionGL1 [field='tn_text_1519356751583']").addClass("zagolovok1");
+//Добавляем класс к подзаголовку
+$(".actionGL1 [field='tn_text_1519384750940']").addClass("podzagolovok1");
+//Добавляем класс к маленькой картинке
+$(".actionGL1 [imgfield='tn_img_1519967026211']").addClass("smallpicture1");
+//Добавляем класс к кнопке
+$(".actionGL1 .tn-elem__1660248941519384830899").addClass("sliderbutton1");
+
+
+function sldchange() {
+var target1 = document.querySelector('.actionGL1 .t-slds__items-wrapper');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.target1).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+
+             //Если видно первый слайд
+           if ( $(".actionGL1 .t-slds__item:eq(1)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok1").text('Drink&Fit1');
+           //Контролируем текст в подзаголовке
+           $(".podzagolovok1").text('С бананом и овсянкой');
+           //Контролируем маленькое фото
+           $(".smallpicture1").attr("src","https://static.tildacdn.com/tild3061-3034-4464-b131-626330343839/124.jpg");
+           //Контролируем ссылку в кнопке и надпись
+           $(".sliderbutton1 a").attr('href', '#popup:infoblock').text("Купить с бананом и овсянкой");
+           };
+
+           //Если видно второй слайд
+           if ( $(".actionGL1 .t-slds__item:eq(2)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok1").text('Drink&Fit2');
+           $(".podzagolovok1").text('Натуральная');
+           $(".smallpicture1").attr("src","https://static.tildacdn.com/tild6664-3061-4536-b235-613130343034/125.jpg");
+           $(".sliderbutton1 a").attr('href', 'https://google.com').text("Купить натуральный");
+           };
+
+           //Если видно третий слайд
+           if ( $(".actionGL1 .t-slds__item:eq(3)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok1").text('Drink&Fit3');
+           $(".podzagolovok1").text('С брусникой и клубникой');
+           $(".smallpicture1").attr("src","https://static.tildacdn.com/tild3831-3834-4133-b438-633231626564/123.jpg");   
+           $(".sliderbutton1 a").attr('href', 'https://mail.ru').text("Купить с ягодами");
+           }; 
+      
+    };  
+});
+});
+observer.observe( target1 , {  attributes: true});
+};
+
+function checksld(){
+    if ($('.tn-atom__gallery .t-slds').length) {
+     sldchange(); clearInterval(sldinterval);
+};};var  sldinterval = setInterval(checksld , 200);
+
+// Кастомные кнопки любого типа, взамен стандартных из галереи. Со ссылками: влево - #leftsld, вправо - #rightsld
+// $("a[href = '#leftsld1']").click(function(event) { event.preventDefault();   $(".actionGL1  .t-slds__arrow-left").click();   });
+// $("a[href = '#rightsld1']").click(function(event) { event.preventDefault();   $(".actionGL1  .t-slds__arrow-right").click();  });
+
+
+
+
+
+//Добавляем класс к нашему Zero
+$('#rec179514692').addClass("actionGL2");
+//ДОПОЛНИТЕЛЬНО. Добавляем класс к заголовку
+$(".actionGL2 [field='tn_text_1519356751583']").addClass("zagolovok2");
+//Добавляем класс к подзаголовку
+$(".actionGL2 [field='tn_text_1519384750940']").addClass("podzagolovok2");
+//Добавляем класс к маленькой картинке
+$(".actionGL2 [imgfield='tn_img_1519967026211']").addClass("smallpicture2");
+//Добавляем класс к кнопке
+$(".actionGL2 .tn-elem__1660248941519384830899").addClass("sliderbutton2");
+
+
+function sldchange() {
+var target2 = document.querySelector('.actionGL2 .t-slds__items-wrapper');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.target2).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+
+             //Если видно первый слайд
+           if ( $(".actionGL2 .t-slds__item:eq(1)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok2").text('Drink&Fit1');
+           //Контролируем текст в подзаголовке
+           $(".podzagolovok2").text('С бананом и овсянкой');
+           //Контролируем маленькое фото
+           $(".smallpicture2").attr("src","https://static.tildacdn.com/tild3061-3034-4464-b131-626330343839/124.jpg");
+           //Контролируем ссылку в кнопке и надпись
+           $(".sliderbutton2 a").attr('href', '#popup:infoblock').text("Купить с бананом и овсянкой");
+           };
+
+           //Если видно второй слайд
+           if ( $(".actionGL2 .t-slds__item:eq(2)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok2").text('Drink&Fit2');
+           $(".podzagolovok2").text('Натуральная');
+           $(".smallpicture2").attr("src","https://static.tildacdn.com/tild6664-3061-4536-b235-613130343034/125.jpg");
+           $(".sliderbutton2 a").attr('href', 'https://google.com').text("Купить натуральный");
+           };
+
+           //Если видно третий слайд
+           if ( $(".actionGL2 .t-slds__item:eq(3)").hasClass("t-slds__item_active") ) {
+           //ДОПОЛНИТЕЛЬНО. Контролируем текст в заголовке
+           $(".zagolovok2").text('Drink&Fit3');
+           $(".podzagolovok2").text('С брусникой и клубникой');
+           $(".smallpicture2").attr("src","https://static.tildacdn.com/tild3831-3834-4133-b438-633231626564/123.jpg");   
+           $(".sliderbutton2 a").attr('href', 'https://mail.ru').text("Купить с ягодами");
+           }; 
+      
+    };  
+});
+});
+observer.observe( target2 , {  attributes: true});
+};
+
+function checksld(){
+    if ($('.tn-atom__gallery .t-slds').length) {
+     sldchange(); clearInterval(sldinterval);
+};};var  sldinterval = setInterval(checksld , 200);
+
+
+});
+});
+
+
+// Кастомные кнопки любого типа, взамен стандартных из галереи. Со ссылками: влево - #leftsld, вправо - #rightsld
+// $("a[href = '#leftsld2']").click(function(event) { event.preventDefault();   $(".actionGL2  .t-slds__arrow-left").click();   });
+// $("a[href = '#rightsld2']").click(function(event) { event.preventDefault();   $(".actionGL2  .t-slds__arrow-right").click();  });
+</script>

@@ -1,0 +1,82 @@
+Реализация табов на кнопках
+Загрузка контента производится не при загрузке страницы, а при отображении контента
+
+
+
+- Создается Zero
+Добавляются табы-кнопки. Изначально, они имеют черный цвет бекграунда и белый текст.
+Можно оставить как есть, скрипт позволит задать для цвет фона, бордера и текста, а также скругление.
+
+Всем кнопкам поочередно устанавливается класс tabbtn1. Так, для первой - классом будет tabbtn1-1, для второй tabbtn1-2, для третьей tabbtn1-3 и тд. Если потребуется разместить на одной странице еще один блок табов, то очевидно, следует изменить первую цифру, так, для нового блока табов, потребуется устанавливать классы tabbtn2-1, tabbtn2-2, tabbtn2-3 и тд
+
+- Добавляется код в блок 123
+
+
+
+<style>
+/* Дефолтные стили табов */
+div[class*="tabbtn1"] .tn-atom {
+  background-color: #DFDFDF !important;
+  border-radius: 8px !important;
+  transition: background-color 0.3s;
+}
+    
+/* Стиль табов при наведении */
+div[class*="tabbtn1"] .tn-atom:hover {
+  background-color: #F79431 !important;
+}
+    
+/* Стиль активного (выбранного) таба */
+div[class*="tabbtn1"].v-activebtn1 .tn-atom{
+  color: black !important;
+  background-color: #F79431 !important;
+}
+    
+/* Стили отображения содержимого табов */
+.v-activetab {
+    display: block !important;
+}
+</style>
+
+
+<script>
+    var blocks1 = [
+        ["#rec667400771", "#rec667404472"],
+        ["#rec667400773", "#rec667404494"],
+        ["#rec667400776"]
+    ];
+    var buttons1 = Array.from(document.querySelectorAll('div[class*="tabbtn1"]'));
+
+    function show1(num) {
+        blocks1.forEach(pair => {
+            pair.forEach(element => {
+                document.querySelector(element).classList.remove('v-activetab')
+            })
+        })
+        buttons1.forEach(element => {
+            element.classList.remove('v-activebtn1')
+        })
+        document.querySelector('.tabbtn1-' + num).classList.add('v-activebtn1')
+        blocks1[num - 1].forEach(element => {
+            document.querySelector(element).classList.add('v-activetab')
+        })
+        if (typeof t_lazyload_update !== "undefined") { 
+            t_lazyload_update()
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        blocks1.forEach(pair => {
+            pair.forEach(element => {
+                // $(element).hide();  // Эквивалентно: document.querySelector(element).style.display = 'none'
+            })
+        })
+        buttons1.forEach((element, index) => {
+            element.dataset.num = index + 1
+            element.addEventListener('click', () => show1(element.dataset.num))
+        })
+        setTimeout(() => {
+            show1(1)
+        }, 500)
+    })
+</script>

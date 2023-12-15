@@ -1,0 +1,18 @@
+<style>
+#rec188967014 {
+    background-image: url(http://lubowl.ucoz.ru/kartinki/rasdelitel.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    background-attachment: scroll;
+    background-size: cover;
+}
+/* Свойство background-attachment на мобильных не работает */
+@media screen and (max-width: 1199px) {
+#rec247728081 .t396__carrier {
+    position: fixed;
+    z-index: -1;
+}
+}
+</style>
+

@@ -1,0 +1,186 @@
+https://www.youtube.com/watch?v=dXXsDPq4dE0
+
+Учебник Lottie
+https://lottiefiles.com/interactivity
+
+Простенький редактор Lottie кода
+https://lottiefiles.com/web-player
+
+Конвертер видео файлов в Lottie код
+https://isotropic.co/tool/video-to-lottie/
+
+
+Применяются скопированные ссылки на json файл анимации с lottiefiles.com
+Создаются zero блок с html элементом и html блок 123, в которых должен быть одинаковый id целевой анимации 
+Положение html элемента станет соответствовать положению будущей анимации (по left top)
+
+Тип любой анимации зависит от значения параметра id:
+lottie-auto-<номер анимации> - для автоматической анимации;
+lottie-scroll-<номер анимации> - для анимации по скролу;
+lottie-hover-<номер анимации> - для анимации по наведению;
+lottie-click-<номер анимации> - для анимации по клику;
+lottie-position-<номер анимации> - для анимации по позиции.
+
+
+
+====================================================== Автоматическая анимация ======================================================
+htmnl в zero:
+<lottie-player id="lottie-auto-1" src="ссылка" style="width:100%; height:100%;"></lottie-player>, со ссылкой на json-файл анимации
+
+
+Код блока 123:
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+
+<script>
+LottieInteractivity.create({
+  player: '#lottie-auto-1',
+  mode: "chain",
+  actions: [
+    {
+    state: 'autoplay',
+     type: "loop",
+     transition: 'repeat',
+    }
+  ],
+}); 
+</script>
+
+
+
+
+
+
+====================================================== Анимация по скролу ======================================================
+htmnl в zero:
+<lottie-player id="lottie-scroll-1" src="ссылка" style="width:100%; height:100%;"></lottie-player>
+
+
+Код блока 123:
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+
+<script>
+LottieInteractivity.create({
+  mode: 'scroll',
+  player: '#lottie-scroll-1', //ID lottie-player в зеро-блоке и тут должны совпадать
+  actions: [
+    {
+        visibility:[0, 1.0],
+        type: "seek",
+        frames: [0, 300],
+    },
+    ]
+});
+
+
+
+===================== Сложная анимация по скролу =====================
+LottieInteractivity.create({
+  mode: 'scroll',
+  player: '#lottie-scroll-1', //ID lottie-player в зеро-блоке и тут должны совпадать
+  actions: [
+    {
+      visibility: [0, 0.2], // отступ от низа экрана, когда анимация на паузе
+      type: "stop", //Анимация на паузе
+      frames: [0]  //Количество кадров на паузе
+    },
+    {
+      visibility: [0.2, 0.6], 
+      type: "seek", //Анимация проигрывается по скролу
+      frames: [0, 60] // С какого по какой кадр будет проигрываться анимация
+    }, 
+    {
+        visibility:[0.6,1.0],  
+        type: "loop", //Анимация зациклена и проигрывает автоматически
+        frames: [60, 100]
+    }
+  ],
+});
+</script>
+
+
+
+
+
+
+====================================================== Анимация по наведению ======================================================
+htmnl в zero:
+<lottie-player id="lottie-hover-1" src="ссылка" style="width:100%; height:100%;"></lottie-player>
+
+Код блока 123:
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+
+
+<script>
+LottieInteractivity.create({
+  player: '#lottie-hover-1',
+  mode: "cursor",
+  actions: [
+    {
+      type: "hover",
+      forceFlag:false //Если указать значение true, то анимация будет воспроизводится сначала при каждом наведении
+    }
+  ],
+}); 
+
+//  type: "pauseHold" — Проигрывание анимации при наведении, если убарть курсор, то анимацйия становится на паузу
+//  type: "hold" — Проигрывание анимации при наведении, реверс если убрать курсор
+</script>
+
+
+
+
+
+
+====================================================== Анимация по клику ======================================================
+htmnl в zero:
+<lottie-player id="lottie-click-1" src="ссылка" style="width:100%; height:100%;"></lottie-player>
+
+Код блока 123:
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+
+<script>
+LottieInteractivity.create({
+  player: '#lottie-click-1',
+  mode: "cursor",
+  actions: [
+    {
+      type: "click",
+      forceFlag:false //Если указать значение true, то анимация будет воспроизводится сначала при каждом клике
+    }
+  ],
+}); 
+
+//  type: "toggle" — Анимация реверс по клику
+</script>
+
+
+
+
+
+
+====================================================== Анимация по позиции курсора ======================================================
+htmnl в zero:
+<lottie-player id="lottie-position-1" src="ссылка" style="width:100%; height:100%;"></lottie-player>
+
+Код блока 123:
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+
+<script>
+LottieInteractivity.create({
+  player: '#lottie-position-1',
+  mode:"cursor",
+    actions: [
+        {
+            position: { x: [0, 1], y: [-1, 2] },
+            type: "seek",
+            frames: [0, 300]
+        }
+    ]
+});
+
+</script>

@@ -1,0 +1,104 @@
+https://mo-ti.ru/zeroslides
+
+Широкоформатный слайдер
+
+- Создали галерею CR30N
+	В настройках очистили значение высоты, потому как она будет зависеть от высоты zero блоков
+	Удалили картинки ранее установленных слайдов. Оставили соответствующее количество отображаемых слайдов, например 3
+    Для того, чтобы эффект смены слайдов ощущался слайдером, т.е. смещающим слайды, в настройках CR30N задается стиль галереи - скорость анимации: медленно
+    Также, в настройках галереи можно задать автопрокрутку
+
+- Создали ZeroBlock отображаемых слайдов, например 3
+Завершенные и готовые к показу слайды первого и последнего слайдов продублировали для корректного отображения в слайдере
+Когда потребуется внести изменения в одном из таких блоков, один из дубликатов удаляется, а изменения вносятся в один блок, после чего вновь производится дублирование
+
+- Добавили скрипт на страницу
+Если отобаржается только первое фото в слайдере, то нужно выключить режим LazyLoad Настройках сайта - Ещё - LazyLoad
+
+
+/* Базовый код */
+<style>
+.t734 { height: auto !important; }
+</style>
+<script>
+$(document).ready(function(){
+let sldID = ['#rec166024520'];
+setTimeout(function(){
+for (let i=0; i<sldID.length; i++){
+    let sliderEl = sldID[i]+' .t-slds__item'; 
+    let slidercount = $(sliderEl).length; $(sliderEl).empty(); let start=0;
+    if(!$(sliderEl+'[data-slide-index="0"]').length){start=1};
+    for (let j=0; j<slidercount; j++){
+        let sInd = j+start;
+        if(start){ slideId = '#'+$(sldID[i]).next().next('div[data-record-type="396"]').attr('id');
+        }else{ slideId = '#'+$(sldID[i]).next('div[data-record-type="396"]').attr('id') 
+        if(j==0){sInd=slidercount-1};if(j==slidercount-1){sInd=0};
+        }; $(slideId).appendTo(sliderEl+'[data-slide-index='+(sInd)+']');
+    };  if(start){ $(sldID[i]).next().hide(); $(sldID[i]).next().next().hide()};
+};
+}, 100); 
+});    
+</script>
+
+
+
+/* Базовый код + пользовательские кнопки
+Любым элементам, выполняющим роль кнопок, задаются классы для левой и правой кнопок, соответственно: left_sld и right_sld
+- Если кнопки не задавались на моменте создания слайдов, то достаточно будет скопировать элементы и пошагово вставить их на всех zero блоках-слайдах. Элементы установятся со скопированными значениями положения, классами и прочим
+- Если необходимо создать независимые от слайда кнопки, чтобы они не перемещались вместе со слайдом, на котором находятся, то создается zero 0 высоты, в котором создаются кнопки, со смещением на необходимое положение. Блоку, разумеется, необхомо установить видимость overflow: visible */
+<style>
+.t734 { height: auto !important }
+.left_sld, .right_sld { cursor: pointer }  /* Установка курсора на видимость указателя руки. Также, здесь могут быть указаны новые классы кнопок для другого подобного слайдера */
+.t734 .t-slds__arrow_container { display: none }  /* Скрытие кнопок навигации для всех блоков t734 на странице */
+</style>
+<script>
+$(document).ready(function(){
+let sldID = ['#rec272742658'];
+setTimeout(function(){
+for (let i=0; i<sldID.length; i++){
+    let sliderEl = sldID[i]+' .t-slds__item'; 
+    let slidercount = $(sliderEl).length; $(sliderEl).empty(); let start=0;
+    if(!$(sliderEl+'[data-slide-index="0"]').length){start=1};
+    for (let j=0; j<slidercount; j++){
+        let sInd = j+start;
+        if(start){ slideId = '#'+$(sldID[i]).next().next('div[data-record-type="396"]').attr('id');
+        }else{ slideId = '#'+$(sldID[i]).next('div[data-record-type="396"]').attr('id') 
+        if(j==0){sInd=slidercount-1};if(j==slidercount-1){sInd=0};
+        }; $(slideId).appendTo(sliderEl+'[data-slide-index='+(sInd)+']');
+    };  if(start){ $(sldID[i]).next().hide(); $(sldID[i]).next().next().hide()};
+};
+}, 100);
+// Кнопки left_sld и right_sld для блока #rec272742658
+$('.left_sld').click(function(){$(sldID[0]+' .t-slds__arrow-left').click()});
+$('.right_sld').click(function(){$(sldID[0]+' .t-slds__arrow-right').click()});
+// Для нового слайдера CR30N на странице задается новый класс для кнопок, добавляя цифру к изначальному и указывая индекс блока в обращении. А id нового блока добавляется в массив ['#rec272742658', 'новый id слайдера']
+$('.left_sld2').click(function(){$(sldID[1]+' .t-slds__arrow-left').click()});
+$('.right_sld2').click(function(){$(sldID[1]+' .t-slds__arrow-right').click()});
+});    
+</script>
+
+
+
+/* Совмещение слайдера и анимации */
+<script>
+$(document).ready(function(){
+ //Задаём ID нашего Слайдера CR30N
+ var sliderIDX = '#rec164644995';
+function startslider(){
+      $(sliderIDX+' .t396__elem.t-sbs-anim_started').fadeOut(100);
+      $(sliderIDX+' .t396__elem.t-animate.t-animate_started').fadeOut(100);
+      $(sliderIDX+' .t396__elem').removeClass('t-sbs-anim_started');
+      $(sliderIDX+' .t396__elem.t-animate').removeClass('t-animate_started');
+        setTimeout(function(){
+          $(sliderIDX+' div.tn-atom__sbs-anim-wrapper').parent().addClass('t-sbs-anim_started').fadeIn(500);
+          $(sliderIDX+' .t396__elem.t-animate').fadeIn(0).addClass('t-animate_started');
+        },700);};
+  var elem = document.querySelector(sliderIDX+' .t-slds__items-wrapper'),
+    MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver,
+    observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.attributeName === 'data-slider-pos') {
+            startslider(); }   }); });
+observer.observe(elem, {   attributes: true});
+});    
+</script>

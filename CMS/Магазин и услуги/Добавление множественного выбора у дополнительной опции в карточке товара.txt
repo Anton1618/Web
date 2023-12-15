@@ -1,0 +1,225 @@
+Страница проекта: https://mo-ti.ru/multioption
+
+- Создали каталог с товарами
+- Заполнили дополнительную опцию с названием "Дополнительные продукты в пиццу" (скрин ниже)
+- Добавили код в блок T123 на страницу и в продуктовый footer
+
+В коде изменили надпись на свою, если потребуется
+let optionName = 'Дополнительные продукты в пиццу';
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    
+function createBoxes(){
+    
+    let optionName = 'Дополнительные продукты в пиццу';
+
+    if(document.querySelectorAll('.t-store__prod-popup__info .js-product-option').length){
+        
+        $('.t-store__prod-popup__info .js-product-option').each(function(){
+            let elOption = $(this);
+            
+            let title = elOption.find('.t-product__option-title').text();
+            
+            if(title==optionName){
+                elOption.addClass('multipe-box');
+                elOption.append('<div class="t-product__option-chbx-wrapper t-descr"></div>');
+                elOption.find('select option').each(function(){
+                    let optionTxt = $(this).text();
+                    let cost = +$(this).attr('data-product-variant-price');
+                    elOption.find('.t-product__option-chbx-wrapper').append('<div class="option-line"> <div class="opt-minus"></div><div class="opt-num"></div><div class="opt-plus"></div>       <div class="t-product__option-chbx"  data-product-variant-cost="'+cost+'"  >'+optionTxt+'</div></div>');
+                    
+                });
+                
+                elOption.find('select option:first').val('Нет').attr('data-product-variant-price','').text('Нет');
+                $('.multipe-box select')[0].dispatchEvent(new Event('change', { bubbles: true }));
+ 
+            };
+        });
+        
+        $('.t-store__prod-popup__info .js-product-option.t-product__option').addClass('show-option');
+    };
+}; 
+    
+setTimeout(function () {
+    if(document.querySelectorAll('.t-store__product-snippet').length)  createBoxes();
+}, 1500);
+
+
+$(document).on('click', '.t-product__option-chbx'  ,  function(e){
+    let wrapElem = $(this).closest('.js-product-option');
+    $(this).toggleClass('active-chx-box');
+    
+    let optionTxt = '';
+    let summPrice = 0;
+    
+    let numChBox = 0;
+    wrapElem.find('.active-chx-box').each(function(){
+        optionTxt+= $(this).text()+'; ';
+        summPrice+= +$(this).attr('data-product-variant-cost');
+        numChBox++;
+    });
+    
+    summPrice = '+'+summPrice;
+
+    wrapElem.find('.js-product-option-name').attr('data-option-checked', numChBox);
+    if(numChBox){
+        wrapElem.find('.js-product-option-name').addClass('show-num-box');
+    }else{
+        wrapElem.find('.js-product-option-name').removeClass('show-num-box');
+    };
+    
+    wrapElem.find('select option').remove();
+    if(optionTxt!=''){
+        wrapElem.find('select').append('<option value="'+optionTxt+'" data-product-variant-price="'+summPrice+'">'+optionTxt+'</option>');
+    }else{
+        wrapElem.find('select').append('<option value="Нет" data-product-variant-price="">Нет</option>');
+    };
+    
+    $('.multipe-box select')[0].dispatchEvent(new Event('change', { bubbles: true }));
+    
+});
+
+$(document).on('click', '.t-store__prod-popup__info .multipe-box  .js-product-option-name'  ,  function(e){
+    let wrapOpt = $(this).closest('.js-product-option');
+    
+    if( $(this).hasClass('active-opt-box') ) {
+        $('.js-product-option').removeClass('active-opt-box')
+    }else{
+        wrapOpt.toggleClass('active-opt-box');    
+    };
+    
+    
+});
+
+document.addEventListener('click', function(e){
+    let prodElem = e.target.closest('a[href*="/tproduct/"]');
+    let optionMix = e.target.closest('.active-opt-box');
+    if (prodElem != null) { 
+        setTimeout(function () {  createBoxes() }, 300);
+    };
+    if (optionMix == null) { 
+        $('.js-product-option').removeClass('active-opt-box');
+    };
+});
+
+});
+</script>
+
+<style>
+
+.t-store__prod-popup__info .js-product-option.t-product__option {
+    opacity: 1;
+}
+
+.t-store__prod-popup__info .js-product-option.t-product__option.show-option {
+    opacity: 1;
+}
+
+.t-product__option-chbx-wrapper {
+    width: max-content;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 99;
+    margin-top: 5px;
+}
+
+
+.t-product__option-chbx {
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+}
+
+.t-product__option-chbx:hover {
+    text-decoration: underline;
+}
+
+.t-product__option-chbx:before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: -1px;
+    border: 1px solid #7c7c7c;
+}
+
+ .t-product__option-chbx.active-chx-box:after {
+    content: "";
+    background-image: url(https://static.tildacdn.com/tild6538-3266-4466-a233-626136623637/check_icon_135782.svg);
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: 0;
+}    
+
+.t-product__option-chbx.active-chx-box {
+    text-decoration: underline;
+}
+
+#allrecords .multipe-box  .t-product__option-variants {
+    display: none;
+}
+
+.multipe-box .js-product-option-name.t-product__option-title {
+    border: 1px solid #e2e2e2;
+    padding: 2px 6px;
+    border-radius: 5px;
+    width: max-content;
+    position: relative;
+    cursor: pointer;
+    background: #f8f8f8;
+}
+
+.multipe-box .js-product-option-name.t-product__option-title:after {
+    content: "";
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    position: relative;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: #000 transparent transparent transparent;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.active-opt-box .t-product__option-chbx-wrapper {
+    display: block;
+}
+
+ .active-opt-box .js-product-option-name.t-product__option-title {
+    background-color: #f9f9f9;
+    box-shadow: 0 0 0 2px #000;
+    display: none;
+}
+
+ .active-opt-box .js-product-option-name.t-product__option-title:after {
+    transform: rotate(180deg);
+}
+
+.multipe-box .js-product-option-name.t-product__option-title.show-num-box:before {
+    content: "+"attr(data-option-checked);
+    margin-right: 7px;
+    color: #4CAF50;
+    font-size: 16px;
+    font-weight: 600;
+}
+.multipe-box .js-product-option.t-product__option {
+    width: min-content;
+}
+
+.multipe-box .js-product-option-name.t-product__option-title {
+    display: none;
+}
+
+</style>

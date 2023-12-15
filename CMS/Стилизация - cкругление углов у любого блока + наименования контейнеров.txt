@@ -1,0 +1,188 @@
+Добавляем в zero-блоке шейпы, изображения или кнопки, к которым у нас будет применяться скругление. 
+В редакторе скругление этих элементов можно оставить со значением 0
+Стандартный блок должен входить в любую таблицу ниже
+
+
+================================== Скругление углов у стандартных блоков =============================================
+https://dsgnmax.ru/border-card-standart
+
+<style>
+/*Добавляем  скругления углов у карточек стандартных блоков*/
+    .t774__wrapper{   /*Сюда вставляем класс блока из таблицы ниже*/
+        border-radius: 20px !important;    /*Радиус скругления у блока*/
+        overflow: hidden; /*Используется для некоторых блоков, к которым не применяется скругление*/
+        /*Если нужно скруглить углы, каждый по отдельности, то используйте вместо одного значения четыре,
+        написав их через пробел, например 20px 30px 10px 50px*/
+    }
+</style>
+
+
+================================== Скругление углов у любых блоков =============================================
+https://dsgnmax.ru/squircle
+
+<script src="https://unpkg.com/css-paint-polyfill@3.4.0/dist/css-paint-polyfill.js"></script>
+<script>
+(async function () {
+    if (!("paintWorklet" in CSS)) {
+      await import("css-paint-polyfill");
+    }
+    CSS.paintWorklet.addModule(
+      `https://www.unpkg.com/css-houdini-squircle/squircle.min.js`
+    );
+  })();
+</script>
+
+<style>
+/*Элемент без анимации, либо со стандартной анимацией*/
+.squircle24{    /*Название класса*/
+	--squircle-radius: 24px; /*Радиус скругления углов*/
+	--squircle-smooth: 1;   /*Плавность скруглений, где 0 - это скошеные углы*/
+	mask-image: paint(squircle);
+	-webkit-mask-image: paint(squircle);
+}
+
+/*Элемент с SBS-анимацией*/
+.squirclesbs24 div{    /*Название класса*/
+	--squircle-radius: 24px; /*Радиус скругления углов*/
+	--squircle-smooth: 1;   /*Плавность скруглений, где 0 - это скошеные углы*/
+	mask-image: paint(squircle);
+	-webkit-mask-image: paint(squircle);
+}
+
+/*Скругление полей ввода в форме зеро-блока*/
+.squircleform24 .t-input-block{
+    --squircle-radius: 24px;
+	--squircle-smooth: 1;  
+	mask-image: paint(squircle);
+	-webkit-mask-image: paint(squircle);   
+}
+
+/*Скругление кнопки форме зеро-блока*/
+.squircleform24 .tn-form__submit button{
+    --squircle-radius: 24px;
+	--squircle-smooth: 1; 
+	mask-image: paint(squircle);
+	-webkit-mask-image: paint(squircle);   
+}
+</style>
+
+
+================================== Таблица наименований контейнеров =============================================
+Вкладка "Видео" из библиотеки блоков
+Блок	Контейнер	Изображение
+VD06, VD06A	.t223 iframe, .t223 .t-video-lazyload	
+VD01	.t121 iframe, .t121 .t-video-lazyload	
+VD08	.t230 .t-video-lazyload, .t-video-lazyload iframe	
+VD03	.t230 .t-video-lazyload, .t-video-lazyload iframe	
+VD05	.t212 video	
+VD11	.t347__video-carier iframe, .t347__overlay, .t347__bg, .t347__table	
+VD12	.t-video-lazyload iframe, .t368 .t-video-lazyload	.t368__img
+
+
+Попапы
+BF501	.t-popup__container					.t281__img
+BF502N	.t-popup__container					.t702__img
+BF503	.t-popup__container					.t390__img
+BF920	.t-popup__container 				.t862__quiz .t862__quiz-description-wrapper
+ST500	.t-popup__container					.t756 .t-slds__container
+ST505	.t-popup__container					.t766 .t-slds__container
+VD09	.t331__video-carier 				iframe	
+VD10	.t358__video-carier 				.t358__video-carier iframe
+
+Вкладка "Плитка и ссылка" из библиотеки блоков
+TE100	.t686__col, .t686__table, .t686__cell, .t686__bg, .t686__overlay	
+TE105	.t336__table	
+TE210	.t649__blockimg	
+TE215	.t688__inner-col	
+TE225	.t774__wrapper	
+TE110	.t694__col	
+TE225	.t774__wrapper	
+TE230	.t902__inner-col
+
+Вкладка "Галерея" из библиотеки блоков
+GL02	.t667__bgimg	
+GL03	.t214__blockimg	
+GL04	.t155 .t-bgimg	
+GL05	.t156 .t-img	
+GL08N	.t746__imgwrapper .t-slds__bgimg	
+GL09	.t-beforeafter__slider	
+GL12	.t603__blockimg	
+GL13	.t660__bgimg	
+GL14	.t661__bgimg	
+GL15	.t662__bgimg	
+GL16	.t218__blockimg	
+GL17	.t663__bgimg	
+GL20	.t604__imgwrapper .t-slds__bgimg	
+GL22	.t816__bgimg	
+GL23	.t827__grid-item, .t827__image	
+GL24	.t909__bgimg	
+GL25	.t979__image	
+GL26	.t989 .t-slds__img	
+GL27	.t994__slds-wrapper
+
+Вкладка "Текстовый блок" из библиотеки блоков
+TX16N2	.t668__wrapper	
+TX13	.t220__textwrapper	
+TX15	.t203__textwrapper
+
+Вкладка "Преимущества" из библиотеки блоков
+FR301	.t509__blockimg	
+FR302N	.t1066__img	
+FR304	.t908__img	
+FR601	.t939__card	
+FR602	.t940__card
+
+Вкладка "Список страниц" из библиотеки блоков
+IX02	.t404__img	
+IX03	.t405__img	
+IX07	.t401__overlay, .t401__table
+
+Вкладка "Магазин" из библиотеки блоков
+Если товары добавлены через контент		
+ST200	.t744__col .t-slds__main	
+ST205, ST405	.t-slds__bgimg	
+ST210	.t760__img	
+ST215	.t922__textwrapper	
+ST300	.t754__bgimg	
+ST305N	.t776__bgimg	
+ST315N	.t786__bgimg	
+ST320N	.t-store__card__bgimg, .t-store__card__bgimg_second	
+ST330	.t1025__bgimg	
+ST405	.t780 .t780__img .t-slds__item	
+Если товары добавлены через каталог Тильды		
+ST200	.js-product .t744__col .t-slds__container	
+ST205	.js-product .t744__col .t-slds__container	
+ST210	.js-product .t760__flexcolumn .t760__img	
+ST215	.t922__textwrapper	
+ST300, ST305N, ST315N, ST320N, ST330	.js-product .t-store__card__imgwrapper,.t-store__prod-popup__slider .t-slds__container	
+ST310N	.js-product .t-store__card__wrap_all, .t-store__prod-popup__slider .t-slds__container	
+ST405	.js-product .t780__img .t-slds__item
+
+Вкладка "Команда" из библиотеки блоков
+TM102	.t537__bgimg	
+TM201	.t527__bgimg	
+TM301	.t531__blockimg	
+TM302	.t982__imgratio-wrapper	
+TM401	.t532__table	
+TM402	.t539__textwrapper	.t539__bgimg
+TM502	.t543__textwrapper	
+TM601	.t544__blockimg	
+TM602	.t545__textwrapper	.t545__blockimg
+
+Вкладка "Услуги" из библиотеки блоков
+SV101	.t843__blockimg	
+SV102	.t847__img	
+SV306	.t842__inner-col	.t842__bgimg
+SV401	.t851__table	
+SV402	.t853__bgimg	
+SV403	.t856__table	
+SV404	.t857__bgimg	
+SV405	.t852__bgimg	
+SV406	.t860__inner-col
+
+Вкладка "Новости и потоки" из библиотеки блоков
+FD101	.js-feed-post-image	
+FD201	.t-feed__post-bgimg	
+FD301	.t-feed__post-bgimg	
+FD302	.t-feed__col-grid__post-wrapper	
+FD401	.t-feed__slider-grid__post-wrapper

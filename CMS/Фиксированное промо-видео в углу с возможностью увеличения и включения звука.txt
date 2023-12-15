@@ -1,0 +1,156 @@
+https://mo-ti.ru/videopromo
+
+Видео элемент справа в углу с возможность закрыть или увеличить для включения звука
+
+
+
+- Требуется создать html блок 123 с кодом
+
+- Заменили ссылку видео на свою (ссылка должна быть на файл, а не на страницу)
+https://310401.selcdn.ru/MIXED/ videopromo_2.mp4
+
+- Заменили иконки закрыть/свернуть
+https://static.tildacdn.com/tild3964-6665-4661-a537-323039386538/845648.svg
+https://static.tildacdn.com/tild6162-6136-4465-a134-633834346163/3388940.svg
+
+Ссылка для кнопки #popup-video
+
+<style>
+.video_promo {
+    width: 250px; /*Ширина видео*/
+    position: fixed;
+    bottom: 50px; /*Отступ снизу */
+    right: 25px; /*Отступ справа */
+    z-index: 999; /*Номер слоя */
+    cursor:pointer;
+}
+.video_promo_max{ width: 400px} /*Ширина видео открытое состояние*/
+video#videobanner {
+    border-radius: 15px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px 2px #9c9c9c;
+    cursor:pointer;
+}
+.video_promo , .button_video_promo , .close_video_promo {  transition: all 0.3s ease-in-out}
+.button_video_promo , .close_video_promo {
+    display:none;
+    position: absolute;
+}
+.button_video_promo {
+    font-family: 'Roboto',Arial,sans-serif;
+    font-weight: 300;
+    color: #fff;
+    background-color: #fcb42f;
+    padding: 10px 25px;
+    border-radius: 6px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.close_video_promo {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 6px;
+    right: 1px;
+    background-size: cover;
+    background-image: url(https://static.tildacdn.com/tild3964-6665-4661-a537-323039386538/845648.svg);
+}
+.close_video_promo_open {
+    background-image: url(https://static.tildacdn.com/tild6162-6136-4465-a134-633834346163/3388940.svg);
+}
+.close_video_promo:hover {  filter: grayscale(1)}
+.button_video_promo:hover { background-color: #efa318}
+
+.video_promo:hover .close_video_promo{ display:block}
+.small_promo:hover { transform: scale(1.03)}
+.hide_video{transform: translateY(200%) !important}
+.start_op{opacity:0}
+
+@media screen and (max-width:640px){
+.video_promo {width: 200px}
+.video_promo_max{ width: 350px}
+.close_video_promo{display:block}
+}
+
+@media screen and (max-width:420px){
+.video_promo {width: 150px}
+.video_promo_max{ width: 270px}
+}
+
+</style>
+
+<div class="video_promo small_promo start_op">
+    <video id='videobanner' width="100%" height="100%"   pip="false" autoplay loop muted playsinline controlslist="nodownload" disablepictureinpicture >
+        <source src="https://310401.selcdn.ru/MIXED/videopromo_2.mp4" type="video/mp4">
+    </video>
+    <div class="close_video_promo"></div>
+    <a href="#popup-video"><div class="button_video_promo">Learn More</div></a>
+</div>
+
+<script>
+$(document).ready(function(){
+let firstOpen=true;    
+let videoBreakTime;
+//При клике на видео   
+$('.video_promo').on('click','#videobanner',function(e){
+    //Если видео увеличено
+    if ($(".video_promo").hasClass("video_promo_max") ){
+        //Запускаем или Останавливаем видео
+        this[this.paused?"play":"pause"]();
+    };
+    //Если отрытие первый раз, то запускаем с самого начала
+    if (firstOpen) {firstOpen=false; $(this).get(0).currentTime = 0;
+    //Если нет, то с точки прерывания
+    }else if ($(".video_promo").hasClass("small_promo") ){ $(this).get(0).currentTime = videoBreakTime  };
+    
+    //Изменяем иконку закрытия
+    $('.close_video_promo').addClass('close_video_promo_open');
+    $('.video_promo').addClass('video_promo_max').removeClass('small_promo');
+    //Включаем звук
+    $(this).prop('muted', false);
+    //Показываем кнопку
+    setTimeout(function(){ $('.button_video_promo').show()}, 300); 
+});
+//Уменьшение видео
+function smallPromo(){
+    if ($(".video_promo").hasClass("video_promo_max") ){    
+    //Изменяем кнопку сворачивания
+    $('.close_video_promo').removeClass('close_video_promo_open');
+    //Скрываем кнопку
+    $('.button_video_promo').hide();
+    //Выключаем звук и запускаем видео
+    $('#videobanner').prop('muted', true).get(0).play();
+    //Получаем время прерывания видео
+    videoBreakTime= Math.floor($('#videobanner').get(0).currentTime);
+    $('.video_promo').removeClass('video_promo_max').addClass('small_promo');
+    }
+};
+//При нажатии на кнопку внутри  - свернуть окно
+$('.video_promo').on('click','.button_video_promo',function(e){ smallPromo()});
+//При нажатии на кнопку свернуть - сворачиваем окно
+$('.video_promo').on('click','.close_video_promo_open',function(e){ smallPromo()});
+//При нажатии вне промо видео - сворачиваем окно
+$(document).click( function(e){ if ( $(e.target).closest('.video_promo').length ) {return} smallPromo()});
+//При нажатии esc или space - сворачиваем окно
+$(document).keydown(function(eventObject){if( eventObject.which == 27 ||  eventObject.which == 32  ){	smallPromo()};});
+
+//При клике на кнопку закрыть  
+$('.close_video_promo').click(function(){
+    if (!$(this).hasClass("close_video_promo_open") ){
+    //Скрыть видео
+    $('.video_promo').addClass('hide_video');    
+    //Выключаем звук и останавливаем видео
+    $('#videobanner').prop('muted', true).get(0).pause();
+    };
+});
+//Показываем видео после запуска
+let videoload = setInterval(function() {
+    if ( $("#videobanner").get(0).paused ) {} else {
+    clearInterval(videoload);
+    $('.video_promo').removeClass('start_op');
+    $("#videobanner").get(0).volume=0.4;//Задаём громкость
+    };
+}, 300);   
+});
+</script>

@@ -1,0 +1,42 @@
+https://mo-ti.ru/prodpopupbtn
+
+
+- В текст товара добавляем ссылки
+Например, ссылками могут являться пути на инструкции на какой-нибудь яндекс-диск или попап с контентом
+В загружаемом каталоге товаров через файл может применяться встроенный стиль, например, для кнопки раздела товаров "одежда" может быть задана кнопка прямо в тексте: <a href="https://www.indianfestival.ru/clothes" style="display: inline-block; padding: 6px 4px; border-radius: 30px; background-color: F43D3D; color: #fff; text-decoration: none;">одежда</a> При этом, стилизация таким образом не будет перекрываться скриптом, который действует на все прочие элементы данного типа
+
+- Добавляются стили в блок 123
+
+<style>
+.js-store-prod-text a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.js-store-prod-text a:first-of-type {
+    background-color: #bc574b;
+    color: #ffffff !important;
+}
+.js-store-prod-text a:last-of-type {
+    background-color: #566d90;
+    color: #ffffff !important;
+}
+
+/* CSS код для unicode символа, который будет добавлен перед текстом первой кнопки */
+.js-store-prod-text a:first-of-type:before {
+    content: "\1F50D";
+    margin-right: 10px;
+}
+
+/* CSS код для unicode символа, который будет добавлен перед текстом второй кнопки */
+.js-store-prod-text a:last-of-type:before {
+    content: "\1F5B9";
+    margin-right: 10px;
+}
+.t706__cartwin_showed {
+    z-index: 999999999;
+}
+</style>

@@ -1,0 +1,19 @@
+<style>
+#rec248763405 {
+    overflow: auto;
+}
+@media screen and (max-width: 960px) {
+#rec248763405 .t397__wrapper {
+    display: block;
+}
+#rec248763405 .t397__wrapper_mobile {
+    display: none;
+}
+#rec248763405 .t397__col {
+    padding: 0;
+}
+#rec248763405 .t397__title {
+    padding: 0 20px;
+}
+}
+</style>

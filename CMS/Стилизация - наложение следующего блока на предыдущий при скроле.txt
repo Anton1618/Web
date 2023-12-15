@@ -1,0 +1,44 @@
+https://www.youtube.com/watch?v=V3BNPmFabQc
+
+Создает эффект наложения блоков на последующие блоки
+
+=== Для zero блоков ===
+Главным условием является размер блоков, который должен быть равен всей высоте экрана (100vh), скопированные id применяются в коде ниже
+Для прочих блоков, которым не требуется накладываение можно установить белую заливку фона
+
+=== Для стандартных блоков ===
+Задается заливка и копируются id блоков, которые применяются в коде ниже, но сохраняя необходимость 100% высоты для устройства, от чего, id блоков дублируются в предворяющем ниже код
+/* Дополнительный код для стандартных блоков, увеличивая их высоту в 100% от высоты устройства */
+<style>
+	#rec624466290,#rec624466415,#rec624466453 {
+
+	}
+</style>
+
+
+
+
+
+
+/* Основной код: */
+<script>
+
+$(function(){
+    /* Укажи id всех блоков через запятую, которым нужно добавить эффект наложения */
+    var id = '#rec624466290,#rec624466415,#rec624466453';
+
+    $('head').append('<style>body {overflow-x: hidden;}#allrecords {overflow: visible !important;}#t-header,#t-footer {position: relative;z-index: 2;} .t-rec {position: relative;z-index: 1;overflow-x: hidden;}'+id+' { position: -webkit-sticky; position: sticky; top: 0; z-index: 0;}</style>');
+    
+    $(window).on('load resize', function(){
+        $(id).each(function(){
+            var topPosition = $(window).height() - $(this).height();
+            if (topPosition < 0) {
+                $(this).css('top',topPosition)
+            } else {
+                $(this).css('top',0)
+            }
+        });
+    });
+});
+
+</script>

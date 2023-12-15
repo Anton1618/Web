@@ -1,0 +1,37 @@
+https://necodim.ru/tilda/profile-in-zero
+
+
+
+- Создайте Zero-блок.
+Добавьте туда Shape для аватарки с классом user-pic. 
+Загрузите в качестве фонового изображения картинку, которая будет - отображаться для пользователей, не загрузивших аватарку. Если не хотите отображать аватар в Zero-блоке, удалите из скрипта строки, в которых есть переменная picElement.
+
+Добавьте текстовый элемент для отображения Email пользователя с классом user-email.
+
+Аналогично, для текстового элемента отображения имени с классом user-name.
+
+- Разместить код в блок T123 после zero.
+Отредактировать id zero
+
+
+<script>
+document.querySelector('#rec579920763 .t396__artboard').addEventListener('artBoardRendered', function() {
+    const emailElement = document.querySelector('.user-email .tn-atom');
+    const nameElement = document.querySelector('.user-name .tn-atom');
+    const picElement = document.querySelector('.user-pic .tn-atom');
+    const projectId = parseInt(document.querySelector('#allrecords').dataset.tildaProjectId);
+    const lsUser = window.localStorage.getItem('tilda_members_profile' + projectId);
+    if (lsUser != null) {
+        const user = JSON.parse(lsUser);
+        emailElement.innerHTML = user.login;
+        nameElement.innerHTML = user.name !== undefined && user.name !== '' ? user.name : 'Имя не указано';
+        picElement.dataset.original = user.memberlogo;
+        picElement.style.backgroundImage = `url(${user.memberlogo})`;
+    } else {
+        emailElement.innerHTML = 'Ошибка';
+        nameElement.innerHTML = 'Вы не авторизованы';
+        picElement.dataset.original = 'https://static.tildacdn.com/tild3565-3233-4131-b338-376232636638/auth.svg';
+        picElement.style.backgroundImage = 'url(https://static.tildacdn.com/tild3565-3233-4131-b338-376232636638/auth.svg)';  // Ссылка на изображения для неавторизованных пользователей
+    }
+});
+</script>

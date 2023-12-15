@@ -1,0 +1,38 @@
+https://mo-ti.ru/imgcart
+
+
+- Добавили в корзину поле вопрос с вариантами ответа в виде картинок
+Загрузили картинки и заполнили подписи
+Задали этому полю имя present
+
+- Добавили код в блок Другое - Т123
+В коде указали пороговую сумму
+let presentSumm = 5000;
+
+
+<script>
+$(document).ready(function(){
+let presentSumm = 5000;  
+let presentInp = $('input[name="present"]');
+let presentWrap = presentInp.closest('.t-input-group');
+presentWrap.addClass('hidepresent');  
+$(".t706__cartwin-prodamount").bind( 'DOMSubtreeModified',function() {
+    let prodAmount = window.tcart.prodamount;
+    if(prodAmount>presentSumm){ presentWrap.removeClass('hidepresent');
+    }else{
+        presentWrap.addClass('hidepresent');
+        presentInp.prop('checked', false);
+    };
+});
+});    
+</script>
+<style>
+.t706 .t-bgimg { box-shadow: none}
+.t706 .t-img-select__text {text-align: center}
+.hidepresent{
+    height: 0;
+    opacity: 0;
+    margin: 0;
+    pointer-events: none;
+}
+</style>

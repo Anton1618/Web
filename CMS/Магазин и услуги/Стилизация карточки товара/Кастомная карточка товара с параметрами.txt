@@ -1,0 +1,138 @@
+https://mo-ti.ru/customproductzero
+
+Создали ZeroBlock и добавили в него контент
+
+Создали в Zero элементы управления:
+- 4 shape с цветом, задали им ссылку #coloricon
+- 1 text для цвета, задали ему ссылку #colortext
+- 4 text для размера, задали им ссылку #sizeicon
+- 1 text для цены, задали ему ссылку #percost
+- 1 button для отправки в корзину, задали ему ссылку #sendtocart
+- 1 Gallery на 16 фото
+
+Создали блок ST200, добавили в него фото, название, цену и 2 параметра
+
+Добавили код на страницу в блок Другое - Т123
+В коде прописали
+ID нашего Zero
+
+
+<style>
+/*Стиль для иконки*/
+.hovercolor , .sizeicon{
+   transition: .3s linear;    
+   } 
+   .activecolor{
+    transform: scale(1.4);
+}
+.activesize{
+    font-weight: 800 !important;
+   }
+.percost{pointer-events:none}
+div[data-record-type="744"]{ display:none;}
+.t706__product-imgdiv {
+    background-repeat: no-repeat;
+    background-size: contain !important;
+    background-color: #ffffff !important;
+}
+.blksenddtn{
+    opacity:0.5;
+    pointer-events:none;   
+}
+.prodimg{
+    transition: all 0.9s ease;   
+   }
+.notshow{
+    transform: scale(0) rotate(0deg);
+   }
+.show{
+    transform: scale(1) rotate(1440deg);   
+   }
+</style>
+
+
+
+<script>
+$( document ).ready(function() {
+$('#rec166458609').addClass('custCard');
+var urlprodimg=0;var Ncolor=0;Scolor=0;
+//Присваиваем классы нашим элементам  
+$('a[href = "#coloricon"]').addClass('hovercolor');
+$('a[href = "#colortext"]').addClass('colortext');
+$('a[href = "#sizeicon"]').addClass('sizeicon');
+$('a[href = "#percost"]').addClass('percost');
+$('a[href="#sendtocart"]').addClass('sendtocart')
+$('.hovercolor:first').addClass('activecolor');
+$('.sizeicon:first').addClass('activesize');
+
+$('.t744 .t-slds__bgimg').each(function( index, element ) {
+$(this).attr('src', $(this).attr('data-original')); });
+var btnCaption=$('.sendtocart').text();
+
+
+var posSld = {
+/*Gold-L*/  '11': [{'pos':1,"s":1200,"o":1}],
+/*Gold-M*/  '12': [{'pos':2,"s":1250,"o":1}],
+/*Gold-X*/  '13': [{'pos':3,"s":1300,"o":1}],
+/*Gold-XL*/ '14': [{'pos':4,"s":1350,"o":1}],
+
+/*Black-L*/  '21': [{'pos':5,"s":1200,"o":0}],
+/*Black-M*/  '22': [{'pos':6,"s":1250,"o":1}],
+/*Black-X*/  '23': [{'pos':7,"s":1300,"o":1}],
+/*Black-XL*/ '24': [{'pos':8,"s":1350,"o":1}],
+
+/*Silver-L*/  '31': [{'pos':9,"s":1200,"o":1}],
+/*Silver-M*/  '32': [{'pos':10,"s":1250,"o":1}],
+/*Silver-X*/  '33': [{'pos':11,"s":1300,"o":0}],
+/*Silver-XL*/ '34': [{'pos':12,"s":1350,"o":1}],
+
+/*Red-L*/  '41': [{'pos':13,"s":1200,"o":1}],
+/*Red-M*/  '42': [{'pos':14,"s":1250,"o":1}],
+/*Red-X*/  '43': [{'pos':15,"s":1300,"o":1}],
+/*Red-XL*/ '44': [{'pos':16,"s":1350,"o":1}],
+};
+
+//Показ фото и передача ссылки
+function changeSldPh(){
+  var actnewBlk = String(Ncolor+1)+String(Scolor+1);
+
+if (typeof(posSld[actnewBlk]) != undefined ) {
+
+  if(posSld[actnewBlk][0]['o']==0){$('.sendtocart').addClass('blksenddtn').text('Нет в наличии');
+  }else{  $('.sendtocart').removeClass('blksenddtn').text(btnCaption)};
+  
+   $('.custCard .t-slds__bullet[data-slide-bullet-for="'+posSld[actnewBlk][0]['pos']+'"]').click();
+   $('.percost').text(posSld[actnewBlk][0]['s']+' руб');
+   $('.t744__price-value').html(posSld[actnewBlk][0]['s']);
+   var bg_imgSld = $('.custCard .t-slds__item_active .tn-atom__slds-img').css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
+   $('.t744 .t-slds__bgimg').css('background-image', 'url('+bg_imgSld+')');
+   $('.t744 .t-slds__bgimg').attr('data-original', bg_imgSld);
+}else{$('.sendtocart').addClass('blksenddtn').text('Нет в наличии')};
+}; 
+
+setTimeout(function() { changeSldPh(); }, 2000);
+
+$( ".hovercolor" ).click(function(e) {e.preventDefault();
+    Ncolor = $(".hovercolor").index(this);
+    $( ".hovercolor" ).removeClass('activecolor');$(this).addClass('activecolor');
+  switch (true) {
+    case Ncolor == 0 :  $('.colortext').text('Gold').css('color','#fce083');  break;
+    case Ncolor == 1 :  $('.colortext').text('Black').css('color','#2e2e2e');  break;
+    case Ncolor == 2 :  $('.colortext').text('Silver').css('color','#e3e3e3');  break;
+    case Ncolor == 3 :  $('.colortext').text('Red').css('color','#fa0000');  break;
+};changeSldPh();
+});
+$( ".sizeicon" ).click(function(e)  {e.preventDefault();
+   Scolor = $(".sizeicon").index(this);$( ".sizeicon" ).removeClass('activesize');
+   $(this).addClass('activesize'); changeSldPh();
+});  
+//При клике на нашу кнопку
+  $('a[href="#sendtocart"]').click(function(event) {
+  event.preventDefault();
+//Присваиваем значения из калькулятора для блока ST200
+  $('.t744 select:eq(0) option:selected').val($('.colortext').text());//цвет
+  $('.t744 select:eq(1) option:selected').val($('.activesize').text());//размер
+  setTimeout(function() {  $(".t744__btn")[0].click(); }, 100);  return false;
+});
+});    
+</script>

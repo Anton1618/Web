@@ -1,0 +1,66 @@
+https://mo-ti.ru/zeroproductcart#coloricon
+
+Модификация расчитана на определенный товар, созданный в zero
+Создали ZeroBlock
+Добавили в него Image со ссылкой #prodimg
+Добавили текстовый элемент с надписью Pink и задали ему ссылку #colortext
+Добавили иконки цвета элемент Shape и задали им ссылки #coloricon
+Добавили элемент Button и задали ему ссылку #kankenclassicbutton
+Добавили скрипт на страницу
+<style>
+/*Стиль для иконки*/
+   .hovercolor{
+   transition: .3s linear;    
+   } 
+   .activecolor{
+    box-shadow: 0px 0px 0px 5px #ffffff !important;
+}
+   .hovercolor:hover{
+    box-shadow: 0px 0px 2px 4px #b1b1b1;   
+   }
+</style>
+
+<script>
+$( document ).ready(function() {
+//Примваиваем классы нашим элементам  
+$('[href = "#coloricon"]').addClass('hovercolor');
+$('.hovercolor:eq(0)').addClass('activecolor');
+$('[href = "#colortext"]').addClass('colortext');
+$('[href = "#prodimg"]').addClass('prodimg');
+$('[href = "#kankenclassicbutton"]').addClass('classicbutton');
+//Задаём нужную ссылку
+$('.classicbutton').attr('href' , '#order:Kanken Classic (Pink) = 3900:::image=https://static.tildacdn.com/tild3961-6237-4864-a232-386535633032/bag1.jpg');
+$('.prodimg').not('.prodimg:first').hide();
+//Функция скрытия изображения и деактивации иконок 
+function activecolor(){ 
+    $('.hovercolor').removeClass('activecolor');
+    $('.prodimg').fadeOut();
+};
+
+var number = 0;
+//При клике на цвет
+$( ".hovercolor" ).click(function() {
+   //Вычисляем номер нашего цвета        
+   number = $(".hovercolor").index(this);
+   activecolor();   $(this).addClass('activecolor');
+   $('.prodimg:eq('+number+')').fadeIn();
+   if (number==0){
+   $('.colortext').text('Pink').css('color' , '#E5AAAC');
+   $('.classicbutton').attr('href' , '#order:Kanken Classic (Pink) = 3900:::image=https://static.tildacdn.com/tild3961-6237-4864-a232-386535633032/bag1.jpg');
+};
+   if (number==1){
+   $('.colortext').text('Graphite').css('color' , '#555D68');
+   $('.classicbutton').attr('href' , '#order:Kanken Classic (Graphite) = 3900  :::image=https://static.tildacdn.com/tild3961-3538-4637-b366-313935386137/bag2.jpg');
+};
+   if (number==2){
+   $('.colortext').text('Warm Yellow').css('color' , '#E7C01A');
+   $('.classicbutton').attr('href' , '#order:Kanken Classic (Warm Yellow) = 3900  :::image=https://static.tildacdn.com/tild3733-3238-4634-b939-386438396634/bag3.jpg');
+};
+   if (number==3){
+   $('.colortext').text('Brick').css('color' , '#9F583A');
+   $('.classicbutton').attr('href' , '#order:Kanken Classic (Brick) = 3900  :::image=https://static.tildacdn.com/tild3434-3563-4966-a432-666564646336/6.jpg');
+};
+return false;});
+
+});    
+</script>

@@ -1,0 +1,50 @@
+https://dsgnmax.ru/3d-effects-standart-card
+
+
+Блок	Контейнер	Карточка
+TE100	.t686__col	.t686__table
+TE105	.t336__table, .t336__block	.t336__cell
+TE200	.t692 .t-container	.t692__col
+TE210	.t649 .t-container	.t649__col
+TE215	.t688__row	.t688__row .t-col_4
+TE220	.t772__wrapper	.t772__col
+TE225	.t774__container	.t774__col
+TE230	.t902__row	.t902__col
+TE400	.t422__container	.t422__wrapper
+TE405	.t424__container	.t424__col
+TE600	.t650__row	.t650__col
+TE605	.t959__row	.t959__card
+TE610	.t983__row	.t983__col
+TE800	.t923 .t-slds__items-wrapper	.t923 .t-slds__item
+
+
+
+<style>
+/*3D-эффект для карточек стандартных блоков*/
+:root{
+    --perspective: 600px;       /*Значение перспективы для родительского контейнера*/
+    --transformNorm: rotateX(12deg) rotateY(0deg) rotateZ(0deg);    /*Поворот карточки в нормальном состоянии*/
+    --transformHover: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(30px);    /*Поворот карточки при наведении*/
+    --transition: 0.3s ease-in-out;     /*Скорость и плавность анимации*/
+}
+@media screen and (min-width:1200px){
+    .t983__row{     /*Класс контейнера*/
+        perspective:var(--perspective); 
+        -webkit-perspective:var(--perspective);
+        overflow: visible !important;       /*Чтобы карточка не обрезалась*/
+        background-color: transparent !important;
+    }
+    /*Обычное состояние карточки*/
+    .t983__col{   /*Класс карточки*/
+        transform: var(--transformNorm);  
+        -webkit-transform: var(--transformNorm);
+        transition: var(--transition);
+        -webkit-transition: var(--transition);
+    }
+    /*Искажение карточки при наведении*/
+    .t983__col:hover{ /*Класс карточки*/
+        transform: var(--transformHover);
+        -webkit-transform: var(--transformHover);
+    }
+}
+</style>

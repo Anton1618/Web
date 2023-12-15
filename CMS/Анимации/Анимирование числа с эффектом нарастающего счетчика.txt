@@ -1,0 +1,53 @@
+Страница проекта: https://www.youtube.com/watch?v=OUIU8_EzXX0
+
+Эффект
+Применение скрипта, позволит с появлением числа, создать из него счетчик, который набирает нарастающее числовое значение
+
+
+
+<script>
+  $(document).ready(function () {
+    $(function () {
+      let initValue = 976543; //Начальное число
+      let elArr = [
+        "my-number", //Класс элемента
+        1000000, //Конечное число
+        "", //Подпись после числа
+        50, //Дистанция до срабатывания
+        3000, //Скорость анимации в миллисекундах
+        1100, //Задержка до срабатывания анимации в миллисекундах
+        "Первое число ", //Подпись до числа
+      ];
+      let target_block = $("." + elArr[0] + " .tn-atom");
+      let blockStatus = true; // https://oohmy.site/
+      $(window).scroll(function () {
+        let scrollEvent =
+          $(window).scrollTop() >
+          $(target_block).offset().top - $(window).height() + elArr[3];
+        if (scrollEvent && blockStatus) {
+          blockStatus = false;
+          setTimeout(() => {
+            $({ numberValue: initValue }).animate(
+              { numberValue: elArr[1] },
+              { //https://oohmy.site/
+                duration: elArr[4],
+                easing: "swing",
+                step: function (val) {
+                  target_block.html(
+                    elArr[6] +
+                      String(Math.ceil(val)).replace(
+                        /(\d)(?=(\d{3})+([^\d]|$))/g,
+                        "$1 " // Пробел после переменной добавляет разделитель между тысячными. Его можно убрать, если разделитель не требуется
+                      ) +
+                      " " +
+                      elArr[2]
+                  );
+                },
+              }
+            );
+          }, elArr[5]);
+        }
+      }); //https://oohmy.site/
+    });
+  });
+</script>

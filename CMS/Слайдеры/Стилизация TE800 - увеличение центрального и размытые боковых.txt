@@ -1,0 +1,104 @@
+https://mo-ti.ru/tpost/6o36hpd5y1-stilizuem-blok-slaidera-te800-v-tilda-li
+
+
+
+Меняем фон в блоке ТЕ800, увеличиваем центральный слайд и делаем размытие для боковых элементов
+
+
+
+<style>
+div[data-record-type="923"] {
+    background-image: url(https://static.tildacdn.com/tild6165-3164-4062-a366-633066633331/nikmacmillan280300_1.jpg);
+    position: relative;
+}
+
+div[data-record-type="923"]:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.4;
+}
+
+.t923 {position: relative;z-index: 1;}
+
+.t923 .t-title {
+    color: #fff;
+}
+
+.t923 .t-descr {
+    color: #fff;
+}
+
+.t923__wrapper {
+    background-color: transparent;
+    text-align: center;
+}
+
+.t923__title {
+    color: #fff;
+}
+
+a.t923__btn.t923__btn {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.t923__bgimg.t-bgimg {
+    border-radius: 50%;
+}
+
+.t923__imgwrapper.t923__imgwrapper_1-1 {
+    width: 70%;
+    padding-bottom: 70%;
+    margin: 0 auto;
+}
+
+button.t-slds__arrow {
+    background-color: #fff !important;
+}
+
+.t923 .t-slds__arrow_body svg {
+    filter: invert(1);
+}
+
+.t923 li.t-slds__arrow_wrapper {
+    height: 40px !important;
+    top: auto;
+    bottom: 10px;
+    width: 100% !important;
+}
+
+button.t-slds__arrow.t-slds__arrow-left {
+    left: calc(50% - 20px - 25px);
+}
+
+button.t-slds__arrow.t-slds__arrow-right {
+    left: calc(50% - 20px + 25px);
+    right: auto;
+}
+
+.t923 .t-slds__items-wrapper {
+    padding-bottom: 80px;
+}
+
+.t923 .t-slds__item {
+    /* filter: blur(4px); */
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0.85);
+}
+
+.t923 .t-slds__item.t-slds__item_active+div {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.t923 .t-slds__items-wrapper {
+    padding-top: 20px;
+}    
+</style>

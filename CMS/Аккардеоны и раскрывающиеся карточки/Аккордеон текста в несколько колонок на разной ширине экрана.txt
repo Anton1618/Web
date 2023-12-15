@@ -1,0 +1,115 @@
+Страница проекта
+https://necodim.ru/tilda/accordion-columns
+
+- Добавьте на страницу блок с аккордеоном. Подойдут только TX16N или TX16N2.
+- Добавьте блоку класс (например, .uc-accordion). Как это сделать, читайте тут.
+- Настройте блок по своему усмотрению. Ширина колонок и отступ не имеют значения, т.к. эти параметры будут удалены.
+- В настройках ниже напишите, сколько колонок должно отображаться на каждом разрешении. Breakpoint — это ширина экрана от которой будет действовать данная настройка. Если больше нет брейкпоинта, то настройка будет действовать для всех экранов, ширина которых будет больше или равна последнему брейкпоинту.
+- Скопируйте полученный код в блок T123 под аккордеоном или внизу страницы.
+
+P. S. Изначально в настройках указано шесть брейкпоинтов (300, 480, 640, 960, 1200, 1920) — это стандартные брейкпоинты Тильды + дополнительный в 1920px. Если вам нужно будет другое количество брейкпоинтов, вы можете в полученном коде дописать новые по тому же принципу или стереть ненужные.
+
+<!-- Аккордеон в несколько колонок на разной ширине экрана | https://necodim.ru/tilda/accordion-columns -->
+
+<script>
+const necodimAccrodionSettings = {
+    breakpoint: [
+        {
+            screen: 300,
+            cols: 1
+        }, {
+            screen: 480,
+            cols: 2
+        }, {
+            screen: 640,
+            cols: 3
+        }, {
+            screen: 960,
+            cols: 4
+        }, {
+            screen: 1200,
+            cols: 5
+        }, {
+            screen: 1920,
+            cols: 6
+        }
+    ]
+}
+
+const necodimCountColumns = () => {
+    const bodyWidth = document.body.offsetWidth;
+    let cols;
+    necodimAccrodionSettings.breakpoint.forEach((breakpoint, index) => {
+        const isLast = index === necodimAccrodionSettings.breakpoint.length - 1;
+        const isBetween = bodyWidth >= breakpoint.screen && (isLast || bodyWidth < necodimAccrodionSettings.breakpoint[index + 1].screen);
+        if (isBetween) {
+            cols = breakpoint.cols;
+        }
+    });
+    return cols;
+}
+
+const necodimResizeAccordionColumns = (n) => {
+    let bw = document.body.offsetWidth
+    let cw = Math.floor(document.querySelector('.uc-accordion .t-container').offsetWidth / n);
+    let columns = document.querySelectorAll('.accordion-column');
+    columns.forEach(column => {
+        column.style.width = cw + 'px';
+        let accordions = column.querySelectorAll('.t-col');
+        accordions.forEach(accordion => {
+            accordion.style.paddingLeft = '';
+            accordion.style.paddingRight = '';
+            if (bw >= 1200) {
+                accordion.style.width = cw - 40 + 'px';
+            } else if (960 <= bw && bw < 1200) {
+                accordion.style.width = cw - 20 + 'px';
+            } else if (640 <= bw && bw < 960) {
+                accordion.style.width = '100%';
+            } else {
+                accordion.style.width = cw - 20 + 'px';
+                accordion.style.paddingLeft = '10px';
+                accordion.style.paddingRight = '10px';
+            }
+        });
+    });
+}
+
+const necodimCreateColumns = (n) => {
+    let a = Array.from(document.querySelectorAll('.uc-accordion .t-col')),
+        l = a.length;
+    let oldColumns = document.querySelectorAll('.accordion-column');
+    if (Array.from(oldColumns).length > 0) oldColumns.forEach(column => column.classList.add('old'));
+    for (let i = 0; i < n; i++) {
+        let column = document.createElement('div');
+        column.classList.add('accordion-column');
+        column.dataset.accordionColumn = i;
+        let accordionsInColumn = a.slice(Math.ceil(l / n * i), Math.ceil(l / n * (i + 1)));
+        accordionsInColumn[0].closest('.t-container').appendChild(column);
+        accordionsInColumn.forEach(accordion => {
+            column.appendChild(accordion);
+            accordion.classList.remove('t-col_1', 't-col_2', 't-col_3', 't-col_4', 't-col_5', 't-col_6', 't-col_7', 't-col_8', 't-col_9', 't-col_10', 't-col_11', 't-col_12', 't-prefix_1', 't-prefix_2', 't-prefix_3', 't-prefix_4', 't-prefix_5', 't-prefix_6', 't-prefix_7', 't-prefix_8', 't-prefix_9', 't-prefix_10', 't-prefix_11', 't-prefix_12');
+        });
+    }
+    oldColumns = document.querySelectorAll('.accordion-column.old');
+    if (Array.from(oldColumns).length > 0) oldColumns.forEach(column => column.remove());
+    necodimResizeAccordionColumns(n);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    necodimCreateColumns(necodimCountColumns());
+});
+
+window.addEventListener('resize', (() => {
+    setTimeout((() => {
+        necodimCreateColumns(necodimCountColumns());
+    }), 300);
+}));
+</script>
+
+<style>
+@media screen and (max-width: 640px) {
+    .uc-accordion .t-container {
+        margin: 0 10px;
+    }
+}
+</style>

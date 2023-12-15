@@ -1,0 +1,319 @@
+Имеет:
+- возможность вызова и скрытия через тоггл бурргера, а также скрытие через крестик, либо клик по пространству вне меню
+- один единовременно развернутый список подпунктов;
+- визуальный элемент, сигнализирующий о возможности развернуть пункт
+- выделенные пункты меню, ссылки которых соответствуют url текущей страницы
+- для открытия и взаимодействия с меню применяется элемент бургер с классом .burger
+
+<nav class="menu">
+    <div class="logo">
+        <img href="/" src=" https://static.tildacdn.com/tild6339-3761-4661-b366-313963643337/logo100x100.png">
+    </div>
+    <div class="icon-close">
+        <a>✖</a>
+    </div>
+    <div class="menu-items">
+        <div class="item ayurvedaHealth">
+            <span class="toggle-icon">⊙ </span><a href="#catalog/ayurveda_for_health" class="toggle">Аюрведа для здоровья</a>
+            <div class="submenu">
+                <a href="/catalog/ayurveda_for_health#drugs">Препараты</a>
+                <a href="/catalog/ayurveda_for_health#chyawanprash">Чаванпраш</a>
+                <a href="/catalog/ayurveda_for_health#powders">Порошки</a>
+                <a href="/catalog/ayurveda_for_health#jams">Джемы</a>
+                <a href="/catalog/ayurveda_for_health#oils">Масла</a>
+                <a href="/catalog/ayurveda_for_health#creams_balms_ointments">Кремы, бальзамы, мази</a>
+                <a href="/catalog/ayurveda_for_health#drops">Капли</a>
+            </div>
+        </div>
+        <div class="item test">
+            <span class="toggle-icon">⊙ </span><a href="/_test_page3/blablabla" class="toggle">Тест</a>
+            <div class="submenu">
+                <a href="/_test_page3/blablabla#my-tab-1">#1</a>
+                <a href="/_test_page3/blablabla#my-tab-2">#2</a>
+                <a href="/_test_page3/blablabla#my-tab-3">#3</a>
+            </div>
+        </div>
+        <div class="item ayurvedicCosmetic">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/ayurveda_cosmetics" class="toggle">Аюрведа косметика</a>
+            <div class="submenu">
+                <a href="/catalog/ayurveda_cosmetics#shampoos">Шампуни</a>
+                <a href="/catalog/ayurveda_cosmetics#hair_oils">Масла для волос</a>
+                <a href="/catalog/ayurveda_cosmetics#hair_conditioners">Кондиционеры для волос</a>
+                <a href="/catalog/ayurveda_cosmetics#toothpastes_and_powders">Зубные пасты и порошки</a>
+                <a href="/catalog/ayurveda_cosmetics#cleansers">Средства для умывания</a>
+                <a href="/catalog/ayurveda_cosmetics#creams">Кремы</a>
+                <a href="/catalog/ayurveda_cosmetics#masks_and_scrubs">Маски и скрабы</a>
+                <a href="/catalog/ayurveda_cosmetics#indian_henna">Индийская хна</a>
+                <a href="/catalog/ayurveda_cosmetics#soap">Мыло</a>
+                <a href="/catalog/ayurveda_cosmetics#decorative_cosmetics">Декоративная косметика</a>
+                <a href="/catalog/ayurveda_cosmetics#pink_water">Розовая вода</a>
+                <a href="/catalog/ayurveda_cosmetics#coconut_oil">Кокосовое масло</a>
+            </div>
+        </div>
+        <div class="item souvenirs">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/souvenirs" class="toggle">Сувениры</a>
+            <div class="submenu">
+                <a href="/catalog/souvenirs#elephants">Слоны</a>
+                <a href="/catalog/souvenirs#figurines">Статуэтки</a>
+                <a href="/catalog/souvenirs#caskets">Шкатулки</a>
+                <a href="/catalog/souvenirs#kitchen_utensils">Кухонные принадлежности</a>
+                <a href="/catalog/souvenirs#musical_instruments">Музыкальные инструменты</a>
+                <a href="/catalog/souvenirs#icons">Иконы</a>
+                <a href="/catalog/souvenirs#decor_and_more">Декор и прочее</a>
+            </div>
+        </div>
+        <div class="item productSection">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/food" class="toggle">Продукты питания</a>
+            <div class="submenu">
+                <a href="/catalog/food#tea">Чай</a>
+                <a href="/catalog/food#coffee">Кофе</a>
+                <a href="/catalog/food#basmati_rice">Рис басмати</a>
+                <a href="/catalog/food#spices">Специи</a>
+                <a href="/catalog/food#seeds">Семена</a>
+                <a href="/catalog/food#sweets">Сладости</a>
+            </div>
+        </div>
+        <div class="item clothes_and_accessories">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/clothes_and_accessories" class="toggle">Одежда и аксессуары</a>
+            <div class="submenu">
+                <a href="/catalog/clothes_and_accessories#women_clothing">Женская одежда</a>
+                <a href="/catalog/clothes_and_accessories#men_clothing">Мужская одежда</a>
+                <a href="/catalog/clothes_and_accessories#scarves_and_shawls">Шарфы и платки</a>
+                <a href="/catalog/clothes_and_accessories#bags">Сумки</a>
+                <a href="/catalog/clothes_and_accessories#other_accessories">Другие аксессуары</a>
+            </div>
+        </div>
+        <div class="item parfume">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/perfume" class="toggle">Духи</a>
+            <div class="submenu">
+                <a href="/catalog/perfume#turkish_perfume">Турецкие</a>
+                <a href="/catalog/perfume#arab_perfume">Арабские</a>
+            </div>
+        </div>
+        <div class="item incense">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/incense" class="toggle">Благовония</a>
+            <div class="submenu">
+                <a href="/catalog/incense#natural_herbs">Натуральные травы</a>
+                <a href="/catalog/incense#flavored">Ароматизированные</a>
+            </div>
+        </div>
+        <div class="item bedspreads_and_pillowcases">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/bedspreads_and_pillowcases" class="toggle">Покрывала и наволочки</a>
+            <div class="submenu">
+                <a href="/catalog/bedspreads_and_pillowcases#striped_cotton_bedspreads">Полосатые покрывала хлопок</a>
+                <a href="/catalog/bedspreads_and_pillowcases#designer_cotton_bedspreads">Дизайнерские покрывала хлопок</a>
+                <a href="/catalog/bedspreads_and_pillowcases#cotton_and_silk_bedspreads_and_pillowcases">Покрывала хлопок с шелком +2 наволочки</a>
+                <a href="/catalog/bedspreads_and_pillowcases#silk_bedspreads_with_pillowcases">Покрывала шелк +2 наволочки</a>
+                <a href="/catalog/bedspreads_and_pillowcases#sofa_pillowcases">Диванные наволочки</a>
+            </div>
+        </div>
+        <div class="item furniture">
+            <span class="toggle-icon">⊙ </span><a href="/catalog/furniture" class="toggle">Мебель</a>
+            <div class="submenu">
+                <a href="/catalog/furniture#tables">Столы</a>
+                <a href="/catalog/furniture#chairs">Стулья</a>
+                <a href="/catalog/furniture#chests_of_drawers">Комоды</a>
+                <a href="/catalog/furniture#screens">Ширмы</a>
+                <a href="/catalog/furniture#other">Другое</a>
+            </div>
+        </div>
+        <div class="item furniture">
+            <a href="/_test_page3/blablabla" class="toggle">Новинки</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Общая стилизация */
+#rec680001394 {
+    display: none;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  z-index: 100;
+  background-color: #000 !important;
+  overflow-x: auto;
+  position: fixed;
+}
+
+@media screen and (min-width: 1200px) {
+  .menu {
+    padding: 40px 40px;
+  }
+  .menu img {
+    height: 160px;
+    width: 160px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .menu {
+    padding: 20px 20px;
+  }
+  .menu img {
+    height: 120px;
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    padding: 10px 10px;
+  }
+}
+
+/* Тогл-иконка */
+.menu .toggle-icon {
+    cursor: pointer;
+    font-size: 30px;
+    color: #fff;
+    margin-right: 4px;
+}
+
+/* Блоки пунктов */
+.menu .menu-items .item {
+    padding: 4px 0;
+}
+/* Блоки подпунктов */
+.menu .menu-items .submenu {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0px 10px 30px;
+}
+
+/* Текст пунктов */
+.menu a {
+  color: #fff !important;
+}
+.menu a:hover {
+  color: #F8A95A !important;
+  transition: 0.3s;
+}
+
+/* Надпункты */
+.menu a.toggle {
+  font-size:24px;
+}
+
+/* Подпункты */
+.menu-items .item .submenu a {
+  font-size:18px;
+  padding: 4px 0px;
+}
+
+/* Иконка "крестик" для закрытия меню */
+.menu .icon-close {
+  cursor: pointer;
+  position: absolute;
+  font-size: 50px;
+  color: #fff;
+  top: 0px;
+  right: 10px;
+}
+</style>
+
+<script>
+// Переключение видимости блока с .menu, при клике на .burger
+var menu = document.getElementById('rec680001394');
+var burger = document.querySelector('.burger');
+
+// Добавляем обработчик события для клика по бургеру
+burger.addEventListener('click', function() {
+  if (getComputedStyle(menu).display === 'none') { // Аналогично не вычисляемому стилю: if (menu.style.display === 'none') {
+    menu.style.display = 'block';  // Показываем меню при клике на бургер, если меню имеет установленное свойство стиля
+    // burger.innerHTML = 'Закрыть';  // Опционально меняем текст в бургере
+  } else {
+    menu.style.display = 'none';  // Скрываем меню при повторном клике на бургер
+    // burger.innerHTML = 'Меню';  // Опционально возвращаем изначальный текст в бургере
+  }
+});
+
+
+
+
+// Изначальное скрытие\отображение вложенных подпунктов меню
+// При клике на один из надпунктов меню производится автоматическое сворачивание других пунктов меню, кроме текущего
+// Применение и замена визуального элемента, указывающего на присутствие вложенных пунктов меню. При этом, если пункт не имеет вложенных элементов, то эффект установки визуального элемента не станет применяться
+$(document).ready(function() {
+  // Изначальное скрытие всех подменю, при загрузке страницы
+  $(".submenu").hide();
+
+  // Раскрытие надпункта меню и сворачивание прочих
+  $(".toggle-icon").click(function(){
+    // Проверяем состояние подменю
+    if ($(this).siblings(".submenu").css('display') === 'none') {
+      // Свернуть все подменю, кроме текущего
+      $(".submenu").slideUp(); // Скрываем все подменю
+      $(this).siblings(".submenu").slideDown(); // Разворачиваем текущее подменю
+//      $(this).children(".toggle-symbol").text('⦿'); // Опционально, заменяем тоггл-символ, при раскрытии вложенных пунктов
+    } else {
+      $(this).siblings(".submenu").slideUp(); // Сворачиваем текущее подменю
+//      $(this).children(".toggle-symbol").text('⊙'); // Опционально, заменяем тоггл-символ, возвращая исходный символ, при сворачивании
+    }
+  });
+});
+
+
+
+
+// Закрытие меню через "крестик в правом верхнем углу" с селектором .menu .icon-close + изменение текста в бургере 
+document.querySelector('.menu .icon-close').addEventListener('click', function() {
+    var menu = document.querySelector('.menu');
+    menu.style.display = 'none';  // Закрытие меню
+    // document.querySelector('.burger').innerHTML = 'Меню';  // Изменение текста бургера, если текст бургера менялся
+    // Эквивалентное поэтапное изменение текста бургера с определением переменной
+    // var burger = document.querySelector('.burger');  // Получение элемента бургера
+    // burger.innerHTML = 'Меню'; // Возвращаем изначальный текст на бургере
+});
+
+
+
+
+// Закрытие меню при клике вне его области и вне кнопки открытия + изменение текста в бургере
+document.addEventListener('click', function(event) {
+  var menu = document.querySelector('.menu');
+  if (!menu.contains(event.target) && event.target !== document.querySelector('.burger')) {
+    menu.style.display = 'none';
+    // document.querySelector('.burger').innerHTML = 'Меню'; // Опциональное назначение теста в бургере, если он изменялся
+  }
+});
+
+
+
+
+// Выделение пункта меню цветом и насыщенностью, если ссылка соответствует адресу текущей страницы
+// Если ссылка относится к подпункту, то вызванное меню будет раскрыто на родительском пункте
+// Выделение пункта обновляется в соответствии с текущим url адресом страницы, включая переключение между якорными ссылками
+function highlightCurrentMenuItem() {
+  var currentPage = window.location.href;
+  var menuLinks = document.querySelectorAll('.menu a');
+
+  menuLinks.forEach(function(link) {  // Перебор всех найденных ссылок в меню
+    if (currentPage.includes(link.getAttribute('href'))) {  // проверяем, содержит ли текущая страница адрес из ссылки меню
+      link.style.setProperty('color', '#F8A95A', 'important');  // Аналогично упрощенному: link.style.color = '#F8A95A';
+      link.style.setProperty('font-weight', '800');  // Аналогично упрощенному: link.style.fontWeight = '800';
+      
+      if (link.parentElement.classList.contains('submenu')) {  // Проверяем, является ли найденная ссылка подпунктом
+        link.closest('.item').querySelector('.toggle').click();  // Если ссылка относится к подпункту, вызывается клик по родительскому пункту, чтобы раскрыть его.
+      }
+    } else {
+      // Сбрасываем стили, если ссылка не соответствует текущей странице
+      link.style.color = 'initial';
+      link.style.fontWeight = 'initial';
+    }
+  });
+}
+
+// Вызываем функцию при загрузке страницы и при изменении адреса страницы (например, при переходе по якорным ссылкам)
+document.addEventListener('DOMContentLoaded', function() {
+  highlightCurrentMenuItem();
+});
+
+window.addEventListener('hashchange', function() {
+  highlightCurrentMenuItem();
+});
+</script>

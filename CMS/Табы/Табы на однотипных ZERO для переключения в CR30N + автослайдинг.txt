@@ -1,0 +1,73 @@
+https://mo-ti.ru/zerotabblock
+
+
+- Создали блок CR30N на 6 слайдов (скорость анимации - быстро)
+
+- Создали 6 ZeroBlock для каждого слайда
+	- в каждом блоке по 6 таб-кнопок для персон. Задали им классы
+	person_1, person_2, person_3, person_4, person_5, person_6
+	- в каждом создали 2 иконки со стрелками и задали им классы
+	person_left , person_right
+
+- Продублировали первый и последний слайды Zero
+
+- Добавили код на страницу в блок Другое - Т123
+В коде прописали ID СR30N: #rec304257140
+
+
+
+<style>
+.person_tab_slider .t-slds_animated.t-slds_animated-fast{
+    -webkit-transition:height ease-in-out 0s,transform ease-in-out 0s;
+    -moz-transition:height ease-in-out 0s,transform ease-in-out 0s;
+    -o-transition:height ease-in-out 0s,transform ease-in-out 0s;
+    transition:height ease-in-out 0s,transform ease-in-out 0s
+}
+.person_tab_slider .t734 { height: auto !important}
+.person_tab_slider  { 
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+.tn-elem[class*="person_"] , .person_right, .person_left { cursor:pointer}  
+.person_tab_slider .t-slds__arrow_container, .person_tab_slider .t-slds__bullet_wrapper { display: none}
+</style>
+
+<script>
+$(document).ready(function(){
+//Формируем таб
+let sldID = ['#rec304257140'];
+setTimeout(function(){
+for (let i=0; i<sldID.length; i++){
+    let sliderEl = sldID[i]+' .t-slds__item'; 
+    $(sldID[i]).addClass('person_tab_slider');
+    let slidercount = $(sliderEl).length; $(sliderEl).empty(); let start=0;
+    if(!$(sliderEl+'[data-slide-index="0"]').length){start=1};
+    for (let j=0; j<slidercount; j++){
+        let sInd = j+start;
+        if(start){ slideId = '#'+$(sldID[i]).next().next('div[data-record-type="396"]').attr('id');
+        }else{ slideId = '#'+$(sldID[i]).next('div[data-record-type="396"]').attr('id') 
+        if(j==0){sInd=slidercount-1};if(j==slidercount-1){sInd=0};
+        }; $(slideId).appendTo(sliderEl+'[data-slide-index='+(sInd)+']');
+    };  if(start){ $(sldID[i]).next().hide(); $(sldID[i]).next().next().hide()};
+};
+}, 100); 
+//Клик на таб элемент
+$('div[class*="person_"]').click(function(){
+    let mainslider = $(this).closest('.person_tab_slider');
+    let personSumm = mainslider.find('div[class*="person_"]').length;
+    let personClass = $(this).attr('class'); let personNum;
+    for (let i=1; i<personSumm+1;i++){ let personGoal = personClass.includes('person_'+i);if (personGoal) personNum=i;};
+    mainslider.find('.t-slds__bullet[data-slide-bullet-for="'+personNum+'"]').click();
+}); 
+//Клик на стрелки
+$('.person_right').click(function(){
+    let mainslider = $(this).closest('.person_tab_slider');
+    mainslider.find('.t-slds__arrow_wrapper-right').click();
+});
+$('.person_left').click(function(){
+    let mainslider = $(this).closest('.person_tab_slider');
+    mainslider.find('.t-slds__arrow_wrapper-left').click();
+}); 
+});    
+</script>

@@ -1,0 +1,85 @@
+https://mo-ti.ru/zeroactivelink
+https://levelup.mo-ti.ru/student/lessons/52
+
+
+На основе блока ME103 для навигации на странице через табы по созданным якорям, которые указываются в оригинальном блоке
+Пример включает боковое меню из элементов шейпов с текстом, например, где тексту задается pointer events:none, для упрощения доступа к шейпу со ссылкой, либо иным образом
+
+- Создали меню МЕ103 , сделали статичным и расположили в конце страницы
+Добавили в него пункты и ссылки
+Начало - #top
+Услуги - #services
+Отзывы - #reviews
+Вопросы - #faq
+Контакты - #contacts
+
+- Создали ZeroBlock с высотой 0рх, overflow-visible, без фона
+Добавили в него 5 элементов shape и 5 элементов text.
+Задали им ссылки
+#top #services #reviews #faq #contacts
+
+- Для плавного скрола задали соответствующий блок
+
+- Добавили скрипт в блок Другое - Т123
+В скрипте прописали ID Zero
+$('#rec153128822').addClass('slvMen');
+и ID меню ME103
+$('#rec153126587').addClass('sgnMen');
+
+
+
+
+<style>
+.sgnMen {
+    display:none;
+}
+.slvMen {
+    position:fixed;    
+    width:100%;
+    top: 70px;
+    z-index:999;
+}
+
+.slvMen a.tn-atom[href^="#"] {
+    transition: all 0.2s linear;
+}
+
+/* Стилизация текста активной вкладки */
+.activelink{
+    color: #ffffff !important;
+    transform: translateX(20px);
+    text-decoration:underline;
+}
+
+/* Стилизация фона активной влкадки - шейпа
+Если станет применяться кнопка или иной элемент, то потребуется задать соответствующее обращение, например - button для кнопки */
+div[data-elem-type="shape"] .activelink {
+    background-color:#000 !important;
+}
+</style>
+<script>
+$( document ).ready(function() {
+$('#rec166121709').addClass('slvMen');
+$('#rec166121685').addClass('sgnMen');
+var t229_navLinks = $(".sgnMen .t229__list_item a:not(.tooltipstered)[href*='#']");
+ //if (t229_navLinks.length > 0) {t229_catchScroll(t229_navLinks); };
+function chekMenu(){
+if($('.sgnMen .t-menu__link-item').hasClass('t-active')) {
+var anclink = $('.sgnMen .t-menu__link-item.t-active').attr('href');
+$('.slvMen a.tn-atom[href^="#"]').removeClass('activelink');
+$('.slvMen a.tn-atom[href='+anclink+']').addClass('activelink');
+}else{$('.slvMen a.tn-atom[href^="#"]').removeClass('activelink'); };
+};
+var target = document.querySelector('.t229 .t-menu__link-item');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.target).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+            chekMenu();
+	};  
+});
+});
+observer.observe( target , {  attributes: true});
+setTimeout(function(){ chekMenu();}, 1000);
+});
+</script>

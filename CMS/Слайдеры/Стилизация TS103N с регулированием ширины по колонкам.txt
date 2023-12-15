@@ -1,0 +1,85 @@
+https://mo-ti.ru/backgroundts103n
+https://levelup.mo-ti.ru/student/lessons/109
+
+
+
+Редкий слайдер не на весь экран, который имеет настраиваемый текст, кнопку, фото на всю ширину слайдера и небольшой scale эффект, при наведении на слайд
+Большинство настроек стилей указываются в настройках самого блока, в том числе автослайдинг, цвет и шрифт. Например, в настройках галереи можно установить эффект смены слайдов, как "медленно", а скорость в 8000млс
+
+
+- Создали блок TS103N
+	Настройки :
+	- отразить по горизонтали (+)
+	- ширина 10 колонок
+	- высота 550px
+
+- Оформили контент:
+Текст слайда заполняется в поле "заголовок", заголовок слайда заполняется в поле "текст", а текст и ссылка кнопки заполняются в поле "описание"
+
+- Добавили блок Т123 и вставили в него код
+
+
+
+<style>
+.t728 .t-slds__main.t-container, .t728__wrapper {
+    position: relative;
+}
+.t728__wrapper {display: flex !important}
+.t728__imgcell {
+    flex: 0 0 100%;
+    overflow: hidden;
+}
+.t728__textcell {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.t728__textwrapper div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.t728__imgcell:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.t728__bgimg , .t728__imgcell:after, .t728__descr, .t728__descr a {
+    transition: all 0.6s ease-in-out;
+}
+.t728__wrapper:hover .t728__imgcell:after{ opacity:0}
+.t728__wrapper:hover .t728__bgimg {transform: scale(1.03)}
+.t728__descr {width: max-content}
+.t728__descr {
+    width: max-content;
+    padding: 10px 30px;
+    border: 1px solid #fff;
+    border-radius: 30px;
+}
+.t728__descr:hover{ background-color:rgba(255,255,255, 1)}
+.t728__descr a {color: #fff !important}
+.t728__descr:hover a {color: #000 !important}
+
+@media screen and (max-width: 1200px){
+.t728__text { font-size: 50px !important}
+.t728__title { font-size: 26px !important}
+}
+@media screen and (max-width: 640px){
+.t728__text { font-size: 40px !important}
+.t728__title { font-size: 20px !important}
+.t728__imgcell { min-height: 400px !important}
+}
+@media screen and (max-width: 480px){
+.t728__text { font-size: 26px !important}
+.t728__title { font-size: 16px !important}
+.t728__descr{
+font-size: 14px !important;
+padding: 6px 20px;
+}
+}
+</style>

@@ -1,0 +1,1202 @@
+https://mo-ti.ru/button-effects
+https://mo-ti.ru/button-effects2
+
+
+
+
+
+
+
+==================== Стеклянная кнопка с бликом по наведению ====================
+<a href="#" class="button9">Скачать</a>
+
+<style>
+a.button9 {
+    width: 210px;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f1f1f170 !important;
+    font-family: 'TildaSans';
+    font-weight: 400;
+    font-size: 24px;
+    text-decoration: none;
+    text-shadow: rgb(255 255 255 / 30%) -2px -2px 3px, rgb(0 0 0 / 70%) 1px 5px 3px;
+    user-select: none;
+    border-radius: 30px;
+    background-image:
+        linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+        linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+        linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+        linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+a.button9:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+a.button9:active {
+    top: 1px;
+}
+</style>
+
+
+
+
+==================== BF301 Легкий всплеск тени + fade-in unicode телефон справа ====================
+<script>
+        $('.t185 .t-btn').addClass("nicehand");  
+  </script>
+
+<style>
+   
+  .nicehand{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+    transition: 500ms ease all !important;
+    width: 200px;
+    }
+    .nicehand:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-indent: -20px;
+    transition: all 0.2s linear 0s;
+    }
+   
+    .nicehand:before
+    
+    {
+    content: "\260E";
+    font-family: Arial;
+    font-size: 24px;
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    right: 10px;
+    top: 0;
+    opacity: 0;
+    height: 100%;
+    width: 40px;
+    -webkit-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+}
+    
+    .nicehand:hover:before 
+    {
+    opacity: 1;
+    text-indent: 0px;
+    }
+     
+</style>
+
+
+
+==================== BF301 Легкий всплеск тени + ease-in unicode указательный палец справа ====================
+<script>
+        $('.t185 .t-btn').addClass("nicelike");  
+ </script>
+
+<style>
+    
+  .nicelike{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+    transition: 500ms ease all !important;
+    width: 200px;
+    }
+    .nicelike:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-indent: -20px;
+    transition: all 0.2s linear 0s;
+    }
+   
+    .nicelike:before
+    
+    {
+    content: "\261E";
+    font-family: Arial;
+    font-size: 40px;
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    right: -40px;
+    width: 40px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0px 6px 6px 0px;
+    -webkit-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+    text-align: center;
+    
+}
+   
+    .nicelike:hover:before 
+    {
+    right: 0;
+    text-indent: 0px;
+    }
+       
+</style>
+
+
+
+==================== BF301 Легкий всплеск тени + ease-in unicode чашка чая или кофе слева ====================
+<script>
+           $('.t185 .t-btn').addClass("lefthand");  
+   </script>
+
+<style>
+   
+  .lefthand{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+    transition: 500ms ease all !important;
+    width: 200px;
+    }
+    .lefthand:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-indent: 20px;
+    transition: all 0.2s linear 0s;
+    }
+   
+    .lefthand:before
+    
+    {
+    content: "\2615";
+    font-family: Arial;
+    font-size: 20px;
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0 50% 50% 0;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    -webkit-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+    
+}
+    
+    .lefthand:hover:before 
+    {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+    text-indent: 0;
+    }
+       
+</style>
+
+
+
+==================== BF101 Всплеск яркой тени ====================
+<style>
+.t142__submit:hover{
+    box-shadow: none;
+    -webkit-animation: si-button-pulse 0.8s 0s ease-out 1;
+    -moz-animation: si-button-pulse 0.8s 0s ease-out 1;
+    animation: si-button-pulse 0.8s 0s ease-out 1;
+    overflow: hidden;
+}
+.t142 {
+    overflow: visible !important;
+}
+@keyframes si-button-pulse {
+    from {box-shadow: 0 0 8px 6px #ffad1f, 0 0 12px 14px #ffad1f;}
+
+    to {box-shadow: 0 0 10px 4px rgba(255, 48, 26, 0), 0 0 5px 30px rgba(255, 48, 26, 0);}
+}
+</style>
+
+
+
+==================== BF301 Классический тонкий блик сверху слева ====================
+    <script>
+     $('.t185 .t-btn').addClass("light");   
+</script>
+
+<style>
+
+  .light{
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    }
+    .light:hover {
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    color: #ffffff;
+    z-index: 8;
+}
+    .light:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    -webkit-transform: skewX(-45deg) translateX(0);
+    transform: skewX(-45deg) translateX(0);
+    -webkit-transition: none;
+    transition: none;
+}    
+    .light:hover:before {
+    webkit-transform: skewX(-45deg) translateX(13.5em);
+    transform: skewX(-45deg) translateX(22.5em);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+</style>
+
+
+
+==================== BF302 Классический блик слева снизу ====================
+<script>
+        $('.t580__btn').addClass('autoink').append('<div class="ink animate" style="height: 200px;width: 250px;top: -20px;left: -140px;"></div>');
+</script>
+
+<style>
+     .autoink{
+        position: relative;
+        overflow: hidden;
+       -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+    .ink{
+       display: block;
+       position: absolute;
+       background: rgba(255, 255, 255, 1.0);
+       border-radius: 100%;
+       -webkit-transform: scale(0);
+       -moz-transform: scale(0);
+       -o-transform: scale(0);
+       transform: scale(0);
+       z-index: 20;  
+    }
+    
+    .animate {
+    webkit-animation: ripple 4s linear infinite;
+    -moz-animation: ripple 4s linear infinite;
+    -ms-animation: ripple 4s linear infinite;
+    -o-animation: ripple 4s linear infinite;
+    animation: ripple 4s linear infinite;
+     }
+   @keyframes ripple {  
+    20% {     
+        opacity: 0;     
+        transform: scale(2.5);
+        }
+    100% {     
+        opacity: 0;     
+        transform: scale(2.5);
+        }
+   }    
+</style>
+
+
+
+==================== BF302 Классический блик слева сверху ====================
+<script>
+          
+    $('.t580__btn').addClass('autoflash').append('<div class="flash lighting" style="height: 60px;width: 40px;top: 0px;left: -140px;"></div>');
+</script>
+
+<style>
+
+     .autoflash{
+        position: relative;
+        overflow: hidden;
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+     .flash{
+       content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    -webkit-transform: skewX(-45deg) translateX(0);
+    transform: skewX(-45deg) translateX(0);
+    -webkit-transition: none;
+    transition: none;
+    }
+    
+    .lighting {
+    webkit-animation: moving 3s ease-in-out infinite;
+    -moz-animation: moving 3s ease-in-out infinite;
+    -ms-animation: moving 3s ease-in-out infinite;
+    -o-animation: moving 3s ease-in-out infinite;
+    animation: moving 3s ease-in-out infinite;
+   
+    }
+    
+  @keyframes moving {  
+     30% {  webkit-transform: skewX(-45deg) translateX(33.5em);
+        transform: skewX(-45deg) translateX(33.5em);   
+        
+        }
+   
+    100% {  webkit-transform: skewX(-45deg) translateX(33.5em);
+        transform: skewX(-45deg) translateX(33.5em);   
+        
+        }
+     }
+      
+</style>
+
+
+
+==================== BF101 Всплеск изнутри от текста ====================
+<style>
+.circleflash {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease-in-out;
+  padding: 0 60px;
+}
+
+.circleflash span {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: width 0.8s ease-in-out, height 0.8s ease-in-out;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+.circleflash:hover {
+  color: #000000 !important;
+}
+.circleflash:hover span {
+  width: 225%;
+  height: 562.5px;
+}
+.circleflash:active {
+  background-color: #e2e2e2;
+}
+
+ .t-btn.t142__submit {
+    padding: 0;
+    overflow: hidden;
+}
+</style>
+
+
+<script>
+ $(document).ready(function() {
+   $('.t142__submit').addClass('circleflash').wrapInner('<div style="position: relative; z-index: 1;    height: inherit; display: table-cell;vertical-align: middle;  "></div>').append('<span></span>');
+});
+
+    $(function() {  
+  $('.circleflash')
+    .on('mouseenter', function(e) {
+			var parentOffset = $(this).offset(),
+      		relX = e.pageX - parentOffset.left,
+      		relY = e.pageY - parentOffset.top;
+			$(this).find('span').css({top:relY, left:relX})
+    })
+    .on('mouseout', function(e) {
+			var parentOffset = $(this).offset(),
+      		relX = e.pageX - parentOffset.left,
+      		relY = e.pageY - parentOffset.top;
+    	$(this).find('span').css({top:relY, left:relX})
+    });
+});
+</script>
+
+
+
+==================== BF301 Блик загрузки ====================
+<script>
+       
+    $('.t185 .t-btn').addClass("swipe");   
+</script>
+
+<style>
+   
+  .swipe{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+   }
+   
+    .swipe:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .swipe:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    z-index: -1;
+}
+    .swipe:hover:before{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+        
+</style>
+
+
+
+==================== BF301 Пружинящий блик загрузки ====================
+<script>
+    $('.t185 .t-btn').addClass("swipe");
+</script>
+<style>
+   .swipe{
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: 0.5s ease-out;
+    transition: 0.5s ease-out;
+   }
+    .swipe:before {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: -1;
+}    
+    .swipe:hover:before {
+    left: 0;
+    z-index: -5;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+    .swipe:hover {
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    color: #696969 !important;
+    z-index: 8;
+} 
+</style>
+
+
+
+==================== BF301 Эллипс блик сверху ====================
+<script>
+      $('.t185 .t-btn').addClass("pos_aware");   
+</script>
+
+<style>
+   .pos_aware{
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+   }
+    .pos_aware:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: -1;
+}    
+    .pos_aware:hover {
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    color: #e91e63;
+    z-index: 8;
+}
+    .pos_aware:hover:before {
+    -webkit-transform: scale(8.3);
+    transform: scale(8.3);
+}
+ </style>
+
+
+
+ ==================== BF301 Трапецевидное наложение блика снизу слева ====================
+ <script>
+    $('.t185 .t-btn').addClass("diagonal_swipe_left");   
+</script>
+
+<style>
+ 
+  .diagonal_swipe_left{
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+       
+   }
+ 
+    .diagonal_swipe_left:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 0%;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    border-right: 50px solid transparent;
+    border-bottom: 80px solid #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: -1;
+}    
+
+    .diagonal_swipe_left:hover {
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    color: #ffffff;
+    z-index: 8;
+}
+    .diagonal_swipe_left:hover:before {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+</style>
+
+
+
+ ==================== BF301 Сверкающий ромбический блик от всех краев ====================
+<script>
+          $('.t185 .t-btn').addClass("rmbswipe");  
+  </script>
+<style>
+ 
+  .rmbswipe{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .rmbswipe:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .rmbswipe:before ,
+    .rmbswipe:after 
+    {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top: 30px solid #ffffff;
+    border-bottom: 30px solid #ffffff;
+    z-index: -1;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+    .rmbswipe:before{
+    border-right: 30px solid transparent;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+    .rmbswipe:after{
+    border-left: 30px solid transparent;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+    .rmbswipe:hover:before{
+    -webkit-transform: translateX(-30%);
+    transform: translateX(-30%);
+    }
+   
+    .rmbswipe:hover:after
+    {
+   -webkit-transform: translateX(30%);
+    transform: translateX(30%);
+}   
+</style>
+
+
+
+==================== BF301 Сверкающие пересекающиеся блики трапеций  ====================
+<script>
+     
+    $('.t185 .t-btn').addClass("sliceswipe");  
+ 
+</script>
+
+<style>
+   
+ 
+  .sliceswipe{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+   .sliceswipe:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .sliceswipe:before ,
+    .sliceswipe:after 
+    {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0 solid;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    z-index: -1;
+}
+    .sliceswipe:before{
+    bottom: 0;
+    left: 0;
+    border-color: transparent transparent transparent #ffffff;
+}
+    .sliceswipe:after{
+    top: 0;
+    right: 0;
+    border-color: transparent #ffffff transparent transparent;
+}
+
+    .sliceswipe:hover:before , 
+    .sliceswipe:hover:after{
+    border-width: 70px 262.5px;
+    }
+    
+</style>
+
+
+
+==================== BF301 Сверкающие блики трапеций от краев снизу ====================
+<script>
+    $('.t185 .t-btn').addClass("dblswipe");  
+   
+</script>
+
+<style>
+ 
+  .dblswipe{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .dblswipe:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .dblswipe:before ,
+    .dblswipe:after 
+    {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 80px solid #ffffff;
+    z-index: -1;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+    .dblswipe:before{
+    right: -50px;
+    border-right: 50px solid transparent;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+    .dblswipe:after{
+    left: -50px;
+    border-left: 50px solid transparent;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+    .dblswipe:hover:before 
+    {
+    -webkit-transform: translateX(-40%);
+    transform: translateX(-40%);
+}
+    .dblswipe:hover:after{
+    -webkit-transform: translateX(40%);
+    transform: translateX(40%);
+    }
+        
+</style>
+
+
+
+ ==================== BF301 Сверкающие блики шаров от краев в центр с заполнением ====================
+ <script>
+        $('.t185 .t-btn').addClass("colusion");   
+</script>
+
+<style>
+   
+ .colusion{
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    -webkit-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+    }
+    .colusion:hover {
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+    color: #ffffff;
+    z-index: 8;
+    } 
+    .colusion:before, #rec40080687 .colusion:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50px;
+    z-index: -5;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+     .colusion:before {
+    top: 30px;
+    left: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}    
+    .colusion:after {
+    top: 30px;
+    right: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+    .colusion:hover:after {
+    -webkit-transform: translateX(-530%) scale(10);
+    transform: translateX(-530%) scale(10);
+}
+    .colusion:hover:before {
+    webkit-transform: translateX(530%) scale(10);
+    transform: translateX(530%) scale(10);
+}
+   </style>
+
+
+
+==================== BF301 Сияние с бордер линиями по низу и верху ====================
+<script>
+         
+    $('.t185 .t-btn').addClass("line");   
+</script>
+
+<style>
+
+  .line{
+    border: none;
+    position: relative;
+    transition: 800ms ease all;
+    outline: none;
+       
+   }
+   
+    .line:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .line:before,  .line:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #fdd82a;
+    transition: 400ms ease all;
+}
+
+   .line:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+    .line:hover:before, .line:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+       
+</style>
+
+
+
+==================== BF301 Шахматный затвор ====================
+<script>
+    $('.t185 .t-btn').addClass("stripe").append('<span></span>');  
+</script>
+
+<style>
+  
+  .stripe{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .stripe:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .stripe:before , .stripe:after ,  .stripe span:before ,  .stripe span:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 25.25%;
+    height: 0;
+    background-color: #ffffff;
+    left: 0;
+    z-index: -1;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+    .stripe:before{
+    top: 0;
+    left: 0;
+}
+    .stripe:after{
+    top: 0;
+    left: 50%;
+}
+    .stripe span:before{
+    top: auto;
+    bottom:0px;
+    left: 25%;
+}
+    .stripe span:after{
+    top: auto;
+    bottom:0px;
+    left: 75%;
+}    
+    
+    .stripe:hover:before,  .stripe:hover:after , 
+    .stripe:hover span:before, .stripe:hover span:after
+    
+    {
+        height: 80px;
+}
+       
+</style>
+
+
+
+ ==================== BF301 Смуш ворота закрывающиеся в центре ====================
+<script>
+       
+    $('.t185 .t-btn').addClass("smgate");  
+   
+</script>
+
+<style>
+    
+  .smgate{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .smgate:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .smgate:before ,
+    .smgate:after 
+    {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    z-index: -1;
+}
+    .smgate:before{
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+    .smgate:after{
+    webkit-transform: translateY(100%);
+    transform: translateY(100%);
+}
+
+    .smgate:hover:before 
+    {
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    }
+    .smgate:hover:after {
+    webkit-transform: translateY(50%);
+    transform: translateY(50%);    
+    }
+    
+</style>
+
+
+
+ ==================== BF301 Вертящееся перекрытие темных цветов по вертикали ====================
+<script>
+ 
+    $('.t185 .t-btn').addClass("vertoverlop").append('<span></span>');
+</script>
+
+<style>
+   
+
+  .vertoverlop{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .vertoverlop:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .vertoverlop:before ,
+    .vertoverlop:after ,
+    .vertoverlop span:before ,
+    .vertoverlop span:after 
+    {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+    .vertoverlop:before{
+   
+}
+
+    .vertoverlop:after , 
+    .vertoverlop span:before
+    {
+    top: auto;
+    bottom: 0;
+}
+
+    .vertoverlop span:after ,
+    .vertoverlop span:before{
+   -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+    .vertoverlop:hover:before ,
+    .vertoverlop:hover:after ,
+    .vertoverlop:hover span:before ,
+    .vertoverlop:hover span:after {
+    
+    height: 80px;
+    
+    }
+ 
+</style>
+
+
+
+ ==================== BF301 Вертящееся перекрытие темных цветов по горизонтали ====================
+<script>
+    $('.t185 .t-btn').addClass("horizoverlap").append('<span></span>'); 
+</script>
+
+<style>
+    
+  .horizoverlap{
+    border: none;
+    position: relative;
+    transition: 500ms ease all;
+    outline: none;
+    overflow: hidden;
+    z-index:1;
+
+    }
+    .horizoverlap:hover{
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+   
+    .horizoverlap:before ,
+    .horizoverlap:after ,
+    .horizoverlap span:before ,
+    .horizoverlap span:after 
+    {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+    .horizoverlap:before{
+   
+}
+
+    .horizoverlap:after , 
+    .horizoverlap span:before
+    {
+    left: auto;
+    right: 0;
+}
+
+    .horizoverlap span:after ,
+    .horizoverlap span:before{
+   -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+    .horizoverlap:hover:before ,
+    .horizoverlap:hover:after ,
+    .horizoverlap:hover span:before ,
+    .horizoverlap:hover span:after {
+    
+    width: 100%;
+    
+    }
+    </style>

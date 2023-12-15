@@ -1,0 +1,14 @@
+https://dsgnmax.ru/mini-code/tpost/41vie14ce1-stilizatsiya-nazvaniya-razdela-potoka
+
+С помощью кода можно изменить стандартный внешний вид обозначения разделов потока, добавив фон, отступы и изменить регистр символов
+
+<style>
+.t-feed__post-tag {
+    padding:8px 12px;   /*Отступы снизу и сверху от текста*/
+    background-color: #EAF6FF;  /*Цвет фона лейбла*/
+    border-radius:100px;    /*Скругление углов*/
+    color:#269DF7;  /*Цвет текста лейбла*/
+    text-transform: uppercase;  /*Настройка регистра символов (capitalize | lowercase | uppercase | none | inherit)*/
+}
+
+</style>

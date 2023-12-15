@@ -1,0 +1,79 @@
+https://mo-ti.ru/carouselslider
+https://levelup.mo-ti.ru/student/lessons/100
+
+
+Удобство галиреи GL10 объясняется возможностью пакетной загрузки изображений и сохранением статичного пространства, изображения в нем автоматически переводятся в формат слайдера
+- Создали ZeroBlock
+Добавили контентное наполнение 
+
+Добавили две иконки со стрелками и задали им классы prev_slide и next_slide
+
+Добавили элемент HTML (блок галереи), задали элементу класс slider_html
+Размеры элемента из примера
+1 screen - 750x220 ; 2 screen - 490x200 ; 3 screen - 100%(W)x200
+4 screen - 100%(W)x200 ; 5 screen - 100%(W)x240
+
+- Добавили блок GL10 и загрузили в него картинки (12 шт)
+
+- Добавили первый и второй код в блок другое Т123
+Во втором коде вписали ID блока GL10
+let gl10ID = '#rec256848888';
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<style>
+div[data-record-type="418"]{display:none}
+.slick-slide, .slick-slide a, .slick-slide .t-btn { outline: none}
+.slick-track { display: flex}
+@media screen and (max-width:960px){
+.slick-slide{ margin-bottom: 0 !important}
+}
+@media screen and (max-width:600px){
+.slick-track { height: auto; display:block !important;}
+}
+.slider_html  .tn-atom__html , .slider_wrapper {width: inherit; height:inherit}
+.slick-list, .slick-slide , .slick-track{ height:100% !important}
+.slick-track>div {
+    background-size: cover;
+    background-position: center;
+    margin: 0 0px;
+}
+div[class*="_slide"]{ cursor:pointer}  
+</style>
+
+<script>
+$(document).ready(function(){
+setTimeout(function() {
+let gl10ID = '#rec256848888';
+$('.slider_html').html('<div class="slider_wrapper"></div>');
+$(gl10ID).find('.t-bgimg meta').each(function( index ) {
+  $('.slider_wrapper').append('<div style=" background-image:url('+$(this).attr('content')+') "></div>')
+});
+$('.slider_wrapper').slick({
+      prevArrow: $('.prev_slide'),
+      nextArrow: $('.next_slide'),
+      infinite: true,
+      lazyLoad: 'ondemand',
+      slidesToScroll: 1,
+      arrows:true,
+      dots:false, 
+      pauseOnDotsHover:true,
+      mobileFirst:true, 
+      speed:750, 
+      adaptiveHeight:true,
+      autoplay:true,
+      autoplaySpeed:4000,
+      responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 3 } },
+        { breakpoint: 960,  settings: { slidesToShow: 2 } },
+        { breakpoint: 640,  settings: { slidesToShow: 2 } },
+        { breakpoint: 480,  settings: { slidesToShow: 2 } },
+        { breakpoint: 300,  settings: { slidesToShow: 1 } }
+      ]
+    });
+}, 300);          
+});
+</script>

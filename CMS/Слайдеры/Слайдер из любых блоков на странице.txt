@@ -1,0 +1,81 @@
+https://mo-ti.ru/sliderpl310
+https://levelup.mo-ti.ru/student/lessons/127
+
+На примере блока PL310 и других однотивных блоков
+- Создали рядом 3 блока PL310
+
+- Добавили код в блок Другое - Т123
+Обращение к блокам производится либо по id, либо через числовой индекс атрибута data-record-type="индекс" в инспекторе кода
+Желательно задать одинаковую высоту для всех отображаемых блоков
+В бесконечной галерее присутствует проблема "прогрузки" контента, при переходе между первым и последним слайдами
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<style>
+.slick-slide {outline: none}
+.slick-next {right: -100px}
+.slick-prev {left: -100px}
+.slick-prev, .slick-next {
+    width: 40px;
+    height: 40px;
+    z-index: 99;
+    transition: all 0.3s ease-in-out;
+}
+.single-item.slick-slider:hover .slick-prev {left: 10px}
+.single-item.slick-slider:hover .slick-next {right: 10px}
+
+.slick-dots li button:before {
+    font-size: 10px;
+    color: #b7b7b7 !important;
+}
+.slick-dots li.slick-active button:before {
+    color: #000 !important;
+}
+button.slick-arrow:before {
+    content: "";
+    font-size: 0;
+    background-image: url(https://static.tildacdn.com/tild6539-6632-4333-b763-626164316234/Groupleftarrow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+}
+button.slick-next:before {transform: rotate(180deg)}
+.slick-dotted.slick-slider {margin-bottom: 0}
+.slick-dots {bottom: 5px}
+ul.slick-dots { padding-left: 0 !important}
+.slick-dots li button:before { font-size: 10px; color: #fff;}
+.slick-dots li.slick-active button:before {color:  #fff}
+@media screen and (max-width:980px){
+    button.slick-arrow{display:none !important}
+}
+</style>
+
+<script>
+$(document).ready(function(){
+    
+let listBlock = ['[data-record-type="812"]']; //Перечисление по атрибуту
+//let listBlock = ['#rec372472386, #rec372475629']; //Перечисление по ID    
+
+$.each(listBlock,function(index,value){ $(value).wrap('<div class="single_wrapper"></div>')});
+$('.single_wrapper').wrapAll('<div class="single-item"></div>'); 
+
+$('.single-item').slick({
+   arrows: true, 
+   dots: true, 
+   pauseOnDotsHover: true,
+   mobileFirst: true, 
+   speed: 1200, 
+   adaptiveHeight: true,
+   autoplay: true,
+   autoplaySpeed: 5000
+});
+
+});
+</script>

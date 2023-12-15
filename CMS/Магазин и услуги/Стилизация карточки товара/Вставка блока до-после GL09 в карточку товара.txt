@@ -1,0 +1,81 @@
+https://mo-ti.ru/popupshop
+
+
+Добавим галерею ДО/ПОСЛЕ GL09, ключевую фразу IP405 и галерею с примерами работ GL12 в popUp окно карточки товара блока магазина ST305N
+
+Код 1 - базовые визуалные настройки
+Код 2 - Обновление галереи при открытии popUp окна
+Код 3 - Интеграция блоков в popUp
+
+На примере блок До/После настроен: Ширина 5 колонок/отступ 1 колонка
+
+Скрипт вставляется в блок ДРУГОЕ►Т123
+
+
+
+<style>
+/*Скрываем галереи в popUp*/
+    .t776__container .t-slds{
+    display:none;
+    }   
+/*Ширина блока с примерами работ*/    
+    .primery {
+    width: 70%;
+    clear: both;
+}
+/*При ширине экрана меньше 960рх делаем ширину блока с примерами на 100%*/
+@media screen and (max-width: 960px){
+ .primery {
+    width: 100%;
+}}
+</style>
+
+
+
+<script>
+/*При открытии popUp окна обновляем слайдер ДО-ПОСЛЕ*/    
+    $('.t776__col a').click(function(){
+      setTimeout(function() { $('.t410')[0].click() }, 200);
+  });
+     var fireRefreshEventOnWindow = function () {
+     var evt = document.createEvent("HTMLEvents");
+     evt.initEvent('resize', true, false);
+     window.dispatchEvent(evt);
+ };
+  $('.t410').bind('click',function(){
+    fireRefreshEventOnWindow();
+  });
+</script>
+
+
+
+<script>
+    //Первая карточка
+    //Добавляем первый слайдер в левую колонку первой карточки
+    $("#rec46162425").appendTo(".t776__col_left:eq(0)");
+    //Добавляем новый блок в popUp окно
+    $(".t776__container:eq(0)").append("<div class='primery card0'></div>");
+    //Добавляем блок заголовка и примеров работ в popUp
+    $("#rec46168540 , #rec46168465").appendTo(".card0");
+   
+   
+   
+   //Вторая карточка
+    //Добавляем первый слайдер в левую колонку первой карточки
+    $("#rec46172692").appendTo(".t776__col_left:eq(1)");
+    //Добавляем новый блок в popUp окно
+    $(".t776__container:eq(1)").append("<div class='primery card1'></div>");
+    //Добавляем блок заголовка и примеров работ в popUp
+    $("#rec46173272 , #rec46172799").appendTo(".card1");
+   
+   
+   //Третья карточка
+    //Добавляем первый слайдер в левую колонку первой карточки
+    $("#rec46172859").appendTo(".t776__col_left:eq(2)");
+    //Добавляем новый блок в popUp окно
+    $(".t776__container:eq(2)").append("<div class='primery card2'></div>");
+    //Добавляем блок заголовка и примеров работ в popUp
+    $("#rec46173286 , #rec46172876").appendTo(".card2");
+   
+    
+</script>

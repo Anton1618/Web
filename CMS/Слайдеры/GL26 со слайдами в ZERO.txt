@@ -1,0 +1,134 @@
+https://mo-ti.ru/zerogl26slider
+https://levelup.mo-ti.ru/student/lessons/114
+
+
+
+- Создали блок GL26, добавили 4 картинки и задали такие настройки:
+Ширина 100% по умолчанию, чтобы точно хватило места для zero блока
+Высота миниатюр (карточек) - 70рх
+Скорость анимации - медленно, Время анимации - 8000
+Бесконечная галерея
+Автослайдинг по желанию
+
+- Создали 4 ZeroBlock под блоком GL26 (в примере используется SBS анимация)
+
+- Добавили код в блок Другое - Т123
+
+
+
+<script>
+$(document).ready(function(){
+
+let slidergl26 = ['div[data-record-type="989"]'];// Для нескольких слайдеров заменить на let slidergl26 = ['#rec11111111','#rec22222222'];
+
+$.each(slidergl26 ,function(index,value){
+    $(value).addClass('slidergl26');
+    let sldCol = $(value).find('.t989__img-item').length;
+    if(sldCol){
+        for (let i=1; i<=sldCol; i++){
+            $(value).next().appendTo(value+' .t989__img-item[data-slide-index="'+i+'"] .t989__img-wrapper');
+        };
+        };
+    setTimeout(function(){
+        let sldHgh = $(value).find('.t989__col .t-slds__items-wrapper');
+        let zeroHeight = $(value).find('.t989__col .t-slds__items-wrapper div[data-slide-index="1"] .t-rec').height();
+        sldHgh.css('cssText', sldHgh.attr('style')+'height:'+zeroHeight+'px !important;');
+        let arrowTop = zeroHeight/2;
+        $(value+' .t989 .t989__arrow').css('top', arrowTop+'px');
+    }, 300);
+});
+setTimeout(function(){$('.slidergl26').find('.tn-atom__sbs-anim-wrapper').closest('.tn-elem').addClass('t-sbs-elem')}, 300);
+setTimeout(function(){
+    let observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+    let newVal = $(mutation.target).prop(mutation.attributeName);
+    if (mutation.attributeName === "data-slider-curr-pos") {
+        let sldHeigth = $(mutation.target).find('.t-slds__item_active .t-rec').height();
+        $(mutation.target).css('cssText', $(mutation.target).attr('style')+'height:'+sldHeigth+'px !important;');
+        let mobArrow = $(mutation.target).closest('.t-slds').find('.t989__mobile-arrows .t-slds__arrow_wrapper');    
+        mobArrow.css('cssText', mobArrow.attr('style')+'height:'+sldHeigth+'px !important;');
+        let descArrow = $(mutation.target).closest('.t-slds').find('.t989__arrow');    
+        descArrow.css('cssText', descArrow.attr('style')+'top:'+(sldHeigth/2)+'px;');
+        $(mutation.target).find('.t-sbs-elem').removeClass('t-sbs-anim_started');
+        $(mutation.target).find('.t-animate').removeClass('t-animate_started');
+        setTimeout(function(){
+            $(mutation.target).find('.t-slds__item_active .t-sbs-elem').addClass('t-sbs-anim_started');
+            let bsAnim = $(mutation.target).find('.t-slds__item_active .t-animate');
+            if(!bsAnim.hasClass('t-animate_wait')){
+                bsAnim.addClass('t-animate_started');
+            };
+        }, 500);
+    };
+    });
+});
+$('.slidergl26').find('.t-slds__items-wrapper').each(function() {observer.observe(this, { attributes: true })});
+}, 2000);
+$(window).resize(function() {clearTimeout(window.resizedFinished); window.resizedFinished = setTimeout(function(){
+$('.slidergl26').each(function(){
+    let sldCol = $(this).find('.t989__img-item').length;
+    $(this).find('.t989__img-item[data-slide-index="'+(sldCol-2)+'"] .t-rec').remove();
+    $(this).find('.t989__img-item[data-slide-index="'+(sldCol-1)+'"] .t-rec').remove();
+    $(this).find('.t989__img-item[data-slide-index="0"] .t-rec').clone().appendTo($(this).find('.t989__img-item[data-slide-index="'+(sldCol-2)+'"] .t989__img-wrapper'));
+    $(this).find('.t989__img-item[data-slide-index="1"] .t-rec').clone().appendTo($(this).find('.t989__img-item[data-slide-index="'+(sldCol-1)+'"] .t989__img-wrapper'));
+    let sldWrapper = $(this).find('.t-slds__items-wrapper');
+    let sldHeigth = sldWrapper.find('.t-slds__item_active .t-rec').height();
+    sldWrapper.css('cssText', sldWrapper.attr('style')+'height:'+sldHeigth+'px !important;');    
+
+    let mobArrow = $(this).find('.t989__mobile-arrows .t-slds__arrow_wrapper');    
+    mobArrow.css('cssText', mobArrow.attr('style')+'height:'+sldHeigth+'px !important;');
+    let descArrow = $(this).find('.t989__arrow');    
+    descArrow.css('cssText', descArrow.attr('style')+'top:'+(sldHeigth/2)+'px;');
+});
+$('.slidergl26 .t-slds__item_active .t-sbs-elem').addClass('t-sbs-anim_started');
+$('.slidergl26 .t-slds__item_active .t-animate').addClass('t-animate_started');
+}, 1000);
+});
+});
+</script>
+
+<style>
+.slidergl26 .t989__thumbsbullets {position: static}
+.slidergl26 .t989__gallery-container, .slidergl26 .t-slds__container,
+.slidergl26 .t989__img-width { max-width: none}
+.slidergl26 .t989__img { display: none}
+.slidergl26 .t-slds__bullet_active {pointer-events: none}
+.slidergl26 .t989__img-wrapper>div { width: 100%}
+.slidergl26 .t989__gallery-wrapper {height: unset !important}
+.t989__gallery-container { padding-top: 0}
+.t989 .t-slds__items-wrapper {
+    height: auto !important;
+}
+.t989 ul.t-slds__arrow_container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.t989 .t-slds__thumbsbullet-wrapper {
+    position: relative;
+    z-index: 99;
+}
+
+
+.t989  .t-slds__container {
+    z-index: 199;
+}
+
+.t989 button.t989__arrow {
+    z-index: 200;
+}
+
+button.t989__arrow {
+    top: 50% !important;
+}
+
+button.t989__arrow.t989__arrow-left.t-slds__arrow-withbg {}
+
+@media screen and (max-width: 960px){
+.t989 .t989__gallery-wrapper, .t989 .t-slds__items-wrapper {
+    height: auto !important;
+}
+}
+</style>

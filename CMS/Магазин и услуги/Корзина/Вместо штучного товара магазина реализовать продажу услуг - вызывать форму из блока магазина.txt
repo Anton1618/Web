@@ -1,0 +1,36 @@
+https://mo-ti.ru/tpost/15z3hgmjv1-kak-iz-bloka-magazina-vizvat-formu-stili
+
+- Настроить корзину на странице с услугами. Отметить:
+--- Открывать корзину после выбора товара
+--- Не сохранять товара в корзине, для того, чтобы он не сумировался и не сохранялся, реализуя очистку корзины после каждого её закрытия
+--- Запретить изменение количества товара
+--- Не показывать кнопку открытия виджета
+--- Указать необходимые данные в полях ввода, например, указать в заголовке продажу билетов
+
+- Настроить отображение состава заказа кодом ниже. Изменить вид товарной позиции, убрать отступы, отключить платежные системы и пр
+
+<style>
+.t706__cartwin-products,
+.t-input-group.t-input-group_pm,
+.t706__cartwin-bottom {
+    display: none;
+}
+.t706__cartwin-top {
+    border: none;
+    padding-bottom: 0px;
+}
+
+.t706__form-upper-text,
+.t706__cartwin-top{
+    text-align: center;
+}
+
+.t706__form-bottom-text {
+    margin-bottom: 10px;
+}
+
+.t706__cartwin.t706__cartwin_showed {
+    display: flex;
+    align-items: center;
+}
+</style>

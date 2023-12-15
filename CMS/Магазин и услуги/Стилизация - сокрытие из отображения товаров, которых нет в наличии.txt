@@ -1,0 +1,26 @@
+https://mo-ti.ru/netvnalichii
+
+
+- Создали блок с товарами
+
+- Добавили стиль на страницу в блок Другое - Т123
+
+
+<style>
+.t-store__card[data-product-inv="0"] ,  .t-store__grid-separator {
+    display: none;
+}
+.t-store__card {
+    float: none;
+    margin-bottom: 90px;
+}
+.js-store-grid-cont {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width:460px){
+ .t-store__card {
+    margin-bottom: 40px;
+}   
+}
+</style>

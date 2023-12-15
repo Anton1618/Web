@@ -1,0 +1,56 @@
+Преимущества
+FR201	.t490__separator	.t490 .t-container
+FR203	.t499__separator	.t499__container
+FR204	.t497__separator	.t497__container
+FR205	.t491__separator	.t491 .t-container
+FR206	.t503__separator	.t503 .t-container
+FR207	.t820__separator	.t820__container
+FR401	.t502__separator	.t502 .t-container
+FR408	.t899__separator	.t899__container
+
+Плитка и ссылка
+TE210	.t649__separator	.t649 .t-container
+TE220	.t772__separator	.t772__wrapper
+TE225	.t774__separator	.t774__container
+
+Магазин
+ST300	.t754__separator	.t754__parent
+ST305N	.t776__separator	.t776__parent
+ST310N	.t778__separator	.t778__container
+ST315N	.t786__separator	.t786__container
+
+Команда
+TM101	.t524__separator	.t524__container
+TM102	.t537__separator	.t537__container
+TM103	.t526__separator	.t526__container
+TM201	.t527__separator	.t527__container
+TM410	.t532__separator	.t532__container
+TM402	.t539__separator	.t539__container
+
+Отзывы
+TS201	.t525__separator	.t525__container
+TS202	.t528__separator	.t528__container
+TS204	.t529__separator	.t529__container
+
+Этапы
+HW401	.t566__separator	.t566 .t-container
+HW402	.t568__separator	.t568 .t-container
+HW403	.t575__separator	.t575 .t-container
+
+Услуги
+SV201	.t844__separator	.t844 .t-container
+SV301	.t848__separator	.t848__container
+SV302	.t845__separator	.t845__container
+SV303	.t841__separator	.t841__container
+SV304	.t855__separator	.t855__container
+SV401	.t851__separator	.t851__container
+SV402	.t853__separator	.t853__container
+SV403	.t856__separator	.t856__container
+SV404	.t857__separator	.t857__container
+SV405	.t852__separator	.t852__container
+
+Соц. сети
+SM403		.t802__container
+
+Партнеры
+PR103		.t999__container

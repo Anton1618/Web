@@ -1,0 +1,102 @@
+Страница проекта:
+https://mo-ti.ru/fotoarenda
+
+- Создали корзину
+
+- Создали поля:
+	- текстовый комментарий (с надписью - Выберете даты получения и возврата )
+	- два поля выбора дат и именами datestart и dateend
+	- телефон
+	- способ доставки
+- Вставили код в блок Другое - Т123
+
+
+
+<style>
+    .redtext{ color:#ff0000 !important;font-weight: 600;}
+    .blkbtn{opacity: 0.2; pointer-events: none;  }
+    .t706 .t-input-group_da { width: 48%}
+    @media screen and (max-width: 450px){
+    .t706 .t-input-group_da { width:auto;float:none!important;}
+    }
+    .t706 .t-input-group_da:nth-child(2) { float: left}   
+    .t706 .t-input-group_da:nth-child(3) { float: right}
+    .t706 .t-input-group_ph {clear: both}
+    .pastDay{
+    opacity: 0.2;
+    pointer-events: none;
+}
+    .pastDay td:before ,  td.pastDay:before{
+    content:'';
+    position:absolute;
+    display:block;
+    width:auto;
+    height:auto;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    background: rgba(0,0,0,0) url(https://static.tildacdn.com/tild3234-3362-4361-b061-643132376234/cancel_1.svg) no-repeat;
+    background-size:100% 100%; 
+}
+.t706__product-plusminus {
+    display: block !important;
+    opacity: 0;
+    pointer-events: none;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+$('.t706 .t-form__submit').addClass('blkbtn');  
+var date = new Date();
+Month = date.getMonth()+1;
+Year = date.getFullYear();
+  $("form").on('DOMSubtreeModified', ".t-input-block_inited-date-picker", function() {
+    $('.today').prevAll('tbody tr>td').addClass('pastDay');
+    $('.today').parent('tr').prevAll('tr').addClass('pastDay');
+     var picM = $('select.dp-select-month option:selected').val();
+     var picD = $('select.dp-select-year option:selected').val();
+     if (picM<Month && picD<=Year || picD<Year ){
+         $('.cal-month tr').addClass('pastDay');
+     };
+  });
+function checktime(){
+setTimeout(function(){
+    //Получаем значение дат
+ var dt1 = $("input[name='datestart']").val();
+ var dt2 = $("input[name='dateend']").val();
+ //Приводим даты к нужному формату
+ var arr1 = dt1.split('-');
+ var arr2 = dt2.split('-');
+ var novdt1 = arr1[1]+"/"+arr1[0]+"/"+arr1[2];
+ var novdt2 = arr2[1]+"/"+arr2[0]+"/"+arr2[2];
+ var datestart = new Date(novdt1);
+ var dateend = new Date(novdt2);
+//Вычисляем разницу между датами
+ var days = (dateend-datestart)/86400000;
+if (days>0&& !$('.date-picker').is(':visible')){
+    $('.t-input-group_tx .t-text').removeClass('redtext').text('Срок аренды: '+days+' дн.');
+    $("input[name='dateend']").removeClass('redtext');
+    $('.t706 .t-form__submit').removeClass('blkbtn');
+    $('.t706__product-quantity').html(days);
+    if(days>5){$('.t706__product-quantity').html(days-1);};
+    if(days>10){$('.t706__product-quantity').html(days-2);};
+    if(days>20){$('.t706__product-quantity').html(days-5);};
+    $('.t706__product-quantity').trigger("click");
+    
+    let qntInp = document.querySelector('input[name="tilda-tmp-cart-qnt"]');
+    qntInp.blur();
+
+};
+if (days<1&&!$('.date-picker').is(':visible')){  
+  $('.t-input-group_tx .t-text').addClass('redtext').text('Минамальная аренда 1 день');
+  $("input[name='dateend']").addClass('redtext');
+  $('.t706 .t-form__submit').addClass('blkbtn');
+};
+}, 300);       
+};
+$(document).on('click','.date-picker td , a[href^="#order"]',function(e){checktime()});
+$('.t-datepicker__wrapper input').on("focusout",function(){checktime()}); 
+});
+</script>

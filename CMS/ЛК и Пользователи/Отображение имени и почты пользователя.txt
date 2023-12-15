@@ -1,0 +1,44 @@
+https://necodim.ru/tilda/addressed-by-name
+Имя пользователя
+- Укажите выражение, которое будет написано вместо имени, если пользователь не залогинен или не указал имя при регистрации.
+- На сайте в местах, где хотите отобразить имя, напишите любое слово, например «имя», и сделайте из него ссылку на #username.
+- Разместите скрипт в блоке T123.
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let projectId = parseInt(document.querySelector('#allrecords').dataset.tildaProjectId),
+        lsUser = window.localStorage.getItem('tilda_members_profile' + projectId),
+        userName = lsUser != null ? JSON.parse(lsUser).name : false,
+        newName = lsUser != null ? userName : 'Инкогнито',  // 'Инкогнито' - обращение, если у пользователя нет имени или он не залогинен
+        userNameLink = document.querySelectorAll('a[href="#username"]');  #username - ссылка для отображение имени
+    for (let i=0; i<userNameLink.length; i++) {
+        let span = document.createElement('span');
+        userNameLink[i].innerHTML = newName;
+        span.innerHTML = userNameLink[i].innerHTML;
+        userNameLink[i].replaceWith(span);
+    }
+});
+</script>
+
+
+
+
+https://necodim.ru/tilda/user-email
+Почта пользователя
+- Укажите выражение, которое будет написано вместо почты, если пользователь не залогинен.
+- На сайте в местах, где хотите отобразить email, напишите любое слово, например «email», и сделайте из него ссылку на #email.
+- Разместите скрипт в блоке T123.
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let projectId = parseInt(document.querySelector('#allrecords').dataset.tildaProjectId),
+        lsUser = window.localStorage.getItem('tilda_members_profile' + projectId),
+        userEmail = lsUser != null ? JSON.parse(lsUser).login : false,
+        newEmail = lsUser != null ? userEmail : 'вы не авторизированы',  // 'вы не авторизированы' - сообщение, если пользователь не авторизован
+        userEmailLink = document.querySelectorAll('a[href="#email"]');  // #email - ссылка для отображение почты
+    for (let i=0; i<userEmailLink.length; i++) {
+        let span = document.createElement('span');
+        userEmailLink[i].innerHTML = newEmail;
+        span.innerHTML = userEmailLink[i].innerHTML;
+        userEmailLink[i].replaceWith(span);
+    }
+});
+</script>

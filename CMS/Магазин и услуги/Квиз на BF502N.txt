@@ -1,0 +1,621 @@
+https://mo-ti.ru/quizexample
+
+Состав квиз-опроса:
+- Блок BF502N
+- Кнопка BF101
+
+- Код в блоке 123
+
+
+<script>
+//Скрываем лишние шаги
+$(".t702 .t-input-group:eq(1)").css("display" , "none");
+$(".t702 .t-input-group:eq(2)").css("display" , "none");
+$(".t702 .t-input-group:eq(3)").css("display" , "none");
+$(".t702 .t-input-group:eq(4)").css("display" , "none");
+$(".t702 .t-input-group:eq(5)").css("display" , "none");
+$(".t702 .t-input-group:eq(6)").css("display" , "none");
+$(".t702 .t-input-group:eq(7)").css("display" , "none");
+$(".t702 .t-input-group:eq(8)").css("display" , "none");
+$(".t702 .t-input-group:eq(9)").css("display" , "none");
+
+//Скрываем кнопку отправить
+$(".t702 .t-submit").css("display" , "none");
+
+//Клонируем кнопку дальше
+ $("#rec46779961").appendTo(".t702 .t-form__submit");
+
+//Скрыть надпись ПОЛИТИКА КОНФ
+$(".t702__form-bottom-text").css("display" , "none");
+ 
+ 
+//Добавляем прогресс бар
+$('.t702__text-wrapper').append('<div class="progressbar"><div class="prline"></div><span class="complete">Пройдено 11%</span></div>');
+ 
+//Добавляем фото шагов
+//Первый
+ $(".t-input-title:eq(0)").prepend("<div class='nomershaga'><img src='https://goo.gl/yPN5HV' class='stepnum'></div>");
+//Второй
+ $(".t-input-title:eq(1)").prepend("<div class='nomershaga'><img src='https://goo.gl/WBWZTv' class='stepnum'></div>");
+//Треттий
+ $(".t-input-title:eq(2)").prepend("<div class='nomershaga'><img src='https://goo.gl/5psNJP' class='stepnum'></div>");
+//Четвёртый
+ $(".t-input-title:eq(3)").prepend("<div class='nomershaga'><img src='https://goo.gl/TkTnF8' class='stepnum'></div>");
+//Пятый
+ $(".t-input-title:eq(4)").prepend("<div class='nomershaga'><img src='https://goo.gl/djbhXn' class='stepnum'></div>");
+//Шестой
+ $(".t-input-title:eq(5)").prepend("<div class='nomershaga'><img src='https://goo.gl/BXRuyf' class='stepnum'></div>");
+//Седьмой
+ $(".t-input-title:eq(6)").prepend("<div class='nomershaga'><img src='https://goo.gl/sqR8sv' class='stepnum'></div>");
+//Восьмой
+ $(".t-input-title:eq(7)").prepend("<div class='nomershaga'><img src='https://goo.gl/oGZmgh' class='stepnum'></div>");
+//Девятый
+ $(".t-input-title:eq(8)").prepend("<div class='nomershaga'><img src='https://goo.gl/aLkWmu' class='stepnum'></div>");
+
+
+
+
+ 
+ 
+//Добавляем фото подарка
+$('.t702__wrapper').append('<div class="xfoto"><img class="zavse" src="https://clck.ru/CvEpU"></div>');
+$(".xfoto").css("display" , "none");
+
+
+//Блокируем кнопку при старте 
+ $(".t142__submit").addClass("buttton-blk"); 
+
+
+//Функция блокировки кнопки 
+function blockbutt(){
+     $(".t142__submit").addClass("buttton-blk");
+     $(".flash").removeClass("lighting"); 
+};
+ 
+ 
+ 
+//Объявляем переменную переменную номера шага 
+         var numstep=1;  
+// Функция второго шага
+function step2(){
+            //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(0)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(1)").css("display" , "block");
+            //Изменить надпись на 22% 
+            $(".complete").text("Выполнено 22%");
+            //Изменить ширину progress bar до 22%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "22%",
+            });
+            numstep++;
+};
+
+
+// Функция третьего шага
+function step3(){
+          //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(1)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(2)").css("display" , "block");
+            //Показать общее фото
+            $(".xfoto").css("display" , "block");
+            //Изменить надпись на 33% 
+            $(".complete").text("Выполнено 33%");
+            //Изменить ширину progress bar до 33%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "33%",
+            });
+            numstep++;
+};
+// Функция четвертого шага
+function step4(){
+            //Убрать общее фото
+            $(".xfoto").css("display" , "none");
+           //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(2)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(3)").css("display" , "block");
+            //Изменить надпись на 44% 
+            $(".complete").text("Выполнено 44%");
+            //Изменить ширину progress bar до 44%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "44%",
+            });
+            numstep++;
+};
+// Функция пятого шага
+function step5(){
+             //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(3)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(4)").css("display" , "block");
+            //Изменить надпись на 55% 
+            $(".complete").text("Выполнено 55%");
+            //Изменить ширину progress bar до 55%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "55%",
+            });
+            numstep++;
+};
+ // Функция шестого шага
+function step6(){
+            //Изменить общее фото
+            $(".xfoto").css("display" , "block");
+            $(".xfoto img").attr("src" , "https://clck.ru/CvEwj");
+            //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(4)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(5)").css("display" , "block");
+            //Изменить надпись на 66% 
+            $(".complete").text("Выполнено 66%");
+            //Изменить ширину progress bar до 66%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "66%",
+            });
+            numstep++;
+};
+// Функция седьмого шага
+function step7(){
+            //Убрать общее фото
+            $(".xfoto").css("display" , "none");
+           //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(5)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(6)").css("display" , "block");
+            //Изменить надпись на 77% 
+            $(".complete").text("Выполнено 77%");
+            //Изменить ширину progress bar до 77%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "77%",
+            });
+            numstep++;
+};
+
+// Функция восьмого шага
+function step8(){
+           //Блокируем кнопку
+             blockbutt(); 
+           //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(6)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(7)").css("display" , "block");
+            //Изменить надпись на 88% 
+            $(".complete").text("Выполнено 88%");
+            //Изменить ширину progress bar до 88%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "88%",
+            });
+            numstep++;
+};
+
+
+// Функция девятого шага
+function step9(){
+            //Скрываем кнопку дальше
+             $(".t702 .t-btn").css("display" , "none");
+             
+             //Скрываем кнопку отправить
+            $(".t702 .t-submit").css("display" , "block");
+             
+             //Скрыть первый шаг
+            $(".t702 .t-input-group:eq(7)").css("display" , "none");
+           //Открыть второй
+            $(".t702 .t-input-group:eq(8)").css("display" , "block");
+            $(".t702 .t-input-group:eq(9)").css("display" , "block");
+            //Изменить надпись на 100% 
+            $(".complete").text("Выполнено 100%");
+            //Изменить ширину progress bar до 100%
+            $(".prline").css({
+           "-webkit-transition": "all 1s ease-in-out",
+            "width": "100%",
+            });
+            //Показать надпись ПОЛИТИКА КОНФ
+             $(".t702__form-bottom-text").css("display" , "block");
+            
+           //Если выбрали подарок 1
+            if ($(".t-radio:eq(24)").prop('checked')) {  $(".xfoto img").attr("src" , "https://clck.ru/CvEGm");};
+            //Если выбрали подарок 2
+            if ($(".t-radio:eq(25)").prop('checked')) {  $(".xfoto img").attr("src" , "https://clck.ru/CvEHa");};
+             //Если выбрали подарок 3
+            if ($(".t-radio:eq(26)").prop('checked')) {  $(".xfoto img").attr("src" , "https://clck.ru/CvEJX");};
+             
+            
+            
+            
+            
+            //Изменить общее фото
+            $(".xfoto").css("display" , "block");
+            
+            
+            
+            
+            
+};
+
+ //Описываем действия при клике на кнопку Дальше
+   $(function(){
+       $(".t142__submit").click(function () {
+         
+         //Если первый шаг пройден вызываем функцию второго шага
+         if (numstep==1) {
+            step2(); return false;
+         };
+         //Если второй шаг пройден вызываем функцию третьего шага
+         if (numstep==2) {
+           step3();   return false;
+         };    
+         //Если третий шаг пройден вызываем функцию четвёртого шага
+         if (numstep==3) {
+           step4();   return false;
+         };     
+         //Если четвёртый шаг пройден вызываем функцию пятого шага
+         if (numstep==4) {
+           step5();   return false;
+         };  
+         //Если пятый шаг пройден вызываем функцию шестого шага
+         if (numstep==5) {
+           step6();  return false;
+         }; 
+         //Если шестой шаг пройден вызываем функцию седьмого шага
+         if (numstep==6) {
+           step7();   return false;
+         }; 
+          //Если седьмой шаг пройден вызываем функцию восьмого шага
+         if (numstep==7) {
+           step8();   return false;
+         }; 
+             
+          //Если восьмой шаг пройден вызываем функцию девятого шага
+         if (numstep==8) {
+           step9();   return false;
+         };     
+                 
+         });
+    });
+  
+  
+ //Добавляем фото к переключателям и галочкам
+//0-я radio
+  $(".t702 .t-radio__control:eq(0)").wrap("<div class='radio0 rbcont'></div>"); $('.radio0').prepend('<img src="https://goo.gl/Yx5ANK" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio0 img").click(function () { $(".t-radio:eq(0)").prop('checked', true)});   
+  
+//1-я radio
+  $(".t702 .t-radio__control:eq(1)").wrap("<div class='radio1 rbcont'></div>"); $('.radio1').prepend('<img src="https://goo.gl/vdHc2d" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio1 img").click(function () { $(".t-radio:eq(1)").prop('checked', true)});   
+  
+//9-я radio
+  $(".t702 .t-radio__control:eq(9)").wrap("<div class='radio9 rbcont'></div>"); $('.radio9').prepend('<img src="https://goo.gl/jTuvgS" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio9 img").click(function () { $(".t-radio:eq(9)").prop('checked', true)});  
+
+//10-я radio
+  $(".t702 .t-radio__control:eq(10)").wrap("<div class='radio10 rbcont'></div>"); $('.radio10').prepend('<img src="https://goo.gl/vdHc2d" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio10 img").click(function () { $(".t-radio:eq(10)").prop('checked', true)});
+
+//11-я radio
+  $(".t702 .t-radio__control:eq(11)").wrap("<div class='radio11 rbcont'></div>"); $('.radio11').prepend('<img src="https://goo.gl/iLCBHp" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio11 img").click(function () { $(".t-radio:eq(11)").prop('checked', true)});
+
+//12-я radio
+  $(".t702 .t-radio__control:eq(12)").wrap("<div class='radio12 rbcont'></div>"); $('.radio12').prepend('<img src="https://goo.gl/ZQim7n" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio12 img").click(function () { $(".t-radio:eq(12)").prop('checked', true)});  
+
+//13-я radio
+  $(".t702 .t-radio__control:eq(13)").wrap("<div class='radio13 rbcont'></div>"); $('.radio13').prepend('<img src="https://goo.gl/aJR5eC" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio13 img").click(function () { $(".t-radio:eq(13)").prop('checked', true)});  
+  
+//22-я radio
+  $(".t702 .t-radio__control:eq(22)").wrap("<div class='radio22 rbcont'></div>"); $('.radio22').prepend('<img src="https://clck.ru/CvE2c" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio22 img").click(function () { $(".t-radio:eq(22)").prop('checked', true)});  
+  
+//23-я radio
+  $(".t702 .t-radio__control:eq(23)").wrap("<div class='radio23 rbcont'></div>"); $('.radio23').prepend('<img src="https://clck.ru/CvE3V" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio23 img").click(function () { $(".t-radio:eq(23)").prop('checked', true)});    
+  
+  //24-я radio
+  $(".t702 .t-radio__control:eq(24)").wrap("<div class='radio24 rbcont'></div>"); $('.radio24').prepend('<img src="https://clck.ru/CvEGm" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio24 img").click(function () { $(".t-radio:eq(24)").prop('checked', true)});    
+  
+  //25-я radio
+  $(".t702 .t-radio__control:eq(25)").wrap("<div class='radio25 rbcont'></div>"); $('.radio25').prepend('<img src="https://clck.ru/CvEHa" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio25 img").click(function () { $(".t-radio:eq(25)").prop('checked', true)});    
+  
+  //23-я radio
+  $(".t702 .t-radio__control:eq(26)").wrap("<div class='radio26 rbcont'></div>"); $('.radio26').prepend('<img src="https://clck.ru/CvEJX" alt="">');
+//Если кликают по фото, то активируем соответствующий переключатель
+  $(".radio26 img").click(function () { $(".t-radio:eq(26)").prop('checked', true)});    
+  
+  
+  
+  
+  
+//0-я checkBbox
+  $(".t702 .t-checkbox__control:eq(0)").wrap("<div class='checkbox0 rbcont'></div>"); $('.checkbox0').prepend('<img src="https://goo.gl/xTBhnE" alt="">');
+  //Если кликают по фото, то активируем соответствующий переключатель
+  $('.checkbox0 img').click(function(){ $('.t-checkbox__control:eq(0)')[0].click()});  
+  
+//1-я checkBbox
+  $(".t702 .t-checkbox__control:eq(1)").wrap("<div class='checkbox1 rbcont'></div>"); $('.checkbox1').prepend('<img src="https://goo.gl/8ng3jk" alt="">');
+  //Если кликают по фото, то активируем соответствующий переключатель
+  $('.checkbox1 img').click(function(){ $('.t-checkbox__control:eq(1)')[0].click()});    
+
+//2-я checkBbox
+  $(".t702 .t-checkbox__control:eq(2)").wrap("<div class='checkbox2 rbcont'></div>"); $('.checkbox2').prepend('<img src="https://goo.gl/rhFi6B" alt="">');
+  //Если кликают по фото, то активируем соответствующий переключатель
+  $('.checkbox2 img').click(function(){ $('.t-checkbox__control:eq(2)')[0].click()});   
+  
+  
+  
+  
+  
+  //При клике на Радио или Галочку или Фото разблокируем кнопку 
+$(".t-radio , .t-checkbox , .rbcont" ).click(function () {
+    $(".t142__submit").removeClass("buttton-blk");
+    $(".flash").addClass("lighting"); 
+    
+}); 
+  
+  
+  
+  
+
+//При успешной отправке данных скрываем форму и фото подарка      
+$(document).ready(function(){
+    
+    
+    window.mySuccessFunction= function($form){
+       //Скрываем фото подарка
+             $(".zavse").css("display" , "none"); 
+             $(".progressbar").css("display" , "none");
+             $(".t702__text-wrapper").css("display" , "none");
+             $(".t702__form-bottom-text").css("display" , "none");
+             
+             $(".t-form__inputsbox").css("display" , "none"); 
+             
+             
+    }
+   
+    $('.js-form-proccess').each(function(){
+        $(this).data('success-callback', 'window.mySuccessFunction');
+    });
+});
+  
+//Скрываем табличку ошибки заполнения  
+$(".t-form__errorbox-middle").hide();      
+ 
+
+</script>
+
+
+
+
+<style>
+  
+  
+     /*Располагаем кнопки слева*/
+    .t702 .t-form__submit {
+    text-align: left !important;
+   
+    }
+    
+      /*Задаём размер шрифта для надписи политика конфиденциальности*/
+    .t702__form-bottom-text div {
+        font-size: 10px !important;
+    }
+ 
+      /*Задаём стили для поля со скидкой*/
+    .t702  .t-input-subtitle {
+    padding-bottom: 0px !important;
+    width: fit-content;
+    background-color: #5ca4da;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #ffffff;
+    opacity: 100;
+}
+     /*Задаём максимальную ширину */
+  @media screen and (max-width: 2000px) {
+    .t-width_12 {
+    max-width: 980px !important; }
+    
+  }
+    
+   
+   /*Радио button отступы и расположение в строчку*/
+    .t-radio__control {
+    margin: 10px 20px 10px 0 !important;
+    
+}
+    /*Чек бокс - отступы и расположение в строчку*/
+   .t-checkbox__control {
+    margin: 10px 20px 10px 0 !important;
+}
+    /*Размер кнопки по содержимому*/
+    .t702 .t-submit {
+    overflow: hidden;
+    width: 400px !important;
+}
+    /*Размер кнопки и полей ввода 100% по ширине для экранов меньше 640px*/
+    @media screen and (max-width: 640px){
+    .t702 .t-submit, .t702 .t-input {
+    width: 100%;
+}}
+    /*Размер поля ввода на большом экране*/
+    .t702 .t-input {
+     width: 400px;
+}
+    
+    /*Расположение фото подарка*/
+    .xfoto {
+    text-align: center;
+}
+    /*Расположение фото подарка*/
+    img.zavse {
+    position: absolute;    
+    margin-top: -250px;
+    margin-left: 60px;
+    width: 350px;
+}
+    /*Расположение фото подарка на экранах меньше 750 px*/
+     @media screen and (max-width: 750px){
+    
+    img.zavse {
+    position: relative !important;    
+    margin-top: 30px !important;
+    margin-left: 0px !important;
+
+}}
+   /*Задаём цвет таблички успешной отправки данных*/  
+   .t-form__successbox {
+    background: #00C3FD !important;
+   }
+   /*Стиль для блокировки кнопки*/  
+   .buttton-blk{
+       background-color: #d8d8d8 !important;
+       pointer-events: none;
+       
+   }
+   
+    /*Стиль прогресс бара*/ 
+    .progressbar {
+    height: 40px;
+    background: #1a4e89;
+    color: #ffffff;
+    font-weight: 800;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Roboto';
+    line-height: 2;
+    position: relative;
+    margin-top: 10px;
+}
+  /*Стиль прогресс бара*/ 
+.prline {
+    background: #42bd00;
+    height: 100%;
+    width: 11%;
+    position: absolute;
+    transition: transform 0.4s linear;
+}
+  /*Стиль прогресс бара*/ 
+span.complete {
+    position: relative;
+}
+/*Стиль фото номеров шага*/ 
+.nomershaga {
+    float: left;
+    margin-right: 10px;
+}
+img.stepnum {
+    width: 30px;
+    vertical-align: middle;
+}
+
+/*Цвет переключателей и галочек*/ 
+.t-radio__indicator , .t-checkbox__indicator {
+    border-color: #1a4e8a 
+}
+.t-radio__indicator:after {
+    background: #1a4e8a !important; 
+}
+.t-checkbox__indicator:after {
+    border-color:  #1a4e8a !important; 
+}
+
+
+/*Положение кнопки ДАЛЬШЕ*/ 
+.t142__wrapone , .t142__wraptwo {
+    right: unset !important;
+    float: left !important;
+}    
+
+/*Ширина фотографий*/
+.t702 .t-input-block img {
+    width: 150px;
+    margin-bottom: 5px;
+    transition: transform 0.15s linear;
+}
+
+/*Позиция и отступы блоков с  фотографиями*/
+.rbcont {
+    display: inline-block;
+    margin: 30px 20px 30px 0;
+}   
+
+
+ /*Фото  - эффект при наведении*/
+   .t702 .t-input-block img:hover {
+    transform: scale(1.04);
+    -moz-transform: scale(1.04);
+    -ms-transform: scale(1.04);
+    -webkit-transform: scale(1.04);
+    -o-transform: scale(1.04);
+     position: relative;
+     z-index: 2;
+    -webkit-box-shadow: 0px 0px 4px 4px rgba(255,255,255,0.75);
+    -moz-box-shadow: 0px 0px 4px 4px rgba(255,255,255,0.75);
+    box-shadow: 0px 0px 4px 4px rgba(255,255,255,0.75);
+}
+/*Отключить эффект для картинок на экранах меньше 960рх*/
+   @media screen and (max-width: 960px) {
+
+    .t-input-block img {
+      transform: none !important;
+}
+
+img.zavse {
+    margin-top: -220px;
+    margin-left: 90px;
+    width: 250px;
+}   
+}   
+
+  @media screen and (max-width: 820px) {
+
+   
+  .t702 .t-input , .t702 .t-submit {
+    width: 100% !important;
+}
+
+   
+   
+}   
+
+ .t702__wrapper {
+    padding: 10px 45px 40px 45px !important;
+}  
+   
+   
+   
+</style>

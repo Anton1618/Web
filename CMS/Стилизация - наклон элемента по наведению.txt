@@ -1,0 +1,74 @@
+https://mo-ti.ru/rotate
+
+
+- Создали ZeroBlock и добавили в него фото с классом parcon
+- Добавили скрипт в блок 123
+
+Настройки вращения по осям производим в строке: transform: translateX(10px) translateY(-14px) translateZ(60px) scaleX(1) scaleY(1) scaleZ(2) rotateX(40deg) rotateY(-3deg) rotateZ(-34deg) skewX(-5deg) skewY(6deg);
+
+
+<style>
+.parcon  .tn-atom {
+  -webkit-perspective: 1200;
+   perspective: 1200;
+  -moz-transform: perspective(1200px);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d; 
+  transform-style: preserve-3d;
+ }
+.parcon img{
+       transition:all 0.8s cubic-bezier(0, 0, 0.8, 1.0);   
+ }
+ .parcon:hover img{
+   transform: translateX(10px) translateY(-14px) translateZ(60px) scaleX(1) scaleY(1) scaleZ(2) rotateX(40deg) rotateY(-3deg) rotateZ(-34deg) skewX(-5deg) skewY(6deg);
+  }
+</style>
+
+<script>
+     $('.parcon').addClass('t-cover__arrow-wrapper_animated');
+</script>
+
+
+
+
+
+
+
+
+
+============================ Предложение gpt по динамическому изменению изображения относительно положения курсора при наведении
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+.parcon .tn-atom {
+  -webkit-perspective: 1200;
+  perspective: 1200;
+  -moz-transform: perspective(1200px);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.parcon img {
+  transition: all 0.8s cubic-bezier(0, 0, 0.8, 1.0);
+  transform-origin: center center;
+}
+
+.parcon:hover img {
+  animation: moveImage 1s infinite;
+}
+
+@keyframes moveImage {
+  from {
+    transform: translateX(0px) translateY(0px) translateZ(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(0deg) skewY(0deg);
+  }
+  to {
+    transform: translateX(calc((100vw / 2 - event.clientX) * 0.05px)) translateY(calc((100vh / 2 - event.clientY) * 0.05px)) translateZ(60px) scaleX(1) scaleY(1) scaleZ(2) rotateX(40deg) rotateY(-3deg) rotateZ(-34deg) skewX(-5deg) skewY(6deg);
+  }
+}
+</style>
+
+<script>
+$('.parcon').mousemove(function(event) {
+  $(this).find('img').css('transform', 'translateX(calc((100vw / 2 - ' + event.clientX + 'px) * 0.05px)) translateY(calc((100vh / 2 - ' + event.clientY + 'px) * 0.05px)) translateZ(60px) scaleX(1) scaleY(1) scaleZ(2) rotateX(40deg) rotateY(-3deg) rotateZ(-34deg) skewX(-5deg) skewY(6deg)');
+});
+</script>

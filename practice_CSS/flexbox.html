@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/flexbox.css">
+    <title>Flexbox</title>
+</head>
+<body>
+    <hr>
+    <h1><ins>Flex</ins></h1>
+    <p>
+        <b>- Flex Container - это элемент, которому задано свойство display со значениями flex или inline-flex</b>
+        <br>
+        <b>- Элементы внутри Flex Conteiner называются флекс элементами (flex Items)</b>
+        <br>
+        Элемент может быть как один, так их может и быть множество. Размер элементов зависит от размера контента внутри
+    </p>
+ 
+    <h3>Расположение элементов</h3>
+    <p>По умолчанию, элементы располагаются слева-направо и сверху-вниз</p>
+
+    <h3>Основаная и дополнительная оси</h3>
+    <p>Существует две оси: основная (Main Axis) и перпендикулярной ей дополнительная или поперечная (Cross Axis)<br>
+    Все элементы флекс контейнера выстраиваются вдоль основной оси<br>
+    Дополнительная ось служит для выравнивания элементов друг относительно друга<br>
+    Таким образом, <b>флекс бокс - это блок, элементы внутри которого размещаются по горизонтали и выравниваются по вертикали</b><br>
+    Оси являются основой принципа флекс бокс, а благодаря изменению их направлений, осуществляется изменение направления самих элементов, которые выстраиваются по ним</p>
+    
+    <h3>Стандартное отображение простого контенера</h3>
+    <div class="container">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+
+    <h3>display: flex</h3>
+    <p>Это значение свойства display, которое устанавливает элемент в режиме "flex-контейнера".<br> 
+    flex-элементы будут отображаться как блочные элементы и будут занимать всю доступную ширину контейнера по горизонтали по умолчанию</p>
+    <div class="container container_flex">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+
+    <h3>display: inline-flex</h3>
+    <p>Это значение свойства display, которое устанавливает элемент в режиме "inline flex-контейнера".<br> 
+    flex-элементы будут отображаться как инлайновые элементы, похожие на спан или strong, и будут занимать только необходимую ширину по горизонтали внутри контейнера</p>
+    <div class="container container_inline-flex">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+
+
+
+    <hr>
+    <h2><ins>flex-direction - ориентация главной оси</ins></h2>
+    <p>Свойство определяет ориентацию основной оси, позволяя напрявлять горизонтально или вертикально элементы внутри контейнера<br>
+        Изменяется именно направление оси, а не порядок самих элементов (за это во флекс бокс отвечает свойство order)<br>
+        Имеет значения:<br>
+        - row (основная ось слева направо, значение по умолчанию): элементы располагаются горизонтально слева направо;<br>
+        - row-reverse (основная ось справа налево): элементы располагаются горизонтально справа налево;<br>
+        - column (основная ось сверху вниз): элементы располагаются вертикально сверху вниз;<br>
+        - column-reverse (основная ось снизу вверх): элементы располагаются вертикально снизу вверх;</p>
+    
+    <h3>row</h3>
+    <div class="container container_inline-flex flex_row">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>row-reverse</h3>
+    <div class="container container_inline-flex flex_row-revers">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>column</h3>
+    <div class="container container_inline-flex flex_column">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>column-reverse</h3>
+    <div class="container container_inline-flex flex_column-reverse">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>Пример гибкого элемента навигации</h3>
+    <p>Для устройств шириной до 680px, значение флекс-бокс контейнера row, будет изменено на column</p>
+    <div class="container container_inline-flex example_navigation">
+        <div class="flex-item item-1">Home</div>
+        <div class="flex-item item-2">Posts</div>
+        <div class="flex-item item-3">About Us</div>
+    </div>
+
+
+
+    <hr>
+    <h2><ins>flex-wrap - перенос элементов</ins></h2>
+    <p>Свойство определяет, должны ли элементы flex-контейнера переноситься на новую строку или столбец при заполнении доступного пространства. Имеет значения:<br>
+        - nowrap (значение по умолчанию): элементы внутри флекс контейнера не переносятся на новую строку, они остаются на одной строке и занимают всю её доступную ширину;<br>
+        - wrap: указывает элементам flex-контейнера переноситься на новую строку, если они не помещаются в одну линию;<br>
+        - wrap-reverse (разворачивает дополнительную поперечную ось на 180 градусов): элементы переносятся на новую строку или столбец в обратном порядке, последний элемент может стать первым на следующей строке, а первый элемент может стать последним на предыдущей строке;<br>    
+        - inherit: значение наследует свойство flex-wrap от родительского элемента. Это позволяет элементу flex-контейнера наследовать поведение по переносу элементов на новую строку или столбец</p>
+    
+    <h3>nowrap</h3>
+    <div class="container container_inline-flex long_items flex_nowrap">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>wrap</h3>
+    <div class="container container_inline-flex long_items flex_wrap">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>wrap-reverse</h3>
+    <div class="container container_inline-flex long_items flex_wrap-reverse">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+    </div>
+
+    <h3>inherit</h3>
+    <div class="container container_inline-flex long_items">
+        <div class="flex_inherit">
+            <div class="flex-item item-1">1</div>
+            <div class="flex-item item-2">2</div>
+            <div class="flex-item item-3">3</div>
+        </div>
+    </div>
+
+    <h3>Пример гибкого элемента карточек</h3>
+    <p>Высота задается в формате vh (Viewport Height) - процентной величиной от высоты области просмотра.<br>
+        Включается перенос элементов - flex-wrap: wrap.<br>
+        Ширина задается в процентах вместо точных пикселей, чтобы даже при display: flex, вместо inline-flex, карточки занимали определенный процент ширины экрана при доступности</p>
+    <p>Значение ширины карточек, равное 50%, позволяет получить две колонки и лейаут, элементы внутри которого равномерно распределены по высоте</p>
+    <div class="container container_flex flex-row example_card_50percent">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+    <p>Аналогично, значение ширины карточек, равное 33.33%, позволяет получить три колонки и так далее</p>
+    <div class="container container_flex flex-row example_card_33percent">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+    <p>Также, на примере с колонками вместо строк<br>
+        Свойство flex-direction устанавливается на значение column, а свойство min-height заменяется на фиксированное в пикселях свойство height и запрещается перенос элементов.<br>
+        Тогда элементы, которым не будет достаточно пространства выйдут за пределы родительского контейнера</p>
+    <div class="container container_flex flex_column example_fixed_card">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+    <p class="need_margin_top">Для того, чтобы все элементы смогли уместиться в рамках родительского контейнера, отключается фиксирование высоты родительского блока<br>
+    Таким образом, по высоте, контейнер подстроится под содержимое внутри него </p>  
+    <div class="container container_flex flex_column example_not_fixed_card">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>    
+
+
+
+    <hr>
+    <h2><ins>flex-flow - комбинация flex-direction и flex-wrap</ins></h2>
+    <p>Свойство является сокращенной формой для одновременной установки свойств: flex-direction, для расположения главной оси (горизонтальное или вертикальное расположение элементов), а также flex-wrap, для определения переноса флекс элементов на новую строку (если на текущей не будет достаточно места)</p>
+    <p>Формат значений для свойства упорядочен. flex-flow: &ltflex-direction&gt &ltflex-wrap&gt</p>
+    <p>Размещение элементов вертикально, с разрешением для нимх переноса, через одно свойство - flex-flow. Значением для свойства станут: column и wrap<br>
+    Для самого контейнера фиксируется высота, например 150px, чтобы отобразить флекс элементы в колонках, иначе контейнер будет растянут под контент внутри<br>
+    А исходя из высоты контейнера, элементы подстраиваются относительно главной оси и следуют сверху вниз и слева направо, таким образом формируя столбцы контента из доступного пространства контейнера</p>
+    <div class="container container_flex flex_flex-flow1">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+    <p>Соответственно, если флекс элементы по умолчанию занимают всю ширину контейнера, то задав её меньше, напиример в 50px, будет изменено количество столбцов для флекс элементов (например, в 4 стобца), которые подстроятся под доступное пространство контейнера</p>
+    <div class="container container_flex flex_flex-flow2">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+        <div class="flex-item item-7">7</div>
+        <div class="flex-item item-8">8</div>
+    </div>
+
+
+
+    <hr>
+    <h2><ins>Отступы между флекс элементами</ins></h2>
+    <p>Флекс контейнеры и флекс элементы воспринимают свойство margin и padding<br>
+    Так, с установленным свойством margin, элементы из примера выше, станут иметь дополнительные отступы вокруг себя. Итого, общий размер каждого элемента = 33.33% от ширины + 5px со всех сторон<br>
+    Что приводит к нехватке места для всех элементов в строке и образуется пустое пространство</p>
+    <div class="container container_flex flex_wrap padding_card">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+    </div>
+    <p>Для более корректного расчета расстояния, можно воспользоваться функцией расчета calc(33% - 10px (5 слева и 5 справа от элемента))<br>
+    Особенностью флекс элементов, является наличие суммирующихся марджинов, вместо схлопывающихся, как на обычных блочных элементах.<br>
+    Можно заметить, что расстояние между элементами отличается от расстояния между ними и их контейнером</p>
+    <div class="container container_flex flex_wrap calc_padding_card1">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+    </div>
+    <p>Если требуется выровнять лейаут, то контейнеру может быть добавлено свойство padding, со значением недостающей разницы между элементами и контейнером<br>
+    Что позволит иметь одинаковые отступы между самими элементами и их контейнером</p>
+    <div class="container container_flex flex_wrap calc_padding_card2">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+    </div>
+
+    <h3>Gap</h3>
+    <p>Определение расстояния между флекс элементами<br>
+    Применяется как более продвинутая система настройки отступов между флекс элементами, например, вместо свойства margin<br>
+    Так, например, вместо margin 5px, может быть применен gap для задания расстояния между элементами, благодаря свободному пространству от блоков до flex (а не inline-flex) контейнера<br>
+    Инструмент не идеален. Для flex контейнера (не inline-flex) потребуется вычислять доступное расстояние вручную</p>
+    <div class="container container_flex flex_wrap gap_padding">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+        <div class="flex-item item-5">5</div>
+        <div class="flex-item item-6">6</div>
+    </div>
+
+
+
+    <hr>
+    <h2><ins>Выравнивание элементов</ins></h2>
+    <h3>Свойства для флекс контейнера (Container Alignment):</h3>
+    <b>- justify-content</b> - выравнивание вдоль основной оси<br>
+    <b>- align-items</b> - выравнивание вдоль поперечной оси<br>
+    <b>- align-content</b> - выравнивание флекс элементов, располагающихся в несколько строк<br>
+
+    <h3>justify-content</h3>
+    <p>Свойство управляет размещением элементов вдоль главной оси (горизонтальной, если flex-direction равно row, или вертикальной, если flex-direction равно column). Имеет значения:<br>
+        - flex-start (значение по умолчанию): элементы выравниваются от начала основной оси;<br>
+        - flex-end: элементы выравниваются по концу основной оси;<br>
+        - center: элементы выравниваются по центру основной оси;<br>
+        - space-between: (пространство между элементами), элементы равномерно распределяются по основной оси с равными промежутками между ним. При этом, первый и последний элементы, прилегают вплотную, соответственно, к началу и к концу оси. Так, если существует только два item, то они станут расположены по краям оси (контейнера);<br>
+        - space-around: (пространство вокруг элементов, с несхлопывающими пространством между ними), элементы равномерно распределяются по основной оси (контейнеру), но с одинаковым пространством до и после каждого элемента. Таким образом, учитывая, что margin между элементами не схлопывается, он удваивается между элементами;</br>
+        - space-evenly: (равномерное пространство между элементами), элементы равномерно распределяются по основной оси, при этом все промежутки равны между собой</p>
+        <p><b>flex-start</b><br>
+        Флекс элементы выровнены от начала основной оси (контейнеру)</p>
+    <div class="container container_flex flex_flex-start">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+    </div>
+    <p><b>flex-end</b><br>
+        Флекс элементы выровнены по концу основной оси (контейнеру)</p>
+    <div class="container container_flex flex_flex-end">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+    </div>
+    <p><b>space-between</b><br>
+        Флекс элементы выровнены по центру всей основной оси (контейнеру). При этом, первый и последний элементы прилегают вплотную к началу и концу основной оси(контейнера)</p>
+    <div class="container container_flex flex_space-between">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+    </div>
+    <p>Аналогично, когда флекс элементов только два, они станут выровнены по центру и будут прилегать к началу и концу основной оси</p>
+    <div class="container container_flex flex_space-between">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+    </div>
+    <p><b>space-around</b><br>
+        Флекс элементы выровнены по центру всей основной оси (контейнеру). Но, теперь, образуется пространство между боковыми элементами и контейнером, тогда как пространство между ними не схлопывается, а суммируется</p>
+    <div class="container container_flex flex_space-around">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+    </div>
+    <p>Аналогично, когда флекс элементов только два, они станут выровнены по центру и вокруг них будет дополнительно пространство, а между ними суммирующееся</p>
+    <div class="container container_flex flex_space-around">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+    </div>
+    <p><b>space-evenly</b><br>
+        Флекс элементы равномерно выровнены по всей основной оси (контейнеру). Пространство одинаково, как между самими элементами, так и между боковыми элементами и контейнером</p>
+    <div class="container container_flex flex_space-evently">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+        <div class="flex-item item-3">3</div>
+        <div class="flex-item item-4">4</div>
+    </div>
+    <p>Аналогично, когда флекс элементов только два, они станут равномерно выровненны, имея одинаковое пространство, как между самими элементами, так и между боковыми элементами и их контейнером</p>
+    <div class="container container_flex flex_space-evently">
+        <div class="flex-item item-1">1</div>
+        <div class="flex-item item-2">2</div>
+    </div>
+
+
+
+    <h3>Свойства для флекс элемента (Item Alignment):</h3>
+    <b>align-self</b> - индивидуальное выравнивание элемента внутри контейнера
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div>
+        <hr>
+        <h2><ins>Примеры вложенных контейнеров</ins></h2>
+        <h3>Свойства контейнера</h3>
+        <b>inline-flex и gap</b> - на верхнем контейнере<br>
+        <b>inline-flex, flex-direction и justify-content</b> - на вложенном контейнере<br>
+        <div class="minbox">
+            <div class="big"></div>
+            <div class="nested">
+                <div class="small1"></div>
+                <div class="small2"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

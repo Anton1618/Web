@@ -1,0 +1,72 @@
+https://necodim.ru/tilda/lk-buttons
+
+
+Скрипт позволяет создать собственные кнопки «Войти» и «Зарегистрироваться», используя стандартные ссылки (или ссылку на регистрацию в определённую группу), а также кнопки «Изменить профиль» и «Выход»
+
+
+- Создать ZERO
+Добавить кнопки для действий с соответствующими ссылками или в любом блоке создать маркированный список, где каждая строка - это отдельная текстовая ссылка
+«Изменить профиль» — #profile:edit
+«Логин» — #login;
+«Регистрация» — #signup;
+«Выход» — #logout.
+Для регистрации пользователя в конкретную группу, необходимо заменить ссылку «/members/signup/» на свою
+
+Внимание! Скрипт будет работать только на страницах, которые подключены к личному кабинету.
+<script>
+  const nProjectId = parseInt(document.querySelector("#allrecords").dataset.tildaProjectId),
+    nLsUser = window.localStorage.getItem("tilda_members_profile" + nProjectId),
+    nUserEmail = !(null == nLsUser || !JSON.parse(nLsUser).login) && JSON.parse(nLsUser).login;
+  let userbarReady = !1;
+  const generateUserbar = () => {
+    const o = document.querySelector(".tlk-userbar"),
+    e = o.querySelector(".tlk-userbar__popup");
+    t = o.querySelector(".tlk-userbar__popup-wrap"),
+    r = o.querySelector(".tlk-userbar__popup-content"),
+    s = o.querySelector(".tlk-userbar__user-image");
+    tma__userbar__showPreloader(s, t, r), tma__getObjProfile(() => {
+      tma__userbar__hidePreloader(o, s, t, r)
+    }), tma__userbar__showWidgetPanel(o, e, t), tma__userbar__calcCoordinatsWidgetPanel(o, e, t);
+    const waitUserbarPopup = e => {
+      e.target.classList.contains("tlk-userbar__popup-login") && (o.removeEventListener("DOMNodeInserted", waitUserbarPopup), tma__profile__drawProfilePopup(), userbarReady = !0)
+    };
+    o.addEventListener("DOMNodeInserted", waitUserbarPopup, !1)
+  }, waitUserbar = e => {
+    e.target.classList.contains("tlk-userbar") && (document.body.removeEventListener("DOMNodeInserted", waitUserbar), generateUserbar(), const userbarPopupInterval = setInterval(() => {
+      userbarReady && (clearInterval(userbarPopupInterval), document.querySelectorAll('[href="#signup"]').forEach(btn => btn.parentNode.remove()), document.querySelectorAll('[href="#login"]').forEach(btn => btn.parentNode.remove()), document.querySelectorAll('[href="#profile:edit"]').forEach(btn => {
+        btn.addEventListener("click", () => {
+          var i = tma__getProfileObjFromLS(), e = tma__profile__getFormEditProfileHtml(i);
+          tma__drawPopup({
+            id: "edit-profile",
+            main: document.getElementById("app"),
+            content: tma__translate(e, "userbar_dict"),
+            closeBtns: [".tlk-popup__close-cancel"]
+          }), tma__profile__addUploadEvents();
+          var p = document.getElementById("edit-profile"),
+            l = document.getElementById("form-change-profile"),
+            e = l.querySelector(".tlk-popup__change-password"),
+            t = l.querySelector(".tlk-popup__change-lang"),
+            o = l.querySelector('button[type="submit"]'),
+            s = !1;
+          i.memberlogo_uuid && (tildaMembers.upload.id = i.memberlogo_uuid, tildaMembers.upload.oldId = i.memberlogo_uuid), l.addEventListener("submit", . . . ) // (continues)
+        })
+      }), 500), document.querySelectorAll('[href="#logout"]').forEach(btn => {
+        btn.addEventListener("click", (e => {
+          e.preventDefault(), window.localStorage.removeItem("tilda_members_profile" + nProjectId), window.localStorage.removeItem("tilda_members_profile" + nProjectId + "_timestamp"), window.location.replace("/")
+        }))
+      })
+    })
+  };
+  document.addEventListener("DOMContentLoaded", () => {
+    nUserEmail ? document.body.addEventListener("DOMNodeInserted", waitUserbar, !1) : (document.querySelectorAll('[href="#signup"]').forEach(btn => btn.setAttribute("href", "/members/signup/")), document.querySelectorAll('[href="#login"]').forEach(btn => btn.setAttribute("href", "/members/login/")), document.querySelectorAll('[href="#logout"]').forEach(btn => btn.parentNode.remove()), document.querySelectorAll('[href="#profile:edit"]').forEach(btn => btn.parentNode.remove()))
+  });
+</script>
+
+
+
+<style>
+// Нужно ли скрывать значок профиля со страницы
+.tlk-userbar, .tlk__userbar {
+display: none !important;
+}
+</style>

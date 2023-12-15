@@ -1,0 +1,188 @@
+.decoration {    
+    background-color: bisque;
+}
+
+
+
+.text_center {
+    text-align: center;
+}
+.text_left {
+    text-align: left;
+}
+.text_right {
+    text-align: right;
+}
+div.text_jistify {    
+    width: 500px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+
+
+.text_line-height {
+    line-height: 2.5;
+}
+
+
+
+.text_letter-spacing {
+    letter-spacing: 3px;
+}
+
+
+
+.text_text-indent {
+    text-indent: 50px;
+}
+
+
+
+.text_text-decoration {
+    text-decoration:underline;
+}
+.text_text-decoration + p {
+    text-decoration:line-through;
+}
+
+
+
+.text_white-space {
+    white-space: break-spaces;
+}
+.text_white-space + p {
+    white-space: pre;
+}
+
+
+
+.text_uppercase {
+    text-transform: uppercase;
+}
+.text_lowercase {
+    text-transform: lowercase;
+}
+.text_capitalize {
+    text-transform: capitalize;
+}
+
+
+
+.text_ellipsis {
+    width: 500px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text_clip {
+    width: 500px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.container {
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+.text {
+    height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+    transition: height 1s;
+}
+.text.expanded {
+    height: auto;
+}
+.expand-btn {
+    position: absolute;
+    border: none;
+    bottom: 0px;
+    right: 0px;
+}
+@keyframes expandText {
+    0% {
+      height: 1.2em;
+    }
+    100% {
+      height: auto;
+    }
+}
+
+
+
+.text_normal {
+    width: 500px;
+    word-wrap: normal;
+}
+.text_break-word {
+    width: 500px;
+    word-wrap: break-word;
+}
+
+
+
+.text_text-shadow {
+    text-shadow: -5px 6px 8px black;
+}
+
+
+
+.text_horizontal-tb {
+    width: 50px;
+    height: 100px;
+    writing-mode: horizontal-tb;
+}
+.text_vertical-lr {
+    width: 50px;
+    height: 100px;
+    writing-mode: vertical-lr;
+}
+.text_vertical-rl {
+    width: 50px;
+    height: 100px;
+    writing-mode: vertical-rl;
+}
+
+
+
+.text_mixed {
+    text-orientation: mixed;
+}
+.text_upright_lr {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+.text_upright_rl {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+.text_sideways_lr {
+    writing-mode: sideways-lr;
+    text-orientation: sideways;
+}
+.text_sideways_rl {
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
+}
+
+
+
+.text_unicode-bidi_normal {
+    unicode-bidi: normal;
+}
+.text_unicode-bidi_embed_ltr {
+    direction: ltr;
+    unicode-bidi: embed;
+}
+.text_unicode-bidi_embed_rtl {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+.text_unicode-bidi_bidi-override {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}

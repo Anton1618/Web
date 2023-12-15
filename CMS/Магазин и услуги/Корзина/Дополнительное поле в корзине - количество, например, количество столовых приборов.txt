@@ -1,0 +1,85 @@
+Позволяет ввести в корзину дополнительное поле, не влияющее на другие продукты
+Страница проекта:
+https://mo-ti.ru/cutlery
+
+
+- Создали корзину
+
+- Добавили скрытое поле с именем Прибор
+- Написали в его значение 1 шт
+- Добавили код на страницу в блок Т123
+
+
+
+<style>
+.cutlery_wrapper {
+     --cutlery-icon-width: 30px;  /*Ширина иконки вилка/ложка*/
+     --cutlery-plus-minus-width: 25px;  /*Ширина иконки плюс/минус*/
+    font-family: 'Roboto',Arial,sans-serif;
+    font-weight: 300;
+    color: #000000;
+}
+@media screen and (max-width:680px){
+.cutlery_wrapper {
+    --cutlery-plus-minus-width: 40px;  /*Ширина иконки плюс/минус*/
+}    
+}
+.cutlery_wrapper span {
+    font-size: 14px;
+    opacity: 0.7;
+}
+.cutlery_action {
+    display: flex;
+    margin-top: 6px;
+    height: 40px;
+    align-items: center;
+}
+.cutlery_num {
+    font-size: 20px;
+    padding: 0 10px;
+}
+.cutlery_icon {
+    background-image: url(https://static.tildacdn.com/tild3761-6436-4237-b339-353163623330/637211.svg);
+    opacity:0.1;
+    width:  var(--cutlery-icon-width);
+    margin-right: 25px;
+}
+.cutlery_minus,
+.cutlery_plus{
+    cursor:pointer;
+    width: var(--cutlery-plus-minus-width);
+    height: 100%;
+}
+.cutlery_icon , .cutlery_minus, .cutlery_plus {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.cutlery_minus {
+    background-image: url(https://static.tildacdn.com/tild3965-3930-4337-a631-323035373738/261937.svg);
+}
+.cutlery_plus {
+    background-image: url(https://static.tildacdn.com/tild3732-3339-4737-b138-646234666535/261936.svg);
+}
+.show_elem{ opacity:1}
+</style>
+<script>
+$(document).ready(function(){
+    let maxSize=15;
+    let pribor = $('input[name="Прибор"]');
+    $('.t706__cartwin-bottom').append('<div class="cutlery_wrapper"><span>Столовые приборы</span><div class="cutlery_action"><div class="cutlery_icon show_elem"></div><div class="cutlery_minus"></div><div class="cutlery_num">1</div><div class="cutlery_plus"></div></div></div>')
+    $(document).on('click','.cutlery_minus',function(e){
+        let elem = $(this).siblings('.cutlery_num');
+        let num = Number(elem.html());
+        if(num>0){elem.html(num-1);pribor.val((num-1)+' шт')};
+        if(num==1){$('.cutlery_icon').removeClass('show_elem')};
+    });  
+    $(document).on('click','.cutlery_plus',function(e){
+        let elem = $(this).siblings('.cutlery_num');
+        let num = Number(elem.html());
+        if(num==0){$('.cutlery_icon').addClass('show_elem')}
+        if (num<maxSize){ elem.html(num+1);pribor.val((num+1)+' шт')}
+    });  
+})
+</script>

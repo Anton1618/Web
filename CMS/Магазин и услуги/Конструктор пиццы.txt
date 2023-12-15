@@ -1,0 +1,389 @@
+https://mo-ti.ru/zeropizzaconstructor
+
+1. Создали ZeroBlock
+
+2. Добавили в него элементы:
+2.1 Изображение продукта Shape с классом product_img
+Загрузили в него первое изображение продукта
+2.2 Название продукта Text с классом product_title
+2.3 Подзаголовок под название Text product_subtitle
+2.4 Итоговая цена Text с классом total__price
+2.5 Вес Text с классом total__weight
+2.6 Кнопку Button "Добавить в корзину" с классом add_tocart
+2.7 Текст "Добавить начинки" Text с классом button__fillopen
+2.8 Стрелку Image с классом arrow__dop
+
+3. Добавили в него основную форму выбора опций с полями и задали ей класс form__main
+3.1 - Выбор с картинками / Question with image answers
+Заполнили его:
+Input Sutitle 25,30,35
+Variable Name option__Размер
+Image Variants - добавили картинки и подписали их
+Маленькая=500
+Средняя=700
+Большая=900
+
+Номер по умолчанию - 1
+
+3.2 Вопрос с ответами / Question with answers
+Заполнили его:
+Input Sutitle 400,600,750||350,550,700
+Variable Name option__Тесто
+Variants Традиционное Тонкое
+
+3.3 Калькулятор / Calculations field
+Заполнили его:
+Variable Name pizza_price
+Arithmetic expression option__Размер
+
+4. Добавили в него форму для начинок с полями и задали ей класс form__filling
+4.1 - Количество / Quantity (plus/minus buttons)
+Заполнили его:
+Input Title Сыр
+Input Sutitle 35г , 79₽
+Value 0
+
+4.2 - Количество / Quantity (plus/minus buttons)
+Заполнили его:
+Input Title Помидоры
+Input Sutitle 60г , 90₽
+Value 0
+
+4.3 - Количество / Quantity (plus/minus buttons)
+Заполнили его:
+Input Title Укроп
+Input Sutitle 4г , 15₽
+Value 0
+... и т.д.
+
+5. Добавили блок ST200
+Включили в нём параметр:
+Вес с начинкой - значение проставили 0
+
+6. Добавили на страницу 2 блока Т123
+Вставили первый код в первый блок, второй код - во второй блок
+
+
+
+<style>
+/*Изменение размера продукта*/
+.product_img{ transition: all 0.3s ease-in-out}
+.middle{transform:scale(1.2)}
+.large{transform:scale(1.4)}
+.size__text .tn-atom{text-transform: lowercase}
+/*Скрываем ST200*/
+div[data-record-type="744"] {display: none}
+/*Раскрытие блока*/
+.prodblock .t396__artboard{ overflow:visible}
+.prodblock{overflow:hidden;transition:padding 0.3s;}
+.padding_filling{padding-bottom:320px}
+/*Разворот стрелки*/
+.arrow__dop   {transition:transform 0.3s}
+.rotate_arrow {transform:rotate(180deg)}
+
+/*Основная форма*/
+.form__main .t-input-subtitle,
+.form__main .t-input-group_fr{
+    display: none;
+}
+.form__main .t-bgimg.t-img-select__indicator {
+    box-shadow: none;
+    border-radius: 50%;
+}
+/*Выбор с картинками*/
+.form__main  .t-img-select__control {width: calc(33% - 10px)}
+.form__main  .t-img-select__text { text-align: center}
+.form__main  .t-radio__control:first-child {margin: 0}
+/*Переключатель с radio*/
+.form__main .t-radio__wrapper {
+    display: flex;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.form__main label.t-radio__control {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form__main .t-radio__indicator {
+    position: absolute;
+    background: #f3f3f7;
+    opacity: 1 !important;
+    z-index: -1;
+    border-width: 0px;
+    border-radius: 0;
+    margin-right: 0;
+    height: 100%;
+    width: 100%;
+}
+.form__main .t-radio__indicator:after {
+    width: 96%;
+    height: 80%;
+    background: #fff;
+    box-shadow: 0 0 4px #bdbdbd;
+    border-radius: 30px;
+    position: absolute;
+    z-index: -5;
+    background: #ffffff !important;
+}
+
+/*Кнопка раскрытия начинок*/
+.button__fillopen, .add_tocart {cursor:pointer}
+
+/*Выбор  начинок*/
+.form__filling .t-input{pointer-events:none}
+
+.form__filling .t-form__inputsbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.form__filling .t-input-group_qn {
+    display: flex;
+    align-items: center;
+    flex-basis: 33.3%;
+    flex-wrap: wrap;
+}
+.form__filling .t-input-title {width: 50%}
+.form__filling .t-input-subtitle {
+    order: 1;
+    width: 50%;
+    margin-top: -8px;
+}
+.form__filling span.t-inputquantity__btn { margin: 0}
+.form__filling  .t-inputquantity {
+    width: 40px;
+    height: 25px !important;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width:960px){
+.form__filling .t-input-group_qn { flex-basis: 50%}
+}
+
+@media screen and (max-width:480px){
+.form__filling .t-input-subtitle {display: none}
+.padding_filling { padding-bottom: 370px}
+.form__filling .t-input-group_qn { justify-content: center}
+.form__filling .t-input-title {
+    width: 100%;
+    padding-right: 0;
+    text-align: center;
+}
+}
+
+/*Корзина*/
+.t706__product-title {
+    display: flex;
+    flex-direction: column;
+}
+.t706__product-title>div:nth-child(3) {
+    font-weight: 600 !important;
+    line-height: 1.2;
+}
+.t706__product-title>div:nth-child(2) {
+    order: 1;
+    margin-top: 3px;
+    max-height: 20px;
+    overflow: hidden;
+}
+.t706__product-title>div:nth-child(2):before {
+    content: "Дополнительно ↓";
+    border-bottom: 1px solid #a9a9a9;
+    cursor:pointer;
+}
+.cartshowOption{
+    max-height: max-content !important;
+}
+</style>
+
+
+
+
+
+<script>
+$( document ).ready(function() {
+//Присваиваем класс нашим ZeroBlock 
+$('.product_title').closest('.t-rec').addClass('prodblock');
+    
+let productImg = '.product_img';
+let arrWeight = [];
+let arrSize = [];
+let optionSize = 'input[name="option__Размер"]';
+let optionDough = 'input[name="option__Тесто"]';
+let pizzaPrice = 'input[name="pizza_price"]';
+let placeSize = 0; placeDough = 0;
+
+//Изменения размера продукта**
+function productSize(el,bl){
+$(bl).find(productImg).removeClass('middle large');  
+switch (el) {
+  case 1: $(bl).find(productImg).addClass('middle');break;
+  case 2: $(bl).find(productImg).addClass('large'); break;
+};
+};  
+
+//Формирование цены и надписи
+function showResult(el){
+    doughWeight(el);
+    writeSubtitle(el);
+    totalSumm(el);
+};
+
+//Стартовый настройки
+function startPriceBlock(){
+setTimeout(function(){
+ $('.prodblock').each(function( index ) {
+showResult($(this));
+});
+$('.form__filling .t-input').attr('tabindex','-1');
+}, 3500);
+};
+ startPriceBlock();
+
+//При ресайзе страницы
+$( window ).resize(function() {
+    startPriceBlock();
+    $(productImg).removeClass('middle large'); 
+});
+
+//Раскртие опций в блоке**
+$('.button__fillopen').click(function(){
+    $(this).closest('.t-rec').toggleClass('padding_filling').find('.arrow__dop').toggleClass('rotate_arrow');
+    let btnCaption = $(this).find('.tn-atom').text();  
+    $(this).find('.tn-atom').text(btnCaption == "Добавить начинки" ? "Удалить начинки" : "Добавить начинки");
+    clearFill($(this));
+});
+
+//Удаление начинки**
+function clearFill(el){
+    let blockmain = $(el).closest('.t-rec');    
+    blockmain.find('.form__filling').find('input').val(0);
+    showResult(blockmain);
+};
+
+//Выбор веса продукта по толщине теста**?
+function doughWeight(bl){
+    placeDough = $(bl).find(optionDough).index( $(bl).find(optionDough+':checked'));
+    let prWeight = $(bl).find(optionDough).closest('.t-input-group').find('.t-input-subtitle').html();
+    if(placeDough==0){ arrWeight = prWeight.split('||')[0].split(',');
+    }else{     arrWeight = prWeight.split('||')[1].split(',');
+    };
+};
+
+//Вывод информации в подзаголовок**
+function writeSubtitle(bl){
+    let prSize = $(bl).find(optionSize).closest('.t-input-group').find('.t-input-subtitle').html();
+    arrSize = prSize.split(',');
+    placeSize =   $(bl).find(optionSize).index(  $(bl).find(optionSize+':checked'));
+    let textJoin = `${$(bl).find(optionSize+':checked').val()}: ${arrSize[placeSize]} см, 
+                    ${$(bl).find(optionDough+':checked').val()}: ${arrWeight[placeSize]} г
+                   `;
+    $(bl).find('.product_subtitle .tn-atom').text(textJoin);
+};
+
+//Вывод конечной цены и веса
+function totalSumm(bl){
+     let completeFilling =  checkFill(bl);
+     let pricePiz =  parseFloat($(bl).find(pizzaPrice).val())+parseFloat(completeFilling[0][1]);
+     pricePiz = pricePiz.toFixed(1);
+     $(bl).find('.total__price .tn-atom').html( pricePiz  +'₽');
+     $(bl).find('.total__weight .tn-atom').html( parseFloat(arrWeight[placeSize]) +completeFilling[0][0]+'г');
+};
+
+//Проверка наполнения доп опций**
+function checkFill(bl){
+    let arrFilling=[];
+    let arrFillPriceWeightSum=[0,0]
+    let sumPosition = 0;
+    $(bl).find('.form__filling .t-input-group_qn').each(function( index ) {
+        if ($(this).find('.t-input').val() > 0 ) {
+          arrFilling[sumPosition] = [];
+		  arrFilling[sumPosition][0] = $(this).find('.t-input-title').text();
+		  arrFilling[sumPosition][1] = parseFloat($(this).find('.t-input').val());
+	      arrFilling[sumPosition][2] = parseFloat($(this).find('.t-input-subtitle').text().split(',')[0]) * arrFilling[sumPosition][1]; 
+	      arrFilling[sumPosition][3] = parseFloat($(this).find('.t-input-subtitle').text().split(',')[1]) * arrFilling[sumPosition][1]; 
+	      
+          arrFillPriceWeightSum[0] += arrFilling[sumPosition][2];
+          arrFillPriceWeightSum[1] += arrFilling[sumPosition][3];
+          sumPosition++;
+        };
+    });
+ return [arrFillPriceWeightSum , arrFilling];
+};
+
+//Раскртие опций в корзине**
+$(document).on('click','.t706__product-title div',function(e){
+$(this).toggleClass('cartshowOption');
+});
+
+//При выборе размера продукта    
+$(".tn-atom__form").on('change', optionSize , function() {       
+    placeSize =   $(this).closest('form').find(optionSize).index(this); 
+    let blockmain = $(this).closest('.t-rec');
+    setTimeout(function(){ 
+        productSize(placeSize,blockmain);
+        showResult(blockmain);
+    },100);
+    let urlprodimg = $(this).next('.t-bgimg').css('background-image');
+    urlprodimg = urlprodimg.replace('url(','').replace(')','').replace(/\"/gi, "");
+    
+    $(blockmain).find('.product_img .tn-atom').css('background-image', 'url('+urlprodimg+')').attr('data-original', urlprodimg);
+});
+
+//При выборе теста
+$(".tn-atom__form").on('change ', optionDough , function() {       
+    let blockmain = $(this).closest('.t-rec');
+    showResult(blockmain);
+});
+
+//Увеличение кол-ва начинки
+$(document).on('click','.form__filling .t-inputquantity__btn-plus',function(e){
+    //Ограничение кол-ва в поле ввода до 4 штук
+    let maxNum =  $(this).siblings('.t-input').val();
+    if (maxNum >= 4)  $(this).siblings('.t-input').val(4);
+    let blockmain = $(this).closest('.t-rec');
+    showResult(blockmain);
+});
+
+//Уменьшение кол-ва начинки
+$(document).on('click','.form__filling .t-inputquantity__btn-minus',function(e){
+    let blockmain = $(this).closest('.t-rec');
+    showResult(blockmain);
+});
+
+//Отправка товара в корзину**
+$(document).on('click','.add_tocart',function(e){
+   let currentBlock = $(this).closest('.t-rec');
+   //Передача картинки
+   let urlprodimg =  currentBlock.find('.product_img .tn-atom').css('background-image');
+   urlprodimg = urlprodimg.replace('url(','').replace(')','').replace(/\"/gi, "");
+   
+   
+   $('#rec259980741 .t744 .t-slds__bgimg').css('background-image', 'url('+urlprodimg+')').attr('data-original', urlprodimg);
+   $('#rec259980741 .t744__title').text( currentBlock.find('.product_title .tn-atom').text());//Заголовок
+   $('#rec259980741 .t744__title_small').text( currentBlock.find('.product_subtitle  .tn-atom').text());//Артикул
+   $('#rec259980741 .t744__price-value').text(parseFloat(currentBlock.find('.total__price .tn-atom').text()));//Цена
+   //ПАРАМЕТРЫ ФИКС
+   //Вес с начинкой
+    $('#rec259980741 .t744 select:eq(0) option:selected').val(currentBlock.find('.total__weight .tn-atom').text());
+    $('#rec259980741 .t744 .t-product__option:not(:first)').remove();
+   //ПАРАМЕТРЫ С НАЧИНКОЙ
+   let newSelect = 0;
+   currentBlock.find('.form__filling input').each(function(index) {
+        let elVal = parseFloat($(this).val());
+        if(elVal) {newSelect++;
+            $('#rec259980741 .t744 .t-product__option:first').clone().appendTo('#rec259980741 .t744 .js-product-controls-wrapper');
+            $('#rec259980741 .t744 .t-product__option:last .t-product__option-title').text($(this).attr('name'));
+            $('#rec259980741 .t744 .t-product__option:last option:selected').val(elVal+' шт');
+        };
+   });  
+   //Отправка
+   $('#rec259980741 .t744__btn')[0].click();
+});
+});    
+</script>

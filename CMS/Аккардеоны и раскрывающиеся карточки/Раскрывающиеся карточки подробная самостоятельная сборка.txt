@@ -1,0 +1,130 @@
+https://mt-webdesign.ru/cards
+https://www.youtube.com/watch?v=0nKL7shSzzY
+
+На примере трех раскрывающихся карточек по наведению и клику. 
+Вся необходимая настройка производится вручную, посредством step by step анимации, а скрипт необходим для компенсирования невозможности в редакторе изменить размер элемента с transition эффектом
+
+
+- Создается 3 контен-шейпа и в них загружаются изображения. Им задаются классы: card-1, card-2 и card-3
+
+- Создается 3 пустых тригер-шейпа поверх контентных. С них убирается заливка и задаются соответствующий контенту классы: card-triger-1, card-triger-2 и card-triger-3
+
+- Создаются тектовые элементы "названия карточек", которые изначально видимы и отображаются до наведения на карточку (её тригер). 
+Им задаются соответствующие контенту классы: text-card-1, text-card-2 и text-card-3
+Устанавливается pointer events: none
+Добавляется необходимая анимация, например, полная прозрачность с уходом влево, при наведении на карточку (для визуальной плавности)
+
+- По необходимости, создаются тектовые элементы "названия карточек и описания", которые изначально не видны и станут отображаться после задействия ховера по соответствующей карточке. Их размер или точнее выход за пределы свернутой карточки требуется точно определить и принять как необходимый размер будущей карточки со смещением раскрытия и смещением других краточек  
+Добавляется необходимая анимация, например, изначальная прозрачность на первом шаге, после чего выход из прозрачности со сдвигом (для визуальной плавности) 
+
+
+- Устанавливается код в блок 123
+
+
+<script>
+// Анимация с первой карточкой
+$("body").on("mouseover mouseout", '.card-triger-1', function(){
+$('.card-1').toggleClass("card-show");
+$('.text-card-3').toggleClass("text-card-3-right");
+$('.text-card-2').toggleClass("text-card-2-right");
+$('.card-triger-1').toggleClass("card-triger-1-show");
+$('.card-2').toggleClass("card-hide-2");
+$('.card-3').toggleClass("card-hide-3");
+});
+// Анимация со второй карточкой
+$("body").on("mouseover mouseout", '.card-triger-2', function(){
+$('.text-card-3').toggleClass("text-card-3-right");
+$('.card-1').toggleClass("card-hide-1");
+$('.card-2').toggleClass("card-show-2");
+$('.card-triger-2').toggleClass("card-triger-2-show");
+$('.card-3').toggleClass("card-hide-3");
+});
+// Анимация с третьей карточкой
+$("body").on("mouseover mouseout", '.card-triger-3', function(){
+$('.text-card-2').toggleClass("text-card-2-left");
+$('.text-card-3').toggleClass("text-card-3-left");
+$('.card-1').toggleClass("card-hide-1");
+$('.card-2').toggleClass("card-hide-2-left");
+$('.card-triger-3').toggleClass("card-triger-3-show");
+$('.card-3').toggleClass("card-show-3");
+});
+</script>
+<style>
+/*Разрешения на которых будет работать скрипт (от 1024 до 2560px) */
+@media only screen and (min-width : 1024px) and (max-width : 2560px) {
+.card-1, .card-2, .card-3,
+.card-1 .tn-atom, .card-2 .tn-atom, .card-3 .tn-atom,
+.card-triger-1, .card-triger-2, .card-triger-3 {
+transition-duration: 0.5s;
+}
+.text-card-2, .text-card-3 {
+transition-duration: 0.5s;
+}
+.text-card-2-right {
+transform: translateX(200px);
+transition-duration: 0.5s;
+}
+.text-card-3-right {
+transform: translateX(100px);
+transition-duration: 0.5s;
+}
+.text-card-2-left, .text-card-3-left {
+transform: translateX(-100px);
+transition-duration: 0.5s;
+}
+.card-1:before, .card-2:before, .card-3:before {
+content: '';
+position: absolute;
+height: 100%;
+width: 100%;
+border-radius: 20px;
+pointer-events: none;
+background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 50%, rgb(0 0 0 / 0%) 100%);
+}
+.card-show, .card-triger-1-show {
+width: 560px !important;
+transition-duration: 0.5s;
+}
+.card-show .tn-atom {
+background-position: 100% 15% !important;
+transition-duration: 0.5s;
+}
+.card-hide-1 {
+width: 260px !important;
+transition-duration: 0.5s;
+}
+.card-hide-2 {
+transform: translateX(200px);
+width: 260px !important;
+transition-duration: 0.5s;
+}
+.card-hide-3 {
+transform: translateX(100px);
+transition-duration: 0.5s;
+width: 260px !important;
+}
+.card-show-2, .card-triger-2-show {
+transform: translateX(-100px);
+width: 560px !important;
+transition-duration: 0.5s;
+}
+.card-show-2 .tn-atom {
+background-position: 100% 15% !important;
+transition-duration: 0.5s;
+}
+.card-hide-2-left {
+transform: translateX(-100px);
+width: 260px !important;
+transition-duration: 0.5s;
+}
+.card-show-3, .card-triger-3-show {
+transform: translateX(-200px);
+width: 560px !important;
+transition-duration: 0.5s;
+}
+.card-show-3 .tn-atom {
+background-position: 100% 15% !important;
+transition-duration: 0.5s;
+}
+}
+</style>

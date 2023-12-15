@@ -1,0 +1,25 @@
+https://dsgnmax.ru/mini-code/tpost/lytl26f9e1-knopka-v-potokah
+
+1. Добавляете в любом месте статьи блок с нужным текстом для ссылки, задаете ссылку этому тексту на нужную страницу
+2. Скопируйте код ниже, создайте в потоках блок "Embed HTML code" и вставьте его туда
+4. В коде, у атрибута href поменяйте значение ссылки в двух местах на ту, которую задавали в первом пункте
+5. Настройте свои стили кнопки по комментариям
+
+<style>
+.t-redactor__tte-view .t-redactor__text a[href="https://t.me/dsgnmax"] {
+    display: inline-block;
+    margin-top:40px; /*Отступ сверху от кнопки*/
+    padding:20px 30px; /*Отступы внутри кнопки*/
+    border-radius: 12px; /*Скругление углов у кнопки*/
+    background-color: #279FF8;; /*Цвет фона кнопки*/
+    color: #fff !important; /*Цвет текста кнопки*/
+    font-size: 16px; /*Размер текста*/
+    font-weight: 600; /*Толщина текста*/
+    transition: 0.3s ease-in; /*Плавность анимации при наведении на кнопку*/
+}
+
+.t-redactor__tte-view .t-redactor__text a[href="https://t.me/dsgnmax"]:hover{
+    background-color: #1488DF; /*Цвет фона при наведении*/
+    color: #fff !important; /*Цвет текста при наведении*/
+}
+</style>

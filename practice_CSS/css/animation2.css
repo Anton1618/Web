@@ -1,0 +1,66 @@
+h1 {
+    text-align: center;
+}
+
+.rectangle {
+    width:300px; 
+    height:300px; 
+    background-color: orange;
+    margin: 45px calc(50% - 150px);
+}
+
+.circle {
+    position: fixed;
+    width:250px;
+    height:250px; 
+    background-color: orange; 
+    border-radius: 50%;
+}
+.circle.anim {
+    /* 
+    animation-name: anim;
+    z-index: 50;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    */
+    /* Представленные описания зачастую указываются через пробел в параметрах единого свойства animation*/
+    animation: anim 2s ease-in-out infinite
+}
+
+.triangle {
+    width:0px;
+    height:0px; 
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-bottom: 200px solid orange;
+    margin: 45px calc(50% - 300px);
+}
+
+/* Выключив зацикливание через animation-direction: alternate, применяются последовательные шаги, которые ведут фигуру по краям экрана, после чего, сделав оборот вокруг экрана, фигура возвращается в нулевую точку и продолжает круговые*/
+@keyframes anim {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    25% {
+        left: calc(100% - 250px);
+        top: 0;
+    }
+    50% {
+        left: calc(100% - 250px);
+        top: calc(100% - 250px);
+    }
+    75% {
+        left: 0;
+        top: calc(100% - 250px);
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
+
+.circle:hover {
+    animation-play-state: paused; /* Пауза проигрывания анимации, при наведении на элемент (и при клике) */
+}

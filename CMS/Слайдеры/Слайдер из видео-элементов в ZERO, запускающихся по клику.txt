@@ -1,0 +1,180 @@
+https://mo-ti.ru/videogalleryzero
+
+
+- Создали блок ZeroBlock и добавили в него элемент HTML
+Задали ему класс zero_video
+(размеры по экранам: 1200х150 ; 900х210; 380х270; 380х270; 320х210 )
+
+- Добавили 2 Image со стрелками и задали им классы prev_video и next_video
+
+- Добавили код в блок Другое - Т123
+В коде прописали ссылки на видео и постеры
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+<script type="text/javascript" src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
+
+<script>
+$(document).ready(function(){
+let videoLink = [
+    ["https://310401.selcdn.ru/MIXED/The%20Weeknd-Often(Kygo%20Remix).mp4", "https://static.tildacdn.com/tild6564-6433-4462-a638-383062323139/c52c561d8c9ef07f8390.jpg"],
+    ["https://310401.selcdn.ru/MIXED/Tiesto-Karol-G-Dont-Be-Shy-Extended.mp4", "https://static.tildacdn.com/tild6261-3737-4566-b035-323539383339/maxresdefault.jpg"],
+    ["https://310401.selcdn.ru/MIXED/HammAli-Navai-Ptichka-DjStrelok-Remix.mp4", "https://static.tildacdn.com/tild3934-3632-4166-b936-323833373835/f1f32f6ac033ec798efb.jpg"],
+    ["https://310401.selcdn.ru/MIXED/antoha_mc_LN.mp4", "https://static.tildacdn.com/tild6332-6638-4539-a264-326165313561/antokhamc-arbat-hall.jpg"],
+    ["https://310401.selcdn.ru/MIXED/Rag-n-Bone-Man-Human(Joe-Jayson-Remix).mp4", "https://static.tildacdn.com/tild3130-6638-4839-b939-303630623138/maxresdefault.jpg"],
+    ["https://310401.selcdn.ru/MIXED/JONY%2CThe-Limba-boss.mp4", "https://static.tildacdn.com/tild3835-3339-4136-b334-363637363664/maxresdefault.jpg"],
+    ["https://310401.selcdn.ru/MIXED/posmotri-v-glaza.mp4", "https://static.tildacdn.com/tild3331-3765-4163-b361-623431653265/1563200909_00032.jpg"],
+    ];
+    
+let videoElem="";    
+$.each(videoLink,function(index,value){
+    videoElem+=  '<div><video style="object-fit: fill;background-size: cover;  width: 100%; height: 100%;" preload="none" disablePictureInPicture playsinline="" loop="" controlsList="nodownload" poster="'+value[1]+'"  ><source src="'+value[0]+'" type="video/mp4"></video><div class="video-bg"  style="background-image:url('+value[1]+')" ><div class="video-play"></div></div></div>';
+});
+videoElem = `<div class="zerovideo-slide">${videoElem}</div>`;
+$('.zero_video .tn-atom').html(videoElem);
+
+$('.zerovideo-slide').slick({
+      prevArrow: $('.prev_video'),
+      nextArrow: $('.next_video'),
+      centerMode: true,
+      centerPadding: '0px',
+      infinite: true,
+      lazyLoad: 'ondemand',
+      slidesToScroll: 1,
+      arrows:true,
+      dots:false, 
+      pauseOnDotsHover:true,
+      mobileFirst:true, 
+      speed:750, 
+      adaptiveHeight:true,
+      autoplay:false,
+      autoplaySpeed:4000,
+      responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 5 } },
+        { breakpoint: 960,  settings: { slidesToShow: 3 } },
+        { breakpoint: 640,  settings: { slidesToShow: 1 } },
+        { breakpoint: 480,  settings: { slidesToShow: 1 } },
+        { breakpoint: 300,  settings: { slidesToShow: 1 } }
+      ]
+});
+
+let activeTrack = {};
+document.querySelectorAll('video').forEach(function(el){
+  el.addEventListener('playing', function(){
+    if (activeTrack.pause && activeTrack !== this)
+      activeTrack.pause(); activeTrack = this;
+  }); 
+}); 
+
+let clickSlide = false;let firstClick = false;
+//При смене слайда
+$('.zerovideo-slide').on('afterChange', function(event, slick, currentSlide, nextSlide){
+    $(this).find('video').removeAttr('controls');
+    if(!clickSlide&&firstClick) {  
+        $(this).find('video').trigger('pause');
+        $('.zerovideo-slide').find('.slick-active.slick-center video').trigger('play').attr('controls','controls');
+        $('.zerovideo-slide').find('.slick-active.slick-center').addClass('hide-vid-bg');
+    };
+    clickSlide=false;
+    $(this).find('.slick-active.slick-center video').attr('controls','controls');
+    
+});
+
+//Показать панель video при hover
+$('.slick-active.slick-center video').hover(
+    function() {
+        $(this).attr('controls','controls');    
+    }, function() {
+        $(this).removeAttr('controls');
+    }
+);
+
+//При клике на слайд
+$('.zero_video').on('click',' .slick-center>div.video-bg',function(e){
+    $('.zerovideo-slide').find('.slick-active.slick-center').addClass('hide-vid-bg');
+    $('.zerovideo-slide').find('video').trigger('pause');
+    clickSlide=true;firstClick=true;
+    $('.zerovideo-slide').find('.slick-active.slick-center video').trigger('play').attr('controls','controls');
+    setTimeout(function(){
+    clickSlide=false;  
+    }, 1000);
+});
+
+//Переход к нужному слайду по клику
+$(".zerovideo-slide .slick-slide").on("click", function() {
+    if(!$(this).hasClass('slick-center')){
+        const index = $(this).attr("data-slick-index");
+        $(".zerovideo-slide").slick("slickGoTo", index);  
+    }else{
+    
+    };
+});
+
+});
+</script>
+
+<style>
+.zero_video .tn-atom.tn-atom__html, .zerovideo-slide,
+.slick-track , .slick-list{
+    width: inherit;
+    height:inherit;
+}    
+div[class*="_slide"]{ cursor:pointer}  
+.zero_video .slick-slide video {
+    opacity: 0.7;
+    box-sizing: border-box;
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+}
+.zero_video .slick-slide.slick-center video {
+    transform: scale(1);
+    opacity: 1;
+}
+.zero_video .tn-atom {vertical-align: middle}
+.zerovideo-slide {
+    display: flex !important;
+    align-items: center;
+}
+.next_video, .prev_video , .slick-slide video{cursor:pointer}
+.video-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: contain;
+    top: 0;
+    left: 0;
+}
+.slick-slide {
+    position: relative;
+    opacity: 0.4;
+}
+.slick-active.slick-center {opacity: 1}
+.video-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+}
+.slick-center .video-bg {transform: scale(1)}
+.video-play {
+    transition: all 0.2s ease-in-out;
+    width: 60px;
+    height: 60px;
+    background-image: url(https://static.tildacdn.com/tild3831-3161-4134-b932-646238656336/img_273544.png);
+    background-repeat: no-repeat;
+    background-size: 60px;
+    background-position: center;
+}
+.video-play:hover {transform: scale(1.1)}
+.slick-active.slick-center.hide-vid-bg .video-bg{ display: none}
+.video-play {
+    pointer-events: none;
+    opacity: 0;
+}
+.slick-center .video-play , .video-bg:hover .video-play { 
+    pointer-events: auto;
+    opacity: 1;
+}
+</style>

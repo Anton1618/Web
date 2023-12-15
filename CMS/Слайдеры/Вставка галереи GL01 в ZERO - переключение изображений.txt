@@ -1,0 +1,62 @@
+https://mo-ti.ru/slidervzeroblock
+https://levelup.mo-ti.ru/student/lessons/13 пример ниже по ссылке
+
+
+
+- Создаём ZeroBlock и добавляем элемент AddHTML
+Прописываем в AddHTML div контейнер
+<div class="sliderzero"></div>
+
+- Создаём блок GL01
+Загружаем необходимые изображения
+Задаем 6 колонок, отображать только точки, отступы 0, стрелки внутри фотографии
+Масштабирование изображений - целиком внутри блока
+При необходимости, включаем автослайдинг
+	скорость анимации: медленно
+	автоматическая смена слайдов: 5000
+
+- Создаём блок T123 и добавляем скрипт
+
+
+
+Основной скрипт
+<script>
+//Перемещаем слайдер в ZeroBlock в div контейнер с классом sliderzero
+$("#rec41087478").appendTo(".sliderzero");
+</script>
+
+
+
+Адаптация для экранов: 1- 560px; 2 - 460px;  3 - 460px;  4 - 460px;  5 - 330px;
+<style>
+/* Корректировка ширины слайдера под ширину экрана в 323px */
+@media screen and (max-width: 480px){
+#rec92223283 .t-width_6 {
+    max-width: 323px !important;
+}}
+</style>
+
+
+Применение пользовательских кнопок
+<style>
+/*Скрываем штатные стрелки слайдера*/
+    #rec92223283 .t-slds__arrow_container {
+    display: none;
+}
+     
+</style>
+ 
+<script>
+//Управляем слайдером своими стрелками из Zero
+//При клике на левую кнопку - крутим слайдер влево
+ $("[href = '#sldleft']").click(function(event) {
+   $("#rec92223283 .t-slds__arrow_wrapper-left")[0].click();
+   event.preventDefault();
+  });
+//При клике на правую кнопку - крутим слайдер вправо
+  $("[href = '#sldright']").click(function(event) {
+   $("#rec92223283 .t-slds__arrow_wrapper-right")[0].click();
+   event.preventDefault();
+  });
+   
+</script>

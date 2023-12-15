@@ -1,0 +1,98 @@
+https://mo-ti.ru/beforeafterzero
+https://levelup.mo-ti.ru/student/lessons/111
+
+
+
+Выбор таба производит на нем анимацию вращения и открывает отображение блока до-после в html элементе zero
+
+
+
+- Создали ZeroBlock
+
+Добавили в него элемент HTML с классом before-after-zero
+Размеры элемента из примера для 5 экранов
+460х400 - 380х330 - 600х487 - 100%х382 - 100%х245
+
+Создали 3 таба-иконки Image для ототображения элемента до\после и задали каждой свой класс: glzero_1, glzero_2 и glzero_3
+
+- Создали 3 блока GL09
+Задали ширину в 5 колонок.
+Убрали отступы сверху и снизу
+
+- Вставили код на страницу в блок Т123
+В коде прописали ID наших GL09
+//Прописываем наши ID
+let gl09ID = ['#rec289281234','#rec289280748','#rec289279716'];
+
+
+<style>
+.t410__col {margin: 0;}
+
+/* Стилизация всех табов-элементов */
+div[class*="glzero_"]{
+    cursor:pointer;
+    border-radius: 50%;  /* изображения в форме кругов */
+    transition:all 0.2s linear;
+    filter: grayscale(1);  /* затемнение и обесцвечивание */
+}
+
+/* Стилизация активного элемента */
+div.active-gl{
+    box-shadow: 0 0 7px 0px #616161;    /* небольшая тень */
+    transform: rotateY(180deg);  /* вращение элементов по горизонтали, вокруг своей оси */
+    filter: grayscale(0);    /* возвращение цвета */
+}
+/* Небольшое уменьшение, при наведении на элемент, кроме выбранного */
+div[class*="glzero_"]:not(.active-gl):hover {
+    transform: scale(0.9);
+}
+
+.glhide {
+    opacity: 0!important;
+    min-height: 0!important;
+    max-height: 0!important;
+    pointer-events: none!important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+</style>
+
+<script>
+$(document).ready(function(){
+    
+//Прописываем наши ID  
+let gl09ID = ['#rec289281234','#rec289280748','#rec289279716'];
+
+$.each(gl09ID,function(index,value){
+ $(value).appendTo('.before-after-zero .tn-atom');
+});
+$('.glzero_1').addClass('active-gl');
+$('.before-after-zero').find('.t-rec').not(':first').addClass("glhide");
+    
+$('div[class*="glzero_"]').click(function(){
+if (!$(this).hasClass('active-gl') ){
+    
+    let blockZeroGl = $(this).closest('.t-rec');
+    let glBtn = blockZeroGl.find('div[class*="glzero_"]').length;
+    let className = $(this).attr('class');
+    let glbtNum;
+    for (let i=1; i<glBtn+1;i++){
+    let contain = className.includes('glzero_'+i);
+    if (contain) glbtNum=i;
+    };
+   
+    blockZeroGl.find('.before-after-zero').find('.t-rec').addClass("glhide");
+    blockZeroGl.find('.before-after-zero').find('.t-rec:eq('+(glbtNum-1)+')').removeClass("glhide");
+
+    blockZeroGl.find('div[class*="glzero_"]').removeClass('active-gl');
+    $(this).addClass('active-gl');
+    $('.t410').trigger('displayChanged');
+    window.dispatchEvent(new Event('resize'));
+};
+});
+$(window).resize(function() {clearTimeout(window.resizedFinished); window.resizedFinished = setTimeout(function(){ $('.t410').trigger('displayChanged')}, 1000);});
+    
+});
+</script>

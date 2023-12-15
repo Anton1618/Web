@@ -1,0 +1,124 @@
+Клик на таб или загрузка страницы с определенным якорем в URL, производит активацию соответствующего таба для отображения заданных ему контент-блоков, в то время как остальные скрываются.
+При отсутствии в url страницы якоря, по умолчанию, активируется первый таб.
+Стили табов также изменяются для отражения активного состояния.
+
+
+
+
+=========================================== jQuery вариант ==============================
+Для удобства стилизации, табам в коде задается класс tabActive по ссылке, которой они располагают. Для того, чтобы другим элементам, например в меню, имеющим теже ссылки, что и табы на странице, не задавались стили табов, стилизация табов должна включать, например селектор блока, в котором они располагаются, либо, общий класс, заданный всей группе табов
+
+<style>
+/* Стили активного таба с селектором к блоку в котором находятся */
+#rec681221368 .tabActive {
+    background-color: #F8A95A !important;
+}
+#rec681221368 .tabActive .tn-atom:hover {
+    background-color: #F8A95A !important;
+}
+</style>
+
+<script>
+// Мы настраиваем слушатель событий на document.ready, чтобы убедиться, что наш код выполняется после загрузки страницы.
+// Запускаем функцию, когда DOM будет полностью загружен и готов к выполнению JavaScript кода
+$(document).ready(function() {
+  // Ассоциативный массив сопоставления табов с якорными ссылками и их блоков контента
+  const tabContentMap = {
+    "#ayurveda-drugs": ["#rec667079279", "#rec667162189"],
+    "#ayurveda-chyawanprash": ["#rec667079129", "#rec667161790"],
+    "#ayurveda-powder": ["#rec667079289"],
+    "#clothes-women": ["#rec667073416", "#rec667162077"],
+    "#clothes-men": ["#rec667071963", "#rec667167490"],
+    "#clothes-unisex": ["#rec667107689"]
+  };
+
+  // Функция для управления отображением контента. Функция принимает идентификатор таба в качестве аргумента, скрывает все блоки контента, а затем отображает только те, которые соответствуют выбранному табу
+  function showTabContent(tab) {
+    // Итерация по всем элементам массива tabContentMap, скрывая все области контента, соответствующие каждому табу.
+    $.each(tabContentMap, function(key, value) {
+      // $(value.join(",")).hide();  // Просто скрывая
+      // Или устанавливая стили отображения и позиционирования
+      $(value.join(",")).css({visibility: 'hidden', position: 'absolute'});
+    });
+
+    // Если для текущего таба есть заданный контент, то станут отображены все DOM-элементы ему соответствующие
+    if (tabContentMap[tab]) {
+      // $(tabContentMap[tab].join(",")).show();  // Просто отображая
+      // Или устанавливая стили отображения и позиционирования
+      $(tabContentMap[tab].join(",")).css({visibility: 'visible', position: "relative"});
+      
+      // Команда включения скролла до отображаемых контент-блоков за 500 млс
+      $('html, body').animate({
+        scrollTop: $(tabContentMap[tab].join(",")).offset().top
+      }, 500);
+
+    }
+    
+    // Добавление класса 'tabActive' к активному табу (при его выборе или загрузке страницы) и удаление этого класса у всех прочих табов. В примере указывается обращение к элементам, которые начинаются якорными ссылками, тогда как задуманные табами элементы, могут иметь однозначные классы, например ayurvedaTab и clothesTab, с соответствующей возможностью задания им стилей 
+    $('a[href^="#ayurveda-"], a[href^="#clothes-"]').removeClass('tabActive');
+    $(`a[href="${tab}"]`).addClass('tabActive');
+
+  }
+
+  // Устанавливается обработчик события click для всех ссылок, которые начинаются на #ayurveda- или #clothes-.
+  $('a[href^="#ayurveda-"], a[href^="#clothes-"]').click(function(e) {
+    // e.preventDefault();  // Отменяет стандартное поведение ссылок, чтобы страница не прокручивалась к якорю (не функционирует?)
+    let tab = $(this).attr('href');
+    showTabContent(tab);
+    window.location.hash = tab; // Обновляем якорь в URL
+  });
+
+  // Когда страница загружается, скрипт проверяет наличие хэша в URL и активирует соответствующий таб. Если хэш отсутствует, активируется первый таб по умолчанию.
+  if(window.location.hash) {
+    showTabContent(window.location.hash);
+  } else {
+    // По умолчанию первый таб в группе
+    showTabContent("#ayurveda-drugs");
+  }
+});
+</script>
+
+
+
+
+=========================================== чистый JavaScript? ==============================
+document.addEventListener('DOMContentLoaded', function() {
+  // Определяем ассоциативный массив сопоставления табов и их блоков контента
+  const tabContentMap = {
+    "#ayurveda-drugs": ["#rec667079279", "#rec667162189"],
+    "#ayurveda-chyawanprash": ["#rec667079129", "#rec667161790"],
+    "#ayurveda-powder": ["#rec667079289"],
+    "#clothes-women": ["#rec667073416", "#rec667162077"],
+    "#clothes-men": ["#rec667071963", "#rec667167490"],
+    "#clothes-unisex": ["#rec667107689"]
+  };
+
+  // Функция для управления отображением контента
+  function showTabContent(tab) {
+    // Скрываем весь предыдущий контент
+    Object.values(tabContentMap).forEach(ids => {
+      ids.forEach(id => document.querySelector(id).style.display = 'none');
+    });
+    // Отображаем соответствующий контент для выбранного таба
+    if (tabContentMap[tab]) {
+      tabContentMap[tab].forEach(id => document.querySelector(id).style.display = 'block');
+    }
+  }
+
+  // Добавляем обработчик событий для всех табов
+  document.querySelectorAll('a[href^="#ayurveda-"], a[href^="#clothes-"]').forEach(tab => {
+    tab.addEventListener('click', function(event) {
+      event.preventDefault();
+      const tabRef = event.target.getAttribute('href');
+      showTabContent(tabRef);
+      window.location.hash = tabRef;
+    });
+  });
+
+  // Активируем первый таб по умолчанию или тот, что указан в URL
+  if (window.location.hash && tabContentMap[window.location.hash]) {
+    showTabContent(window.location.hash);
+  } else {
+    showTabContent("#ayurveda-drugs");
+  }
+});

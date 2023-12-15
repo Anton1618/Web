@@ -1,0 +1,116 @@
+https://mo-ti.ru/zeroslider#
+
+Слайдер-карусель из блоков раздела Услуги
+1. Из раздела "Услуги" участвуют следующие блоки
+SV202, SV203
+SV305, SV306
+SV401, SV402, SV403, SV404, SV406
+
+2. Создали ZeroBlock, добавили в него
+- Элемент HTML с классом slider_html
+- Иконку влево и вправо с классами prev_slide и next_slide
+
+3. Добавили блок из первого пункта на страницу.
+Заполнили контентом и стилизовали
+
+4. Добавили первый и второй код в блоки Т123
+В первом коде прописали ID блоков
+
+let zeroMain = $('#rec264847791'); //Zero
+let colSurr = $('#rec264859454'); //Блок с контентом
+
+Кол-во колонок в контейнере задаётся
+
+{ breakpoint: 1200, settings: { slidesToShow: 2 } },
+{ breakpoint: 960, settings: { slidesToShow: 2 } },
+{ breakpoint: 640, settings: { slidesToShow: 2 } },
+{ breakpoint: 480, settings: { slidesToShow: 2 } },
+{ breakpoint: 300, settings: { slidesToShow: 1 } }
+
+
+==========================================================================================
+<script>
+$(document).ready(function(){
+let zeroMain = $('#rec264847791');  //Zero
+let colSurr =  $('#rec264859454');  //Блок с контентом
+colSurr.addClass('hideparent');
+zeroMain.find('.slider_html').html('<div class="slider_wrapper"></div>');
+colSurr.find('.t-col').each(function() {$(this).appendTo(zeroMain.find('.slider_wrapper'))});
+zeroMain.find('.slider_wrapper').slick({
+      prevArrow: zeroMain.find('.prev_slide'),
+      nextArrow: zeroMain.find('.next_slide'),
+      infinite: true,
+      lazyLoad: 'ondemand',
+      slidesToScroll: 1,
+      arrows:true,
+      dots:true, 
+      pauseOnDotsHover:true,
+      mobileFirst:true, 
+      speed:1750, 
+      adaptiveHeight:true,
+      autoplay:false,
+      autoplaySpeed:5000,
+      responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 2 } },
+        { breakpoint: 960,  settings: { slidesToShow: 2 } },
+        { breakpoint: 640,  settings: { slidesToShow: 2 } },
+        { breakpoint: 480,  settings: { slidesToShow: 2 } },
+        { breakpoint: 300,  settings: { slidesToShow: 1 } }
+      ]
+    });
+    $('.slider_wrapper').on('afterChange', function(event, slick, currentSlide, nextSlide){ setTimeout(function() {t_lazyload_update()}, 100)});    
+});
+</script>
+
+
+
+
+==========================================================================================
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<style>
+.slick-slide, .slick-slide a, .slick-slide .t-btn { outline: none}
+.slick-track { display: flex}
+@media screen and (max-width:960px){
+.slick-slide{ margin-bottom: 0 !important}
+}
+@media screen and (max-width:600px){
+.slick-track { height: auto; display:block !important;}
+}
+.slick-list {padding: 10px 0}
+.slider_html  .tn-atom__html , div[class^="slider_wrapper"] {width: inherit;}
+.slick-track>div {
+    background-size: cover;
+    background-position: center;
+}
+div[class*="_slide"]{ cursor:pointer}  
+.hideparent{display:none}
+
+.slider_html {height: min-content !important}
+.slider_wrapper {height: min-content}
+.slick-slide {
+    height: inherit !important;
+    max-width: none;
+}
+.slick-dots li.slick-active button:before {color: #ff8264}
+.slick-dots li button:before {font-size: 10px}
+.slick-dots {padding-left: 0 !important; bottom: -55px;}
+.slick-dots li button:before {color: #ff8265}
+.slick-slide div[class$="inner-col"] {height: 100% !important}
+.t860__wrap {height: 100%}
+.t860__block {
+    height: inherit;
+    transform: translateY(90%) !important;
+}
+.t860__inner-col {
+    border-radius: 15px;
+    box-shadow: 0 0 0px 5px #ffffff;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+.t858__img {padding-bottom: 45px}
+.t842__bgimg {height: 100% !important}
+@media screen and (max-width: 460px){
+.t842__bgwrapper{ width: 100% !important}
+}
+</style>

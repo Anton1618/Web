@@ -1,0 +1,83 @@
+https://mo-ti.ru/linkhover
+https://levelup.mo-ti.ru/student/lessons/44
+
+
+- Создать ZeroBlock
+
+- Создать в нём 12 Text элементов о ссылкой #. Может применяться и другой тип элемента, например шейп, тогда это указывается в скрипте
+
+- Создать в нём 12 Image элементов о ссылкой #, отцентрировали их друг под другом. Может применяться и другой тип элемента, тогда этот факт указывается в скрипте
+
+- Добавить код в блок другое - Т123
+Заменить в коде ID Zero: var IDZero = "#rec139363338"
+Элементы, при наведении на которые, станет отображаться контент (чаще всего изображение). При этом, выбор элемента и отображаемый контент сохраняются до тех пор, пока не будет выбран другой элемент - наведение или клик в мобильной версии
+По умолчанию выбран первый элемент
+
+
+
+<style>
+.phPar {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    overflow: hidden;
+}
+.active{opacity:1;}
+
+.middleL{
+   -webkit-transform: rotate(45deg) !important;
+   -ms-transform: rotate(45deg) !important;
+   transform: rotate(45deg) !important;
+   overflow: hidden;
+}
+
+.phChl, .linkH{
+   transition: all 0.4s ease-in-out;
+}
+
+/* Стилизация активного элемента. 
+Для любого элемента, по умолчанию, задается бордер по всему низу. 
+Либо, если станут применяться элементы-тексты, то стиль может быть заменен на соответствующий, например:
+text-decoration: underline !important;  Подчеркивание конкретно для текста
+color: #F8A95A !important;  Задание цвета
+padding-left: 8px;  Отступ слева
+Либо, если будут применяться элементы-шейпы, например с opacity 0.3:
+opacity: 1; Полная непрозрачность
+transform: translateX(18px) scaleX(0.5);  Аналогично тексту - смещение элемента влево по оси x, при этом с уменьшением элемента по оси x на 0.5, чтобы визуально, элемент смещался и дотягивался до правого края
+*/
+.linkH.actBtn {
+    border-bottom: 3px solid #fff !important;
+}
+.mvDown{
+    -webkit-transform:  translateY(120%);
+    -ms-transform: translateY(120%);
+    transform:  translateY(120%);
+    opacity:0;
+}
+.mvUp{
+    -webkit-transform:  translateY(-120%);
+    -ms-transform:  translateY(-120%)
+    transform:  translateY(-120%);
+    opacity:0;
+}
+</style>
+
+<script>
+    $(document).ready(function(){
+      var IDZero = "#rec166121041";
+      $(IDZero+' div[data-elem-type="image"] a').parent().addClass('phPar');
+      $(IDZero+' div[data-elem-type="image"] a>img').addClass('phChl');
+      $(IDZero+' div[data-elem-type="text"] a').addClass('linkH');  // Элемент text со ссылкой для отображения контента, также, может быть к примеру shape
+      $('.linkH').click(function(event){event.preventDefault()});
+      $('.phPar a').addClass('middleL');
+      $('.linkH:first').addClass('actBtn');$('.phChl').not(':first').addClass('mvUp');
+      $('.phChl:first').addClass('active');
+      $('.linkH').hover(function(){if(!$(this).hasClass('actBtn')){
+       $('.linkH').removeClass('actBtn');$(this).addClass('actBtn');
+       linkH = $(".linkH").index(this);$('.mvUp').removeClass('mvDown');
+       $('.active').addClass('mvDown');$('.phChl:eq('+linkH+')').removeClass('mvUp').addClass('active');
+	   $('.mvDown').removeClass('active');setTimeout(function(){$('.mvDown').addClass('mvUp'); }, 400);
+	   setTimeout(function(){if(!$('.phChl').hasClass('active')){
+        $('.phChl:eq('+linkH+')').removeClass('mvUp mvDown').addClass('active');}; },600); }; },function(){});
+});
+</script>

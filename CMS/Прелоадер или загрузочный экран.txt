@@ -1,0 +1,172 @@
+================================================ Вариант 1 ============================================
+https://mo-ti.ru/t228logo
+
+
+- Создали блок T228
+Включили в настройках - применять эффект в мобильной версии
+
+- Добавили код в блок Другое - Т123
+В коде настроили задержку, длительность, размер картинки и ссылку на неё
+
+
+
+<style>
+:root {
+    --loader-duration: 1s; /*Длительность растворения*/
+    --loader-delay: 3s; /*Задержка*/
+}
+/*Размер*/
+.t-body:before {
+    width: 450px;
+    height: 450px;
+}
+@media (max-width:640px){
+.t-body:before {
+    /*Размер в мобильном*/
+    width: 320px;
+    height: 320px;
+}
+}
+.t-records_animated {
+    transition-duration: var(--loader-duration);
+    transition-delay: var(--loader-delay);
+}
+.t-body:before {
+    content: "";
+    /*Ссылка на картинку*/
+    background-image: url(https://static.tildacdn.com/tild3263-3438-4035-b461-663363663736/85c970700738855b9763.gif);
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 399;
+    pointer-events: none;
+    opacity: 1;
+    animation: fade var(--loader-duration) calc( var(--loader-delay) - 0.5s ) ease-in-out forwards;
+}
+@keyframes fade {
+  from {opacity: 1}
+  to {opacity: 0}
+}
+</style>
+
+
+
+======================================== Вариант 2 ==================================================================
+https://www.youtube.com/watch?v=OZF447Ng118
+
+- Создание gif прелоадера
+https://icons8.com/preloaders/
+Скачайте готовый GIF файл себе на устройство
+
+- Создать zero на 100% экрана. 
+Добавить Image с полученным gif
+Наполните блок любым контентом и стилизуйте его
+
+- Добавить код
+
+<style>
+     #rec662958916 { /* ID зеро блока с прелоадером*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999; 
+    }
+</style>
+<script>
+        window.addEventListener("load", function () {
+            var loader = document.querySelector("#rec662958916"); // ID зеро блока с прелоадером
+            loader.style.display = "none";
+        });
+    </script>
+
+
+
+
+
+
+======================================== Раскрывающийся элемент ==================================================================
+
+https://mt-webdesign.ru/loading-transition
+
+Три элемента фото в zero блоке, которые стоят друг на друге и являются загрузочными масками, при клике по которым появляется плавный разворот одного из элементов на весь экран
+
+
+Создание трех элементов 250х380 по window контейнер по середине по центру.
+    - Соответствующим элементам задаются классы img-bottom (изображение на разворот), img-top (изображение для увеличения по ховеру), img-border (бордер оконтовка для элементов ниже по слоям)
+
+
+Для элемента бордера (класса img-border) соответственно задается бордер
+
+Для раскрывающегося изображения (класса img-bottom) задается анимация по наведению для увеличения этого изображения.
+    Триггером для срабатывания устанавливается верхний элемент - img-border
+    Скрыть выходящее за края бордера изображение, позволяет первый стиль ниже
+
+Установка раскрытия изображения на всю ширину и высоту с нулевыми отступами по краям
+    При клике на img-border, устанавливается класс animation-start на нижний слой img-bottom
+    Анимация происходит резко, для задания плавной анимации - применяется параметр transition
+
+После проделанных операций, по центру экрана остаются изначальные изображения (img-border и img-top)
+    Чтобы их скрыть, применяется задание класса display-none.
+    Так, при клике по img-border, задается новый класс display-none для img-border и img-top, для их сокрытия 
+
+Единственным резким дизайном обладает бордер img-border, который резко исчезает, при проинрывании всех анимаций
+    Чтобы сделать его плавное увеличение на всё изображение и затем угасание, элементу img-bottom устанавливается аналогичный бордер,
+    что приводит к незаметной визуальной замене одного бордера другим. При этом, новый бордер будет растягиваться вместе с изображением, благодаря свойству transition для нижнего слоя - tm-atom, (элемента с классом img-bottom). Для исчезновения бордера, ему задается нулевая ширина в стилях
+
+Для аналогичных прелоедеров, но например с позиционированием не на всю ширину экрана, а например, на нижнюю часть, изменяя соответствующие значения, например, для свойства top, задавая ему значение 40%
+
+<style>
+    .img-top {
+        overflow: hidden;
+    }
+    
+    .animation-start {
+        left: 0px !important;
+        right: 0px !important;
+        top: 0% !important;
+        bottom: 0px !important;
+        width: 100% !important;
+        height: 100% !important;
+        transition: 1.6s ease-in-out 0s;
+    }
+    
+    .animation-start .tn-atom {
+        border-width: 0px !important;
+        transition: 1.6s ease-in-out 0s;
+    }
+    
+    .display-none {
+        display: none;
+    }
+    
+    .t-body {
+        position: fixed;
+        width: 100%;
+    }
+    
+    .position-relative {
+        position: relative;
+    }
+</style>
+
+<script>
+    $(".img-border").click(function(){
+    $(".img-bottom").addClass("animation-start")
+});
+    $('.img-border').on('click', function() {
+    $(this).addClass('display-none');
+});
+    $(".img-border").click(function(){
+    $(".img-top").addClass("display-none")
+});
+    $(".img-border").click(function(){
+    $(".t-body").addClass("position-relative")
+});
+</script>

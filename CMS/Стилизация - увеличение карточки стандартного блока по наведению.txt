@@ -1,0 +1,13 @@
+https://dsgnmax.ru/scale-card-hover
+
+<style>
+/*Увеличение стандартной карточки при наведении*/
+@media screen and (min-width: 1200px){
+    .t599__content{     /*Нужный класс блока из таблицы*/
+        transition: 0.4s ease-in-out;    /*Длительность и плавность анимации*/    
+    }   
+    .t599__content:hover{
+        transform: scale(1.1);  /*Размер увеличения карточки*/ 
+    }
+}
+</style>

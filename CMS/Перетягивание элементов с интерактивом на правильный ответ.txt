@@ -1,0 +1,99 @@
+https://dsgnmax.ru/drag
+
+
+- Добавляем в zero-блоке шейпы или изображения, которые у нас будут вариантами ответа, сколько вариантов, столько и шейпов
+- Задаем классы этим шейпам. Верный ответ — класс dragtrue, неверный — dragfalse
+- Создаем область, куда будем перетаскивать наши варианты ответа, это также может быть шейп или изображения, задаем ей класс drag-container
+- Попапу, который должен появится при перемещении правильного ответа в область задаем класс uc-popuppromocode
+- Также в моём примере появляется верный вариант ответа, это отдельный шейп, у которого класс true-answer, и кнопка при нажатии на которую открывается повторно попап с промокодом, у которой класс promocode
+- В коде прописаны дополнительные комментарии, по которым вам будет проще ориентироваться, также есть дополнительная таблица, с помощью которой можете немного расширить функционал кода
+
+
+<script>
+$(document).ready(function(){
+     $(".dragfalse").draggable({
+        snap:true,
+        scroll: true,
+        revert:true
+     });
+     
+     $(".dragtrue").draggable({
+         revert:true,
+         snap:true,
+     });
+    $(".drag-container").droppable({    //Настройки области куда перетаскиваем элементы
+      accept:".dragtrue",   //Область принимает только правильный ответ с классом .dragtrue
+     drop:function(){   //Задаем нужные функции, которые выполняться при перетаскивании верного ответа в зону контейнера
+         $(".dragtrue").css("display", "none");
+         $('.uc-popuppromocode .t-popup').addClass('t-popup_show');
+         $('.promocode').addClass('promocode-view').removeClass('promocode'); 
+         $('.true-answer').addClass('true-answer-view').removeClass('true-answer');
+      }
+   });
+
+});
+</script>
+
+
+
+<style>
+
+/*Для верного ответа задаем класс элементу в зеро-блоке — dragtrue,
+для неверного — dragfalse, также области, которая будет принимать верный ответ задаем класс — drag-container*/
+/*Для блока с попапом задаем класс uc-popuppromocode, в примере используется попап BF503*/
+
+
+
+/*Задаем z-index перетаскиваемым элементам, чтобы были поверх всех остальных*/
+.dragtrue, .dragfalse{
+    z-index:9999 !important;
+} 
+ 
+ /*Настройки попапа*/
+.uc-popuppromocode .t-popup.t-popup_show{
+    display: block !important;
+    opacity: 1 !important;
+    transition: .3s ease-in-out;
+}
+
+/*Стили кнопки промокода в зероблоке*/
+.promocode{     /*Изначально кнопка скрыта*/ 
+    opacity:0;
+    pointer-events:none;
+}
+
+.promocode-view{      /*Кнопка появляется при перетягивании верного ответа*/
+    opacity:1;
+    cursor:pointer;
+    transition: .3s ease-in-out;
+}
+
+
+/*Стили правильного ответа*/
+.true-answer{     /*Правильный ответ изначально скрыта*/
+  opacity:0; 
+  pointer-events:none;
+}
+.true-answer-view{  /*Правильный ответ появляется при перетягивании верного ответа*/
+    opacity:1;
+    cursor:pointer;
+    transition: .3s ease-in-out;
+}
+</style>
+
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+
+Свойство	Описание
+axis:"x"	перемещение элемента по определенной оси
+snap:true	перетаскиваемый элемент прилипает к другим элементам
+revert:true	возвращение элемента на место, если его отпустить
+stack:".drag-container"	прилипает к границам контейнера, можно создать шейп в зеро и задать класс, как в примере
+containment:"parent"	перетаскиваемый элемент не выходит за пределы родительского блока (parent, window, document)
+cursor:'move'	позволяет задать вид курсора при перетаскивании
+opacity: 0.3	прозрачность элемента при перетаскивании
+grid: [40, 60]	шаг при перемещении (оси Х и У)
+scroll: false	убираем прокрутку при перемещении за пределы экрана

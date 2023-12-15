@@ -1,0 +1,78 @@
+https://mo-ti.ru/sliderremotecontrol
+https://levelup.mo-ti.ru/student/lessons/154
+
+Широкоформатный слайдер
+
+- Создали блок CR30N
+Назначили управление - стрелки и точки
+В настройках задали ему класс uc-slider-control
+
+- Создали ZeroBlock
+Задали нулевую высоту и режим отображения overflow-visible
+Вылет элементов сделали вверх
+
+- Создали 2 иконки со стрелочками и задали им классы
+z-arrow-left и z-arrow-right
+
+- Добавили код в блок Другое - Т123
+
+
+
+/* Стрелки навигации из zero блока */
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+(function () {
+    let leftArrowZero = document.querySelectorAll('.z-arrow-left')[0];
+    let rightArrowZero = document.querySelectorAll('.z-arrow-right')[0];
+    let leftArrow = document.querySelectorAll('.uc-slider-control .t-slds__arrow-left')[0];
+    let rightArrow = document.querySelectorAll('.uc-slider-control .t-slds__arrow-right')[0];
+    leftArrowZero.addEventListener( 'click' , function() {  leftArrow.click()});
+    rightArrowZero.addEventListener( 'click' , function() {  rightArrow.click()});
+})();
+});
+</script>
+
+
+<style>
+.uc-slider-control .t-slds__arrow_wrapper{display: none !important}  
+.z-arrow-left, .z-arrow-right {cursor: pointer}
+</style>
+
+
+
+
+/* Точки навигации в виде загорающихся боковых линий слева */
+<style>
+.uc-slider-control .t-slds__bullet_wrapper {
+    padding: 0;
+    right: auto;
+    width: fit-content;
+    bottom: auto;
+    top: 0;
+    display: flex;
+    flex-direction:column;
+    height: 100%;
+}
+.uc-slider-control .t-slds__bullet {
+    display: block;
+    height: 100%;
+    padding: 0;
+}
+.uc-slider-control .t-slds__bullet_body {
+    width: 3px !important;
+    height: 100% !important;
+    border-radius: 0;
+    border: none !important;
+    background-color: rgb(255 255 255 / 30%) !important;
+    transition: all 0.7s ease-in-out;
+}    
+.uc-slider-control  .t-slds__bullet_active .t-slds__bullet_body {
+    width: 6px !important;
+}
+.t734__title div {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ffffff;
+    color: transparent !important;
+    font-size: 100px !important;
+}    
+</style>

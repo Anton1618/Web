@@ -1,0 +1,55 @@
+https://necodim.ru/tilda/drag
+
+Обычно, чтобы сделать двигающийся артборд в Zero-блоке, нужно просто выставить в настройках overflow: auto, но тогда добавляется полоса прокрутки, а перетаскивание на компьютере не работает.
+Если нужно именно перетаскивание, которое сработает как на десктопе, так и на мобильных устройствах, то применяется скрипт
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.kinetic/jquery.kinetic.js"></script>
+<script>
+$('#rec123456789').find($('.t396__artboard')).kinetic({
+    cursor: 'grab',
+    x: true,
+    y: true,
+    filterTarget: function(target, e){
+        if (!/down|start/.test(e.type)){
+            return !(/area|a|input/i.test(target.tagName));
+        }
+    }
+});
+</script>
+
+
+
+Если необходимо зафиксировать в блоке со блайдером какой-то элемент, то ему может быть задано позиционирование.
+Тогда слайдер будет подвижен, а необходимый элемент останется статичен
+<style>
+.fixed-elem {
+    position: sticky;
+}
+</style>
+
+
+
+=================================== Альтернативный вариант ============================================
+https://ticode.dev/horizontal-scroll
+
+<script src='https://cdn.jsdelivr.net/npm/dragscroll@0.0.8/dragscroll.min.js'>
+</script> 
+<script> 
+    var ticodescroll = $('#rec493782123'); 
+    ticodescroll.find('.t396__artboard').addClass('dragscroll'); 
+</script> 
+<style> 
+.dragscroll::-webkit-scrollbar { 
+    display: none; 
+} 
+@media (min-width: 320px) { 
+.dragscroll { 
+    cursor: -webkit-grab; 
+    cursor: grab; 
+    transition: all 0.7s ease; 
+} 
+.dragscroll:active { 
+    cursor: -webkit-grabbing; 
+    cursor: grabbing; 
+}}
+</style>

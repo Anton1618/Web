@@ -1,0 +1,52 @@
+https://mo-ti.ru/gl20control 
+
+
+
+
+- Создали ZeroBlock
+- Добавили в него 3 кнопки First, Second, Third со ссылками #category
+- Создали 3 блока GL20
+- Вставили код в блок Другое - Т123
+
+
+
+<style>
+.activebtn {
+    box-shadow: 0 1px #cacaca;
+}
+.triggerbtn{    transition:all 0.7s ease-in-out !important;}
+.triggerbtn:hover {
+    box-shadow: 0 1px #cacaca;
+}
+.glposition{
+position:absolute;
+width:100%;
+top:0;
+}
+.indexlayer{
+    z-index:-1;
+    opacity:0;
+}
+.mainGlgallery{    position: relative;}
+.glgallery{    transition:all 0.7s ease-in-out;}
+</style>
+
+<script>
+$(document).ready(function(){
+$('div[data-record-type="604"]').addClass('glgallery');
+$('.glgallery').wrapAll('<div class="mainGlgallery"></div>').not(':first').addClass('glposition indexlayer');
+//Класс для кнопок перекючения
+$('a[href = "#category"]').addClass('triggerbtn');
+$('.triggerbtn:first').addClass('activebtn');
+
+//При нажатии на кнопку переключения
+ $('.triggerbtn').click(function(e) {e.preventDefault();
+    var btnindex = $(".triggerbtn").index(this); 
+ 	if(!$(this).hasClass("activebtn")) {
+ 	     $('.triggerbtn').removeClass('activebtn'); $(this).addClass('activebtn');
+         $('.glgallery').addClass('indexlayer');
+         $('.glgallery:eq('+btnindex+')').removeClass('indexlayer');
+ 	};
+ });
+});
+</script>

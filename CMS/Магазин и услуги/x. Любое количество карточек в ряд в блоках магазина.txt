@@ -1,0 +1,136 @@
+https://dsgnmax.ru/useful/cards-row-shop
+
+
+<style>
+:root{
+    /*Десктоп под 1920px*/
+    --grid1920: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;    /*Количество колонок и их размер.1fr — это одна колонка Можно задать в процентах и пикселях*/
+    --gap1920: 20px 20px;                       /*Отступы между карточками. Первое значение — повертикали, второй — по горизонтали*/
+    --heightImg1920: 180px !important;          /*Высота картинки в карточке*/
+    
+    /*Разрешение от 1200px*/
+    --gridDesktop: 1fr 1fr 1fr;   
+    --gapDesktop: 20px 20px;      
+    --heightImgDesktop: 260px !important;    
+    
+    /*Разрешение от 640 до 1200px*/
+    --gridTablet: 1fr 1fr;
+    --gapTablet: 10px 10px;
+    --heightImgTablet: 220px !important;
+    --fontSizeTitleTablet: 24px;                /*Размер шрифта у заголовка*/
+    --fontSizeDescrTablet: 16px;                /*Размер шрифта у описания*/
+    --fontSizePriceTablet: 16px;                /*Размер шрифта у цены*/
+    --fontSizeOldPriceTablet: 14px;             /*Размер шрифта у старой цены*/
+    
+    /*Разрешение до 640px*/
+    --gridMobile: 1fr 1fr;
+    --gapMobile: 10px !important;
+    --heightImgMobile: 120px !important;
+    --fontSizeTitleMobile: 20px;                /*Размер шрифта у заголовка*/
+    --fontSizeDescrMobile: 14px;                /*Размер шрифта у описания*/
+    --fontSizePriceMobile: 14px;                /*Размер шрифта у цены*/
+    --fontSizeOldPriceMobile: 10px;             /*Размер шрифта у старой цены*/
+}
+
+.js-store-grid-cont:before{
+    display: none;
+} 
+.t-store__card__wrap_all {
+    height: 100% !important;
+}
+/*Удаляем разделитель между блоков*/
+.t-store__grid-separator{
+    display: none;
+}
+.js-product, .t-store__stretch-col{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding:0 !important;
+}
+
+/*Сетка для разрешения от 1920*/
+@media screen and (min-width: 1920px){
+    .js-store-grid-cont{
+        max-width: 1920px;  /*Ширина контейнера*/
+        display: grid !important;
+        grid-template-columns: var(--grid1920);   
+        grid-gap: var(--gap1920); 
+        padding:0 40px;     /*Отступы у контенера по бокам*/
+        box-sizing: border-box;
+    }
+    .t-store__card__imgwrapper {
+        height: var(--heightImg1920);
+        padding-bottom: 0 !important;
+    }
+} 
+
+/*Сетка для десктопа*/
+@media (min-width: 1200px) and (max-width: 1919px){
+    .js-store-grid-cont{
+        display: grid !important;
+        grid-template-columns: var(--gridDesktop);   
+        grid-gap: var(--gapDesktop); 
+    }        
+    .t-store__card__imgwrapper {
+        height: var(--heightImgDesktop); 
+        padding-bottom: 0 !important;
+    }
+}    
+
+
+ /*Сетка для планшетов*/   
+@media (min-width: 640px) and (max-width: 1199px){
+    .js-store-grid-cont{
+        display: grid !important;
+        grid-template-columns: var(--gridTablet);   
+        grid-gap: var(--gapTablet);
+        padding:0 40px;     /*Отступы у контенера по бокам*/
+        box-sizing: border-box;
+    }        
+    .t-store__card__imgwrapper {
+        height: var(--heightImgTablet); 
+        padding-bottom: 0 !important;
+    }
+    .js-store-prod-name{
+        font-size: var(--fontSizeTitleTablet) !important;
+    }
+    .js-store-prod-descr{
+        font-size: var(--fontSizeDescrTablet) !important;
+    }
+    .js-product-price, .t-store__card__price-currency{
+        font-size: var(--fontSizePriceTablet) !important;
+    }
+    .t-store__card__price_old{
+        font-size: var(--fontSizeOldPriceTablet) !important;
+    }
+}
+
+
+/*Сетка для телефонов*/
+@media screen and (max-width: 640px){
+    .js-store-grid-cont{
+        display: grid !important;
+        grid-template-columns: var(--gridMobile);   
+        grid-gap: var(--gapMobile); 
+        padding: 0 10px;    /*Отступы у контенера по бокам*/
+        box-sizing: border-box;
+    }        
+    .t-store__card__imgwrapper {
+        height: var(--heightImgMobile);
+        padding-bottom: 0 !important;
+    }
+        .js-store-prod-name{
+        font-size: var(--fontSizeTitleMobile) !important;
+    }
+    .js-store-prod-descr{
+        font-size: var(--fontSizeDescrMobile) !important;
+    }
+    .t-store__card__price{
+        font-size: var(--fontSizePriceMobile) !important;
+    }
+    .t-store__card__price_old{
+        font-size: var(--fontSizeOldPriceMobile) !important;
+    }
+}
+</style>

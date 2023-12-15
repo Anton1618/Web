@@ -1,0 +1,49 @@
+https://mo-ti.ru/tpost/agz7jn10g1-kak-perenesti-akkordeon-kartochki-tovara
+
+
+<style>
+
+.js-store-product.js-product.t-store__product-popup, 
+.t-store__product-snippet .t-container {
+    min-height:820px;
+}
+
+@media screen and (min-width:960px){
+
+.js-store-product.js-product.t-store__product-popup,
+.t-store__product-snippet .t-container{
+    position: relative;
+}
+.t-store__prod-popup__slider.js-store-prod-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+}  
+.t-store__tabs.t-store__tabs_accordion {
+    max-width: 440px;
+}
+.t-store__prod-popup__info.t-align_left.t-store__prod-popup__col-right,
+.t-store__tabs.t-store__tabs_accordion{
+    margin-left: 490px;
+}
+}
+
+@media screen and (min-width:1240px){
+.t-store__tabs.t-store__tabs_accordion {
+    max-width: 560px;
+    margin-top: 20px;
+}
+.t-store__prod-popup__info.t-align_left.t-store__prod-popup__col-right,
+.t-store__tabs.t-store__tabs_accordion{
+    margin-left: 620px;
+}
+}
+
+@media screen and (max-width: 1240px){
+.js-store-product.js-product.t-store__product-popup, 
+.t-store__product-snippet .t-container {
+    min-height:650px;
+}
+}
+
+</style>

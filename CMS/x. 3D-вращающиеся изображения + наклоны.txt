@@ -1,0 +1,309 @@
+https://coolsite-modifications.ru/3d-slider
+https://www.youtube.com/watch?v=CuyJ8UwoY1E
+
+Вращающиеся элементы слайдера. Имеет настраиваемое положение наклонов и расположения на странице
+
+
+<!-- Контейнер слайдера -->
+<div class="container-slider-3d">
+  <!-- Слайдер -->
+  <ul class="slider-3d"></ul>
+</div>
+
+<style>
+  :root {
+      /* id блока к которому прицепится слайдер */
+      --block-id: #rec576486401;
+      /* Поворот слайдера по осям x, y, z */
+      --rotate-slider-XYZ: rotate3d(0, 0, 0, 0deg);
+      /* Скорость слайдера. Чем больше секунд, тем медленее скорость */
+      --speed-slider: 10s;
+      /* Ширина картинки */
+      --width-image: 200px;
+      /* Высота картинки */
+      --height-image: 300px;
+      /* Направление движения слайдера: right - направо; left - налево; */
+      --direction: right;
+      /* Закругление углов картинки */
+      --border-radius: 20px;
+      /* Расстояние от центра слайдера до картинок */
+      --distance-from-center-to-images: 300px;
+      /* Расстояние от слайдера до верхней части блока к которому прицеплен слайдер */
+      --distance-from-slider-to-top: 200px;
+      /* Расстояние от слайдера до левой части блока к которому прицеплен слайдер */
+      --distance-from-slider-to-left: 0px;
+      /* Если значение переменных --distance-from-slider-to-left и --distance-from-slider-to-right равны 0px, то слайдер будет находится в центре */
+      /* Если хотите, чтобы был только оступ слева, то удалите строку с переменной --distance-from-slider-to-right */
+      /* Расстояние от слайдера до правой части блока к которому прицеплен слайдер */
+      --distance-from-slider-to-right: 0px;
+      /* Чем больше значение, тем выше (по оси z) слайдер над другими элементами  */
+      /* Если значение -1 и ниже, то слайдер будет находится под элементами, а если 1 и выше, то над ними */
+      --z-index: 989;
+
+      /* Ссылки на картинки */
+      /* Если нужно убрать лишние картинки, то закомментируйте код, либо удалите строки */
+      --link-to-image-1: https://static.tildacdn.com/tild3366-3365-4233-b739-393531353439/coolsite.jpg;
+      --link-to-image-2: https://static.tildacdn.com/tild3266-3531-4061-b631-383534653837/_.jpg;
+      --link-to-image-3: https://static.tildacdn.com/tild3930-3530-4662-a362-343134373062/overbank.jpg;
+      --link-to-image-4: https://static.tildacdn.com/tild3330-3161-4765-b536-616561663634/photo.jpg;
+      --link-to-image-5: https://static.tildacdn.com/tild3161-6632-4166-b938-636130656239/forum-digital.jpg;
+      --link-to-image-6: https://static.tildacdn.com/tild3366-3365-4233-b739-393531353439/coolsite.jpg;
+      --link-to-image-7: https://static.tildacdn.com/tild3266-3531-4061-b631-383534653837/_.jpg;
+      --link-to-image-8: https://static.tildacdn.com/tild3930-3530-4662-a362-343134373062/overbank.jpg;
+      --link-to-image-9: ;
+      --link-to-image-10: ;
+      --link-to-image-11: ;
+      --link-to-image-12: ;
+      --link-to-image-13: ;
+      --link-to-image-14: ;
+      --link-to-image-15: ;
+  }
+
+  .container-slider-3d>* {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+  }
+
+  /* Стили для контейнера слайдера */
+  .container-slider-3d {
+      transform: var(--rotate-slider-XYZ);
+      transform-style: preserve-3d;
+      position: absolute;
+      left: var(--distance-from-slider-to-left);
+      right: var(--distance-from-slider-to-right);
+      top: var(--distance-from-slider-to-top);
+      z-index: var(--z-index);
+  }
+
+  /* Стили для слайдера */
+  .slider-3d {
+      position: relative;
+      transform-style: preserve-3d;
+      animation: var(--direction) var(--speed-slider) linear infinite;
+      display: flex;
+      width: var(--width-image);
+      height: var(--height-image);
+      margin: 0 auto;
+  }
+
+  /* Стили для картинок */
+  .slider-3d>img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: center;
+      transform-style: preserve-3d;
+      object-fit: cover;
+      transition: 2s;
+      border-radius: var(--border-radius);
+  }
+
+  /*Адаптив для ширины экрана от 960px до 1199px*/
+  @media (max-width: 1199px) {
+      :root {
+          /* Расстояние от центра слайдера до картинок */
+          --distance-from-center-to-images: 300px;
+          /* Поворот слайдера по осям x, y, z */
+          --rotate-slider-XYZ: rotate3d(0, 0, 0, 0deg);
+          /* Скорость слайдера. Чем больше секунд, тем медленее скорость */
+          --speed-slider: 10s;
+          /* Ширина картинки */
+          --width-image: 200px;
+          /* Высота картинки */
+          --height-image: 300px;
+          /* Направление движения слайдера: right - направо; left - налево; */
+          --direction: right;
+          /* Закругление углов картинки */
+          --border-radius: 20px;
+          /* Расстояние от слайдера до верхней части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-top: 400px;
+          /* Расстояние от слайдера до левой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-left: 0px;
+          /* Если значение переменных --distance-from-slider-to-left и --distance-from-slider-to-right равны 0px, то слайдер будет находится в центре */
+          /* Если хотите, чтобы был только оступ слева, то удалите строку с переменной --distance-from-slider-to-right */
+          /* Расстояние от слайдера до правой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-right: 0px;
+      }
+  }
+
+  /*Адаптив для ширины экрана от 640px до 959px*/
+  @media (max-width: 959px) {
+      :root {
+          /* Расстояние от центра слайдера до картинок */
+          --distance-from-center-to-images: 300px;
+          /* Поворот слайдера по осям x, y, z */
+          --rotate-slider-XYZ: rotate3d(0, 0, 0, 0deg);
+          /* Скорость слайдера. Чем больше секунд, тем медленее скорость */
+          --speed-slider: 10s;
+          /* Ширина картинки */
+          --width-image: 200px;
+          /* Высота картинки */
+          --height-image: 300px;
+          /* Направление движения слайдера: right - направо; left - налево; */
+          --direction: right;
+          /* Закругление углов картинки */
+          --border-radius: 20px;
+          /* Расстояние от слайдера до верхней части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-top: 400px;
+          /* Расстояние от слайдера до левой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-left: 0px;
+          /* Если значение переменных --distance-from-slider-to-left и --distance-from-slider-to-right равны 0px, то слайдер будет находится в центре */
+          /* Если хотите, чтобы был только оступ слева, то удалите строку с переменной --distance-from-slider-to-right */
+          /* Расстояние от слайдера до правой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-right: 0px;
+      }
+  }
+
+  /*Адаптив для ширины экрана от 480px до 639px*/
+  @media (max-width: 639px) {
+      :root {
+          /* Расстояние от центра слайдера до картинок */
+          --distance-from-center-to-images: 300px;
+          /* Поворот слайдера по осям x, y, z */
+          --rotate-slider-XYZ: rotate3d(0, 0, 0, 0deg);
+          /* Скорость слайдера. Чем больше секунд, тем медленее скорость */
+          --speed-slider: 10s;
+          /* Ширина картинки */
+          --width-image: 200px;
+          /* Высота картинки */
+          --height-image: 300px;
+          /* Направление движения слайдера: right - направо; left - налево; */
+          --direction: right;
+          /* Закругление углов картинки */
+          --border-radius: 20px;
+          /* Расстояние от слайдера до верхней части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-top: 400px;
+          /* Расстояние от слайдера до левой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-left: 0px;
+          /* Если значение переменных --distance-from-slider-to-left и --distance-from-slider-to-right равны 0px, то слайдер будет находится в центре */
+          /* Если хотите, чтобы был только оступ слева, то удалите строку с переменной --distance-from-slider-to-right */
+          /* Расстояние от слайдера до правой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-right: 0px;
+      }
+  }
+
+  /*Адаптив для ширины экрана от 320px до 479px*/
+  @media (max-width: 479px) {
+      :root {
+          /* Расстояние от центра слайдера до картинок */
+          --distance-from-center-to-images: 300px;
+          /* Поворот слайдера по осям x, y, z */
+          --rotate-slider-XYZ: rotate3d(0, 0, 0, 0deg);
+          /* Скорость слайдера. Чем больше секунд, тем медленее скорость */
+          --speed-slider: 10s;
+          /* Ширина картинки */
+          --width-image: 200px;
+          /* Высота картинки */
+          --height-image: 300px;
+          /* Направление движения слайдера: right - направо; left - налево; */
+          --direction: right;
+          /* Закругление углов картинки */
+          --border-radius: 20px;
+          /* Расстояние от слайдера до верхней части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-top: 400px;
+          /* Расстояние от слайдера до левой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-left: 0px;
+          /* Если значение переменных --distance-from-slider-to-left и --distance-from-slider-to-right равны 0px, то слайдер будет находится в центре */
+          /* Если хотите, чтобы был только оступ слева, то удалите строку с переменной --distance-from-slider-to-right */
+          /* Расстояние от слайдера до правой части блока к которому прицеплен слайдер */
+          --distance-from-slider-to-right: 0px;
+      }
+  }
+
+  @keyframes right {
+      0% {
+          transform: perspective(1000px) rotateY(0deg);
+      }
+
+      100% {
+          transform: perspective(1000px) rotateY(360deg);
+      }
+  }
+
+  @keyframes left {
+      0% {
+          transform: perspective(1000px) rotateY(0deg);
+      }
+
+      100% {
+          transform: perspective(1000px) rotateY(-360deg);
+      }
+  }
+</style>
+
+<script>
+  // Переменные
+  let body = getComputedStyle(document.body);
+  let block = document.querySelector(
+    "div" + body.getPropertyValue("--block-id")
+  );
+  let container = document.querySelector(".container-slider-3d");
+  let slider = document.querySelector(".slider-3d");
+  let linksToImages = [
+    body.getPropertyValue("--link-to-image-1"),
+    body.getPropertyValue("--link-to-image-2"),
+    body.getPropertyValue("--link-to-image-3"),
+    body.getPropertyValue("--link-to-image-4"),
+    body.getPropertyValue("--link-to-image-5"),
+    body.getPropertyValue("--link-to-image-6"),
+    body.getPropertyValue("--link-to-image-7"),
+    body.getPropertyValue("--link-to-image-8"),
+    body.getPropertyValue("--link-to-image-9"),
+    body.getPropertyValue("--link-to-image-10"),
+    body.getPropertyValue("--link-to-image-11"),
+    body.getPropertyValue("--link-to-image-12"),
+    body.getPropertyValue("--link-to-image-13"),
+    body.getPropertyValue("--link-to-image-14"),
+    body.getPropertyValue("--link-to-image-15")
+  ];
+
+  // Вызываем функцию, которая заполняет слайдер картинками
+  createSlider();
+  // Вызываем функцию, которая прикрепляет слайдер к блоку
+  appendSliderToBlock();
+  // Вызываем функцию, которя считает кол-во картинок
+  getCountImages();
+
+  // Функция, которая прикрепляет слайдер к блоку
+  function appendSliderToBlock() {
+    block.style.position = "relative";
+    block.style.overflow = "hidden";
+    block.appendChild(container);
+  }
+
+  // Функция, которая считает кол-во картинок
+  function getCountImages() {
+    let countImages = 0;
+    linksToImages.forEach((link) => {
+      if (link && link != " ") {
+        countImages++;
+      }
+    });
+    return countImages;
+  }
+
+  // Функция, которая высчитывает поворот каждой картинки по оси Y
+  function getRotateY(numberImage) {
+    return Number(numberImage) * (360 / getCountImages()) + "deg";
+  }
+
+  // Функция, которая заполняет слайдер картинками
+  function createSlider() {
+    for (let i = 0; i < linksToImages.length; i++) {
+      if (linksToImages[i]) {
+        let img = document.createElement("img");
+        img.src = linksToImages[i];
+        img.style.setProperty("--i", i + 1);
+        img.style.transform = `rotateY(${getRotateY(
+          i + 1
+        )}) translateZ(${body.getPropertyValue(
+          "--distance-from-center-to-images"
+        )}`;
+        slider.appendChild(img);
+      }
+    }
+  }
+</script>

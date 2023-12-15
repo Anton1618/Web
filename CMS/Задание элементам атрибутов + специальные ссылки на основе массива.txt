@@ -1,0 +1,66 @@
+# Задание класса элементу с якорной ссылкой #collection. На примере: Левитация элемента штатным классом Tilda
+$("[href='#collection']").addClass("nextblock t-cover__arrow-wrapper_animated");
+
+# Задание класса элементу с id selectedTabId. Задание класса .active
+document.getElementById(selectedTabId).classList.add('active');
+
+# Задание ссылки кнопке или тегу <a>. Задание якорной ссылки #myLink
+$('.myElement').attr('href', '#myLink');
+
+# Аналогично через HTML c добавлением на элемент обработчика событий onclick
+<div class="wrap">
+  <button class="myElement" onclick="window.location.href='#myLink'">Интригующий текст для ссылки, кликни, чтобы узнать</button>
+</div>
+
+# Задание ссылки для обычного текста тега <p>
+<script>
+$('p.t-typography__characteristics.js-store-prod-charcs').wrap('<a href="/clothes_for_women"></a>');
+</script>
+
+
+
+========================= Задание ссылок тексту в карточке товара ===========================
+Задание ссылок простому тексту тега <p> после выражения "Товарные разделы:", за которым следуют названия категорий товаров, которым соответствуют относительные ссылки на заданные в массиве страницы сайта
+
+<script>
+  $(document).ready(function() {
+    var categoriesMap = {
+      'женская одежда': '/clothes_for_woman',
+      'мужская одежда': '/clothes_for_men',
+      'шаровары унисекс': '/clothes#unisex',
+      // и так далее для всех категорий
+    };
+
+    // Функция поиска и замены категорий ссылками
+    function replaceCategoriesWithLinks(text) {
+      // Разделяем текст по ";" и обрезаем пробелы с помощью trim()
+      var categories = text.split(';').map(function(category) {
+        return category.trim();
+      });
+
+      // Каждую категорию преобразуем в ссылку
+      var linksHtml = categories.map(function(category) {
+        var url = categoriesMap[category];
+        return url ? '<a href="' + url + '">' + category + '</a>' : category;
+      });
+
+      // Возвращаем новый HTML со ссылками
+      return linksHtml.join(', ');
+    }
+
+    // Поиск элемента по селектору, который содержит фразу "Товарные разделы:"
+    $('p.t-typography__characteristics.js-store-prod-charcs').each(function() {
+      var text = $(this).text();
+      var parts = text.split(':');
+      var intro = parts[0]; // Это "Товарные разделы"
+      var categoriesText = parts[1]; // Это список категорий после двоеточия
+
+      if (intro.trim() === 'Товарные разделы' && categoriesText) {
+        // Заменаем список категорий на HTML со ссылками
+        var linksHtml = replaceCategoriesWithLinks(categoriesText);
+        // Обновляем HTML элемента
+        $(this).html(intro + ': ' + linksHtml);
+      }
+    });
+  });
+</script>

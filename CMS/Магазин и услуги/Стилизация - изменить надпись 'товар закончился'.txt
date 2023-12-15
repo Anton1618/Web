@@ -1,0 +1,14 @@
+Обращение к классам товаров, которые закончились. Осуществляется изменение надписи как на карточке товара, так и на кнопке в самом товаре
+
+<style>
+.t-store__card__sold-out-msg,
+.t-store__prod-popup__btn_disabled td.js-store-prod-popup-buy-btn-txt{
+    font-size: 0;
+}
+
+.t-store__card__sold-out-msg:after,
+.t-store__prod-popup__btn_disabled td.js-store-prod-popup-buy-btn-txt:after{
+    content: "Закончился";
+    font-size: 14px;
+}
+</style>

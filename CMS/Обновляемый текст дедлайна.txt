@@ -1,0 +1,195 @@
+https://mo-ti.ru/date
+https://levelup.mo-ti.ru/student/lessons/64
+
+
+
+На примере блока CR32N
+
+
+- Добавили блок CR32N
+Внесли необходимый контент. 
+Установили изначальный заголовок, который станет изменяться скриптом. 
+
+- Добавили скрипт на страницу
+Изменить фразу в скрипте
+Скрипт вставляется в блок ДРУГОЕ►Т123
+
+
+КАЖДЫЙ ДЕНЬ ДИНАМИЧЕСКИ ОБНОВЛЯТЬ ЧИСЛО НА N ДНЕЙ ВПЕРЕД ОТ ТЕКУЩЕЙ ДАТЫ
+<script type="text/javascript">
+var Data = new Date(), TwoDay = new Date();  // Значение текущей даты, сохраненное в переменные Data и TwoDay 
+TwoDay.setDate(Data.getDate()+2);  // Изменение переменной: + 2 к текущей дате
+// Из измененной переменной производится извлечение значений:
+Month = TwoDay.getMonth();  // месяца
+Day = TwoDay.getDate();  // даты
+Year = TwoDay.getFullYear();  // года
+
+// Создаются отформатированные строки чисел для месяца и дня, чтобы добавить ведущий ноль, если число меньше 10
+var zMonth = ("0" + (Month+1)).slice(-2);
+var zDate =  ("0" + (Day)).slice(-2);
+
+// Определение название месяца на русском языке на основе числового значения месяца
+switch (Month)
+{
+  case 0: fMonth="января"; break;
+  case 1: fMonth="февраля"; break;
+  case 2: fMonth="марта"; break;
+  case 3: fMonth="апреля"; break;
+  case 4: fMonth="мая"; break;
+  case 5: fMonth="июня"; break;
+  case 6: fMonth="июля"; break;
+  case 7: fMonth="августа"; break;
+  case 8: fMonth="сентября"; break;
+  case 9: fMonth="октября"; break;
+  case 10: fMonth="ноября"; break;
+  case 11: fMonth="декабря"; break;
+}
+
+// Форматирование строкового значения месяца через доступные значения: Date (целое число) или zDate (полного формата <0число>), Year и fMonth (текстом) или zMonth (числом)
+// Обращение производится к заголовку формы, аналогичным образом может быть указан любой текстовый блок 
+$('.t712__title-second').html('Только до '+Day+' '+fMonth+' получите пакет услуг "VIP" <u>бесплатно!</u>');
+</script>
+
+
+
+====================================================  Cмена даты после 18:30 +1 день
+<script type="text/javascript">
+//Объявляем переменную даты
+var    Data = new Date(),
+       TwoDay = new Date();
+let Time = Data.getHours();   
+let Minutes = Data.getMinutes();   
+
+let dayPlus = 0; 
+if (Time>=18 && Minutes>30 ) dayPlus=1;
+TwoDay.setDate(Data.getDate()+dayPlus);
+Month = TwoDay.getMonth();
+Day = TwoDay.getDate();
+Day2 = Data.getDate();
+Year = TwoDay.getFullYear();
+switch (Month)
+{
+  case 0: fMonth="января"; break;
+  case 1: fMonth="февраля"; break;
+  case 2: fMonth="марта"; break;
+  case 3: fMonth="апреля"; break;
+  case 4: fMonth="мая"; break;
+  case 5: fMonth="июня"; break;
+  case 6: fMonth="июля"; break;
+  case 7: fMonth="августа"; break;
+  case 8: fMonth="сентября"; break;
+  case 9: fMonth="октября"; break;
+  case 10: fMonth="ноября"; break;
+  case 11: fMonth="декабря"; break;
+}
+//Выводим дату в заголовок формы
+$('.t712__title-second').html('Только до '+Day+' '+fMonth+' получите пакет услуг "VIP" <u>бесплатно!</u>');
+
+</script>
+
+
+
+
+====================================================  Замена слова (сегодня/завтра) после 15:00 в блоке CR02
+<script type="text/javascript">
+//Объявляем переменную даты
+let    Data = new Date();
+let Time = Data.getHours();       
+let keyword="Сегодня";
+if (Time>15) {
+    keyword="Завтра";
+    dayPlus=1;
+};
+//Выводим слово в заголовок CR02
+$('.t102__title').text('Событие пройдёт - '+keyword);
+</script>
+
+
+
+
+=====================================================  Выводим день недели в заголовок CR01
+<script type="text/javascript">
+   let   day = new Date();
+   let   numday = day.getDay();
+ $(document).ready(function () {
+    let dayText;
+    switch (numday) {
+        case 1: dayText ='ПН'; break;
+        case 2: dayText ='ВТ'; break;
+        case 3: dayText ='СР'; break;
+        case 4: dayText ='ЧТ'; break;
+        case 5: dayText ='ПТ'; break;
+        case 6: dayText ='СБ'; break;
+        case 0: dayText ='ВС'; break;
+    };
+    if(dayText)  $('.t001__title').text(dayText);
+ });  
+</script>
+
+
+
+=====================================================  Выводим день недели в заголовок CR01
+Даты меняются в ПН и ЧТ после 13:00
+<script type="text/javascript">
+
+let  timeZone = +3; //UTC+3 Москва
+let  Data = new Date();
+let  firstDay = new Date();
+let  lastDay = new Date();
+let  utc = Data.getTime() + (Data.getTimezoneOffset() * 60000);
+let  DateOffset = new Date(utc + (3600000*timeZone));
+
+let  Time = DateOffset.getHours();
+let  Minutes = DateOffset.getMinutes();  
+let  numday = DateOffset.getDay();
+
+if (numday==0) numday = 7; 
+let weekPart = 1;
+if (numday>=4)  weekPart = 2;
+let fD = 0; let lD = 0;
+
+let mainHour = 13;
+
+if (weekPart == 1 ) {  fD = 4 - numday; lD = 6 - numday};
+if (weekPart == 2 ) {  fD = 7 - numday + 1;  lD = 7 - numday + 3};
+
+if (Time<mainHour  && weekPart == 1 && numday==1 ) { fD =0; lD =2};
+if (Time<mainHour  && weekPart == 2 && numday==4 ) { fD =0; lD =2};
+
+firstDay.setDate(Data.getDate()+fD);
+lastDay.setDate(Data.getDate()+lD);
+
+fMonth = firstDay.getMonth();
+lMonth = lastDay.getMonth();
+
+fDay = firstDay.getDate();
+lDay = lastDay.getDate();
+
+fYear = firstDay.getFullYear();
+lYear = lastDay.getFullYear();
+
+let txM = '';
+function txtMonth(em){
+    switch (em)
+    {
+        case 0:  txM="января"; break;
+        case 1:  txM="февраля"; break;
+        case 2:  txM="марта"; break;
+        case 3:  txM="апреля"; break;
+        case 4:  txM="мая"; break;
+        case 5:  txM="июня"; break;
+        case 6:  txM="июля"; break;
+        case 7:  txM="августа"; break;
+        case 8:  txM="сентября"; break;
+        case 9:  txM="октября"; break;
+        case 10: txM="ноября"; break;
+        case 11: txM="декабря"; break;
+    }
+};
+txtMonth(fMonth); fMonth = txM;
+txtMonth(lMonth); lMonth = txM;
+
+//Выводим дату в заголовок формы
+$('.t712__title-second').html(`Бесплатный 3х дневный практикум с ${fDay} ${fMonth} по ${lDay} ${lMonth}`);
+
+</script>

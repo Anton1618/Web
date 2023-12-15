@@ -1,0 +1,62 @@
+https://mo-ti.ru/galleryhovereffect
+
+- Создали ZeroBlock
+Добавили в него 6 галерей и 6 прозрачных кнопок
+Задали им пронумерованные классы
+gallery-link1, gallery-link2, gallery-link3 ...
+btn-link1, btn-link2, btn-link3 ...
+
+- У галерей убрали стрелки и поставили slide speed - fast
+
+- Добавили код в блок Другое - Т123
+
+
+<script>
+
+$(document).ready(function(){
+let DescTime = 100;
+let MobTime = 2000;
+
+    $('div[class*="btn-link"]').each(function(){
+        let cl = ($(this).attr('class')).split(' ');let nClass = '';
+        $.each(cl,function(index,value){
+            let contain = value.includes('btn-link'); if (contain) nClass=value.replace(/[^0-9]/g,"");
+        }); $(this).attr('data-btn-link',nClass);
+    });
+    
+    $('div[class*="gallery-link"]').each(function(){
+        let cl = ($(this).attr('class')).split(' ');let nClass = '';
+        $.each(cl,function(index,value){
+            let contain = value.includes('gallery-link'); if (contain) nClass=value.replace(/[^0-9]/g,"");
+        }); $(this).attr('data-gallery-link',nClass);
+    });
+    
+    let timerId = '';
+
+    if ($(window).width() > 640){
+
+        $('div[class*="btn-link"]').hover(function(){
+            let indx = $(this).attr('data-btn-link');
+            let arrowElem = $('.t396__elem[data-gallery-link="'+indx+'"] .t-slds__arrow-right');
+            timerId = setInterval(() =>  arrowElem.click() , 100);
+        }, function(){ clearInterval(timerId) });
+
+    }else{
+        timerId = setInterval(() =>  $('div[class*="gallery-link"]  .t-slds__arrow-right').click() , MobTime);
+    };
+});
+</script>
+
+<style>
+div[class*="gallery-link"] .t-slds_animated {
+    transition: height ease-in-out 0s,transform ease-in-out 0s !important;
+}
+div[class*="btn-link"] {
+    transition: all 0.2s ease-in-out;
+    border: 0px solid #fff;
+    opacity: 0.4;
+}
+div[class*="btn-link"]:hover {
+    border-width: 10px;
+}
+</style>

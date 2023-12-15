@@ -1,0 +1,94 @@
+https://mo-ti.ru/sldffelements
+
+- Создали ZeroBlock
+Добавили в него элементы и задали им ссылки
+	- Стрелки (навигация) - 2 Image - со ссылками #btnleft и #btnright
+	- Заголовки контента (друг под другом) - 3 Text - со ссылками #sldtitle
+	- Текст (друг под другом) - 3 Text - со ссылками #sldtext
+	- Число (индекс таба) - 1 Text - со ссылкой #sldnumber
+	- Картинка - со ссылкой #sldpic (отключили им LazyLoad)
+	- Переключатели (положение по желанию, вид активный для всех) - 3 shape - со ссылками #btntab
+    Кнопки создаются по необходимости и не обслуживаются кодом
+
+- Добавили код на страницу, в блок Другое ► Т123
+В коде прописали ID Zero #rec205684096
+
+
+<style>
+    .tabmode{opacity:0.1;}
+    .sldelem{cursor:default;}
+    .btntab, .butsld {cursor:pointer;}
+</style>
+
+<script>
+
+//Автослайдинг
+function auto_play() {  $(".btnright").click()};
+var timemode = 4000;
+var autoPlay = setInterval( auto_play, timemode );
+$( document ).ready(function() {
+
+//Присваиваем класс нашим кнопкам фотографиям
+$('[href = "#btnleft"]').addClass("btnleft butsld");
+$('[href = "#btnright"]').addClass("btnright butsld");
+$('[href = "#sldpic"]').addClass("sldpic sldelem");
+$('[href = "#sldtitle"]').addClass("sldtitle sldelem");
+$('[href = "#sldtext"]').addClass("sldtext sldelem");
+$('[href = "#sldnumber"]').addClass("sldnumber sldelem");
+$('[href = "#btntab"]').addClass("btntab");
+$('#rec205684096 div[data-elem-type="button"]').addClass("sldcontbtn");
+
+$('.sldelem , .btntab , .butsld').removeAttr("href");
+
+
+$('.butsld , .sldelem').click(function(e){e.preventDefault();});
+var sumpic = $('.sldtitle').length-1;
+
+ var numsld = 0;
+ $(".sldtitle:not(:first)").hide();
+ $(".sldtext:not(:first)").hide();
+ $(".sldpic:not(:first)").hide();
+ $(".btntab:not(:first)").addClass('tabmode');
+ $(".sldcontbtn:not(:first)").hide();
+
+function sldelemhide(){
+    $(".sldtitle, .sldtext , .sldpic , .sldcontbtn").fadeOut(200);
+    $(".btntab").addClass('tabmode');
+};
+function sldelemshow(){
+    $(".sldtitle:eq("+numsld+") , .sldtext:eq("+numsld+") , .sldpic:eq("+numsld+") , .sldcontbtn:eq("+numsld+")").fadeIn(200);
+    $(".sldnumber").html('0'+(numsld+1));
+    $(".btntab:eq("+numsld+")").removeClass('tabmode');
+};
+$(".btnright").click(function() {
+    sldelemhide();
+    if (numsld==sumpic){ numsld=0;sldelemshow();
+    }else{ numsld++;sldelemshow();
+    }; 
+});
+$(".btnleft").click(function() {
+    sldelemhide();
+    if (numsld==0){ numsld=sumpic;sldelemshow();
+    }else{ numsld--;sldelemshow(); 
+    }; 
+});
+
+//При клике на таб
+ $('.btntab').click(function(e) {e.preventDefault();
+    $('.btntab').addClass('tabmode');$(this).removeClass('tabmode'); 
+    numsld = $(".btntab").index(this); sldelemhide();sldelemshow();
+ });    
+
+$(".butsld , .sldelem , .sldcontbtn ,.btntab").hover( 
+function(){  clearInterval(autoPlay);
+},function(){  autoPlay = setInterval( auto_play, timemode );});   
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) { clearInterval(autoPlay);
+            } else { 
+                clearInterval(autoPlay);autoPlay = setInterval( auto_play, timemode );
+            }
+    });
+});
+</script>

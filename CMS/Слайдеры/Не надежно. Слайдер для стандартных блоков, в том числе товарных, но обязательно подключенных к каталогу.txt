@@ -1,0 +1,187 @@
+https://dsgnmax.ru/sliders/slider-shop
+https://www.youtube.com/watch?v=g3AbfetTUYY
+На примере блока TE225
+
+Доступен любой из 39 стандартных блоков. 
+Доступные блоки и их наименования, которые нужно установить в коде, можно увидеть и взять в документе рядом - "Слайдер из стандартных блоков + наименования контейнеров"
+
+
+Возможности:
+- Бегущая строка из карточек или логотипов
+Установить время смены слайдов на 0, а скорость смены, например, около 4000, и переключить плавность перехода на linear
+- Дополнительная стилизация центрального элемента через функцию centerMode
+
+
+<script>
+//Блоку, из которого будете делать слайдер нужно присвоить класс uc-slider-shop
+//ТОВАРЫ ОБЯЗАТЕЛЬНО ДОЛЖНЫ ПОДГРУЖАТЬСЯ ИЗ КАТАЛОГА ТОВАРОВ 
+const dbmBlock = ".uc-slider-shop"; // класс блока
+const catalogGrid = document.querySelector(dbmBlock + ' .js-store-grid-cont');
+catalogGrid.addEventListener('tStoreRendered', function() {
+    if ($(dbmBlock + " .t-store__card").length) {
+        $(dbmBlock + " .t-store__grid-separator").remove();
+        $(dbmBlock + " .js-store-grid-cont").slick({ 
+            infinite: true, //Бесонечная прокрутка
+            autoplay: true, //Автопроигрывание
+            autoplaySpeed: 3000, //Через какое время слайды будут сменяться
+            speed: 400, // Скорость
+            pauseOnHover: false, //Время через которое будет установлена пауза, при наведении на карточку
+            pauseOnDotsHover: false, //Время через которое будет установлена пауза, при наведении на точки навигации
+            slidesToShow: 3, //Количество карточек для показа(в настройках блока должно быть такое же количество)
+            centerMode: false, //Центрирование карточек
+            //centerPadding: '50px', //Боковые отступы при центрировании карточек
+            cssEase: 'ease-in-out', //Плавность смены слайдов, в том числе и кубик безьеr
+            arrow: false,
+            dots: true, //Точки
+            // slidesToScroll: 1,  // Количество карточек, которые пролистываются. Либо true, для пролистывания любого доступного количества карточек
+            swipeToSlide: true, //Пролистывание карточек с помощью мыши без привязки к количеству
+            //Ссылки на иконки навигации
+            prevArrow:"<img class='slick-prev' src='https://static.tildacdn.com/tild3466-3038-4438-b232-343039306635/arrow-left.svg'>",
+            nextArrow:"<img class='slick-next' src='https://static.tildacdn.com/tild3031-3561-4064-a533-323033643532/arrow-right.svg'>",
+
+            //Адаптивы. Под каждый могут применяться указанные функции выше
+            responsive: [{
+                    breakpoint: 960, //Планшет горизонтальный
+                    settings: {
+                        slidesToShow: 3, //Количество карточек
+                        slidesToScroll: 1,
+                        infinite: true,
+                    }
+                },
+                {
+                    breakpoint: 640, //Планшет вертикальный
+                    settings: {
+                        slidesToShow: 2, //Количество карточек
+                        slidesToScroll: 1,
+                        infinite: true,
+                    }
+                },
+                {
+                    breakpoint: 480, //Телефон горизонтальный
+                    settings: {
+                        slidesToShow: 1, //Количество карточек
+                        slidesToScroll: 1,
+                        infinite: true,
+                    }
+                }
+            ]
+        });
+    }
+});
+</script>
+
+<style>
+:root{
+  --borderRadiusContainer: 16px; /*Скругление углов у контейнера*/
+  --widthIcon: 40px;     /*Ширина иконки стрелки*/
+  --heightIcon: 40px;    /*Высота иконки стрелки */
+  --opacityHover: 0.7;   /*Прозрачность стрелок при наведении*/
+  --tansitionHover: .3s ease-in-out;    /*Скорость и плавность анимации при наведении на стрелки*/
+  --overflow: hidden; /*visible - если нужно, чтобы карточки выходили за предел контейнера на всю ширину экрана*/
+  --arrowDisplay: block; /*Видимость стрелок навигации, если нужно убрать стрелки пропишите значение none вместо block*/    
+}
+.slick-list {
+    border-radius: var(--borderRadiusContainer) !important; 
+    /*Если нужно, чтобы карточки выходили за предел контейнера*/
+    overflow:var(--overflow) !important; 
+}
+.slick-arrow{
+    top:50%;
+    transform: translateY(-50%);
+    position:absolute;
+    cursor:pointer;
+    display: var(--arrowDisplay) !important;
+}
+/*Настройка точек навигации*/
+.slick-dots{
+    box-sizing: border-box;
+    bottom: -50px !important; /*Расстояние вниз от карточек слайдера*/
+}
+.slick-dots li.slick-active button:before {
+    color: #F8A95A !important;  /*Цвет точки активного слайда*/
+}
+.slick-dots li button:before {
+    color: #FFEDA5 !important;  /*Цвет точек неактивных слайдов*/
+    font-size: 10px !important; /*Размер точек*/
+}
+.js-product-img{
+    top: 0px !important;
+}
+/*Десктоп разрешение*/
+@media screen and (min-width: 1200px) {
+    .slick-prev { /*Стрелка влево*/
+        width: var(--widthIcon) !important;      
+        height: var(--heightIcon) !important;
+        left: -25px !important;       /*Положение стрелки*/
+        z-index:998;
+        top:50% !important;         /* Расположение стрелки по вертикали*/
+    } 
+
+    .slick-next { /*Стрелка вправо*/
+        width: var(--widthIcon) !important;
+        height: var(--heightIcon) !important;
+        right: -25px !important;      /*Положение стрелки*/
+        z-index:998;
+        top:50% !important;         /* Расположение стрелки по вертикали*/
+    }
+    .slick-prev:hover, .slick-next:hover{
+        opacity: var(--opacityHover) !important;
+        transition: var(--tansitionHover);
+    }  
+  
+}
+
+/*Разрешение для вертикального планшета*/
+@media screen and (max-width: 960px) {
+    .slick-prev { /*Стрелка в лево*/
+        width:30px !important;      /*Ширина иконки стрелки влево*/
+        height:30px !important;     /*Высота иконки стрелки влево*/
+        left: 30px !important;       /*Положение стрелки*/
+        z-index:998;
+    } 
+
+    .slick-next {   /*Стрелка в право*/
+        width:30px !important;      /*Ширина иконки стрелки вправо*/
+        height:30px !important;     /*Высота иконки стрелки вправо*/
+        right: 30px !important;      /*Положение стрелки*/
+        z-index:998;
+    }
+}
+/*Разрешение для горизонтального телефона*/
+@media screen and (max-width: 640px) {
+    .slick-prev {
+        left: 10px !important;
+        z-index: 998 !important;
+    } 
+    .slick-next {
+        right: 10px !important;
+        z-index: 998 !important;
+    }
+}
+/*Разрешение для вертикального телефона*/
+@media screen and (max-width: 480px) {
+    .slick-prev {
+        width: 40px !important;
+        height: 40px !important;
+        left: 10px !important;
+        z-index: 998 !important;
+    } 
+    .slick-next {
+        width: 40px !important;
+        height: 40px !important;
+        right: 10px !important;
+        z-index: 998 !important;
+    }
+    .slick-dots{
+        display: block !important;
+        position: relative !important;
+        bottom: 16px !important; /*Регулировка отступа снизу*/
+        padding-left: 0px !important;
+        width: 100% !important;
+    }
+}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

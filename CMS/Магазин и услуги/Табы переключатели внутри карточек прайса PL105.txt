@@ -1,0 +1,148 @@
+https://mo-ti.ru/tabmodepl105
+
+- Создание блока PL105 на 3 карточки. Заполнение контентом
+
+- Недостающие вкладки заполним через блок CL47
+С тем учётом, что первая вкладка уже есть в PL105
+
+- Добавили код в блок Другое - Т123
+В коде указали к какой карточке и какие вкладки добавить
+
+"1":[1,3 , ['Один','Два','Три','Более']],
+"2":[4,5 , ['Один','Два','Более']],
+"3":[6,10 , ['Один','Два','Три','Четыре','Более']]
+
+Например, "1":[1,3 , ['Один','Два','Три','Более']],
+В первую карточку PL105 добавить вкладку из CL47 c первой по третью.
+Дальше прописаны названия табов на 4 элемента. Так как один основной + 3 мы добавляем
+
+<script>
+$( document ).ready(function() {
+
+let mapObj = {
+    "1":[1,3  , ['Один','Два','Три','Более']],
+    "2":[4,5  , ['Один','Два','Более']],
+    "3":[6,10 , ['Один','Два','Три','Четыре','Более']]
+};
+
+let pl105 = $('[data-record-type="599"]');
+let cl47 = $('[data-record-type="817"]');
+if(pl105.length && cl47.length){
+$.each(mapObj, function( key, value ) {
+    
+    let contelem = $('.t599__content:eq('+(key-1)+')');
+    contelem.wrapInner("<div class='t599__content_wrap'><div class='t599__content_single'></div></div>");
+    contelem.prepend('<div class="t599__col_header t-descr"><div class="t599__col_header_title">Количество пользователей</div><div class="t599__col_header_tab-wrapper"></div></div>')
+    $.each(mapObj[key][2], function( key, value ) {
+        contelem.find('.t599__col_header_tab-wrapper').append('<div class="t599_tab">'+value+'</div>');
+    });
+   
+    contelem.find('.t599__content_wrap').css({
+                                            "width": (value[1]-value[0]+2)*contelem.outerWidth()
+                                            });
+    
+    for (let i = 0; i < (value[1] - value[0] + 1 ); i++) { 
+        
+        let numTab = value[0]+i-1;
+        let clone_new_element = contelem.find('.t599__content_single:first').clone(true);
+        contelem.find('.t599__content_wrap').append(clone_new_element);  
+        contelem.find('.t599__content_single:last .t599__title').html(cl47.find('.t817__tab-name:eq('+numTab+')').html());
+        contelem.find('.t599__content_single:last .t599__price').html(cl47.find('.t817__content:eq('+numTab+') .t817__title').html());
+        contelem.find('.t599__content_single:last .t599__descr').html(cl47.find('.t817__content:eq('+numTab+') .t-text').html());
+        contelem.find('.t599__content_single:last .t599__btn td').html(cl47.find('.t817__content:eq('+numTab+') .t-btn td').html());
+        contelem.find('.t599__content_single:last .t599__btn').attr('href', cl47.find('.t817__content:eq('+numTab+') .t-btn').attr('href'));
+    };
+});
+$('.t599__col_header_tab-wrapper').each(function( index ) {
+    $(this).find('.t599_tab:first').addClass('active-tab');
+});
+
+function setHeight(){
+setTimeout(function(){ 
+    $('.t599__content_wrap').each(function( index ) {
+        $(this).find('.t599__content_single:first').addClass('active-content');
+        $(this).css({  "height": $(this).find('.active-content').height()});
+    });
+}, 1000);
+};setHeight();
+
+$('.t599_tab').click(function(){
+    if( !$(this).hasClass('active-tab') ){
+        $(this).closest('.t599__col_header_tab-wrapper').find('.t599_tab').removeClass('active-tab');
+        $(this).addClass('active-tab');
+        $(this).parent('.t599__col_header_tab-wrapper').addClass('act-tab-wrapper');
+        let numIndex = $('.act-tab-wrapper').children('.t599_tab').index($('.act-tab-wrapper .t599_tab.active-tab'));
+        $(this).parent('.t599__col_header_tab-wrapper').removeClass('act-tab-wrapper');
+        $(this).closest('.t599__content').find('.t599__content_single').removeClass('active-content');
+        $(this).closest('.t599__content').find('.t599__content_single:eq('+numIndex+')').addClass('active-content');
+        let singleHeight = $(this).closest('.t599__content').find('.active-content').height();
+        $(this).closest('.t599__content').find('.t599__content_wrap').css('height', singleHeight );
+        let elemSlide = $(this).closest('.t599__content').find('.t599__content_wrap');
+        let wh = elemSlide.find('.t599__content_single').outerWidth();
+        elemSlide.css('transform' , 'translateX('+( (-1)*numIndex*wh )+'px)');
+    };
+});
+
+function resizeWidth(){
+    $('.t599__content_wrap').each(function( index ) {
+        let resizeWhidth = $(this).closest('.t599__content').outerWidth();
+        let numSingle = $(this).find('.t599__content_single').length;
+        $(this).css({"width": resizeWhidth*numSingle });
+        $(this).closest('.t599__content').addClass('act-content-wrapper');
+        let numIndex = $('.act-content-wrapper').find('.t599_tab').index($('.act-content-wrapper .t599_tab.active-tab'));
+        $(this).closest('.t599__content').removeClass('act-content-wrapper');
+        $(this).css('transform' , 'translateX('+( (-1)*numIndex*resizeWhidth )+'px)');
+        let elem = $(this);
+        setTimeout(function(){ 
+        let singleHeight = elem.closest('.t599__content').find('.active-content').height();
+        elem.css('height', singleHeight );
+        }, 1000);
+    });
+};
+$(window).resize(function() {clearTimeout(window.resizedFinished); window.resizedFinished = setTimeout(function(){ resizeWidth() }, 1000);});
+};
+});   
+</script>
+
+<style>
+div[data-record-type="817"]{display:none}
+.t599__content {
+    padding-top: 25px;
+    overflow: hidden;
+}
+.t599__col_header { margin-bottom: 40px}
+.t599__col_header_tab-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.t599__col_header_title { font-weight: 500}
+.t599_tab {
+    cursor: pointer;
+    padding: 7px 7px;
+    box-shadow: 0 1px 0 0 rgb(252 180 47 / 32%);
+    transition: all 0.3s ease-in-out;
+}
+.t599_tab.active-tab { box-shadow: 0 2px 0 0 #fcb42f}
+.t599__content_wrap {
+    display: flex;
+    transition: all 0.5s ease-in-out;
+}
+.t599__content_single {
+    width: 100%;
+    padding: 0 30px;
+    height: min-content;
+}
+.t599__content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.t599__descr {text-align: left}
+.t599__descr ul {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+.t599__price , .t599__descr { height: auto !important}
+</style>

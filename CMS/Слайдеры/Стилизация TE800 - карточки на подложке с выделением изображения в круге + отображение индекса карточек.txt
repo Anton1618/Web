@@ -1,0 +1,140 @@
+https://mo-ti.ru/slideindex
+https://levelup.mo-ti.ru/student/lessons/112
+
+- Создали блок ТЕ800
+Количество блоков в ряду - 3
+Карточки - выравнивание: по центру
+
+- Добавили код в блок другое Т123
+
+
+<style>
+/*Стрелки*/
+.t923 .t-slds__arrow_wrapper { width: 35%}
+.sldleft, .sldright {
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-image: url(https://static.tildacdn.com/tild3337-6566-4365-a264-656462373935/892512.svg);
+}
+.sldright {transform:rotate(180deg)}
+.sldleft:hover, .sldright:hover {
+    filter: invert(0.3);
+}
+/*Контейнер стрелок*/
+.sldbtnwrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+/*Текст номера слайда*/
+.sldpostext {
+    font-family: 'Montserrat',Arial,sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    padding: 0 10px;
+}
+/*Скрываем штатные стрелки*/
+.t923 .t-slds__arrow { display: none}
+/*Уменьшение боковых слайдов*/
+.t923 .t-slds__item {
+    transform: scale(0.9);
+    filter: brightness(0.9);
+    transition: all 0.2s ease-in-out;
+}
+/*Увеличение центрального слайда*/
+.t923 .t-slds__item_active+div.t-card__col {
+    transform: scale(1.3);
+    filter: brightness(1);
+    position: relative;
+    z-index: 59;
+}
+/*Уменьшение последнего слайда*/
+.t-slds__items-wrapper .t-slds__item:last-child {
+    transform: scale(0.9) !important;
+    filter: brightness(0.9) !important;
+}
+/*Изменение картинки*/
+.t923__bgimg {
+    top: -75px;
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px white;
+}
+/*Тень центрального слайда*/
+.t923 .t-slds__item_active+div.t-card__col .t923__wrapper {
+    box-shadow: 0 0 0 8px white, 0 0 15px 4px #6f6f6f;
+}
+/*Отступы у колонок*/
+.t923__col {
+    padding-top: 160px !important;
+    padding-bottom: 90px !important;
+}
+/*Отступы у контейнера*/
+.t923__wrapper {
+    padding-bottom: 15px;
+    border-radius: 15px;
+}
+/*Отступы у картинки*/
+.t923__imgwrapper {
+    padding-bottom: 100px;
+}
+/*Свойства для контейнера*/
+.t923__wrapper {
+    padding-bottom: 15px;
+    border-radius: 15px;
+    border: 1px dashed #c3c3c3;
+    box-shadow: 0 0 0 8px white;
+    overflow: visible;
+}
+@media screen and (max-width:960px){
+.t923 .t-slds__item {
+    transform: scale(1) !important;
+    filter: brightness(1);
+} 
+.t923__col {
+    padding-top: 90px !important;
+    padding-bottom: 15px !important;
+}
+.t923 .t-slds__arrow_wrapper {width: 10%}
+}
+li.t-slds__item { list-style: none}
+.t923__col {
+    margin-left: -10px;
+}
+@media screen and (max-width:960px){
+.t923__col {
+    margin-left: -40px;
+}    
+}
+</style>
+
+<script>
+$( document ).ready(function() {
+$('.t923 .t-slds__main').append('<div class="sldbtnwrap"><div class="sldleft"></div><div class="sldpostext">1/1</div><div class="sldright"></div></div>');
+let sldlng;
+setTimeout(function(){
+    sldlng = $('.t923 .t-slds__items-wrapper').attr('data-slider-totalslides');
+    $('.sldpostext').html('1/'+sldlng);
+}, 500);
+let target = document.querySelector('.t923 .t-slds__items-wrapper');
+let observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        let newVal = $(mutation.target).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+        let sldpos = $('.t923 .t-slds__item_active').attr('data-slide-index');
+         $('.sldpostext').html(sldpos+'/'+sldlng)
+	};  
+});
+});
+observer.observe( target , {  attributes: true});
+$('.sldleft').click(function(e) { $('.t-slds__arrow-left').click()});
+$('.sldright').click(function(e) { $('.t-slds__arrow-right').click()});
+});
+</script>

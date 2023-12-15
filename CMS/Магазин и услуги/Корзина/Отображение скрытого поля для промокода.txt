@@ -1,0 +1,15 @@
+https://ilda.top/show-promo
+
+Простой снипет, позволяющий по умолчанию скрыть поле Промокод. тем самым упрощая UI и уменьшая общую высоту корзины.
+Полезно, если промокоды имею место в вашем магазине, но не являются главным источником мотивации продаж / используются не часто.
+
+<script>
+$('.t-input-group_pc').hide(300);
+$(document).on('change','input[name="havepromo"]',function(e){
+    if($('input[name="havepromo"]').is(':checked') ){
+    	$('.t-input-group_pc').show(300);
+    } else {
+    	$('.t-input-group_pc').hide(300);
+    };
+});
+</script>

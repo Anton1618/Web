@@ -1,0 +1,58 @@
+https://mo-ti.ru/gl21textover
+https://levelup.mo-ti.ru/student/lessons/103
+
+
+
+- Создали галерею GL21
+Заполнили заголовок и описание для каждого слайда в контенте блока
+Изменили размер блока
+ширина: 7 колонок
+отступ слева: без отступа
+ширина блока с информацией: 5 колонок
+отступ слева второго блока: без отступа
+
+- Добавили стиль в блок другое Т123
+
+
+
+<style>
+.t764 .t-bgimg {
+    filter: brightness(0.5);
+    transition: all 0.2s;
+}
+.t764 .t-slds__main:hover .t-bgimg {
+    filter: brightness(1);
+}
+.t764 .t-slds__imgwrapper {
+    position: relative;
+}
+.t764 .t-slds__imgwrapper:before,
+.t764 .t-slds__imgwrapper:after{
+    position: absolute;
+    color: #fff;
+    font-family: 'Roboto';
+    width: 100%;
+    text-align: center;
+    z-index: 99;
+}
+
+/* Свойства задаваемые заголовку */
+.t764 .t-slds__imgwrapper:before {
+    content: attr(title);
+    bottom: 40px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Свойства задаваемые описанию */
+.t764 .t-slds__imgwrapper:after {
+    content: attr(data-img-zoom-descr);
+    bottom: 20px;
+    font-size: 18px;
+    font-weight: 200;
+}
+@media screen and (max-width:520px){
+.t764 .t-slds__imgwrapper:before {font-size: 20px}  
+.t764 .t-slds__imgwrapper:after {font-size: 14px}
+}
+</style>

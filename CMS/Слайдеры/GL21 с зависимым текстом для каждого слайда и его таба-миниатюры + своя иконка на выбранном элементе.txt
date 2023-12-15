@@ -1,0 +1,68 @@
+https://mo-ti.ru/gl21slidetext
+https://levelup.mo-ti.ru/student/lessons/88
+
+
+
+Скрипт реализует независимое отображаемое описания для каждого таба слайдера в основной демонстрации, тогда как по умолчанию, контентный текст демонстрируется только в зум-режиме
+Также применяется маркировка активного таба собственной иконкой
+
+
+
+- Создали блок GL21
+
+- В описание каждого фото-таба добавили title и description. 
+Для первого элемента контент просто копируется из основного главного заголовка и описания
+
+- Добавили код в блок другое Т123
+Прописали ID галереи GL21
+var gl20ID = "#rec234011533";
+
+
+
+<script>
+$(document).ready(function(){
+var gl20ID = "#rec234011533";    
+var target = document.querySelector(gl20ID+' div.t-slds__items-wrapper');
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+        var newVal = $(mutation.target).prop(mutation.attributeName);
+        if (mutation.attributeName === "class") {
+          $(gl20ID+' div.t764__title').text( $(gl20ID+' div.t-slds__item_active .t-slds__imgwrapper').attr('title'));
+          $(gl20ID+' div.t764__descr').text( $(gl20ID+' div.t-slds__item_active .t-slds__imgwrapper').attr('data-img-zoom-descr'));
+	};  
+});
+});
+observer.observe( target , {  attributes: true});
+});    
+</script>
+
+
+<style>
+/* Стилизация табов, с заданием пользовательской иконки поверх активного таба-изображения */
+.t-slds__thumbsbullet {
+    overflow: hidden;
+    border-radius: 50%;
+}
+.t-slds__thumbsbullet-wrapper {
+    text-align: center; /* Центрирование, тогда как по умолчанию иконки располагаются по левой стороне */
+}
+.t-slds__bullet_active:before {
+    content: "";
+    background-image: url(https://static.tildacdn.com/tild6630-6337-4561-a162-613431376365/Group_1_2.png);
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    opacity: 0.5;
+}
+</style>
+
+<style>
+/* Альтернатива применению иконки. Добавляется тень к элементу, создавая визуальное впечатление поднятости или глубины */
+.t-slds__bullet_active .t-bgimg {
+   border-radius:50%;
+   box-shadow: 0 0 0 5px #ff0000;
+}
+</style>

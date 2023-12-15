@@ -1,0 +1,18 @@
+https://mo-ti.ru/dodo
+
+Создали блок ST305N
+
+Название для кнопки - В корзину
+Ссылка для кнопки - Подробнее о товаре
+
+Добавили код в блок другое Т123
+
+<script>
+$(document).ready(function() {
+   $('#rec166005014 .t776__col').each(function(){
+    var datalid = $(this).attr('data-product-lid');
+    $(this).find('.t776__btn-wrapper').before($('.t776__product-full[data-product-lid='+datalid+'] .t-product__option'));
+   });
+   $(".t776__btn-wrapper a").attr("href", "#order");
+});
+</script>

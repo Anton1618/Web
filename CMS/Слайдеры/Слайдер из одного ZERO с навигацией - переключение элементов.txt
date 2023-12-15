@@ -1,0 +1,137 @@
+https://mo-ti.ru/easycustomslider
+https://levelup.mo-ti.ru/student/lessons/3
+
+
+
+- Создали ZeroBlock
+Добавили 4 фото Image товара со ссылкой #sldpict. Элементами может быть что угодно с возможностью задания ссылки. Отцентрировали элементы, чтобы они все лежали друг под другом. Первым элементом будет нижний слой, следующим элементом будет слой выше и так далее
+Добавили иконки кнопок Image со ссылками #leftsld и #rightsld
+
+- Добавили скрипт на страницу в блок ДРУГОЕ►T123
+
+
+
+<script>
+$( document ).ready(function() {
+//Присваиваем класс нашим кнопкам фотографиям
+$('[href = "#leftsld"]').addClass("leftslider buttsld");
+$('[href = "#rightsld"]').addClass("rightslider buttsld");
+$('[href = "#sldpict"]').addClass("pictslider buttsld");
+
+//Присваиваем переменной значение кол-ва наших фотографий
+ var sumpic = $("[href = '#sldpict']").length-1;
+//Создаём переменную позиции слайдера 
+ var numsld = sumpic;
+//Скрываем все слайды, кроме последнего 
+ $("a.pictslider:not(:last)").hide();
+
+//При клике на кнопку ВПРАВО
+$( ".rightslider" ).click(function() {
+  //Скрываем верхнее фото
+    $(".pictslider:eq("+numsld+")").fadeOut(500);
+    if (numsld==0){
+    $(".pictslider:eq("+sumpic+")").fadeIn(500);
+    numsld=sumpic+1;
+    }else{ $(".pictslider:eq("+(numsld-1)+")").fadeIn(500);
+    }; numsld--;
+  //Если скрыли все фото , то возвращаем позицию к началу
+  //if (numsld==-1){ numsld=sumpic; }; 
+  return false;});
+
+//При клике на кнопку ВЛЕВО
+$( ".leftslider" ).click(function() {
+     //Скрываем текущий
+     $(".pictslider:eq("+numsld+")").fadeOut(500);
+    if (numsld==sumpic){
+    $(".pictslider:eq(0)").fadeIn(500);
+    numsld=-1;
+    }else{ $(".pictslider:eq("+(numsld+1)+")").fadeIn(500);
+    }; 
+    numsld++; return false;});
+    
+//Функция автослайдинга    
+    function auto_play() {
+   $(".rightslider")[0].click();
+}
+var autoPlay = setInterval( auto_play, 4000 );
+$(".buttsld").hover(
+function(){
+   clearInterval(autoPlay);
+},
+function(){
+  autoPlay = setInterval( auto_play, 4000 );
+});    
+    
+});//$( document ).ready(function() {
+
+</script>
+
+
+
+Для нового слайдера на странице потребуется указать элементы с ссылками, которым добавляется цифровой индекс. Например, для переключаемых элементов следует задать #sldpict2 и #leftsld2, а для кнопок переключения #rightsld2
+В коде потребуется заменить
+leftsld - leftsld2
+rightsld - rightsld2
+buttsld - buttsld2
+sumpic - sumpic2
+sldpict - sldpict2
+numsld - numsld2
+pictslider - pictslider2
+rightslider - rightslider2
+auto_play - auto_play2
+autoPlay - autoPlay2
+
+<script>
+$( document ).ready(function() {
+//Присваиваем класс нашим кнопкам фотографиям
+$('[href = "#leftsld2"]').addClass("leftslider buttsld2");
+$('[href = "#rightsld2"]').addClass("rightslider2 buttsld2");
+$('[href = "#sldpict2"]').addClass("pictslider2 buttsld2");
+
+//Присваиваем переменной значение кол-ва наших фотографий
+ var sumpic2 = $("[href = '#sldpict2']").length-1;
+//Создаём переменную позиции слайдера 
+ var numsld2 = sumpic2;
+//Скрываем все слайды, кроме последнего 
+ $("a.pictslider2:not(:last)").hide();
+
+//При клике на кнопку ВПРАВО
+$( ".rightslider2" ).click(function() {
+  //Скрываем верхнее фото
+    $(".pictslider2:eq("+numsld2+")").fadeOut(500);
+    if (numsld2==0){
+    $(".pictslider2:eq("+sumpic2+")").fadeIn(500);
+    numsld2=sumpic2+1;
+    }else{ $(".pictslider2:eq("+(numsld2-1)+")").fadeIn(500);
+    }; numsld2--;
+  //Если скрыли все фото , то возвращаем позицию к началу
+  //if (numsld2==-1){ numsld2=sumpic2; }; 
+  return false;});
+
+//При клике на кнопку ВЛЕВО
+$( ".leftslider" ).click(function() {
+     //Скрываем текущий
+     $(".pictslider2:eq("+numsld2+")").fadeOut(500);
+    if (numsld2==sumpic2){
+    $(".pictslider2:eq(0)").fadeIn(500);
+    numsld2=-1;
+    }else{ $(".pictslider2:eq("+(numsld2+1)+")").fadeIn(500);
+    }; 
+    numsld2++; return false;});
+    
+//Функция автослайдинга    
+    function auto_play2() {
+   $(".rightslider2")[0].click();
+}
+var autoPlay2 = setInterval( auto_play2, 4000 );
+$(".buttsld2").hover(
+function(){
+   clearInterval(autoPlay2);
+},
+function(){
+  autoPlay2 = setInterval( auto_play2, 4000 );
+});    
+    
+});//$( document ).ready(function() {
+
+</script>

@@ -1,0 +1,109 @@
+https://mo-ti.ru/playvideohover
+
+
+
+- Создали ZeroBlock и добавили в него элемент HTML
+В этот элемент вставили первый код
+В этом коде указали ссылку на наш mp4 файл (не youtube, не vimeo)
+https://310401.selcdn.ru/MIXED/Mahmut-Orhan-Without_You.mp4
+(как добавлять видео)
+И ссылку на обложку
+https://static.tildacdn.com/tild6565-6530-4131-a265-376661643334/buray-mecnun-mahmut-.jpg
+И ссылку на кнопку https://yandex.ru
+
+- Добавили второй код в блок Другое - Т123
+
+
+=============================== код в html ===========================
+<div class="videowrapper">
+<video width="100%" height="100%" webkit-playsinline="" playsinline="" loop="" muted=""  >
+   <source src="https://310401.selcdn.ru/MIXED/Mahmut-Orhan-Without_You.mp4" type="video/mp4">
+ </video>
+<div class="bg_image" style="background-image:url(https://static.tildacdn.com/tild6565-6530-4131-a265-376661643334/buray-mecnun-mahmut-.jpg)"></div>
+<div class="video-btn"><a href="https://yandex.ru" target="_blank"><div>See more > </div></a></div>
+</div>
+
+
+================================ код блока 123 ======================
+<style>
+.videowrapper {
+    position: relative;
+    overflow: hidden;
+}
+.videowrapper,
+.tn-atom.tn-atom__html {
+    width: inherit;
+    height: inherit;
+}
+.bg_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: all 0.2s;
+}
+.video-btn {
+    position: absolute;
+    background-color: rgb(0 0 0 / 70%);
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    bottom: 0;
+    left: 0;
+    transition: all 0.2s;
+    transform: translateY(100%);
+    backdrop-filter: invert(1);
+}
+.video-btn a, .video-btn div {
+    width: inherit;
+    height: inherit;
+}
+.video-btn div {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.video-btn div {
+    transition: all 0.2s 0.2s;
+    transform: translateY(100%);
+}
+.videowrapper:hover .video-btn div {
+    transform: translateY(0);
+}
+.video-btn a {
+    font-family: 'Open Sans',Arial,sans-serif;
+    font-weight: 300;
+    color: #fff !important;
+    font-size: 16px;
+}
+.videowrapper:hover .video-btn {
+    transform: translateY(0);
+}
+.videowrapper:hover .bg_image {opacity:0}
+video {object-fit: cover}
+</style>
+
+
+<script>
+$(document).ready(function(){
+$(document).on('mouseover mouseenter touchstart touchmove click', '.videowrapper', function(){
+    $(this).find('video').trigger('play');
+    let video = $(this).find('video')[0];
+    let videoload = setInterval(function() {
+    if (  video.readyState === 4  ) {
+        $('.vload .tn-atom').text('start');
+        clearInterval(videoload);
+    };
+}, 50);   
+});
+$(document).on('mouseleave', '.videowrapper', function(){
+    $(this).find('video').trigger('pause');
+});
+});
+</script>

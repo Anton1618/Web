@@ -1,0 +1,106 @@
+https://www.youtube.com/watch?v=FADTZF9zqYI&list=PLC5miF7yTvsLgA9Ia1zubxOoWxvBOcoS7&index=3
+
+Раскрывающиеся карточки по клику
+
+- Создается шейп, вмещающий будущие раскрывающиеся карточки и отвечающий за общее расположение галереи. Ему задается класс ndt_image_box
+- Cоздаются шейпы, которые станут будущими раскрывающимися карточками. Для простоты восприятия их распалогают в шейпе родителе. Каждому задается класс ndt_image
+- Примерно под будущими раскрывающимися карточками устанавливается текст, отображаемый в раскрытых карточках. Порядковая очередность карточек имеет значение, поэтому первый добавленный текст, станет определен в первую добавленную карточку. Для каждого текста устанавливается класс ndt_opened_text
+- Примерно под рядом текста открытых карточек, устанавливается текст, отображаемый в закрытых карточках. Для каждого текста устанавливается класс ndt_closed_text
+- Создается блок 123 со следующим кодом
+
+<style>
+    .ndt_image {
+        display: flex;
+        position: static;
+        flex-grow: 1;
+        transition: all .3s;
+        overflow: hidden;
+    }
+    .ndt_image_box > .tn-atom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* расстояние между карточками*/
+        padding: 20px; /* внутреннее расстояние от краёв шейпа до карточек */ 
+        transition: all .3s;
+        box-sizing: border-box;
+    }
+    .ndt_image_active {
+        flex-grow: 20; /* показатель насколько активная карточка будет больше других*/ 
+    }
+    
+    .ndt_image>div {
+        position: relative;
+        background-size: auto 100% !important;
+    }
+    .ndt_image>div::before { /* блок кода для тени на карточке */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgb(0 0 0 / 76%) 100%); /* цвет тени на карточке */
+        border-radius: 25px;
+    }
+    .ndt_closed_text {
+        opacity: 1;
+        position: absolute;
+        left: -30px !important;  /* расстояние от левого края для текста в закрытой карточке */
+        bottom: 70px !important; /* расстояние от нижнего края для текста в закрытой карточке */
+        top: unset !important;
+        right: unset !important;
+        transform: rotate(-90deg); /* угол поворота текста закрытой карточки */
+        transition: all .2s;
+    }
+    .ndt_opened_text {
+        opacity: 0;
+        position: absolute;
+        left: 10px !important;   /* расстояние от левого края для текста в открытой карточке */
+        bottom: 20px !important; /* расстояние от нижнего края для текста в открытой карточке */
+        top: unset !important;
+        right: unset !important;
+        transition: all .2s;
+    }
+    .ndt_opened_text .tn-atom, .ndt_closed_text .tn-atom {
+        background-color: #fff0 !important;
+    }
+    
+    .ndt_image_active .ndt_opened_text {
+        opacity: 1;
+    }
+    .ndt_image_active .ndt_closed_text {
+        opacity: 0;
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        let images = document.querySelectorAll('.ndt_image');
+        let imageBox = document.querySelector('.ndt_image_box .tn-atom');
+        
+        images[0].classList.add('ndt_image_active');
+        
+        for (image of images) {
+            $(image).appendTo(imageBox);
+            image.addEventListener('mouseover', function() {
+                $('.ndt_image').removeClass('ndt_image_active');
+                this.classList.add('ndt_image_active');
+            })
+        }
+        
+        let openedTexts = document.querySelectorAll('.ndt_opened_text');
+        let closedTexts = document.querySelectorAll('.ndt_closed_text');
+        
+        let i = 0;
+        for (openedText of openedTexts) {
+            $(openedText).appendTo(images[i].childNodes[0]);
+            i++;
+        }
+        i = 0;
+        for (closedText of closedTexts) {
+            $(closedText).appendTo(images[i].childNodes[0]);
+            i++;
+        }
+    })
+</script>

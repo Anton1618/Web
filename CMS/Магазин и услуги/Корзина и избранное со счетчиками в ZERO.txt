@@ -1,0 +1,116 @@
+https://mo-ti.ru/zerocart
+
+
+=================   Как сделать свою корзину в меню из ZeroBlock в Tilda   ===========================
+- Создали ZeroBlock. Добавили элементы:
+Элемент иконки (что угодно, например иконка svg)
+Text с цифрой 0 (для количества товара)
+Text со знаком = (для суммы заказа)
+Для иконки и текста с цифрой 0 задается класс cartcopy_elem
+Для текста суммы заказа задается класс cartprice_elem
+
+- Создали блок с корзиной ST100
+
+- Добавили код на страницу, в блок Другое - Т123
+
+
+<style>
+/* Корзина */
+.blkElem{pointer-events:none; }
+.cartcopyanim {
+-webkit-animation: t706__pulse-anim 0.6s;
+animation: t706__pulse-anim 0.6s;}
+.cartcopy_elem .tn-atom , .cartprice_elem .tn-atom {display:none}
+.cartcopy{cursor:pointer}
+.t706__carticon {display: none !important;} 
+</style>
+<script>
+$( document ).ready(function() {
+   let hideMode = false; //Скрыть-Показать пустую корзину - true-false
+   $('.cartcopy_elem .tn-atom').addClass('cartcopy');
+   $('.cartprice_elem .tn-atom').addClass('cartcopyprice');
+   function chkNum(){
+   if (window.tcart === undefined) { return; }
+   if(!hideMode) $('.cartcopy, .cartcopyprice').show();   
+   let chCounter = window.tcart.total;
+   let chPrice = window.tcart.prodamount;
+   if  (chPrice==0){
+        $('div[data-elem-type="text"] .cartcopyprice').html(''); 
+        if(hideMode) {$('.cartcopy, .cartcopyprice').hide()
+        }else{$('.cartcopy, .cartcopyprice').show()};
+   }else{ 
+       $('div[data-elem-type="text"] .cartcopyprice').html(chPrice+' руб'); 
+          if(hideMode) $('.cartcopy, .cartcopyprice').show();
+   };
+   $('div[data-elem-type="text"] .cartcopy').html(chCounter);
+   if(chCounter==0){ $('.cartcopy').addClass('blkElem');
+   }else{ $('.cartcopy').removeClass('blkElem'); }; 
+   if(chCounter==''){$('div[data-elem-type="text"] .cartcopy').html(0);}; };
+       setTimeout(function(){chkNum();}, 500);
+   $(".t706").on('DOMSubtreeModified', ".t706__carticon-counter", function() {
+       setTimeout(function(){chkNum();}, 300);
+   $('div[data-elem-type="image"] .cartcopy').addClass('cartcopyanim');    
+   setTimeout(function(){ $('.cartcopy').removeClass('cartcopyanim');}, 1000);});
+   $('.cartcopy').click(function(e){e.preventDefault();tcart__openCart();});
+}); 
+</script>
+
+
+
+=================   Как сделать своё избранное в меню из ZeroBlock в Tilda   ===========================
+- Создали ZeroBlock. Добавили элементы:
+Элемент (что угодно, например иконка svg). Задали класс favorites_icon
+Text. Ему задали класс favorites_total
+
+- Создали блок избранное ST110
+
+- Добавили код на страницу, в блок Другое - Т123
+
+
+<style>
+/* Избранное */
+.blkFav{pointer-events:none; }
+.favorites_icon , .favorites_total .tn-atom {display:none}
+.favorites_icon_anim {
+    -webkit-animation: t1002__pulse-anim 0.6s;
+    animation: t1002__pulse-anim 0.6s;
+}
+.favorites_icon{
+    cursor:pointer;
+    transition: -webkit-transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out,-webkit-transform 0.2s ease-in-out;
+}
+.t1002__wishlisticon {  display: none}
+</style>
+
+<script>
+$( document ).ready(function() {
+    let emptyFavorites = false; //Скрыть-Показать пустое избранное - true-false
+   
+    let fIcon = $('.favorites_icon');
+    let fTotal = $('.favorites_total');
+  
+    function checkTotal(){
+        if (window.twishlist === undefined) {  return; }
+        if(!emptyFavorites) $('.favorites_icon, .favorites_total  .tn-atom').show();   
+        let nTot = twishlist.total;
+        $('.favorites_total  .tn-atom').text(nTot);
+        $('.favorites_icon').addClass('favorites_icon_anim');    
+        setTimeout(function(){ $('.favorites_icon').removeClass('favorites_icon_anim');}, 700);
+        if  (nTot==0){
+            $('.favorites_icon').addClass('blkFav');
+            if(emptyFavorites) {$('.favorites_icon, .favorites_total  .tn-atom').hide()
+        }else{$('.cartcopy, .cartcopyprice').show()};
+        }else{ 
+            $('.favorites_icon').removeClass('blkFav');
+            if(emptyFavorites) $('.favorites_icon, .favorites_total  .tn-atom').show();
+        };
+    };
+    setTimeout(function(){checkTotal()}, 1000);
+    $(".t1002").on('DOMSubtreeModified', ".t1002__wishlisticon-counter", function() {
+        setTimeout(function(){checkTotal()}, 300);
+    });
+    $('.favorites_icon').click(function(e){   twishlist__openWishlist()  });
+}); 
+</script>

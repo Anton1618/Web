@@ -1,0 +1,184 @@
+https://mo-ti.ru/sub-chapter
+
+
+- Создать товары и поместить их разделы
+
+- Создать блок товаров ST320N
+
+- Тем товарам, которые нужно сгруппировать, задали один общий раздел
+
+- В коде прописать соответствие раздел-подраздел
+Например, в раздел Техника, пусть входят другие разделы - Пилы, Я-Мотоблоки, Dewalt, Bicycle, Экскаватор, Аренда авто
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+//Список вложенных разделов
+let subsectionObj = {
+    
+"Техника": [
+        "Пилы",
+        "Я-Мотоблоки",
+        "Dewalt",
+        "Bicycle",
+        "Экскаватор",
+        "Аренда авто",
+    ],    
+    
+"Тканевые товары": [
+        "Я-игрушка",
+        "Шторы",
+    ],     
+    
+};
+
+let shopComplete = true;
+function prodComplete(){
+//При загрузке товаров
+let tistore = setInterval(function() {
+    setTimeout(function(){
+        //Если блоки магазина есть на странице
+        if ( document.querySelector('.js-store-grid-cont div') != null || document.querySelector('.t-store__prod-snippet__container') != null ){
+            clearInterval(tistore) 
+            if(shopComplete){
+                shopComplete = false;
+                //Запускаем нашу основную функцию
+                setTimeout(function(){  makeSubsection(); }, 200); 
+            };
+        };
+    }, 600);
+}, 100);   
+};
+prodComplete();
+
+//Фунцция формирования разделов
+function  makeSubsection(){
+    //определяем основные разделы
+    Object.entries(subsectionObj).forEach((entry) => {
+	    const [key, value] = entry;// раздел --- подраздел
+        //Ищем основные разделы
+        document.querySelectorAll('.js-store-parts-switcher').forEach(function(node) {
+            let caption = node.innerText; //получаем название раздела
+            if(key==caption) { // если нашли совпадение
+                node.classList.add('main-chapter');//задаём класс основному разделу
+                //Создаём контейнер для подразделов
+                const div = document.createElement('div');
+                div.className = 'subsection';
+                node.after(div);//Помещаем подраздела за основным разделом
+                //Ищем подразделы в этот разделе
+                for(var i = 0; i < value.length; i++) {
+                    document.querySelectorAll('.js-store-parts-switcher').forEach(function(elem) {   
+                        let tName = elem.innerText;
+                        if(value[i]==tName) {//Если нашли нужный подраздел
+                            elem.classList.add('sub-chapter');//задаём класс подразделу
+                            div.appendChild(elem);//перемещаем подраздел в нужный раздел
+                        };
+                    });
+                };
+            };
+        });
+    });
+    
+    //Поиск активного раздела при открытии страницы, чтобы раскрыть основной раздел
+    document.querySelectorAll('.js-store-parts-switcher').forEach(function(component) { 
+        if( component.classList.contains('sub-chapter') &&  component.classList.contains('t-active') ) {
+            component.closest('.subsection').classList.add('show-subsection');
+            component.previousElementSibling.classList.add('open-chapter');
+        };
+    });
+};
+
+//При раскрытии основного раздела
+document.addEventListener('click', function(e){
+    if (e.target.classList.contains("main-chapter")) { 
+        e.target.classList.toggle('open-chapter');//переключаем класс раздела
+        e.target.nextElementSibling.classList.toggle('show-subsection');//переключаем класс блока с подразделами
+    };
+});
+
+});
+</script>
+
+
+
+
+<style>
+.subsection {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
+    display: none;
+}
+
+.subsection.show-subsection{
+    display: block;
+}
+
+
+.sub-chapter {
+    width: 100%;
+}
+
+.main-chapter {
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+}
+
+.js-store-parts-switcher.t-store__parts-switch-btn.sub-chapter {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.main-chapter:after {
+    content: "";
+    background-image: url(https://static.tildacdn.com/tild3837-6431-4465-b265-383663343966/arrow_down_icon_1842.svg);
+    width: 19px;
+    height: 19px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    transition: all 0.3s ease-in-out;
+}   
+.open-chapter.main-chapter:after {
+    transform: rotate(180deg);
+}
+
+.t-store__filter__item.t-store__filter__item_select.js-store-filter-item {
+    display: none;
+}
+
+@media screen and (max-width: 960px){
+.js-store-parts-switcher.t-store__parts-switch-btn{
+    font-size: 16px;
+    font-weight:300;
+    display: flex;
+    margin-left: 0;
+}
+
+.js-store-parts-switcher.t-store__parts-switch-btn.sub-chapter.t-active {
+    font-weight: 600;
+}
+
+.t-store__parts-switch-wrapper {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.t951__sidebar-wrapper ::-webkit-scrollbar-thumb {
+        background: #e0e0e0;
+        border-radius: 10px;
+}
+.t951__sidebar-wrapper ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        background: #000000;
+}
+
+
+}
+
+</style>

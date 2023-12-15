@@ -1,0 +1,201 @@
+https://dsgnmax.ru/sliders/slider-te225
+
+
+<script>
+//Блоку, из которого будете делать слайдер нужно присвоить класс uc-slider-te225
+    $(".uc-slider-te225 .t774__separator").remove();
+    $(document).ready(function(){
+    setTimeout(function(){
+        $('.uc-slider-te225 .t774__container').slick({ 
+            infinite: true,     //Бесонечная прокрутка
+            autoplay: true,     //Автопроигрывание
+            autoplaySpeed: 3000,    //Через какое время слайды будут сменяться
+            speed: 400,         // Скорость 
+            pauseOnHover:false, //Пауза при наведении на карточку
+            pauseOnDotsHover: false, //Пауза при наведении на точки навигации
+            slidesToShow: 3,    //Количество карточек для показа(в настройках блока должно быть такое же количество)
+            centerMode: true,   //Центрирование карточек
+            centerPadding: '0px', //Боковые отступы при центрировании карточек
+            cssEase:'ease-in-out',   //Плавность смены слайдов
+            adaptiveHeight:false,    //Адаптивная высота, подстраивается под высоту карточек 
+            dots:true,      //Точки
+            // slidesToScroll: 1,  // Количество карточек, которые пролистываются
+            swipeToSlide: true, //Пролистывание карточек с помощью мыши без привязки к количеству
+            //Ссылки на иконки влево и вправо 
+            prevArrow:"<img class='slick-prev' src='https://static.tildacdn.com/tild3466-3038-4438-b232-343039306635/arrow-left.svg'>",
+            nextArrow:"<img class='slick-next' src='https://static.tildacdn.com/tild3031-3561-4064-a533-323033643532/arrow-right.svg'>",
+  
+responsive: [                 
+    {
+      breakpoint: 1024, //Планшет горизонтальный 
+      settings: {
+        slidesToShow: 2,    //Количество карточек
+        slidesToScroll: 1,
+        infinite: true,
+      }
+    },
+    {
+      breakpoint: 640, //Планшет вертикальный
+      settings: {
+        slidesToShow: 2,    //Количество карточек
+        slidesToScroll: 1,
+        infinite: true,
+      }
+    },
+    {
+      breakpoint: 480,  //Телефон горизонтальный
+      settings: {
+        slidesToShow: 1,    //Количество карточек
+        slidesToScroll: 1,
+        infinite: true,
+      }
+    }
+  ]
+  });
+}, 20);
+});
+</script>
+
+<style>
+:root{
+  --borderRadiusContainer: 16px; /*Скругление углов у контейнера*/
+  --widthIcon: 40px;     /*Ширина иконки стрелки*/
+  --heightIcon: 40px;    /*Высота иконки стрелки */
+  --opacityHover: 0.7;   /*Прозрачность стрелок при наведении*/
+  --tansitionHover: .3s ease-in-out;    /*Скорость и плавность анимации при наведении на стрелки*/
+  --overflow: hidden; /*visible - если нужно, чтобы карточки выходили за предел контейнера*/
+  --arrowDisplay: block; /*Видимость стрелок навигации, если нужно убрать стрелки пропишите значение none вместо block*/    
+  --paddingContainerTop: 30px;  /*Отступ у контейнера с карточками сверху*/
+  --paddingContainerBottom: 30px;  /*Отступ у контейнера с карточками снизу*/
+    
+}
+.slick-list {
+    padding-top: var(--paddingContainerTop) !important;
+    padding-bottom: var(--paddingContainerBottom) !important;
+    border-radius: var(--borderRadiusContainer) !important; 
+    /*Если нужно, чтобы карточки выходили за предел контейнера*/
+    overflow:var(--overflow) !important; 
+}
+.slick-arrow{
+    top:50%;
+    transform: translateY(-50%);
+    position:absolute;
+    cursor:pointer;
+    display: var(--arrowDisplay) !important;
+}
+/*Настройка точек навигации*/
+.slick-dots{
+    box-sizing: border-box;
+    padding-left: 0px !important;
+    bottom: -50px !important; /*Расстояние вниз от карточек слайдера*/
+}
+.slick-dots li.slick-active button:before {
+    color: #269df7 !important;  /*Цвет точки активного слайда*/
+}
+.slick-dots li button:before {
+    color: #ffffff !important;  /*Цвет точек неактивных слайдов*/
+    font-size: 10px !important; /*Размер точек*/
+}
+
+/*Десктоп разрешение*/
+@media screen and (min-width: 1200px) {
+    .slick-prev { /*Стрелка влево*/
+        width: var(--widthIcon) !important;      
+        height: var(--heightIcon) !important;
+        left: -25px !important;       /*Положение стрелки*/
+        z-index:998;
+        top:50% !important;         /* Расположение стрелки по вертикали*/
+    } 
+
+    .slick-next { /*Стрелка вправо*/
+        width: var(--widthIcon) !important;
+        height: var(--heightIcon) !important;
+        right: -25px !important;      /*Положение стрелки*/
+        z-index:998;
+        top:50% !important;         /* Расположение стрелки по вертикали*/
+    }
+    .slick-prev:hover, .slick-next:hover{
+        opacity: var(--opacityHover) !important;
+        transition: var(--tansitionHover);
+    }  
+}
+/*Разрешение для вертикального планшета*/
+@media screen and (max-width: 960px) {
+    .slick-prev { /*Стрелка в лево*/
+        width:30px !important;      /*Ширина иконки стрелки влево*/
+        height:30px !important;     /*Высота иконки стрелки влево*/
+        left: 30px !important;       /*Положение стрелки*/
+        z-index:998;
+    } 
+
+    .slick-next {   /*Стрелка в право*/
+        width:30px !important;      /*Ширина иконки стрелки вправо*/
+        height:30px !important;     /*Высота иконки стрелки вправо*/
+        right: 30px !important;      /*Положение стрелки*/
+        z-index:998;
+    }
+}
+/*Разрешение для горизонтального телефона*/
+@media screen and (max-width: 640px) {
+    .slick-prev {
+        left: 10px !important;
+        z-index: 998 !important;
+    } 
+    .slick-next {
+        right: 10px !important;
+        z-index: 998 !important;
+    }
+    
+    .t774__container_mobile-grid {
+        padding: 0 0px !important;
+    }
+}
+/*Разрешение для вертикального телефона*/
+@media screen and (max-width: 480px) {
+    .slick-prev {
+        width: 40px !important;
+        height: 40px !important;
+        left: 10px !important;
+        z-index: 998 !important;
+    } 
+    .slick-next {
+        width: 40px !important;
+        height: 40px !important;
+        right: 10px !important;
+        z-index: 998 !important;
+    }
+    .slick-list{
+        padding-bottom: 0 !important;
+    }
+}
+
+@media screen and (min-width: 640px){
+    /*Стиль карточек при слайдинге на десктопе*/
+.uc-slider-te225 .slick-slide{
+    transition: all .4s ease;     /*Плавность анимации у всех карточек слайдера*/
+    filter: blur(4px);  /* не активных фотографий*/
+}
+.uc-slider-te225 .slick-center {
+    transition: all .4s ease;       /*Плавность анимации у активной карточки слайдера*/
+    filter: blur(0);   /* активной фотографии*/
+    transform: scale(1.1);
+} 
+}
+
+@media screen and (max-width: 640px){
+    /*Стиль карточек при слайдинге yа десктопе*/
+.uc-slider-te225 .slick-slide{
+    transition: all .4s ease;     /*Плавность анимации у всех карточек слайдера*/
+    filter: blur(2px);  /* не активных фотографий*/
+}
+.uc-slider-te225 .slick-center {
+    transition: all .4s ease;       /*Плавность анимации у активной карточки слайдера*/
+    filter: blur(0);   /* активной фотографии*/
+    transform: scale(1.03);
+} 
+}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

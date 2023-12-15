@@ -1,0 +1,68 @@
+Страница проекта
+https://necodim.ru/tilda/breadcrumbs
+Присутствует форма проверки "как будет переведен адрес"
+
+Применяет автоматическую транслитерацию для адреса страницы. 
+Адрес разбивается на разделы /адрес/, где каждый затем будет представлен в виде ссылки
+А весь путь вставляется в нужном участке страницы
+
+<!-- Автоматические хлебные крошки из ссылки | https://necodim.ru/tilda/breadcrumbs -->
+<div class="breadcrumbs t-text"><ul></ul></div>
+
+<style>
+.breadcrumbs ul {padding-left: 0 !important;}
+.breadcrumbs li {
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+}
+.breadcrumbs li:first-child {margin-left: 0;}
+.breadcrumbs li:last-child {margin-right: 0;}
+.breadcrumbs li.divider {opacity: .75;}
+</style>
+
+<script src="https://unpkg.com/cyrillic-to-translit-js@latest/dist/bundle.js" type="text/javascript"></script> <!-- https://github.com/greybax/cyrillic-to-translit-js -->
+<script>
+const mainPage = 'Главная страница',
+    urlPath = window.location.pathname,
+    capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) => first.toLocaleUpperCase(locale) + rest.join(''),
+    capitalizeAndSpace = (str) => capitalizeFirstLetter(str.split('-').join(' ')),
+    toBreadcrumbs = (pathname, { rootName = mainPage, capitalizeAndSpace = s=>s } = {}) =>
+        pathname
+        .split("/")
+        .filter(Boolean)
+        .reduce(
+            (acc, curr, idx, arr) => {
+                acc.path += `/${curr}`;
+                acc.crumbs.push({
+                    path: acc.path,
+                    name: capitalizeAndSpace(curr),
+                });
+
+                if (idx === arr.length - 1) return acc.crumbs;
+                else return acc;
+            },
+            { path: "", crumbs: [{ path: "/", name: rootName }] },
+        );
+let breadcrumbs = toBreadcrumbs(urlPath, { capitalizeAndSpace }),
+    breadcrumbsUl = document.querySelector('.breadcrumbs ul');
+
+if (urlPath == '/') {
+    breadcrumbsUl.innerHTML(`<a href="/">${mainPage}</a>`);
+} else {
+    for (i in breadcrumbs) {
+        breadcrumbs[i].name = cyrillicToTranslit({ preset: 'ru' }).reverse(breadcrumbs[i].name, ' ');
+        let elA = document.createElement('a'),
+            elLi = document.createElement('li'),
+            elDivider = document.createElement('li');
+        elA.setAttribute('href', breadcrumbs[i].path);
+        elA.appendChild(elLi);
+        elLi.append(breadcrumbs[i].name);
+        elDivider.className = 'divider';
+        elDivider.append('→');
+        breadcrumbsUl.append(elA);
+        i != breadcrumbs.length-1 ? breadcrumbsUl.append(elDivider) : false;
+    }
+}
+</script>

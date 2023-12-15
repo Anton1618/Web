@@ -1,0 +1,28 @@
+<style>
+/* WebKit (Chrome, Safari) */
+
+/* Размеры скроллбара */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+/* Тумблер скроллбара */
+*::-webkit-scrollbar-thumb {
+  background: #F8A95A;
+  border-radius: 8px;
+  border: 2px solid #ffeda5;
+}
+/* Фон полосы скроллбара  */
+*::-webkit-scrollbar-track {
+    background: #ffeda5;
+}
+</style>
+
+
+
+
+
+/* Firefox */
+/* Добавьте стилизацию для Firefox, используя префикс "-moz" */
+
+/* Edge и IE */
+/* Добавьте стилизацию для Edge и IE, используя префикс "-ms" */

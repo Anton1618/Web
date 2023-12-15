@@ -1,0 +1,135 @@
+Элементам задаются соответствующие классы, для шеринга текущего url страницы
+
+
+<div class="section-share">
+  <img class="icon-share" src="https://static.tildacdn.com/tild3331-3362-4764-b034-333635643436/share.svg" alt="Поделиться страницей">
+  <div class="widgets">
+    <p class="text-wrapper">Поделиться страницей</p>
+    <div class="share-buttons">
+      <a class="vk_share">
+        <img src="https://static.tildacdn.com/tild3934-6431-4332-b461-343462613738/vk.svg" alt="Поделиться странице в Вконтакте">
+      </a>
+        <a class="okru_share">
+        <img src="https://static.tildacdn.com/tild3066-6231-4436-b833-323635663430/ok-ru.svg" alt="Поделиться странице в Одноклассники">
+      </a>
+        <a class="viber_share">
+        <img src="https://static.tildacdn.com/tild3263-6237-4562-a234-613839636334/viber.svg" alt="Поделиться странице в Viber">
+      </a>
+        <a class="wa_share">
+        <img src="https://static.tildacdn.com/tild3733-6138-4865-b264-396635646339/whatsapp.svg" alt="Поделиться странице в WhatsApp">
+      </a>
+        <a class="tg_share">
+        <img src="https://static.tildacdn.com/tild6235-3661-4739-a632-666531636537/telegram.svg" alt="Поделиться странице в Телеграмм">
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+let url_encoded = encodeURIComponent(document.URL);
+document.querySelector('.vk_share').href = 'http://vkontakte.ru/share.php?url=' + url_encoded;
+document.querySelector('.okru_share').href = 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=' + url_encoded;
+document.querySelector('.tg_share').href = 'https://telegram.me/share/url?url=' + url_encoded;
+document.querySelector('.wa_share').href = 'https://wa.me/?text=' + url_encoded;
+document.querySelector('.viber_share').href = 'viber://forward?text=' + url_encoded;
+</script>
+
+<style>
+.section-share {
+  display: inline-flex;
+  gap: 20px;
+  padding: 0 0 0 40px;
+}
+
+@media screen and (max-width:639px) {
+  .section-share {
+    padding: 0 0 0 20px;
+  }
+}
+
+.section-share .icon-share {
+  pointer-events: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.section-share .widgets {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-share .text-wrapper {
+  color: #000000;
+  font-family: "Philosopher";
+  font-weight: 800;
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+.section-share .share-buttons {
+  display: inline-flex;
+  gap: 20px;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.section-share .share-buttons a {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.share-buttons a img {
+  height: inherit;
+  transition: scale 0.3s;
+}
+.share-buttons a img:hover {
+  scale: 1.2;
+}
+.section-share .share-buttons .tg_share {
+    height: 35px;
+    width: 35px;
+}
+</style>
+
+
+
+
+=================== Упрощенный вариант ====================
+<div class="share-buttons">
+  <a id="vk_share" href="#">
+    <img src="https://static.tildacdn.com/tild3934-6431-4332-b461-343462613738/vk.svg" alt="Поделиться странице в Вконтакте">
+  </a>
+  <a id="ok_share" href="#">
+    <img src="https://static.tildacdn.com/tild3066-6231-4436-b833-323635663430/ok-ru.svg" alt="Поделиться странице в Одноклассники">
+  </a>
+  <a id="viber_share" href="#">
+    <img src="https://static.tildacdn.com/tild3263-6237-4562-a234-613839636334/viber.svg" alt="Поделиться странице в Viber">
+  </a>
+  <a id="wa_share" href="#">
+    <img src="https://static.tildacdn.com/tild3733-6138-4865-b264-396635646339/whatsapp.svg" alt="Поделиться странице в WhatsApp">
+  </a>
+  <a id="tg_share" href="#">
+    <img src="https://static.tildacdn.com/tild6235-3661-4739-a632-666531636537/telegram.svg" alt="Поделиться странице в Телеграмм">
+  </a>
+</div>
+
+<script>
+let url_encoded = encodeURIComponent(document.URL);
+document.getElementById('vk_share').href = 'http://vkontakte.ru/share.php?url=' + url_encoded;
+document.getElementById('ok_share').href = 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=' + url_encoded;
+document.getElementById('tg_share').href = 'https://telegram.me/share/url?url=' + url_encoded;
+document.getElementById('wa_share').href = 'https://wa.me/?text=' + url_encoded;
+document.getElementById('viber_share').href = 'viber://forward?text=' + url_encoded;
+</script>
+
+
+.share-buttons {
+    display: inline-block;
+}
+.share-buttons a img {
+    height: 40px;
+    width: 40px;
+}
