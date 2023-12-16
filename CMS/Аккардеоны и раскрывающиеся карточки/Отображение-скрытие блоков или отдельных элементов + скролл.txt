@@ -16,7 +16,7 @@ $('[href="#showHideBlock1"]').click(function(event) {
     $('#rec673487495').slideToggle(500, function() {  // Отображение\скрытие блока с заданным временем выполнения анимации 
         if ($('#rec673487495').is(':visible') && !code4Visible) {  // Выполнение проверки на отображение блока с изменением флага, для необходимости выполнения скрола, если блок будет открываться
             $('html, body').animate({
-                scrollTop: $('#rec673487495').offset().top
+                scrollTop: $('#rec673487495').offset().top  // Скролл до верха отображаемого блока
             }, 500);
             code4Visible = true;
         } else {
