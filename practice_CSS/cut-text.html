@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как скрыть лишний текст в блоке</title>
+    <style>
+        .board {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: start;
+            justify-content: start;
+            gap: 20px;
+        }
+        .board > div {
+            display: flex;
+            flex-direction: column;
+            width: 410px;
+            padding: 10px;
+            background-color: rgb(238, 238, 238);
+            border-radius: 30px;
+            transition: box-shadow 0.3s, scale 0.3s;
+        }
+        .board > div:hover {       
+            box-shadow: 10px 10px 20px #ff9914d7;
+            scale: 1.005;
+        }
+        pre {
+            display: none;
+        }
+        button {
+            margin-top: 10px;
+            width: 120px;
+            height: 40px;
+            background-color: #facc15;
+            border-radius: 30px;
+            border-color: transparent;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff9914;
+        }
+        .card .items-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+
+        .ex-1 .items-row .item {
+            overflow: hidden;
+            height: 114px;
+        }
+
+        .ex-2 .items-row .item {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .ex-3 .items-row .item {
+            overflow: hidden;
+            position: relative;
+            height: 114px;
+        }
+        .ex-3 .items-row .item::after {
+            content: "";
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 1.2em;
+            background: linear-gradient(to right, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+            pointer-events: none;
+        }
+        .ex-3 .items-row .item:last-of-type::after {
+            content: "";
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 1.4em;
+            background: linear-gradient(to bottom, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+            pointer-events: none;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // При нажатии на кнопку в блоке, показываем соответствующий тоггл-элемент
+            $('.card button').click(function(){
+            $(this).next('pre').slideToggle(500);
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Сокрытие лишнего текста в блоке</h1>
+
+
+<div class="board">
+
+    <div class="card ex-0">
+        <div class="items-row">
+            <div class="item">
+                <h3>Блок #1</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #2</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+                Proin blandit magna eu tempus ullamcorper.ed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #3</h3>
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+        </div>
+        <p>Изначальное представление</p>
+
+    </div>
+
+    <div class="card ex-1">
+        <div class="items-row">
+            <div class="item">
+                <h3>Блок #1</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #2</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+                Proin blandit magna eu tempus ullamcorper.ed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #3</h3>
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+        </div>
+        <p>Установка фиксированной высоты и скрытие контента, который выходит за края контейнера</p>
+        <button>Решение</button>
+        <pre>
+            .ex-1 .items-row .item {
+                overflow: hidden;
+                height: 114px;
+            }
+        </pre>
+    </div>
+
+    <div class="card ex-2">
+        <div class="items-row">
+            <div class="item">
+                <h3>Блок #1</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #2</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+                Proin blandit magna eu tempus ullamcorper.ed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #3</h3>
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+        </div>
+        <p>Применение многоточия text-overflow: ellipsis в паре с white-space: nowrap (отмена переноса строк)<br>
+            Либо применияя display: -weblit-box и -webkit-lineclamp: 4</p>
+        <button>Решение</button>
+        <pre>
+            .ex-2 .items-row .item {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+            }
+        </pre>
+    </div>
+
+    <div class="card ex-3">
+        <div class="items-row">
+            <div class="item">
+                <h3>Блок #1</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #2</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+                Proin blandit magna eu tempus ullamcorper.ed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #3</h3>
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+        </div>
+        <p>В конец блока с текстом можно наложить абсолютный элемент с градиентом от прозрачного до белого, так получится эффект «затухания»<br>
+        Изначально, ограничивается высота блоков. Затем, по последней строке применяется градиент<br>
+        #1 - вправо<br>
+        #2 - вправо<br>
+        #3 - вниз</p>
+        <button>Решение</button>
+        <pre>
+            .ex-3 .items-row .item {
+                overflow: hidden;
+                position: relative;
+                height: 114px;
+            }
+            /* Для #1 и #2 */
+            .ex-3 .items-row .item::after {
+                content: "";
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 1.2em;
+                background: linear-gradient(to right, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+                pointer-events: none;
+            }
+            /* Для #3 */
+            .ex-3 .items-row .item:last-of-type::after {
+                content: "";
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                height: 1.4em;
+                background: linear-gradient(to bottom, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+                pointer-events: none;
+            }
+        </pre>
+    </div>
+
+    <div class="card ex-4">
+        <div class="items-row">
+            <div class="item">
+                <h3>Блок #1</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #2</h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+                Proin blandit magna eu tempus ullamcorper.ed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+            <div class="item">
+                <h3>Блок #3</h3>
+                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.
+            </div>
+        </div>
+        <p>Применение тоггл-элемента. Скоро</p>
+        <button>Решение</button>
+        <pre>
+            Скоро
+        </pre>
+    </div>
+
+
+
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+https://necodim.ru/tilda/drag
+
+Обычно, чтобы сделать двигающийся артборд в Zero-блоке, нужно просто выставить в настройках overflow: auto, но тогда добавляется полоса прокрутки, а перетаскивание на компьютере не работает.
+Если нужно именно перетаскивание, которое сработает как на десктопе, так и на мобильных устройствах, то применяется скрипт
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.kinetic/jquery.kinetic.js"></script>
+<script>
+$('#rec123456789').find($('.t396__artboard')).kinetic({
+    cursor: 'grab',
+    x: true,
+    y: true,
+    filterTarget: function(target, e){
+        if (!/down|start/.test(e.type)){
+            return !(/area|a|input/i.test(target.tagName));
+        }
+    }
+});
+</script>
+
+
+
+=================================== dragscroll библиотека ============================================
+https://ticode.dev/horizontal-scroll
+
+<script src='https://cdn.jsdelivr.net/npm/dragscroll@0.0.8/dragscroll.min.js'>
+</script>
+<script>
+    var ticodescroll = $('#rec493782123');
+    ticodescroll.find('.t396__artboard').addClass('dragscroll');
+</script>
+<style>
+.dragscroll::-webkit-scrollbar {
+    display: none;
+}
+@media (min-width: 320px) {
+    .dragscroll { 
+        cursor: -webkit-grab;
+        cursor: grab; 
+        transition: all 0.7s ease;
+    }
+    .dragscroll:active {
+        cursor: -webkit-grabbing;
+        cursor: grabbing;
+    }
+}
+</style>
+
+
+
+=================================== scrollbooster библиотека ============================================
+https://goodweb.studio/zeroslider
+
+
+
+- Создаем zero блок для кнопок, которые будут управлять нашим слайдером
+Присваиваем кнопкам классы arrow-left и arrow-right;
+
+- Создаем еще один зеро блок и наполняем его контентом так, чтобы элементы выходили за пределы блока (в правую часть).
+Включаем у этого блока overflow: auto;
+
+- Втавляем код в блок 123
+Заменяем номера наших зеро блоков в коде;
+Корректируем значения сдвигов на разных экранах
+
+
+
+
+<script src="https://unpkg.com/scrollbooster@3/dist/scrollbooster.min.js" defer></script>
+
+<script>
+$(function() {
+
+    // Укажи ID Zero блока cо скроллом и включи overflow: auto
+    var blockScrollId = '#rec342026040';
+    
+    // Укажи ID Zero блока cо стрелками и добавь каждой класс arrow-left или arrow-right
+    var blockArrowsId = '#rec342027549';
+    
+    var shiftSize;
+    $(window).on('load resize', function(){
+        
+        if (window.matchMedia('(max-width: 480px)').matches) {
+            // Укажи величину сдвига при клике на стрелку для разрешения 320-480px
+            shiftSize = '297px';
+        }
+        else if (window.matchMedia('(max-width: 640px)').matches) {
+            // Укажи величину сдвига при клике на стрелку для разрешения 481-640px
+            shiftSize = '297px';
+        }
+        else if (window.matchMedia('(max-width: 960px)').matches) {
+            // Укажи величину сдвига при клике на стрелку для разрешения 641-960px
+            shiftSize = '297px';
+        }
+        else if (window.matchMedia('(max-width: 1200px)').matches) {
+            // Укажи величину сдвига при клике на стрелку для разрешения 961-1200px
+            shiftSize = '297px';
+        }
+        else {
+            // Укажи величину сдвига при клике на стрелку для разрешения больше 1200px
+            shiftSize = '297px';
+        }
+
+    });
+    
+    
+    $(blockScrollId + ' .t396__artboard').addClass('scrollbooster-viewport').wrapInner('<div class="scrollbooster-content"></div>');
+    $(blockScrollId + ' .t396').css('overflow','hidden');
+    
+    new ScrollBooster({
+        viewport: $(blockScrollId + ' .scrollbooster-viewport')[0],
+        content:  $(blockScrollId + ' .scrollbooster-content')[0],
+        scrollMode: 'native',
+        pointerMode: 'mouse',
+        bounce: false,
+        onPointerDown: function() { $(blockScrollId + ' *:focus').blur() }
+    });
+
+    $(blockArrowsId + ' .arrow-left').on('click', function(e) {
+        e.preventDefault();
+        $(blockScrollId + ' .t396__artboard').animate( { scrollLeft: '-=' + shiftSize }, 300);
+    });
+
+    $(blockArrowsId + ' .arrow-right').on('click', function(e) {
+        e.preventDefault();
+        $(blockScrollId + ' .t396__artboard').animate( { scrollLeft: '+=' + shiftSize }, 300);
+    });
+
+});
+</script>
+
+<style>
+.scrollbooster-viewport {
+    cursor: -webkit-grab;
+    cursor: grab;
+    padding-bottom: 30px;
+    margin-bottom: -30px;
+}
+.scrollbooster-viewport:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+.scrollbooster-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.arrow-left,
+.arrow-right {
+    cursor: pointer;
+}
+</style>

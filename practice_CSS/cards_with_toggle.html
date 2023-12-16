@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .board {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-items: start;
+            align-items: start;
+        }
+        .board > div {
+            background-color: rgb(238, 238, 238);
+            border-radius: 30px;
+            margin: 20px;
+            padding: 10px;
+            transition: box-shadow 0.3s, scale 0.3s;
+        }
+        .board > div:hover {       
+            box-shadow: 10px 10px 20px #ff9914d7;
+            scale: 1.02;
+        }
+        blockquote {
+            display: none;
+            width: 300px;
+            margin: 10px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 10px;
+            object-fit: cover;
+        }
+        .items-row {
+            margin: 15px;
+            width: 300px;
+        }
+        button {
+            position: inherit;
+            margin-left: 50%;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // При нажатии на кнопку в блоке, показываем соответствующий тоггл-элемент
+            $('.items button').click(function(){
+              $(this).next('blockquote').slideToggle(500);
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <div class="board">
+
+        <div class="items ex-1">
+            <img src="./img/platon.jpg">
+            <div class="items-row">
+                <p class="item-1">
+                    „Человек, который делает все, что ведет к счастью, зависящим от себя, а не от других людей, принял по-настоящему лучший план для счастливой жизни. Это человек умеренный, мужественный и мудрый.“
+                </p>
+                <p class="item-2">
+                    „Заботясь о счастье других, мы находим своё собcтвенное.“
+                </p>
+            </div>
+            <button>Автор</button>
+            <blockquote>Платон (Аристокл)<br>
+                428 или 427 — 348 или 347 до н. э.<br>
+                Древнегреческий философ, ученик Сократа, учитель Аристотеля
+            </blockquote>
+        </div>
+
+        <div class="items ex-2">
+            <img src="./img/sokrat.jpg">
+            <div class="items-row">
+                <p class="item-1">
+                    „Природа наделила нас двумя глазами, двумя ушами, но лишь одним языком, дабы мы смотрели и слушали больше, чем говорили.“
+                </p>
+                <p class="item-2">
+                    „Всем известно, что за деньги можно купить туфли, но не счастье, еду, но не аппетит, постель, но не сон, лекарство, но не здоровье, слуг, но не друзей, развлечение, но не радость, учителей, но не ум.“
+                </p>
+                <p class="item-3">
+                    „Самый лучший способ жить с честью в этом мире - быть тем, кем мы притворяемся.“
+                </p>
+            </div>
+            <button>Автор</button>
+            <blockquote>Сократ<br>
+                около 469—399 г. до н. э.<br>
+                Древнегреческий философ, учение которого знаменует переход в греческой философии от рассмотрения природы и мира к рассмотрению человека
+            </blockquote>
+        </div>
+
+        <div class="items ex-3">
+            <img src="./img/diogen.jpeg">
+            <div class="items-row">
+                <p class="item-1">
+                    „Для того, чтобы жить как следует, надо иметь или разум, или петлю.“
+                </p>
+                <p class="item-2">
+                    „Злословец есть самый лютый из диких зверей, а льстец — самый опасный из ручных животных.“
+                </p>
+                <p class="item-3">
+                    „Философия и медицина сделали человека самым разумным из животных, гадание и астрология — самым безумным, суеверие и деспотизм — самым несчастным.“
+                </p>
+            </div>
+            <button>Автор</button>
+            <blockquote>Диоген Синопский<br>
+                около 412 до н. э. — 323 до н. э.<br>
+                Древнегреческий философ, ученик Антисфена.
+            </blockquote>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

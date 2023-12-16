@@ -1,0 +1,77 @@
+https://goodweb.studio/zero-block-accordeon#info1
+
+
+
+
+- Создаем кнопку и указываем ей ссылку;
+- Создаем блок, который будет отображаться\скрываться по клику на аккордеон;
+- Добавляем код и обновляем в нем номер тоггл блока;
+- Повторяем процедуру для каждого блока заголовок-контент
+
+
+
+
+<style>
+/*Скрываем блоки по ID*/
+#rec321583301  {
+    display:none;
+}
+</style>
+
+<script>
+//При нажатии на кнопку со ссылкой #name
+ $('[href = "#name"]').click(function() {
+//Открываем первый блок 
+   $('#rec321583301').slideToggle(500);
+   t_lazyload_update();
+});
+</script>
+
+
+
+
+========================== Раскрытие тоггл-элемента по кнопке в единообразной структуре ==========================
+<style>
+/* Скрываем тоггл-элементы по умолчанию */
+.toggable-content {
+   display: none;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+   // При нажатии на кнопку в блоке, раскрываем тоггл-элемент этого блока
+   $('.item button').click(function(){
+      $(this).next('.toggable-content').slideToggle(500);
+   });
+});
+</script>
+
+<body>
+
+
+  <div class="board">
+
+    <div class="item ex-1">
+      <p>Контент</p>
+      <button>Показать/скрыть</button>
+      <pre class="toggable-content">Тоггл-элемент 1</pre>
+    </div>
+
+    <div class="item ex-2">
+      <p>Контент</p>
+      <button>Показать/скрыть</button>
+      <pre class="toggable-content">Тоггл-элемент 2</pre>
+    </div>
+
+    <div class="item ex-3">
+      <p>Контент</p>
+      <button>Показать/скрыть</button>
+      <pre class="toggable-content">Тоггл-элемент 3</pre>
+    </div>
+
+  </div>
+
+
+</body>
