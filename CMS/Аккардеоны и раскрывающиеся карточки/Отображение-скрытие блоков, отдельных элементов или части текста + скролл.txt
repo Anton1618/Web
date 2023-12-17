@@ -183,6 +183,29 @@ $(btnToggle).click(function(event) {
 
 
 
+РАСШИРЕННЫЙ КОД ДЛЯ АВТОМАТИЧЕСКОГО ДОБАВЛЕНИЯ ТОГГЛ-ЭЛЕМЕНТОВ ОДНОТИПНЫМ БЛОКАМ
+тоггл добавляется всем блокам - проверка на необходимость добавления не предусмотрена
+        $(document).ready(function(){
+          // Сокращение текста до 120 символов
+          $('.ex-4 .item p').each(function(){  // Каждому блоку p в контейнере item общего контейнера всех элементов ex-4
+            var text = $(this).text();
+            if(text.length > 120) {
+              var shortText = text.substring(0, 120);
+              var fullText = '<span class="full-text" style="display: none;">' + text.substring(120) + '</span>';
+              $(this).html(shortText + fullText);
+            }
+          });
+        
+          // Нажатие на кнопку для отображения полного текста
+          $('.item p').append('<a class="show-more" style="color:#ff9914; cursor: pointer;"> ..больше</a>');
+          $('.show-more').click(function() {
+            $(this).prev('.full-text').slideToggle(500);
+            $(this).text(function(i, text){
+              return text === '..меньше' ? '..больше' : '..меньше';
+            });
+          });
+        });
+
 ======================= Отображение\Скрытие блоков с классами ====================
 https://mo-ti.ru/showblock
 https://levelup.mo-ti.ru/student/lessons/15

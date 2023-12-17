@@ -27,6 +27,7 @@
         }
         pre {
             display: none;
+            overflow: auto;
         }
         button {
             margin-top: 10px;
@@ -156,10 +157,10 @@
         <p>Установка фиксированной высоты и скрытие контента, который выходит за края контейнера</p>
         <button>Решение</button>
         <pre>
-            .ex-1 .items-row .item {
-                overflow: hidden;
-                height: 114px;
-            }
+    .ex-1 .items-row .item {
+        overflow: hidden;
+        height: 114px;
+    }
         </pre>
     </div>
 
@@ -189,13 +190,13 @@
             Либо применияя display: -weblit-box и -webkit-lineclamp: 4</p>
         <button>Решение</button>
         <pre>
-            .ex-2 .items-row .item {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 4;
-                -webkit-box-orient: vertical;
-            }
+    .ex-2 .items-row .item {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
         </pre>
     </div>
 
@@ -228,35 +229,35 @@
         #3 - вниз</p>
         <button>Решение</button>
         <pre>
-            .ex-3 .items-row .item {
-                overflow: hidden;
-                position: relative;
-                height: 114px;
-            }
-            /* Для #1 и #2 */
-            .ex-3 .items-row .item::after {
-                content: "";
-                text-align: right;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                width: 100%;
-                height: 1.2em;
-                background: linear-gradient(to right, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
-                pointer-events: none;
-            }
-            /* Для #3 */
-            .ex-3 .items-row .item:last-of-type::after {
-                content: "";
-                text-align: right;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                height: 1.4em;
-                background: linear-gradient(to bottom, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
-                pointer-events: none;
-            }
+    .ex-3 .items-row .item {
+        overflow: hidden;
+        position: relative;
+        height: 114px;
+    }
+    /* Для #1 и #2 */
+    .ex-3 .items-row .item::after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 1.2em;
+        background: linear-gradient(to right, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+        pointer-events: none;
+    }
+    /* Для #3 */
+    .ex-3 .items-row .item:last-of-type::after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 1.4em;
+        background: linear-gradient(to bottom, rgb(238, 238, 238, 0), rgb(238, 238, 238, 100%));
+        pointer-events: none;
+    }
         </pre>
     </div>
 
@@ -264,30 +265,87 @@
         <div class="items-row">
             <div class="item">
                 <h3>Блок #1</h3>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Proin blandit magna eu tempus ullamcorper. Sed porta justo 
-                sed nibh elementum condimentum.
+                sed nibh elementum condimentum.</p>
             </div>
             <div class="item">
                 <h3>Блок #2</h3>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Proin blandit magna eu tempus ullamcorper. Sed porta justo 
                 sed nibh elementum condimentum.
                 Proin blandit magna eu tempus ullamcorper.ed porta justo 
-                sed nibh elementum condimentum.
+                sed nibh elementum condimentum.</p>
             </div>
             <div class="item">
                 <h3>Блок #3</h3>
-                Proin blandit magna eu tempus ullamcorper. Sed porta justo 
-                sed nibh elementum condimentum.
+                <p>Proin blandit magna eu tempus ullamcorper. Sed porta justo 
+                sed nibh elementum condimentum.</p>
             </div>
         </div>
-        <p>Применение тоггл-элемента. Скоро</p>
+        <p>Применение тоггл-элемента</p>
         <button>Решение</button>
         <pre>
-            Скоро
+    &#9001;style&#9002;
+        /* Для придания плавности во время изменения отображения */
+        .ex-4 .item p {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        &#9001;/style&#9002;
+        &#9001;script&#9002;
+        $(document).ready(function(){
+            // Сокращение текста до 120 символов
+            $('.ex-4 .item p').each(function(){
+            var text = $(this).text();
+            if(text.length &#9002; 120) {
+                var shortText = text.substring(0, 120);
+                var fullText = '&#9001;span class="full-text" style="display: none;"&#9002;' + text.substring(120) + '&#9001;/span&#9002;';
+                $(this).html(shortText + fullText);
+            }
+            });
+        
+            // Нажатие на кнопку для отображения полного текста
+            $('.item p').append('&#9001;a class="show-more" style="color:#ff9914; cursor: pointer;"&#9002; ..больше&#9001;/a&#9002;');
+            $('.show-more').click(function() {
+            $(this).prev('.full-text').slideToggle(500);
+            $(this).text(function(i, text){
+                return text === '..меньше' ? '..больше' : '..меньше';
+            });
+            });
+        });
+    &#9001;/script&#9002;
         </pre>
     </div>
+    <style>
+        /* Для придания плавности во время изменения отображения */
+        .ex-4 .item p {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+          // Сокращение текста до 120 символов
+          $('.ex-4 .item p').each(function(){
+            var text = $(this).text();
+            if(text.length > 120) {
+              var shortText = text.substring(0, 120);
+              var fullText = '<span class="full-text" style="display: none;">' + text.substring(120) + '</span>';
+              $(this).html(shortText + fullText);
+            }
+          });
+        
+          // Нажатие на кнопку для отображения полного текста
+          $('.item p').append('<a class="show-more" style="color:#ff9914; cursor: pointer;"> ..больше</a>');
+          $('.show-more').click(function() {
+            $(this).prev('.full-text').slideToggle(500);
+            $(this).text(function(i, text){
+              return text === '..меньше' ? '..больше' : '..меньше';
+            });
+          });
+        });
+    </script>
 
 
 
