@@ -1,0 +1,28 @@
+Задание метатега Description для страницы
+Применение планируется для тех страниц, которые строятся динамически
+
+На основании возможного значения элемента на странице, ему задается соответствующее значение в массиве
+Так, если элемент .t-typography__characteristics.js-store-prod-charcs включает значение "женская одежда", то странице будет задан соответствующий метатег <meta name="description" content="Удобная и доступная. Женская одежда из Индии">
+Этот скрипт будет извлекать все значения из элемента .t-typography__characteristics.js-store-prod-charcs на странице и затем выбирать первое соответствующее значение из массива mapDescription в качестве мета-описания.
+
+
+$(document).ready(function() {
+  var mapDescription = {
+    'женская одежда': 'Удобная и доступная. Женская одежда из Индии',
+    'мужская одежда': 'Удобная и доступная. Мужская одежда из Индии',
+    'кухонные принадлежности': 'Огромный ассортимент кухонных принадлежностей из меди'
+    // и так далее для других элементов
+  };
+
+  var pageValues = $('.t-typography__characteristics.js-store-prod-charcs').map(function() {
+    return $(this).text().trim();
+  }).get();
+
+  var description = pageValues.find(function(pageValue) {
+    return mapDescription[pageValue];
+  });
+
+  if (description) {
+    $('meta[name=description]').attr('content', mapDescription[description]);
+  }
+});

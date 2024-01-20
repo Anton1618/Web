@@ -206,6 +206,9 @@ $(btnToggle).click(function(event) {
           });
         });
 
+
+
+
 ======================= Отображение\Скрытие блоков с классами ====================
 https://mo-ti.ru/showblock
 https://levelup.mo-ti.ru/student/lessons/15

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <style>
+        @import url(css/gradients.css);
+    </style>
+</head>
+<body>
+
+
+    <h1>Градиенты</h1>
+    <div class="separator-40"></div>
+
+        <section>
+            <h2>Поведение по умолчанию</h2>
+            <span>
+                <p>
+                    Линейный градиент<br>
+                    background-image: linear-gradient(red, blue)
+                </p>
+                Эквивалентно, с направлением, заданным в ручную<br>
+                background-image: linear-gradient(to bottom, red, blue)
+            </span>
+            <div class="linear-ex1"></div>
+
+            <div class="separator-40"></div>
+
+            <span>
+                <p>
+                    Радиальный градиент<br>
+                    background-image: radial-gradient(red, blue)
+                </p>
+                Эквивалентно, с направлением, заданным в ручную<br>
+                background-image: radial-gradient(at center, red, blue)
+            </span>
+            <div class="radial-ex1"></div>
+        </section>
+
+
+        <div class="separator-80"></div>
+
+
+        <section>
+            <h2>Применение множества диапазонов стоп цвета</h2>
+            <span>
+                <p>Линейный градиент</p>
+                background-image: linear-gradient(rgb(231, 228, 186) 0-30%, rgb(199, 179, 90) 30%-80%, rgb(186 90 12) 95%-100%);
+            </span>
+            <div class="linear-ex3">
+                <div class="wrapper_el">
+                    <div>Today is a good day</div>
+                </div>
+            </div>
+
+            <div class="separator-40"></div>
+
+            <span>
+                <p>Радиальный градиент</p>
+                background-image: radial-gradient(rgb(231, 228, 186) 0-30%, rgb(199, 179, 90) 30%-80%, rgb(186 90 12) 95%-100%);
+            </span>
+            <div class="radial-ex3">
+                <div class="wrapper_el">
+                    <div>Today is a good day</div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="separator-80"></div>
+
+
+        <section>
+            <h2>Радиальный градиент</h2>
+            <section>
+                <h2>Поддерживает настройку формы</h2>
+                <div class="items">
+                    <section>
+                        <span>
+                            <p>ellipse - Эллипс (по умолчанию)</p>
+                            background-image: radial-gradient(ellipse, red, blue)
+                        </span>
+                        <div class="radial-ex4"></div>
+                    </section>
+                    <section>
+                        <span>
+                            <p>circle - Круг</p>
+                            background-image: radial-gradient(circle, red, blue)
+                        </span>
+                        <div class="radial-ex5"></div>
+                    </section>
+                </div>
+            </section>
+
+            <div class="separator-40"></div>
+
+            <section>
+                <h2>Поддерживает настройку позиционирования</h2>
+                <div class="items">
+                    <section>
+                        <span>
+                            (по умолчанию)<br>
+                            background-image: radial-gradient(circle <b>farthest-corner</b>, red, blue)<br>
+                            распространяется до дальнего угла контейнера. При изменении размеров контейнера, градиент обрезается по краям
+                        </span>
+                        <div class="radial-ex6"></div>
+                    </section>
+                    <section>
+                        <span>
+                            background-image: radial-gradient(circle <b>closest-side</b>, red, blue)<br>
+                            распространение до ближайшей стороны контейнера. Градиент полностью входит в контейнер. Отталкивание происходит от ближайшей стороны
+                        </span>
+                        <div class="radial-ex7"></div>
+                    </section>
+                    <section>
+                        <span>
+                            background-image: radial-gradient(circle <b>closest-corner</b>, red, blue)<br>
+                            распространение до ближайшего угла контейнера. Поэтому, он визуально больше аналогичных. При изменении размеров контейнера, градиент обрезается по краям
+                        </span>
+                        <div class="radial-ex8"></div>
+                    </section>
+                    <section>
+                        <span>
+                            background-image: radial-gradient(circle <b>farthest-side</b>, red, blue)<br>
+                            распространение до дальней стороны контейнера. При изменениии размеров контейнера, градиент обрезается по краям
+                        </span>
+                        <div class="radial-ex9"></div>
+                    </section>
+                </div>
+            </section>
+
+        </section>
+
+
+        <div class="separator-80"></div>
+
+
+        <section>
+            <h2>Применение опорных точек цвета</h2>
+            <p>Применение опорных точек для указания значений распространения, приводит к более жестким переходам</p>
+            <div class="items">
+                <section>
+                    <span>
+                        Простой линейный градиент<br>
+                        background-image: linear-gradient(red, blue, black)
+                    </span>
+                    <div class="linear-ex2"></div>
+                </section>
+                <section>
+                    <span>
+                        С указанием значений распространения<br>
+                        background-image: linear-gradient(red 25%, blue 50%, black 75%)
+                    </span>
+                    <div class="linear-ex2-1"></div>
+                </section>
+            </div>
+
+            <div class="separator-40"></div>
+
+            <div class="items">
+                <section>
+                    <span>
+                        Простой радиальный градиент<br>
+                        background-image: radial-gradient(red, blue, black);
+                    </span>
+                    <div class="radial-ex10"></div>
+                </section>
+                <section>
+                    <span>
+                        С указанием значений распространения<br>
+                        background-image: radial-gradient(red 25%, blue 50%, black 75%);
+                    </span>
+                    <div class="radial-ex11"></div>
+                </section>
+            </div>
+
+            <div class="separator-40"></div>
+
+            <div class="items">
+                <section>
+                    <span>
+                        Простой повторяющийся линейный градиент<br>
+                        background-image: repeating-linear-gradient(45deg, red, blue, black)
+                    </span>
+                    <div class="linear-repeating-1"></div>
+                </section>
+                <section>
+                    <span>
+                        С указанием значений распространения<br>
+                        background-image: repeating-linear-gradient(45deg, red 25px, blue 50px, black 75px)
+                    </span>
+                    <div class="linear-repeating-2"></div>
+                </section>
+            </div>
+        </section>
+
+
+        <div class="separator-80"></div>
+
+
+        <section>
+            <h2>Смешение цветов</h2>
+            <div class="items">
+                <section>
+                    <span>
+                        <p>Распределение пространства между цветами происходит автоматически</p>
+                        background-image: linear-gradient(to top right, red, blue, green, orange)
+                    </span>
+                    <div class="linear-ex4"></div>
+                </section>
+                <section>
+                    <span>
+                        <p>Для ручного управления пространством градиента, цветам могут быть заданы опорные точки</p>
+                        background-image: linear-gradient(45deg, red 0%, blue 25%, green 75%, orange 100%)
+                    </span>
+                    <div class="linear-ex5"></div>
+                </section>
+                <section>
+                    <span>
+                        <p>Переход между цветами может быть резким, если следующий цвет будет повторно размещен на опорной точке</p>
+                        background-image: linear-gradient(45deg, yellow 25%, black 25%, black 50%, yellow 50%, yellow 75%, black 75%)
+                    </span>
+                    <div class="linear-ex6"></div>
+                </section>
+                <section>
+                    <span>
+                        <p>
+                            Применяя повторяющийся градиент, можно получить соответствующий узор цветов<br>
+                            Опорные точки в процентах заменены на точные значения в px, задавая таким образом часть градиента - узор, который в дальнейшем станет повторяться    
+                        </p>
+                        background-image: repeating-linear-gradient(45deg, yellow 25px, black 25px, black 50px, yellow 50px, yellow 75px, black 75px)
+                    </span>
+                    <div class="linear-ex7"></div>
+                </section>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        
+    </script>
+</body>
+</html>

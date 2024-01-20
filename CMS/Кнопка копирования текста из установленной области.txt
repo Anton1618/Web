@@ -1,0 +1,118 @@
+Нажатие на кнопку позволяет скопировать текст определенной области в буфер обмена на устройстве
+
+
+
+=================== С иконкой "копировать" и её заменой на галочку, при клике =================
+<style>
+	.copyContainer {
+		display: flex;
+		flex-direction: row;
+		margin: 0 20px;
+		max-width: 90vw;
+	}
+
+    #myTextarea {
+        display: block;
+        margin: 10px;
+    }
+
+    #copyIcon {
+        padding: 10px 20px;
+        cursor: pointer;
+     }
+
+    #checkIcon {
+        padding: 10px 20px;
+        display: none;
+    }
+</style>
+
+
+<div class="copyContainer">
+    <textarea id="myTextarea" placeholder="Введите текст для копирования"></textarea>
+
+    <div id="copyIcon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="!res-icon-big !text-slate-900 dark:!text-slate-100">
+        <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"></path>
+        <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"></path>
+      </svg>
+    </div>
+    <div id="checkIcon">✓</div>
+  </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const myTextarea = document.getElementById('myTextarea');
+    const copyIcon = document.getElementById('copyIcon');
+    const checkIcon = document.getElementById('checkIcon');
+
+    copyIcon.addEventListener('click', function() {
+        navigator.clipboard.writeText(myTextarea.value)
+        .then(() => {
+            console.log('Текст скопирован: ', myTextarea.value);
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function() {
+            copyIcon.style.display = 'block';
+            checkIcon.style.display = 'none';
+            }, 3000);  // Через 3 секунды изменить стиль отображения
+        })
+        .catch(err => {
+            console.error('Не удалось скопировать текст: ', err);
+        });
+    });
+    });
+</script>
+
+
+
+
+=================== С появлением дополнительного элемента после кноки "копировать" =================
+<style>
+#myTextarea {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#copyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#confirmationMessage {
+    display: none;
+    animation: fadeInOut 5s;
+}
+
+/* Этапы проигрывания эффекта fadeInOut */
+@keyframes fadeInOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+</style>
+
+
+<div id="container">
+    <textarea id="myTextarea">Введите текст для копирования</textarea>
+    <button id="copyButton">Копировать текст</button>
+    <div id="confirmationMessage" style="display: none;">Текст скопирован!</div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const textarea = document.getElementById('myTextarea');
+    const copyButton = document.getElementById('copyButton');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    copyButton.addEventListener('click', function() {
+        textarea.select();
+        document.execCommand('copy');
+        confirmationMessage.style.display = 'block';
+        setTimeout(function() {
+        confirmationMessage.style.display = 'none';
+        }, 5000); // Через 5 секунд изменить стиль отображения
+    });
+    });
+</script>
