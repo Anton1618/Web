@@ -16,11 +16,11 @@ https://static.tildacdn.com/tild6565-6530-4131-a265-376661643334/buray-mecnun-ma
 
 =============================== код в html ===========================
 <div class="videowrapper">
-<video width="100%" height="100%" webkit-playsinline="" playsinline="" loop="" muted=""  >
-   <source src="https://310401.selcdn.ru/MIXED/Mahmut-Orhan-Without_You.mp4" type="video/mp4">
- </video>
-<div class="bg_image" style="background-image:url(https://static.tildacdn.com/tild6565-6530-4131-a265-376661643334/buray-mecnun-mahmut-.jpg)"></div>
-<div class="video-btn"><a href="https://yandex.ru" target="_blank"><div>See more > </div></a></div>
+    <video width="100%" height="100%" webkit-playsinline="" playsinline="" loop="" muted=""  >
+       <source src="https://310401.selcdn.ru/MIXED/Mahmut-Orhan-Without_You.mp4" type="video/mp4">
+     </video>
+    <div class="bg_image" style="background-image:url(https://static.tildacdn.com/tild6565-6530-4131-a265-376661643334/buray-mecnun-mahmut-.jpg)"></div>
+    <div class="video-btn"><a href="https://yandex.ru" target="_blank"><div>See more > </div></a></div>
 </div>
 
 
