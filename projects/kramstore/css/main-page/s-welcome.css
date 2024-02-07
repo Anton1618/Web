@@ -1,0 +1,87 @@
+/* Секция welcome */
+/* 
+Включает:
+- фоновое изображение
+- затемняющий фильтр на уровне 1
+текст
+- контентную часть на уровне 2
+- декоративный текст, перемещающийся при скроле на уровне 1
+*/
+
+/* Фон */
+.section-welcome {
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    background: url('../../img/web_develop.jpg') no-repeat center center / cover ;
+}
+
+/* Затемняющий фильтр*/
+.section-welcome:before { 
+    position: absolute;
+    z-index: 1;
+    content: "";
+    
+    width: 100%;
+    height: 100%;
+    background: var(--transparant-black-07);
+}
+
+/* Логотип */
+.section-welcome .logo-icon {
+    width: 80px;
+    height: 80px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100%;
+    background: var(--transparant-black-07);
+}
+.section-welcome img {
+    width: 60px;
+    height: 60px;
+}
+
+/* Позиционирование элементов */
+.section-welcome .container {
+    position: relative;
+    z-index: 2;
+    margin: 20vh 0 20vh 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    
+    font-weight: 800;
+    font-size: 1.8em;
+    color: var(--text-secondary-color);
+}
+
+/* Заголовок */
+h1.r-2 {
+    /* font-size: 4.4rem; */
+    margin: 0px 0;
+}
+
+/* Маркированный список */
+.section-welcome ul {
+    line-height: 32px;
+    padding-inline-start: 20px;
+}
+li {
+    margin: 12px 0;
+}
+
+/* Декоративный текст на фоне, перемещающийся по скролу*/
+.section-welcome .decor-text {
+    position: absolute;
+    z-index: 2;
+    bottom: max(-40px);
+    left: 30vw;
+    
+    color: var(--transparant-white-01);
+    font-size: clamp(180px, 20vw, 280px);
+}

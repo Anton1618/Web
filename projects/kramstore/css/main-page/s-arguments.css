@@ -1,0 +1,18 @@
+/* Секция аргументы */
+.section-arguments .container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.section-arguments h2 {
+    flex: 1 1 1fr
+}
+.section-arguments .container .item {
+    flex: 2 1 30vw;
+    margin: 0 20px;
+
+    font-size: 0.9em;
+}
+
+
